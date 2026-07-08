@@ -1,0 +1,11 @@
+AI_CANDIDATE_LIMIT = 10
+
+MIN_AVG_VOLUME = 1_000_000
+
+TICKERS_FILE = "tickers.txt"
+
+REPORTS_DIR = "reports"
+
+PERFORMANCE_DIR = "performance"
+
+MARKET_BENCHMARK = "SPY"
