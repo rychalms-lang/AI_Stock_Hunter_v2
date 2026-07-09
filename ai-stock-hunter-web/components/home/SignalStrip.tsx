@@ -18,8 +18,8 @@ export default function SignalStrip() {
   const top = snapshot?.top_opportunity;
 
   return (
-    <section className="mt-10 border-y border-neutral-300 py-7">
-      <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
+    <section className="mt-6 border border-white/10 bg-[#0a0c10]">
+      <div className="grid grid-cols-2 divide-y divide-white/10 md:grid-cols-5 md:divide-x md:divide-y-0">
         <Metric
           label="Market Regime"
           value={snapshot?.market_regime.label ?? "Loading"}

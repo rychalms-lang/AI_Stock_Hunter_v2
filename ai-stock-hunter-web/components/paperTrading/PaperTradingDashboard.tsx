@@ -28,7 +28,7 @@ function DashboardContent({ data }: { data: PaperTradingData }) {
       <PaperTradingBanner />
 
       <Card className="p-0">
-        <div className="grid grid-cols-1 divide-y divide-neutral-200 md:grid-cols-5 md:divide-x md:divide-y-0">
+        <div className="grid grid-cols-1 divide-y divide-white/10 md:grid-cols-5 md:divide-x md:divide-y-0">
           <Metric
             label="Paper Portfolio Value"
             value={money(summary.total_equity)}
@@ -46,51 +46,51 @@ function DashboardContent({ data }: { data: PaperTradingData }) {
       <Card className="p-8">
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
-            <div className="text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
-              Today&apos;s Picks
+            <div className="text-xs font-black uppercase tracking-[0.25em] text-[#d7ff5f]">
+              Today&apos;s Picks · Scanner Feed
             </div>
-            <h2 className="mt-2 text-4xl font-black tracking-[-0.07em]">
-              Mock paper candidates.
+            <h2 className="mt-2 text-4xl font-black tracking-[-0.07em] text-white">
+              Research queue feeding paper mode.
             </h2>
           </div>
 
-          <div className="text-sm text-neutral-500">
+          <div className="text-sm text-white/45">
             Generated {data.dailyPicks.generated_at}
           </div>
         </div>
 
-        <div className="mt-6 divide-y divide-neutral-200">
+        <div className="mt-6 divide-y divide-white/10">
           {picks.map((pick) => (
             <div
               key={pick.pick_id}
               className="grid grid-cols-2 gap-4 py-4 md:grid-cols-[0.6fr_1fr_0.7fr_0.7fr_0.7fr]"
             >
               <div>
-                <div className="text-2xl font-black tracking-[-0.05em]">
+                <div className="text-2xl font-black tracking-[-0.05em] text-white">
                   {pick.ticker}
                 </div>
-                <div className="text-xs text-neutral-500">{pick.sector}</div>
+                <div className="text-xs text-white/42">{pick.sector}</div>
               </div>
 
-              <div className="text-sm leading-6 text-neutral-600">
+              <div className="text-sm leading-6 text-white/60">
                 {pick.ai_explanation.summary}
               </div>
 
               <div>
-                <div className="text-xs text-neutral-500">Action</div>
-                <div className="mt-1 font-black">{pick.action}</div>
+                <div className="text-xs text-white/42">Action</div>
+                <div className="mt-1 font-black text-white">{pick.action}</div>
               </div>
 
               <div>
-                <div className="text-xs text-neutral-500">Confidence</div>
-                <div className="mt-1 font-black">
+                <div className="text-xs text-white/42">Confidence</div>
+                <div className="mt-1 font-black text-white">
                   {pick.confidence.toFixed(0)}%
                 </div>
               </div>
 
               <div>
-                <div className="text-xs text-neutral-500">Expected</div>
-                <div className="mt-1 font-black">
+                <div className="text-xs text-white/42">Expected</div>
+                <div className="mt-1 font-black text-white">
                   {pct(pick.expected_return_pct)}
                 </div>
               </div>

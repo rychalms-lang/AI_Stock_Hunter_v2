@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 
 import Badge from "@/components/ui/Badge";
-import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Metric from "@/components/ui/Metric";
 import { WebSnapshot } from "@/lib/webSnapshot";
@@ -44,7 +43,7 @@ export default function OpportunityCard() {
         </div>
 
         <Card className="p-10">
-          <div className="text-lg text-neutral-500">
+          <div className="text-lg text-white/48">
             Loading AI recommendation...
           </div>
         </Card>
@@ -64,18 +63,18 @@ export default function OpportunityCard() {
 
   return (
     <section className="mt-12">
-      <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
-        Today’s Highest Conviction
+      <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-white/42">
+        Top Opportunity · Evidence View
       </div>
 
-      <Card className="p-10">
+      <Card className="p-8 md:p-10">
         <div className="flex flex-col justify-between gap-10 xl:flex-row">
           <div>
-            <div className="text-lg text-neutral-500">
+            <div className="text-sm font-black uppercase tracking-[0.22em] text-white/42">
               {opportunity.sector}
             </div>
 
-            <div className="mt-2 text-[110px] font-black leading-none tracking-[-0.12em]">
+            <div className="mt-3 text-[88px] font-black leading-none tracking-[-0.12em] text-white md:text-[120px]">
               {opportunity.ticker}
             </div>
 
@@ -87,44 +86,44 @@ export default function OpportunityCard() {
           </div>
 
           <div className="max-w-md xl:text-right">
-            <div className="text-sm font-bold uppercase tracking-[0.22em] text-neutral-500">
+            <div className="text-sm font-bold uppercase tracking-[0.22em] text-white/42">
               AI Confidence
             </div>
 
-            <div className="mt-4 text-8xl font-black tracking-[-0.1em]">
+            <div className="mt-4 text-8xl font-black tracking-[-0.1em] text-[#d7ff5f]">
               {opportunity.confidence.toFixed(0)}%
             </div>
 
-            <p className="mt-5 text-base leading-7 text-neutral-600">
+            <p className="mt-5 text-base leading-7 text-white/56">
               This recommendation is now powered by the Python research engine
               and today’s generated market snapshot.
             </p>
           </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 border-y border-neutral-200 md:grid-cols-5">
+        <div className="mt-10 grid grid-cols-2 border-y border-white/10 md:grid-cols-5">
           <Metric
             label="Expected Return"
             value={formatPercent(opportunity.expected_return)}
-            className="border-r border-neutral-200"
+            className="border-r border-white/10"
           />
 
           <Metric
             label="Risk"
             value={opportunity.risk}
-            className="border-r border-neutral-200"
+            className="border-r border-white/10"
           />
 
           <Metric
             label="Historical Matches"
             value={opportunity.historical_matches.toLocaleString()}
-            className="border-r border-neutral-200"
+            className="border-r border-white/10"
           />
 
           <Metric
             label="Score"
             value={opportunity.score.toFixed(2)}
-            className="border-r border-neutral-200"
+            className="border-r border-white/10"
           />
 
           <Metric
@@ -135,21 +134,21 @@ export default function OpportunityCard() {
 
         <div className="mt-10 grid grid-cols-1 gap-10 xl:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <div className="text-3xl font-black tracking-[-0.06em]">
+            <div className="text-3xl font-black tracking-[-0.06em] text-white">
               Suggested holding period:
             </div>
 
-            <div className="mt-3 text-5xl font-black tracking-[-0.08em]">
+            <div className="mt-3 text-5xl font-black tracking-[-0.08em] text-white">
               {opportunity.best_hold_period_days} days
             </div>
 
-            <p className="mt-5 text-base leading-7 text-neutral-600">
+            <p className="mt-5 text-base leading-7 text-white/56">
               {opportunity.reason}
             </p>
           </div>
 
           <div>
-            <div className="text-3xl font-black tracking-[-0.06em]">
+            <div className="text-3xl font-black tracking-[-0.06em] text-white">
               Why the AI likes this
             </div>
 
@@ -157,10 +156,10 @@ export default function OpportunityCard() {
               {evidencePoints.map((point) => (
                 <div
                   key={point}
-                  className="flex items-start gap-4 border-b border-neutral-200 pb-4 last:border-b-0"
+                  className="flex items-start gap-4 border-b border-white/10 pb-4 last:border-b-0"
                 >
-                  <span className="mt-1 text-emerald-600">✓</span>
-                  <p className="text-base leading-7 text-neutral-700">
+                  <span className="mt-1 text-[#d7ff5f]">✓</span>
+                  <p className="text-base leading-7 text-white/62">
                     {point}
                   </p>
                 </div>
@@ -169,9 +168,10 @@ export default function OpportunityCard() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Button>Read Full Research</Button>
-          <Button variant="secondary">Add to Portfolio</Button>
+        <div className="mt-10 border-t border-white/10 pt-5 text-xs leading-5 text-white/40">
+          Evidence is generated for research review. Paper trading simulation only.
+          No real trades are placed. This is research and decision support, not
+          investment advice.
         </div>
       </Card>
     </section>

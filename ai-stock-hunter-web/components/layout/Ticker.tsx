@@ -22,12 +22,12 @@ export default function Ticker() {
     })) ?? [];
 
   return (
-    <div className="h-12 overflow-hidden bg-black text-white">
+    <div className="h-12 overflow-hidden border-b border-white/10 bg-[#050608] text-white">
       <div className="ticker-track flex h-full w-max items-center">
         {[...items, ...items, ...items, ...items].map((item, index) => (
           <div
             key={`${item.symbol}-${index}`}
-            className="flex h-full min-w-[188px] items-center justify-center border-r border-white/10 px-5"
+            className="flex h-full min-w-[188px] items-center justify-center border-r border-white/10 px-5 font-mono"
           >
             <span className="mr-3 text-sm font-bold">{item.symbol}</span>
             <span className="mr-3 text-xs text-white/55">{item.label}</span>

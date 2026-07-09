@@ -12,13 +12,13 @@ export default async function Home() {
   const paperTrading = await loadPaperTradingData();
 
   return (
-    <main className="min-h-screen bg-[#f5f5f2] text-[#111111]">
+    <main className="min-h-screen bg-[#050608] text-white">
       <Ticker />
 
       <div className="flex">
         <Sidebar />
 
-        <section className="min-h-[calc(100vh-48px)] flex-1 px-12 py-10">
+        <section className="min-h-[calc(100vh-48px)] flex-1 px-5 py-8 md:px-8 xl:px-12">
           <div className="mx-auto max-w-7xl">
             <TopBar />
             <MorningBrief />
