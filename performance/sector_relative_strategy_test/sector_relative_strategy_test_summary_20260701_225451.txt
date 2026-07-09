@@ -1,0 +1,54 @@
+AI STOCK HUNTER V3 - SECTOR RELATIVE STRATEGY TEST
+================================================================================
+
+Input: data/historical_training_data_v3_features.csv
+Test period starts: 2025-09-25
+
+TOP RESULTS BY AVERAGE DAILY PORTFOLIO RETURN
+--------------------------------------------------------------------------------
+           strategy                  rank_column holding_period  top_n  total_picks  trading_days  average_trade_return  median_trade_return  win_rate  average_daily_portfolio_return  median_daily_portfolio_return  daily_return_std  best_daily_return  worst_daily_return  cumulative_return
+Stock vs Sector 20D stock_vs_sector_20d_rank_pct            10d      3          549           183              2.676175                0.500  0.520947                        2.676175                       2.050000         12.709076          65.693333          -30.250000        3285.603609
+Stock vs Sector 20D stock_vs_sector_20d_rank_pct            10d      5          915           183              2.572197                0.660  0.526776                        2.572197                       1.854000         10.807249          50.692000          -19.236000        3885.475406
+  Relative Strength   relative_strength_rank_pct            10d      5          915           183              2.547279                0.000  0.499454                        2.547279                      -0.050000         12.671383          50.692000          -21.826000        2567.899241
+       20D Momentum          return_20d_rank_pct            10d      5          915           183              2.511727                0.030  0.500546                        2.511727                      -0.050000         12.702366          50.692000          -21.826000        2384.566485
+Stock vs Sector 20D stock_vs_sector_20d_rank_pct             7d      3          549           183              2.248525                0.520  0.528233                        2.248525                       1.683333         10.958550          43.993333          -30.760000        1959.240934
+Stock vs Sector 20D stock_vs_sector_20d_rank_pct            10d     10         1830           183              2.224973                0.580  0.524044                        2.224973                       0.769000          8.633567          32.148000          -15.342000        2894.462524
+  Relative Strength   relative_strength_rank_pct             7d      5          915           183              2.171246                0.100  0.509290                        2.171246                       0.376000         10.637675          34.966000          -27.682000        1821.936141
+       20D Momentum          return_20d_rank_pct             7d      5          915           183              2.141530                0.090  0.506011                        2.141530                       0.312000         10.660574          34.966000          -27.682000        1713.446466
+Stock vs Sector 20D stock_vs_sector_20d_rank_pct             5d      3          549           183              2.017851                1.140  0.561020                        2.017851                       1.810000          9.618331          38.416667          -33.073333        1598.961552
+Stock vs Sector 20D stock_vs_sector_20d_rank_pct             7d      5          915           183              1.897902                0.390  0.522404                        1.897902                       1.346000          8.732313          30.250000          -27.682000        1494.566331
+       20D Momentum          return_20d_rank_pct            10d     10         1830           183              1.870311                0.185  0.504918                        1.870311                       0.181000          9.598002          30.493000          -16.654000        1244.852828
+  Relative Strength   relative_strength_rank_pct            10d     10         1830           183              1.834333                0.185  0.504918                        1.834333                       0.181000          9.590296          30.493000          -16.654000        1162.195498
+Stock vs Sector 20D stock_vs_sector_20d_rank_pct            10d     20         3660           183              1.822530                0.500  0.527322                        1.822530                       0.682500          6.538621          21.034500          -10.250500        1790.648002
+       20D Momentum          return_20d_rank_pct            10d      3          549           183              1.751603               -1.010  0.473588                        1.751603                      -0.603333         14.135125          65.693333          -27.586667         375.540633
+  Relative Strength   relative_strength_rank_pct            10d      3          549           183              1.731894               -1.010  0.473588                        1.731894                      -0.513333         14.084694          65.693333          -27.586667         364.439014
+Stock vs Sector 20D stock_vs_sector_20d_rank_pct             5d      5          915           183              1.705169                0.800  0.534426                        1.705169                       1.426000          7.670310          29.550000          -25.634000        1203.110083
+  Current Pre Score                    pre_score            10d      5          915           183              1.687115                0.490  0.516940                        1.687115                       0.566000          9.779156          29.016000          -24.074000         835.297026
+       20D Momentum          return_20d_rank_pct             7d      3          549           183              1.636412               -0.200  0.499089                        1.636412                      -0.433333         11.733033          43.993333          -30.760000         491.445263
+  Relative Strength   relative_strength_rank_pct             7d      3          549           183              1.605483               -0.260  0.497268                        1.605483                       0.030000         11.710352          43.993333          -30.760000         461.939869
+Stock vs Sector 20D stock_vs_sector_20d_rank_pct             7d     10         1830           183              1.596361                0.205  0.510929                        1.596361                       0.542000          7.290459          21.596000          -21.134000        1035.767056
+  Current Pre Score                    pre_score            10d      3          549           183              1.566175                0.240  0.504554                        1.566175                       0.486667         10.937861          48.316667          -25.780000         510.689028
+  Current Pre Score                    pre_score            10d     20         3660           183              1.548667                0.695  0.533333                        1.548667                       1.213000          6.049255          22.380000          -15.586500        1107.876732
+  Relative Strength   relative_strength_rank_pct             5d      5          915           183              1.497650                0.160  0.506011                        1.497650                       1.030000          9.127104          33.258000          -25.634000         628.979292
+  Relative Strength   relative_strength_rank_pct            10d     20         3660           183              1.479011                0.330  0.511749                        1.479011                       0.813000          7.515906          22.770500          -15.831500         797.912796
+       20D Momentum          return_20d_rank_pct            10d     20         3660           183              1.470071                0.370  0.512842                        1.470071                       0.813000          7.470914          22.759000          -15.831500         787.736690
+       20D Momentum          return_20d_rank_pct             5d      5          915           183              1.467989                0.060  0.501639                        1.467989                       0.802000          9.165329          33.258000          -25.634000         586.065994
+  Current Pre Score                    pre_score            10d     10         1830           183              1.463213                0.570  0.523497                        1.463213                       0.527000          7.377177          20.172000          -16.502000         786.720305
+       20D Momentum          return_20d_rank_pct             7d     10         1830           183              1.458546                0.180  0.512022                        1.458546                       0.574000          8.275380          23.888000          -21.308000         671.295613
+  Relative Strength   relative_strength_rank_pct             7d     10         1830           183              1.443246                0.150  0.510383                        1.443246                       0.574000          8.274830          23.888000          -21.308000         650.322232
+        5D Momentum           return_5d_rank_pct            10d     10         1830           183              1.442033                0.295  0.513661                        1.442033                       0.700000          8.317035          23.415000          -15.794000         652.022878
+
+BEST RESULT
+--------------------------------------------------------------------------------
+Strategy: Stock vs Sector 20D
+Holding period: 10d
+Top N: 3
+Average trade return: 2.6762%
+Average daily portfolio return: 2.6762%
+Win rate: 0.5209
+Cumulative return: 3285.6036%
+Worst daily return: -30.2500%
+
+DECISION RULE
+--------------------------------------------------------------------------------
+Sector-relative momentum should only enter the live scanner if it beats pre_score and raw momentum across realistic test-period return metrics.

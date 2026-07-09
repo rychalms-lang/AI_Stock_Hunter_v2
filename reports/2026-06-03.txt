@@ -1,0 +1,115 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-03
+Stocks scanned: 101
+AI sentiment calls: 10
+
+1. MRVL
+Score: 97.55
+Momentum: 47.27%
+Volume: 2.86x
+Relative Strength: 72.44%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- Bitcoin dropped below $70K. So how are crypto traders feeling?
+- Marvell stock extends gains after a 32% pop as Nvidia CEO calls chipmaker 'the next trillion-dollar company'
+- Why Marvell Technology Bumped Higher Again on Wednesday
+
+2. DELL
+Score: 62.73
+Momentum: 32.81%
+Volume: 1.2x
+Relative Strength: 73.55%
+AI News Sentiment: Neutral (50.0)
+Recent Headlines:
+- Tech ETF inflows surge and defy AI concentration risks
+- Bitcoin dropped below $70K. So how are crypto traders feeling?
+- Nvidia Shakes Up PC Market With Its Surprise Entry
+
+3. OKTA
+Score: 60.97
+Momentum: 31.6%
+Volume: 1.27x
+Relative Strength: 58.18%
+AI News Sentiment: Bullish (70.0)
+Recent Headlines:
+- Why Okta (OKTA) Stock Is Down Today
+- Stocks Fall on Escalation of US-Iran Hostilities
+- Our Okta Stock Pick is Up 63%. Why We See More Upside Ahead.
+
+4. AI
+Score: 60.7
+Momentum: 4.79%
+Volume: 2.88x
+Relative Strength: 8.78%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- AI Stock Jumps 3% After-Hours — Founder Siebel Returns As CEO With $69M Cash Injection
+- C3.ai (AI) Q4 2026 Earnings Transcript
+- C3.ai Q4 Earnings Call Highlights
+
+5. ARM
+Score: 57.36
+Momentum: 22.84%
+Volume: 0.84x
+Relative Strength: 70.77%
+AI News Sentiment: Bullish (80.0)
+Recent Headlines:
+- Nvidia Shakes Up PC Market With Its Surprise Entry
+- Nvidia, Arm and Marvell emerge as key Computex winners
+- ARM Shares Surge 270% in 2026: Buy, Hold, or Wait for a Pullback?
+
+6. DDOG
+Score: 55.59
+Momentum: 11.14%
+Volume: 1.08x
+Relative Strength: 71.41%
+AI News Sentiment: Bullish (70.0)
+Recent Headlines:
+- Stock Market Today: Dow Drops 620 Points After Iran War Jitters; Broadcom Hits Highs
+- Stocks Fall on Escalation of US-Iran Hostilities
+- 1 Unpopular Stock That Should Get More Attention and 2 We Avoid
+
+7. PANW
+Score: 54.74
+Momentum: 8.79%
+Volume: 1.43x
+Relative Strength: 49.89%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- PANW Price Targets Raised By Citi, Goldman Sachs On AI-Driven Security Demand
+- CrowdStrike Stock Falls Despite Earnings Beat
+- Stock Market Today: Dow Drops 620 Points After Iran War Jitters; Broadcom Hits Highs
+
+8. GTLB
+Score: 52.55
+Momentum: 10.74%
+Volume: 2.38x
+Relative Strength: 24.56%
+AI News Sentiment: Bearish (30.0)
+Recent Headlines:
+- Stocks to Watch Recap: KKR, GameStop, GitLab, Universal Music
+- GTLB Q1 Deep Dive: AI Strategy, Workforce Restructuring, and Shifting Monetization Shape Outlook
+- GitLab Shares Down Despite Q1 Earnings Beat, Revenues Up Y/Y
+
+9. CRWD
+Score: 48.68
+Momentum: 11.42%
+Volume: 1.35x
+Relative Strength: 56.94%
+AI News Sentiment: Bearish (30.0)
+Recent Headlines:
+- Dow Jones Futures: Broadcom, CrowdStrike Dive On Earnings; SpaceX IPO Price Target Set
+- CrowdStrike (CRWD) Q1 2027 Earnings Transcript
+- CrowdStrike Beats Q1 Estimates On Earnings And Revenue — But Stock Sinks 13% After-Hours On Modest Guidance
+
+10. SNOW
+Score: 46.96
+Momentum: 0.87%
+Volume: 0.88x
+Relative Strength: 69.88%
+AI News Sentiment: Bullish (60.0)
+Recent Headlines:
+- ServiceNow and Snowflake Shares Are Falling, What You Need To Know
+- Snowflake vs. MongoDB: Which Technology Stock Is a Better Buy in 2026?
+- Snowflake Summit 26 Puts Governed Enterprise AI At Center Stage
+

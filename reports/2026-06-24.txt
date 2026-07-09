@@ -1,0 +1,250 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-24
+Stocks loaded: 208
+Passed filters: 96
+AI analysis calls: 10
+Minimum average volume: 1,000,000
+
+TOP SECTORS IN FINAL PICKS
+- Other / Uncategorized: 2
+- E-Commerce: 1
+- Consumer Apps: 1
+- Travel: 1
+- Consumer Defensive: 1
+- Industrials: 1
+- REITs: 1
+- Materials: 1
+- Healthcare: 1
+
+TOP PICKS
+
+1. SHOP (E-Commerce)
+Score: 47.47
+Open: $106.87
+Close: $114.17
+Open-to-Close: 6.83%
+5-Day Change: 5.62%
+20-Day Change: 7.1%
+Momentum: 5.62%
+Volume: 2.1x
+Avg Volume: 9,362,775.0
+Relative Strength: 9.14%
+AI News Sentiment: Bullish (72.0)
+
+Stock Brief:
+Shopify Inc. provides an extensive e-commerce platform enabling merchants worldwide to manage sales across multiple channels, including online storefronts, physical locations, and social media. The stock’s recent 6.83% intraday gain and positive 20-day trend, coupled with high volume activity (2.1x average), suggest growing investor confidence possibly fueled by optimistic analyst coverage and comparisons with peers like WIX. The bullish case centers on Shopify’s strong market position, broad geographic exposure, and integrated payment solutions that support expanding merchant adoption and revenue streams. However, regulatory concerns, such as potential negative impacts from Canadian legislation (Bill C-22), and competitive pressures remain key risks. Watch upcoming earnings, regulatory developments, and analyst sentiment shifts for directional cues.
+
+Recent Headlines:
+- Shopify's policy chief says Bill C-22 could handicap Canadian tech companies
+- Is It Worth Investing in Shopify (SHOP) Based on Wall Street's Bullish Views?
+- EXCLUSIVE: AMASS Brands Targets THC Beverage Growth With Afterdream Investment
+
+------------------------------------------------------------
+
+2. DUOL (Consumer Apps)
+Score: 47.4
+Open: $132.95
+Close: $132.15
+Open-to-Close: -0.6%
+5-Day Change: 7.1%
+20-Day Change: 22.57%
+Momentum: 7.1%
+Volume: 1.74x
+Avg Volume: 1,520,221.0
+Relative Strength: 24.61%
+AI News Sentiment: Neutral (68.0)
+
+Stock Brief:
+Duolingo, Inc. operates a leading mobile learning platform offering 250 language courses and an English proficiency exam globally. Recent stock movement shows a modest pullback with a slight 0.6% drop on the day, despite strong relative strength versus the SPY and solid 5- and 20-day gains, suggesting mixed investor sentiment. The bullish case hinges on continued user growth and market expansion amid growing demand for digital education tools. However, caution is warranted given recent volatility and market comparisons to steadier tech names like Adobe. Investors should watch upcoming user metrics, monetization progress, and any shifts in competitive positioning to gauge momentum.
+
+Recent Headlines:
+- Adobe vs. Duolingo: Which Technology Stock Is a Better Buy in 2026?
+- Bargain Hunters: These 3 Growth Stocks Haven't Been This Cheap in Years. Here's Why They Could Be Good Contrarian Buys
+- Duolingo, Inc. (DUOL) Dips More Than Broader Market: What You Should Know
+
+------------------------------------------------------------
+
+3. BKNG (Travel)
+Score: 41.0
+Open: $171.17
+Close: $181.25
+Open-to-Close: 5.89%
+5-Day Change: 5.61%
+20-Day Change: 7.92%
+Momentum: 5.61%
+Volume: 1.62x
+Avg Volume: 8,465,862.0
+Relative Strength: 9.96%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Booking Holdings operates leading online travel platforms including Booking.com, Priceline, Agoda, and KAYAK, covering accommodation, flights, car rentals, and related travel services globally. Shares have gained 5.89% intraday and nearly 8% over 20 days, likely supported by positive market sentiment around digital travel recovery and recent AI integration news enhancing service offerings. The bullish case rests on sustained travel demand rebound and technological innovation, such as the integration of Anthropic’s Claude into Priceline’s AI assistant, potentially improving customer experience and operational efficiency. Key risks include macroeconomic uncertainties impacting travel budgets, currency fluctuations, and sector vulnerability to geopolitical or COVID-19 disruptions. Watch for upcoming earnings, travel demand data, and further AI rollout updates as potential catalysts.
+
+Recent Headlines:
+- Nasdaq, S&P end lower as tech stocks fall
+- Stocks Rally as Falling Crude Prices Knock Bond Yields Lower
+- Booking Holdings’ (BKNG) Priceline Upgrades AI Assistant Penny With Anthropic’s Claude Integration
+
+------------------------------------------------------------
+
+4. TGT (Consumer Defensive)
+Score: 37.29
+Open: $135.69
+Close: $141.2
+Open-to-Close: 4.06%
+5-Day Change: 10.48%
+20-Day Change: 10.03%
+Momentum: 10.48%
+Volume: 1.21x
+Avg Volume: 4,693,484.0
+Relative Strength: 12.07%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Target Corporation is a major U.S. retailer offering a broad range of products including apparel, beauty, groceries, electronics, and home goods. The stock has gained notable momentum recently, supported by a 4.06% rise on the day and a strong 10%+ increase over the past 5 and 20 days, outperforming the broader market (SPY). This movement may reflect positive investor sentiment amid robust revenue trends in discount retail and favorable consumer spending reports. The bullish case centers on Target’s diversified product mix and ability to capture demand across multiple categories, including groceries and apparel. Key risks include intensifying competition from peers like Costco and Amazon, as well as fluctuations in consumer spending patterns. Investors should watch upcoming earnings and same-store sales data for signs of sustained growth or emerging pressure points.
+
+Recent Headlines:
+- Target vs. Costco: What Their Revenue Trends Tell Investors
+- Amazon Boosted By Prime Day Data, Unveils Robotaxi Updates. Stock Climbs.
+- The One Metric That Makes Costco Wholesale Stock Vulnerable
+
+------------------------------------------------------------
+
+5. GE (Industrials)
+Score: 37.1
+Open: $356.84
+Close: $365.88
+Open-to-Close: 2.53%
+5-Day Change: 2.48%
+20-Day Change: 15.34%
+Momentum: 2.48%
+Volume: 1.26x
+Avg Volume: 5,065,765.0
+Relative Strength: 17.39%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+GE Aerospace, a segment of General Electric Company, designs and manufactures commercial and defense aircraft engines along with related components and services. The stock has gained momentum recently, supported by strong 20-day performance (+15.34%) and relative strength versus the market (+17.39%), likely driven by robust demand in aerospace and defense coupled with price increases in GE Vernova’s gas turbines. The bullish case hinges on sustained growth in commercial air travel recovery and defense spending, alongside benefits from maintenance and service contracts. Key risks include cyclical aerospace industry exposure and potential volatility in government defense budgets. Investors should monitor upcoming earnings, order backlogs, and sector-wide demand trends for further clarity.
+
+Recent Headlines:
+- GE Aerospace (GE) Advances While Market Declines: Some Information for Investors
+- AI Data Centers Are Driving a Power Supercycle. GE Vernova’s Gas Turbine Prices Are Up 300% in Three Years
+- Here is What to Know Beyond Why GE Aerospace (GE) is a Trending Stock
+
+------------------------------------------------------------
+
+6. PSA (REITs)
+Score: 36.82
+Open: $323.95
+Close: $317.92
+Open-to-Close: -1.86%
+5-Day Change: 1.71%
+20-Day Change: 4.59%
+Momentum: 1.71%
+Volume: 1.51x
+Avg Volume: 1,001,181.0
+Relative Strength: 6.63%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Public Storage is a leading REIT focused on owning and operating self-storage facilities across the U.S. and holds a significant stake in a European self-storage operator. The stock’s modest recent pullback followed by positive momentum and a volume ratio above 1 suggests continued investor interest. The bullish case centers on its scale, geographic diversification, and potential growth from the recent $1.2 billion Canada acquisition. Risks include broader REIT sector volatility and competition within the self-storage and logistics space. Watch upcoming earnings and integration progress of the Canadian assets for signs of sustained growth.
+
+Recent Headlines:
+- Why INDS Self-Storage and Warehouse Blend Offers Steadier Dividends Than Pure Logistics Plays
+- Can Public Storage's $1.2B Canada Acquisition Drive Long-Term Growth?
+- Public Storage (PSA) Stock Valuation Check After Recent Share Price Momentum
+
+------------------------------------------------------------
+
+7. AFRM (Other / Uncategorized)
+Score: 36.38
+Open: $72.76
+Close: $77.66
+Open-to-Close: 6.73%
+5-Day Change: 9.8%
+20-Day Change: 10.25%
+Momentum: 9.8%
+Volume: 1.21x
+Avg Volume: 4,788,671.0
+Relative Strength: 12.29%
+AI News Sentiment: Bullish (70.0)
+
+Stock Brief:
+Affirm Holdings, Inc. operates a point-of-sale payment platform enabling consumers to finance purchases over time through partnerships with banks and merchants. The stock has recently seen a notable price increase, supported by a golden cross technical signal and breakout above its 20-day moving average, indicating positive momentum. The bullish case centers on Affirm's expanding merchant base across diverse retail sectors and improving investor sentiment potentially driving further adoption of its payment solutions. However, weakness in underlying investor sentiment during Q1 and competition in credit services remain risks that could pressure future earnings. Watch for upcoming earnings reports and changes in volume or technical trends to gauge if momentum can be sustained.
+
+Recent Headlines:
+- 5 Ways to Play Prime Day That Aren’t Amazon
+- Affirm Holdings (AFRM) Just Flashed Golden Cross Signal: Do You Buy?
+- Weak Investor Sentiment Hurt Affirm Holdings (AFRM) in Q1
+
+------------------------------------------------------------
+
+8. VMC (Materials)
+Score: 35.76
+Open: $302.01
+Close: $307.29
+Open-to-Close: 1.75%
+5-Day Change: 4.23%
+20-Day Change: 11.48%
+Momentum: 4.23%
+Volume: 1.27x
+Avg Volume: 1,336,299.0
+Relative Strength: 13.52%
+AI News Sentiment: Bullish (70.0)
+
+Stock Brief:
+Vulcan Materials Company supplies essential construction aggregates, asphalt, and concrete primarily for infrastructure and commercial projects across the U.S. The stock's recent 1.75% gain and steady 4.23% rise over five days suggest positive market sentiment possibly tied to ongoing infrastructure spending and construction activity. The bullish case hinges on sustained demand for building materials driven by public works and housing development, supporting revenue growth. However, risks include potential slowdowns in construction demand or input cost pressures impacting margins. Investors should monitor upcoming infrastructure spending reports and commodity cost trends for cues on future performance.
+
+Recent Headlines:
+- 2 Profitable Stocks Worth Investigating and 1 Facing Challenges
+- 3 S&P 500 Stocks to Consider Right Now
+- Martin Marietta (MLM) Surges 3.1%: Is This an Indication of Further Gains?
+
+------------------------------------------------------------
+
+9. ABBV (Healthcare)
+Score: 35.44
+Open: $236.35
+Close: $234.89
+Open-to-Close: -0.62%
+5-Day Change: 6.17%
+20-Day Change: 9.05%
+Momentum: 6.17%
+Volume: 1.21x
+Avg Volume: 5,993,194.0
+Relative Strength: 11.09%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+AbbVie Inc. is a global biopharmaceutical company specializing in treatments for autoimmune, inflammatory, and various cancers, with key drugs like Skyrizi, Rinvoq, and Imbruvica driving growth. The stock has gained over 9% in the past 20 days, likely supported by strong product demand and positive sentiment around its dividend reliability. AbbVie’s diversified portfolio and ongoing R&D efforts position it well for sustained revenue, especially in oncology and immunology. However, risks include patent expirations, pricing pressures, and regulatory challenges. Investors should monitor upcoming clinical trial results and competitive dynamics in its key therapeutic areas.
+
+Recent Headlines:
+- Why I Can’t Stop Buying This Unstoppable Dividend Juggernaut
+- The Number That Could Test AbbVie Stock
+- VERAXA Biotech Expands R&D Hub in Heidelberg as Programs Advance Towards Clinical Development
+
+------------------------------------------------------------
+
+10. DELL (Other / Uncategorized)
+Score: 34.11
+Open: $421.77
+Close: $434.06
+Open-to-Close: 2.92%
+5-Day Change: 3.52%
+20-Day Change: 42.17%
+Momentum: 3.52%
+Volume: 0.46x
+Avg Volume: 12,528,320.0
+Relative Strength: 44.21%
+AI News Sentiment: Bullish (70.0)
+
+Stock Brief:
+Dell Technologies designs and manufactures integrated IT infrastructure and computer hardware solutions globally, focusing on storage, servers, and networking products. The stock has gained momentum recently, supported by a strong 20-day price increase of over 42%, possibly driven by investor interest in AI-optimized servers and infrastructure solutions. The bullish case is underpinned by Dell's diversified portfolio in AI-ready hardware and its position in both traditional and modern infrastructure markets. However, risks include sector volatility and potential shifts in enterprise IT spending amid broader tech competition and supply chain uncertainties. Key indicators to watch include order flow trends in AI server demand and updates on infrastructure contracts within the competitive landscape.
+
+Recent Headlines:
+- Everyone Is Watching Cisco Stock's AI Orders. Here's The Number They Stopped Bragging About.
+- Seagate Stock's Unfilled Orders Were The Real Tell
+- Which AI Server Stock Has Dominated in 2026: Super Micro, Dell, or Hewlett Packard Enterprise?
+
+------------------------------------------------------------
+

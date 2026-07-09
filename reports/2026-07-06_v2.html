@@ -1,0 +1,1301 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: #0f172a;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #e5e7eb;
+            }
+
+            .container {
+                max-width: 860px;
+                margin: 0 auto;
+                padding: 28px;
+            }
+
+            .hero {
+                background: linear-gradient(135deg, #111827, #1e3a8a);
+                border-radius: 18px;
+                padding: 28px;
+                margin-bottom: 24px;
+                border: 1px solid #334155;
+            }
+
+            .hero h1 {
+                margin: 0;
+                font-size: 34px;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                margin: 8px 0 0;
+                color: #cbd5e1;
+            }
+
+            .section {
+                background: #111827;
+                border: 1px solid #334155;
+                border-radius: 18px;
+                padding: 22px;
+                margin-bottom: 24px;
+            }
+
+            .section h2 {
+                margin-top: 0;
+                font-size: 22px;
+            }
+
+            .regime {
+                display: inline-block;
+                padding: 10px 16px;
+                border-radius: 999px;
+                font-weight: bold;
+                background: #16a34a;
+                color: white;
+            }
+
+            .score {
+                font-size: 44px;
+                font-weight: bold;
+                margin-top: 12px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 12px;
+                border-bottom: 1px solid #334155;
+            }
+
+            th {
+                color: #94a3b8;
+                font-size: 13px;
+                text-transform: uppercase;
+            }
+
+            .card {
+                background: #111827;
+                border: 1px solid #334155;
+                border-radius: 18px;
+                padding: 22px;
+                margin-bottom: 22px;
+            }
+
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 18px;
+            }
+
+            .rank {
+                color: #94a3b8;
+                font-size: 14px;
+                margin-bottom: 4px;
+            }
+
+            .card h2 {
+                margin: 0;
+                font-size: 28px;
+            }
+
+            .sector {
+                color: #93c5fd;
+                margin: 4px 0 0;
+            }
+
+            .confidence {
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                font-size: 19px;
+                color: white;
+            }
+
+            .metrics {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+
+            .metrics div {
+                background: #0f172a;
+                padding: 14px;
+                border-radius: 12px;
+                border: 1px solid #1e293b;
+            }
+
+            .metrics span,
+            .historical-grid span {
+                display: block;
+                color: #94a3b8;
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .metrics strong,
+            .historical-grid strong {
+                font-size: 18px;
+            }
+
+            .historical-box {
+                background: #0f172a;
+                border: 1px solid #2563eb;
+                border-radius: 16px;
+                padding: 18px;
+                margin-bottom: 20px;
+            }
+
+            .historical-box h4 {
+                margin-top: 0;
+                color: #bfdbfe;
+            }
+
+            .historical-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .historical-grid div {
+                background: #111827;
+                border: 1px solid #1e293b;
+                border-radius: 12px;
+                padding: 12px;
+            }
+
+            .pattern-table td,
+            .pattern-table th {
+                padding: 9px;
+            }
+
+            .split {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+            }
+
+            h4 {
+                margin-bottom: 8px;
+                color: #f8fafc;
+            }
+
+            ul {
+                margin-top: 0;
+                padding-left: 20px;
+            }
+
+            li {
+                margin-bottom: 6px;
+                color: #cbd5e1;
+            }
+
+            .brief {
+                background: #0f172a;
+                border: 1px solid #1e293b;
+                border-radius: 14px;
+                padding: 16px;
+                margin-top: 18px;
+            }
+
+            .brief p {
+                color: #cbd5e1;
+                line-height: 1.5;
+            }
+
+            .footer {
+                text-align: center;
+                color: #64748b;
+                font-size: 12px;
+                margin-top: 28px;
+            }
+
+            @media only screen and (max-width: 700px) {
+                .metrics,
+                .historical-grid,
+                .split {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="hero">
+                <h1>📈 AI Stock Hunter</h1>
+                <p>Morning Market Brief • July 06, 2026</p>
+            </div>
+
+            <div class="section">
+                <h2>🌎 Market Regime</h2>
+                <div class="regime">Risk-On</div>
+                <div class="score">100.0/100</div>
+                <p>Major indexes are broadly trending higher.</p>
+
+                <table>
+                    <tr>
+                        <th>Index</th>
+                        <th>Trend</th>
+                        <th>Score</th>
+                        <th>20D Return</th>
+                    </tr>
+                    <tr>
+                        <td>SPY</td>
+                        <td>Bullish</td>
+                        <td>100</td>
+                        <td>+2.22%</td>
+                    </tr>
+                    <tr>
+                        <td>QQQ</td>
+                        <td>Bullish</td>
+                        <td>100</td>
+                        <td>+2.86%</td>
+                    </tr>
+                    <tr>
+                        <td>IWM</td>
+                        <td>Bullish</td>
+                        <td>100</td>
+                        <td>+6.55%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>🏆 Leading Sectors</h2>
+                <table>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Sector</th>
+                        <th>ETF</th>
+                        <th>5D</th>
+                        <th>20D</th>
+                    </tr>
+                    
+        <tr>
+            <td>🥇</td>
+            <td><strong>Financials</strong></td>
+            <td>XLF</td>
+            <td>+4.40%</td>
+            <td>+7.61%</td>
+        </tr>
+        
+        <tr>
+            <td>🥈</td>
+            <td><strong>Industrials</strong></td>
+            <td>XLI</td>
+            <td>+1.34%</td>
+            <td>+6.59%</td>
+        </tr>
+        
+        <tr>
+            <td>🥉</td>
+            <td><strong>Healthcare</strong></td>
+            <td>XLV</td>
+            <td>+0.99%</td>
+            <td>+6.56%</td>
+        </tr>
+        
+        <tr>
+            <td>4️⃣</td>
+            <td><strong>Small Caps</strong></td>
+            <td>IWM</td>
+            <td>+0.15%</td>
+            <td>+6.56%</td>
+        </tr>
+        
+        <tr>
+            <td>5️⃣</td>
+            <td><strong>Semiconductors</strong></td>
+            <td>SMH</td>
+            <td>-3.66%</td>
+            <td>+6.87%</td>
+        </tr>
+        
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>💼 Portfolio Model</h2>
+                <p>Cash Allocation: <strong>10%</strong></p>
+                <table>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Sector</th>
+                        <th>Allocation</th>
+                        <th>Confidence</th>
+                    </tr>
+                    
+        <tr>
+            <td><strong>HIMS</strong></td>
+            <td>Consumer Health</td>
+            <td>18.0%</td>
+            <td>100%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>HOOD</strong></td>
+            <td>Fintech / Crypto</td>
+            <td>18.0%</td>
+            <td>100%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>CELH</strong></td>
+            <td>Consumer Staples Growth</td>
+            <td>18.0%</td>
+            <td>100%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>DUOL</strong></td>
+            <td>Consumer Apps</td>
+            <td>18.0%</td>
+            <td>100%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>RBLX</strong></td>
+            <td>Gaming / Metaverse</td>
+            <td>18.0%</td>
+            <td>100%</td>
+        </tr>
+        
+                </table>
+            </div>
+
+            <h2>⭐ Top Picks</h2>
+            
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#1</div>
+                    <h2>HIMS</h2>
+                    <p class="sector">Consumer Health</p>
+                </div>
+                <div class="confidence" style="background:#16a34a;">
+                    100%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>51.59</strong></div>
+                <div><span>Open</span><strong>$36.75</strong></div>
+                <div><span>Close</span><strong>$38.51</strong></div>
+                <div><span>Open → Close</span><strong>+4.79%</strong></div>
+                <div><span>5D</span><strong>+15.33%</strong></div>
+                <div><span>20D</span><strong>+47.04%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>61</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>10 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>+5.79%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>+0.21%</td>
+                        <td>+44.26%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>+1.30%</td>
+                        <td>+59.02%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>+2.40%</td>
+                        <td>+54.10%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>+3.82%</td>
+                        <td>+59.02%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>+5.79%</td>
+                        <td>+57.38%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 5-day momentum</li><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Positive open-to-close action</li><li>Supportive risk-on market environment</li><li>Strong historical average return</li><li>Positive historical win rate</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>Very extended 20-day move</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#2</div>
+                    <h2>HOOD</h2>
+                    <p class="sector">Fintech / Crypto</p>
+                </div>
+                <div class="confidence" style="background:#16a34a;">
+                    100%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>48.02</strong></div>
+                <div><span>Open</span><strong>$111.41</strong></div>
+                <div><span>Close</span><strong>$118.50</strong></div>
+                <div><span>Open → Close</span><strong>+6.36%</strong></div>
+                <div><span>5D</span><strong>+16.37%</strong></div>
+                <div><span>20D</span><strong>+43.69%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>32</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>10 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>+1.91%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>-0.03%</td>
+                        <td>+56.25%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>-0.82%</td>
+                        <td>+50.00%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>+0.21%</td>
+                        <td>+65.62%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>+0.37%</td>
+                        <td>+68.75%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>+1.91%</td>
+                        <td>+65.62%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 5-day momentum</li><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Positive open-to-close action</li><li>Supportive risk-on market environment</li><li>Positive historical average return</li><li>Strong historical win rate</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>Very extended 20-day move</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#3</div>
+                    <h2>CELH</h2>
+                    <p class="sector">Consumer Staples Growth</p>
+                </div>
+                <div class="confidence" style="background:#16a34a;">
+                    100%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>43.24</strong></div>
+                <div><span>Open</span><strong>$33.38</strong></div>
+                <div><span>Close</span><strong>$33.38</strong></div>
+                <div><span>Open → Close</span><strong>0.00%</strong></div>
+                <div><span>5D</span><strong>+12.05%</strong></div>
+                <div><span>20D</span><strong>+18.66%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>32</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>10 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>+5.63%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>-0.03%</td>
+                        <td>+34.38%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>+2.26%</td>
+                        <td>+68.75%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>+3.99%</td>
+                        <td>+68.75%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>+4.26%</td>
+                        <td>+71.88%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>+5.63%</td>
+                        <td>+62.50%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 5-day momentum</li><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Supportive risk-on market environment</li><li>Strong historical average return</li><li>Strong historical win rate</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>No major risk flags detected</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#4</div>
+                    <h2>DUOL</h2>
+                    <p class="sector">Consumer Apps</p>
+                </div>
+                <div class="confidence" style="background:#16a34a;">
+                    100%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>40.66</strong></div>
+                <div><span>Open</span><strong>$123.00</strong></div>
+                <div><span>Close</span><strong>$129.41</strong></div>
+                <div><span>Open → Close</span><strong>+5.21%</strong></div>
+                <div><span>5D</span><strong>+11.53%</strong></div>
+                <div><span>20D</span><strong>+18.69%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>37</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>7 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>+1.82%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>-0.50%</td>
+                        <td>+43.24%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>-0.56%</td>
+                        <td>+48.65%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>+1.69%</td>
+                        <td>+62.16%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>+1.82%</td>
+                        <td>+64.86%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>-0.93%</td>
+                        <td>+45.95%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 5-day momentum</li><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Positive open-to-close action</li><li>Supportive risk-on market environment</li><li>Positive historical average return</li><li>Positive historical win rate</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>No major risk flags detected</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#5</div>
+                    <h2>RBLX</h2>
+                    <p class="sector">Gaming / Metaverse</p>
+                </div>
+                <div class="confidence" style="background:#16a34a;">
+                    100%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>40.29</strong></div>
+                <div><span>Open</span><strong>$55.11</strong></div>
+                <div><span>Close</span><strong>$57.22</strong></div>
+                <div><span>Open → Close</span><strong>+3.82%</strong></div>
+                <div><span>5D</span><strong>+5.29%</strong></div>
+                <div><span>20D</span><strong>+36.81%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>41</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>10 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>+2.78%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>+0.61%</td>
+                        <td>+51.22%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>+0.46%</td>
+                        <td>+65.85%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>+1.69%</td>
+                        <td>+63.41%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>+2.15%</td>
+                        <td>+60.98%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>+2.78%</td>
+                        <td>+65.85%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 5-day momentum</li><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Positive open-to-close action</li><li>Supportive risk-on market environment</li><li>Positive historical average return</li><li>Strong historical win rate</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>Stock belongs to a weak sector</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#6</div>
+                    <h2>SE</h2>
+                    <p class="sector">International Tech</p>
+                </div>
+                <div class="confidence" style="background:#ca8a04;">
+                    70%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>39.1</strong></div>
+                <div><span>Open</span><strong>$103.32</strong></div>
+                <div><span>Close</span><strong>$105.29</strong></div>
+                <div><span>Open → Close</span><strong>+1.91%</strong></div>
+                <div><span>5D</span><strong>+13.28%</strong></div>
+                <div><span>20D</span><strong>+21.64%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>47</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>1 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>-0.66%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>-0.66%</td>
+                        <td>+44.68%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>-1.01%</td>
+                        <td>+44.68%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>-2.66%</td>
+                        <td>+40.43%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>-2.54%</td>
+                        <td>+44.68%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>-4.33%</td>
+                        <td>+38.30%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 5-day momentum</li><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Positive open-to-close action</li><li>Supportive risk-on market environment</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>No major risk flags detected</li><li>Weak historical average return</li><li>Weak historical win rate</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#7</div>
+                    <h2>AFRM</h2>
+                    <p class="sector">Other / Uncategorized</p>
+                </div>
+                <div class="confidence" style="background:#16a34a;">
+                    85%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>38.53</strong></div>
+                <div><span>Open</span><strong>$84.43</strong></div>
+                <div><span>Close</span><strong>$85.75</strong></div>
+                <div><span>Open → Close</span><strong>+1.56%</strong></div>
+                <div><span>5D</span><strong>+4.84%</strong></div>
+                <div><span>20D</span><strong>+34.80%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>211</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>5 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>+0.98%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>+0.67%</td>
+                        <td>+52.61%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>+0.22%</td>
+                        <td>+47.87%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>+0.98%</td>
+                        <td>+51.66%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>+0.77%</td>
+                        <td>+47.87%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>+0.51%</td>
+                        <td>+43.60%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Positive open-to-close action</li><li>Supportive risk-on market environment</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>No major risk flags detected</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#8</div>
+                    <h2>PANW</h2>
+                    <p class="sector">Cybersecurity</p>
+                </div>
+                <div class="confidence" style="background:#ca8a04;">
+                    65%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>36.11</strong></div>
+                <div><span>Open</span><strong>$337.69</strong></div>
+                <div><span>Close</span><strong>$353.83</strong></div>
+                <div><span>Open → Close</span><strong>+4.78%</strong></div>
+                <div><span>5D</span><strong>+6.58%</strong></div>
+                <div><span>20D</span><strong>+30.06%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>62</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>1 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>-0.18%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>-0.18%</td>
+                        <td>+46.77%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>-0.81%</td>
+                        <td>+41.94%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>-1.80%</td>
+                        <td>+45.16%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>-1.55%</td>
+                        <td>+43.55%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>-1.76%</td>
+                        <td>+38.71%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 5-day momentum</li><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Positive open-to-close action</li><li>Supportive risk-on market environment</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>Stock belongs to a weak sector</li><li>Weak historical average return</li><li>Weak historical win rate</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#9</div>
+                    <h2>OKTA</h2>
+                    <p class="sector">Cybersecurity</p>
+                </div>
+                <div class="confidence" style="background:#16a34a;">
+                    80%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>35.01</strong></div>
+                <div><span>Open</span><strong>$144.26</strong></div>
+                <div><span>Close</span><strong>$147.33</strong></div>
+                <div><span>Open → Close</span><strong>+2.13%</strong></div>
+                <div><span>5D</span><strong>+12.20%</strong></div>
+                <div><span>20D</span><strong>+24.10%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>124</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>3 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>+0.31%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>+0.28%</td>
+                        <td>+54.84%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>+0.31%</td>
+                        <td>+54.03%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>+0.26%</td>
+                        <td>+64.52%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>+0.20%</td>
+                        <td>+59.68%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>-0.25%</td>
+                        <td>+51.61%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 5-day momentum</li><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Positive open-to-close action</li><li>Supportive risk-on market environment</li><li>Positive historical win rate</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>Stock belongs to a weak sector</li><li>Weak historical average return</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="rank">#10</div>
+                    <h2>TEM</h2>
+                    <p class="sector">AI / Healthcare</p>
+                </div>
+                <div class="confidence" style="background:#ca8a04;">
+                    60%
+                </div>
+            </div>
+
+            <div class="metrics">
+                <div><span>Score</span><strong>32.08</strong></div>
+                <div><span>Open</span><strong>$60.10</strong></div>
+                <div><span>Close</span><strong>$60.53</strong></div>
+                <div><span>Open → Close</span><strong>+0.72%</strong></div>
+                <div><span>5D</span><strong>+3.81%</strong></div>
+                <div><span>20D</span><strong>+30.37%</strong></div>
+            </div>
+
+            <div class="historical-box">
+                <h4>📚 Historical Pattern</h4>
+                <div class="historical-grid">
+                    <div>
+                        <span>Similar Setups</span>
+                        <strong>58</strong>
+                    </div>
+                    <div>
+                        <span>Best Hold</span>
+                        <strong>5 days</strong>
+                    </div>
+                    <div>
+                        <span>Best Avg Return</span>
+                        <strong>-0.33%</strong>
+                    </div>
+                </div>
+
+                <table class="pattern-table">
+                    <tr>
+                        <th>Hold</th>
+                        <th>Avg Return</th>
+                        <th>Win Rate</th>
+                    </tr>
+                    <tr>
+                        <td>1D</td>
+                        <td>-0.99%</td>
+                        <td>+31.03%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>-0.77%</td>
+                        <td>+39.66%</td>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>-0.33%</td>
+                        <td>+48.28%</td>
+                    </tr>
+                    <tr>
+                        <td>7D</td>
+                        <td>-2.71%</td>
+                        <td>+34.48%</td>
+                    </tr>
+                    <tr>
+                        <td>10D</td>
+                        <td>-4.08%</td>
+                        <td>+36.21%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="split">
+                <div>
+                    <h4>Why It Ranked</h4>
+                    <ul><li>Strong 20-day trend</li><li>Strong relative strength vs SPY</li><li>Supportive risk-on market environment</li><li>Stock belongs to a leading sector</li></ul>
+                </div>
+                <div>
+                    <h4>Risk Flags</h4>
+                    <ul><li>No major risk flags detected</li><li>Weak historical average return</li><li>Weak historical win rate</li></ul>
+                </div>
+            </div>
+
+            
+            <div class="brief">
+                <h4>Stock Brief</h4>
+                <p>AI analysis module not connected yet in v2.</p>
+            </div>
+            
+        </div>
+        
+
+            <div class="footer">
+                AI Stock Hunter is a research tool, not financial advice.
+            </div>
+        </div>
+    </body>
+    </html>
+    

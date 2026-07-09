@@ -1,0 +1,345 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-26
+Stocks loaded: 246
+Passed filters: 114
+AI analysis calls: 10
+Minimum average volume: 1,000,000
+
+TOP SECTORS IN FINAL PICKS
+- Healthcare: 3
+- Energy: 3
+- Mega Cap Tech: 1
+- Consumer Platforms: 1
+- Cloud Software: 1
+- Industrials: 1
+
+TOP PICKS
+
+1. ABBV (Healthcare)
+Score: 112.92
+Confidence: 100%
+Open: $245.26
+Close: $253.35
+Open-to-Close: 3.3%
+5-Day Change: 10.15%
+20-Day Change: 16.37%
+Momentum: 10.15%
+Volume: 6.08x
+Avg Volume: 8,644,244.0
+Relative Strength: 19.75%
+AI News Sentiment: Bullish (75.0)
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Above-average volume confirmation
+- Positive open-to-close action
+- Bullish AI news analysis
+
+Risk Flags:
+- Extreme volume spike may indicate exhaustion
+
+Stock Brief:
+AbbVie Inc. is a research-driven biopharmaceutical company specializing in treatments for autoimmune diseases, blood cancers, and various cancers, alongside cosmetic and regenerative medicine products. The stock’s strong recent performance, including a 3.3% intraday gain and a 10.15% rise over five days, suggests growing investor confidence, supported by new drug launches and expansion into pediatric indications. The bullish case centers on AbbVie’s robust portfolio and pipeline, with top-selling drugs like Skyrizi and Rinvoq fueling growth beyond its traditional oncology focus. However, a key risk lies in regulatory hurdles and competition, which could impact future approvals and market share. Watch for further developments in AbbVie’s pediatric expansions and quarterly earnings to gauge the sustainability of growth momentum.
+
+Recent Headlines:
+- Lilly, J&J and AbbVie Hit New Highs
+- AbbVie Stock's Growth Story Has One Question Mark
+- The Homebody Portfolio: How Much Does Retirement Cost When You Never Leave Chicago?
+
+------------------------------------------------------------
+
+2. VRTX (Healthcare)
+Score: 68.7
+Confidence: 100%
+Open: $482.5
+Close: $491.34
+Open-to-Close: 1.83%
+5-Day Change: 5.26%
+20-Day Change: 9.79%
+Momentum: 5.26%
+Volume: 3.4x
+Avg Volume: 1,668,007.0
+Relative Strength: 13.17%
+AI News Sentiment: Bullish (75.0)
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong relative strength vs SPY
+- Above-average volume confirmation
+- Positive open-to-close action
+- Bullish AI news analysis
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+Vertex Pharmaceuticals is a biotech company focused on transformative medicines for serious diseases, primarily cystic fibrosis and other specialty conditions such as sickle cell disease and beta thalassemia. The recent stock gain, outpacing the market with a 5.26% five-day increase and strong volume, likely reflects investor confidence fueled by positive clinical data in pediatric populations and optimism around expanding indications. The bullish case centers on Vertex’s leadership in CF treatments with multiple approved therapies and pipeline potential in additional specialty areas. However, risks include high valuation after a strong multi-year run and regulatory or clinical setbacks typical in biotech development. Key points to watch include upcoming clinical trial updates, regulatory decisions, and broader biotech sector momentum.
+
+Recent Headlines:
+- Why the Market Dipped But Vertex Pharmaceuticals (VRTX) Gained Today
+- The Biotech Sector Looks Ready for a Multi-Year Breakout—Here's What to Watch.
+- Vertex Pharmaceuticals (VRTX) Stock After Strong Multi‑Year Run Is The Price Still Reasonable
+
+------------------------------------------------------------
+
+3. MSFT (Mega Cap Tech)
+Score: 58.41
+Confidence: 70%
+Open: $357.12
+Close: $372.97
+Open-to-Close: 4.44%
+5-Day Change: 1.53%
+20-Day Change: -17.16%
+Momentum: 1.53%
+Volume: 3.63x
+Avg Volume: 49,806,658.0
+Relative Strength: -13.78%
+AI News Sentiment: Neutral (55.0)
+
+Why It Ranked:
+- Above-average volume confirmation
+- Positive open-to-close action
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+Microsoft Corporation provides software, services, and devices globally, focusing on productivity tools like Microsoft 365, LinkedIn, and cloud solutions. The stock gained 4.44% intraday amid broader tech sector weakness, supported by high volume, possibly reflecting sector rotation or short-term buying opportunities. The bullish case centers on its diversified revenue streams and strong enterprise demand for cloud and productivity products. Key risks include macroeconomic uncertainties impacting enterprise IT spending and ongoing volatility in semiconductor pricing. Watch for how Microsoft navigates broader tech sector pressures and manages growth in key cloud and AI segments.
+
+Recent Headlines:
+- Semiconductor stocks retreat over worries about memory costs
+- Update: Equity Markets Fall as Trump Says Iran Violated Ceasefire
+- Stock Market Today: Nasdaq Torched For Big Weekly Loss; Electronics Players Get Crushed (Live Coverage)
+
+------------------------------------------------------------
+
+4. LNG (Energy)
+Score: 56.88
+Confidence: 90%
+Open: $233.61
+Close: $241.64
+Open-to-Close: 3.44%
+5-Day Change: 4.67%
+20-Day Change: 7.46%
+Momentum: 4.67%
+Volume: 2.68x
+Avg Volume: 2,419,842.0
+Relative Strength: 10.85%
+AI News Sentiment: Bullish (75.0)
+
+Why It Ranked:
+- Strong relative strength vs SPY
+- Above-average volume confirmation
+- Positive open-to-close action
+- Bullish AI news analysis
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+Cheniere Energy operates major U.S. liquefied natural gas (LNG) terminals and associated pipeline infrastructure, playing a key role in LNG exports. The stock’s recent gains are supported by Bernstein’s bullish rating and the company’s brownfield expansion plans, as well as ongoing global supply concerns tied to methane regulations impacting gas availability. The bullish case hinges on strong LNG demand, structural shifts favoring U.S. export capacity, and successful capital raises to fund growth. Key risks include regulatory uncertainties around methane rules and potential market volatility in energy commodities. Watch for updates on LNG export volumes, regulatory developments, and capital deployment outcomes.
+
+Recent Headlines:
+- Bernstein Starts Cheniere Energy (LNG) at Outperform, Backs Brownfield Expansion Strategy
+- Market Chatter: US, Qatar Warn EU Methane Rules Could Trigger Gas Supply Shortages
+- Cheniere Energy Up 17% YTD: Time to Buy, Hold or Take Profits?
+
+------------------------------------------------------------
+
+5. UBER (Consumer Platforms)
+Score: 56.21
+Confidence: 100%
+Open: $72.7
+Close: $76.2
+Open-to-Close: 4.81%
+5-Day Change: 6.68%
+20-Day Change: 8.24%
+Momentum: 6.68%
+Volume: 2.62x
+Avg Volume: 24,594,154.0
+Relative Strength: 11.62%
+AI News Sentiment: Bullish (70.0)
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong relative strength vs SPY
+- Above-average volume confirmation
+- Positive open-to-close action
+- Bullish AI news analysis
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+Uber Technologies operates a global platform across Mobility, Delivery, and Freight segments, connecting consumers with diverse transportation and delivery services. The recent price rise, including a 4.8% jump from open to close and strong volume, may be driven by high-profile insider buying from Nancy Pelosi and increased regulatory scrutiny on driver safety, which could improve service quality. The bullish case centers on Uber’s broad market exposure and continued innovation in multi-modal transport and delivery, supported by strong volume and relative strength versus the market. Key risks include regulatory challenges, safety concerns in driver background checks, and competitive pressure in both ridesharing and delivery sectors. Investors should watch upcoming regulatory developments and Uber’s execution on safety enhancements and technology expansions.
+
+Recent Headlines:
+- Nancy Pelosi bets up to $6 million on Intel and Uber, public disclosures show
+- Uber Tightens US Driver Background Checks as Sexual Assault Cases Mount
+- Can SERV's AI Data Flywheel Create a Lasting Competitive Edge?
+
+------------------------------------------------------------
+
+6. SNOW (Cloud Software)
+Score: 54.74
+Confidence: 80%
+Open: $225.27
+Close: $248.96
+Open-to-Close: 10.52%
+5-Day Change: 9.87%
+20-Day Change: -2.58%
+Momentum: 9.87%
+Volume: 2.75x
+Avg Volume: 9,267,382.0
+Relative Strength: 0.81%
+AI News Sentiment: Neutral (65.0)
+
+Why It Ranked:
+- Strong 5-day momentum
+- Above-average volume confirmation
+- Positive open-to-close action
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+Snowflake Inc. is a cloud software company providing a data platform that enables customers to unify data, apply AI for insights, and share data products across multiple industries. The stock's strong 10.52% intraday gain and elevated volume suggest renewed investor interest, possibly driven by comparison headlines with peers like GitLab and general sector momentum. The bullish case centers on Snowflake’s expanding AI Data Cloud capabilities and diverse industry penetration that support long-term growth. However, recent weakness post-earnings and a negative 20-day trend highlight execution risks and valuation sensitivity. Investors should monitor upcoming earnings results and guidance for signs of sustained revenue growth and margin improvements.
+
+Recent Headlines:
+- Dow Jones Futures: Market At Tipping Point, Here's What To Do. Eli Lilly Soars, Tesla On Tap.
+- GitLab vs. Snowflake: Which Technology Stock Is a Better Buy in 2026?
+- The Strain Inside Palantir Stock
+
+------------------------------------------------------------
+
+7. HON (Industrials)
+Score: 53.48
+Confidence: 70%
+Open: $229.57
+Close: $232.21
+Open-to-Close: 1.15%
+5-Day Change: 1.8%
+20-Day Change: -2.38%
+Momentum: 1.8%
+Volume: 2.82x
+Avg Volume: 5,985,097.0
+Relative Strength: 1.01%
+AI News Sentiment: Neutral (68.0)
+
+Why It Ranked:
+- Above-average volume confirmation
+- Positive open-to-close action
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+Honeywell International Inc. operates across aerospace technologies, industrial automation, building automation, and energy solutions globally, providing diverse products including avionics, propulsion engines, and environmental control systems. The stock’s modest 1.15% intraday gain and 5-day positive trend coincide with Mizuho’s reaffirmation of an outperform rating after Honeywell’s Investor Day financial targets, signaling confidence in its growth trajectory. The bullish case is supported by Honeywell’s diversified industrial portfolio and exposure to long-term aerospace and sustainability markets. However, recent 20-day price weakness and competitive pressures in aerospace segments pose risks. Investors should monitor upcoming earnings and market reactions to strategic execution and broader industrial demand trends.
+
+Recent Headlines:
+- Carrier Global Stock: A Louder Version of the Market
+- GE Stock At 52-Week Highs: Is the Best Still Ahead?
+- GE Aerospace Stock Looks Strong. One Number Says Be Careful.
+
+------------------------------------------------------------
+
+8. VLO (Energy)
+Score: 53.36
+Confidence: 90%
+Open: $253.46
+Close: $259.37
+Open-to-Close: 2.33%
+5-Day Change: 6.4%
+20-Day Change: 5.94%
+Momentum: 6.4%
+Volume: 2.47x
+Avg Volume: 3,375,240.0
+Relative Strength: 9.33%
+AI News Sentiment: Bullish (72.0)
+
+Why It Ranked:
+- Strong 5-day momentum
+- Above-average volume confirmation
+- Positive open-to-close action
+- Bullish AI news analysis
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+Valero Energy Corporation operates in oil and gas refining and marketing, producing petroleum fuels and low-carbon liquid transportation fuels with operations across North America and internationally. The stock has gained momentum recently, showing a 2.33% rise on the last session and a strong volume ratio of 2.47x, supported by a 6.4% increase over five days. The bullish case centers on Valero’s diverse fuel product slate, including renewable diesel and ethanol, along with its focus on cash returns that appeal to investors. However, elevated insider sales and mixed signals around capital allocation suggest some strategic tension. Key factors to watch include ongoing cash return policies and energy market dynamics influencing refining margins.
+
+Recent Headlines:
+- Cenovus vs. Valero Energy: Which Energy Stock Is the Better Buy?
+- Do Elevated Cash Returns and Insider Sales Reveal a Tension in Valero’s Strategy (VLO)?
+- Valero Energy (VLO) Stock Is Tied To A Cash Return Story Right Now
+
+------------------------------------------------------------
+
+9. LLY (Healthcare)
+Score: 53.12
+Confidence: 100%
+Open: $1128.8
+Close: $1208.12
+Open-to-Close: 7.03%
+5-Day Change: 9.62%
+20-Day Change: 9.33%
+Momentum: 9.62%
+Volume: 2.24x
+Avg Volume: 3,437,054.0
+Relative Strength: 12.72%
+AI News Sentiment: Bullish (78.0)
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong relative strength vs SPY
+- Above-average volume confirmation
+- Positive open-to-close action
+- Bullish AI news analysis
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+Eli Lilly and Company develops and markets pharmaceuticals focused on cardiometabolic health, diabetes, obesity, and oncology across global markets. The stock’s recent strong gains, including a 7% intraday rise and above-average volume, suggest positive investor sentiment potentially driven by sector momentum and company-specific product performance. The bullish case centers on robust demand for its diabetes and obesity treatments like Mounjaro and Zepbound, alongside oncology offerings driving growth and new highs in stock price. Key risks include competitive pressures in biotech and regulatory scrutiny that could impact market access or pricing. Watch for further volume confirmation and sector-wide healthcare trends that could either sustain or temper the rally.
+
+Recent Headlines:
+- Dow Jones Futures: Market At Tipping Point, Here's What To Do. Eli Lilly Soars, Tesla On Tap.
+- Stocks to Watch Recap: Micron, Wendy’s, Apple, ON Semiconductor
+- Sector Update: Healthcare Stocks Gain Late Afternoon
+
+------------------------------------------------------------
+
+10. MPC (Energy)
+Score: 52.69
+Confidence: 70%
+Open: $252.98
+Close: $254.06
+Open-to-Close: 0.43%
+5-Day Change: 2.74%
+20-Day Change: 2.13%
+Momentum: 2.74%
+Volume: 2.62x
+Avg Volume: 2,620,211.0
+Relative Strength: 5.51%
+AI News Sentiment: Bullish (70.0)
+
+Why It Ranked:
+- Above-average volume confirmation
+- Bullish AI news analysis
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+Marathon Petroleum Corporation operates as an integrated downstream energy company primarily focused on refining and marketing petroleum products across key U.S. regions. Recent stock gains appear supported by a strong five-year performance, elevated analyst price targets, and outperformance relative to the broader market. The bullish case centers on steady demand for transportation fuels, expansion into renewable diesel, and robust refining margins amid tightening supply chains. Key risks include exposure to volatile crude oil prices, regulatory shifts impacting fossil fuels, and potential margin compression if market conditions soften. Investors should watch upcoming earnings reports and crude price trends to assess near-term profitability and strategic execution in renewables.
+
+Recent Headlines:
+- Marathon Petroleum (MPC) Stock After 366% Five-Year Run Is There Value Left?
+- Why the Market Dipped But Marathon Petroleum (MPC) Gained Today
+- Marathon Petroleum (MPC) Stock Fair Value Edges Higher After Analyst Target Increases
+
+------------------------------------------------------------
+

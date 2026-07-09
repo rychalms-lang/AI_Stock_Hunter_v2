@@ -1,0 +1,246 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-18
+Stocks loaded: 208
+Passed filters: 101
+AI analysis calls: 10
+Minimum average volume: 1,000,000
+
+TOP SECTORS IN FINAL PICKS
+- Semiconductors: 6
+- Consumer Health: 1
+- Semiconductor Software: 1
+- Gaming / Metaverse: 1
+- Other / Uncategorized: 1
+
+TOP PICKS
+
+1. MRVL (Semiconductors)
+Score: 90.03
+Open: $305.5
+Close: $310.58
+Open-to-Close: 1.66%
+5-Day Change: 11.04%
+20-Day Change: 62.87%
+Momentum: 11.04%
+Volume: 3.54x
+Avg Volume: 70,725,840.0
+Relative Strength: 62.33%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Marvell Technology, Inc. designs and manufactures semiconductor solutions focusing on data infrastructure, from data center cores to network edges globally. The stock's recent 14% surge followed KeyBanc’s raised price target, driven by improved AI networking demand and strong sector momentum. Marvell's diversified product portfolio and leadership in system-on-a-chip architectures support its growth outlook. However, ongoing semiconductor supply chain challenges and market volatility remain potential headwinds. Investors should monitor upcoming earnings reports and any updates on gross margins and AI-driven demand trends.
+
+Recent Headlines:
+- MRVL Stock Jumps 14% Today — KeyBanc Lifts AI Networking Outlook, Raises Marvell’s Price Target
+- Stock Market Today, June 18: Marvell Technology Surges on Price Target Hike
+- Is Marvell Technology, Inc. (MRVL) The Best Growth Stock to Buy?
+
+------------------------------------------------------------
+
+2. ARM (Semiconductors)
+Score: 69.32
+Open: $440.24
+Close: $439.46
+Open-to-Close: -0.18%
+5-Day Change: 15.4%
+20-Day Change: 47.36%
+Momentum: 15.4%
+Volume: 2.42x
+Avg Volume: 14,146,397.0
+Relative Strength: 46.81%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Arm Holdings plc designs and licenses CPU, GPU, and system IP for semiconductor companies and OEMs, powering devices across smartphones, cloud, and industrial markets. Recent strong price gains, including a 15.4% rise over five days and 47.36% over 20 days, coincide with broader semiconductor and AI sector momentum and easing geopolitical tensions. The bullish case centers on robust demand for Arm’s IP in CPUs and AI accelerators, positioning it well amid AI-driven chip development and increasing cloud infrastructure needs. Key risks include competitive pressures from rivals like AMD and potential market volatility linked to geopolitical or macroeconomic factors. Watch volume trends, upcoming earnings, and developments in AI chip adoption for further directional cues.
+
+Recent Headlines:
+- The 25 Biggest U.S. IPOs of All Time
+- Stocks Supported as Geopolitical Risks Recede
+- Advanced Micro Devices vs. Arm Holdings: Which AI CPU Stock Is the Better Buy?
+
+------------------------------------------------------------
+
+3. HIMS (Consumer Health)
+Score: 63.8
+Open: $32.6
+Close: $35.47
+Open-to-Close: 8.8%
+5-Day Change: 32.25%
+20-Day Change: 47.73%
+Momentum: 32.25%
+Volume: 1.65x
+Avg Volume: 19,195,167.0
+Relative Strength: 47.19%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Hims & Hers Health, Inc. operates a consumer-focused health and wellness platform offering prescription and non-prescription products across multiple countries, emphasizing areas such as general wellness, skincare, sexual health, and hair care. Recent share price gains appear driven by anticipation of an upcoming FDA peptide review and a new partnership with Novo, which could unlock growth opportunities. The stock has shown strong momentum with a nearly 9% gain in a single day and significant outperformance versus the SPY over the past month. The bullish case hinges on regulatory approvals and successful collaboration execution to expand its product offering and market reach. Key risks include regulatory setbacks and competitive pressures in the specialty drug and wellness market. Investors should monitor FDA announcements and partnership developments closely.
+
+Recent Headlines:
+- Living Longer Is Big Business. These Stocks Will Benefit.
+- Hims & Hers Rallies With a July FDA Decision Looming
+- Hims & Hers Health, Inc. (HIMS) Ascends While Market Falls: Some Facts to Note
+
+------------------------------------------------------------
+
+4. AMAT (Semiconductors)
+Score: 56.68
+Open: $622.52
+Close: $617.11
+Open-to-Close: -0.87%
+5-Day Change: 8.79%
+20-Day Change: 44.4%
+Momentum: 8.79%
+Volume: 1.8x
+Avg Volume: 9,312,240.0
+Relative Strength: 43.86%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Applied Materials provides critical semiconductor equipment and materials engineering solutions globally, supporting key fabrication processes from etch to wafer packaging. The stock has gained significantly over 20 days (+44.4%) amid strong sector momentum and rising demand for semiconductor manufacturing capacity, partly driven by AI-related chip investments. Its integrated service offerings through Applied Global Services enhance fab efficiency, supporting a durable revenue base. However, geopolitical tensions and supply chain disruptions remain key risks that could impact global operations and capital spending. Watch for upcoming earnings and capital expenditure trends in the semiconductor industry for directional cues.
+
+Recent Headlines:
+- Where Applied Materials Stock Is Most Exposed
+- Allegro MicroSystems, Lam Research, and Applied Materials Shares Are Soaring, What You Need To Know
+- TER vs. AMAT: Which AI Semiconductor Stock Is the Better Buy?
+
+------------------------------------------------------------
+
+5. CDNS (Semiconductor Software)
+Score: 53.56
+Open: $392.8
+Close: $387.39
+Open-to-Close: -1.38%
+5-Day Change: 0.63%
+20-Day Change: 8.07%
+Momentum: 0.63%
+Volume: 2.63x
+Avg Volume: 2,694,593.0
+Relative Strength: 7.53%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Cadence Design Systems, Inc. is a leader in semiconductor software, offering AI-driven platforms for chip design, verification, and emulation, addressing a critical need in the semiconductor development cycle. Recent bullish sentiment is driven by strong fundamentals, positive analyst coverage including a raised price target following a strategic Intel foundry partnership, and notable retail interest highlighted by increased volume and positive relative strength versus the market (SPY). The company’s advanced verification and AI solutions position it well in a growing market focused on semiconductor innovation and efficiency. However, risks include semiconductor cycle volatility and competitive pressures from other design automation firms. Upcoming earnings or partnership updates will be key to watch for continued momentum and validating growth expectations.
+
+Recent Headlines:
+- Jim Cramer on Cadence: “If It Comes Down, It’s a Buy”
+- Here is What to Know Beyond Why Cadence Design Systems, Inc. (CDNS) is a Trending Stock
+- Cadence Design Systems (CDNS) Beats Stock Market Upswing: What Investors Need to Know
+
+------------------------------------------------------------
+
+6. KLAC (Semiconductors)
+Score: 53.37
+Open: $251.77
+Close: $259.56
+Open-to-Close: 3.09%
+5-Day Change: 1.97%
+20-Day Change: 40.9%
+Momentum: 1.97%
+Volume: 1.82x
+Avg Volume: 12,609,964.0
+Relative Strength: 40.36%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+KLA Corporation designs and manufactures process control and yield management solutions critical to semiconductor manufacturing. The stock’s recent gains, including a strong 20-day increase of over 40%, align with broader chip equipment sector rallies driven by easing geopolitical tensions and AI-driven demand. A substantial price target upgrade highlights positive analyst sentiment surrounding KLA’s growth prospects. However, risks include semiconductor industry cyclicality and potential macroeconomic impacts from upcoming FOMC decisions. Investors should monitor sector momentum, equipment orders, and next-quarter guidance for directional cues.
+
+Recent Headlines:
+- Stocks Supported as Geopolitical Risks Recede
+- KLA Corporation (KLAC) Price Target Raised by $500. Here is Why
+- Applied Materials, ASML, Lam Hit Record Highs, Lead Chip Gear Stocks Rally
+
+------------------------------------------------------------
+
+7. LRCX (Semiconductors)
+Score: 51.34
+Open: $395.12
+Close: $389.04
+Open-to-Close: -1.54%
+5-Day Change: 6.14%
+20-Day Change: 28.81%
+Momentum: 6.14%
+Volume: 1.87x
+Avg Volume: 11,164,015.0
+Relative Strength: 28.27%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Lam Research Corporation designs and services semiconductor processing equipment critical for integrated circuit fabrication globally. Recent stock gains (6.14% over 5 days, 28.81% over 20 days) along with above-average volume and strong relative strength signal increased investor interest. The bullish case is supported by ongoing demand for advanced semiconductor manufacturing tools amid industry momentum and easing geopolitical risks. Key risks include exposure to cyclical semiconductor market fluctuations and potential supply chain disruptions in key Asian markets. Watch upcoming earnings and industry capital spending trends for further directional cues.
+
+Recent Headlines:
+- Where Applied Materials Stock Is Most Exposed
+- Allegro MicroSystems, Lam Research, and Applied Materials Shares Are Soaring, What You Need To Know
+- Are You Looking for a Top Momentum Pick? Why Lam Research (LRCX) is a Great Choice
+
+------------------------------------------------------------
+
+8. MU (Semiconductors)
+Score: 50.52
+Open: $1108.06
+Close: $1133.99
+Open-to-Close: 2.34%
+5-Day Change: 15.52%
+20-Day Change: 48.8%
+Momentum: 15.52%
+Volume: 1.13x
+Avg Volume: 54,285,596.0
+Relative Strength: 48.26%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Micron Technology, Inc. designs and manufactures advanced memory and storage solutions across multiple markets, including cloud, data center, mobile, automotive, and embedded systems. The stock has shown strong momentum with a notable 48.8% gain over 20 days, supported by solid trading volume and relative outperformance versus the SPY. Positive sentiment may be driven by evolving memory demands, particularly in data centers and AI applications, alongside expectations for future growth highlighted in recent market predictions. However, valuation concerns remain, especially as market players reassess memory pricing dynamics and cost pressures from major clients like Apple. Investors should monitor upcoming earnings and guidance for indications of sustainable margin expansion and demand trends.
+
+Recent Headlines:
+- Dow Jones Futures: Nvidia Leads 5 Chips Near Buy Points; SpaceX Stock Needs This
+- Prediction: This Will Be Micron's Next Big Move
+- Apple’s Unsustainable Memory Costs and the Rethinking of Micron’s Valuation
+
+------------------------------------------------------------
+
+9. RBLX (Gaming / Metaverse)
+Score: 49.99
+Open: $48.97
+Close: $51.53
+Open-to-Close: 5.23%
+5-Day Change: 18.98%
+20-Day Change: 11.68%
+Momentum: 18.98%
+Volume: 1.98x
+Avg Volume: 11,012,821.0
+Relative Strength: 11.14%
+AI News Sentiment: Bullish (65.0)
+
+Stock Brief:
+Roblox Corporation operates a widely used immersive platform enabling social connection and content creation through its Roblox Client, Studio, and Cloud services. The stock has gained nearly 19% over the past 5 days, likely driven by optimism following product updates like new minor user accounts and potential revenue upside from easing geopolitical restrictions such as the Russia ban reversal. The bullish case hinges on the company’s ability to leverage AI and developer exchange (DevEx) initiatives to drive bookings growth and improve margins. However, margin pressure and recent sharper share declines relative to the broader market highlight execution challenges and cost concerns. Investors should watch upcoming bookings reports and how effectively RBLX integrates AI tools and monetizes new user features.
+
+Recent Headlines:
+- Can Roblox Corp (RBLX) Exceed Bookings Target After Russia Ban Reversal?
+- RBLX's Bookings Reset Adds Margin Pressure: Can AI and DevEx Pay Off?
+- Roblox (RBLX) Falls More Steeply Than Broader Market: What Investors Need to Know
+
+------------------------------------------------------------
+
+10. DELL (Other / Uncategorized)
+Score: 49.89
+Open: $429.88
+Close: $409.5
+Open-to-Close: -4.74%
+5-Day Change: 3.52%
+20-Day Change: 61.99%
+Momentum: 3.52%
+Volume: 1.16x
+Avg Volume: 13,065,064.0
+Relative Strength: 61.44%
+AI News Sentiment: Neutral (65.0)
+
+Stock Brief:
+Dell Technologies Inc. provides integrated computing solutions through its Infrastructure Solutions Group, offering modern storage and AI-optimized servers, and its Client Solutions Group focused on hardware products. The stock’s recent 4.74% drop on the day may reflect broader tech sector pressure despite strong 20-day gains near 62%, driven by interest in AI and data infrastructure upgrades. The bullish case hinges on Dell capitalizing on AI infrastructure demand and ongoing enterprise IT modernization. Risks include intense competition in the computer hardware space and potential market rotation away from tech stocks. Investors should monitor quarterly earnings and guidance, particularly on AI-related product sales and margin trends.
+
+Recent Headlines:
+- Super Micro Is Up 10% Today: Is It Outperforming Other AI Server Stocks Like Dell?
+- Apple Joins Tech’s Price Hike Party. Why it Stands Out from the Rest.
+- Top AI Stocks to Add to Your Portfolio for Impressive Returns
+
+------------------------------------------------------------
+

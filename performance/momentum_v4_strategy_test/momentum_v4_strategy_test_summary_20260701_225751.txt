@@ -1,0 +1,64 @@
+AI STOCK HUNTER V3 - MOMENTUM V4 STRATEGY TEST
+==========================================================================================
+
+Input: data/historical_training_data_v3_features.csv
+Test period starts: 2025-09-25
+
+TOP 40 RESULTS
+------------------------------------------------------------------------------------------
+              strategy                  rank_column holding_period  top_n  total_picks  trading_days  average_trade_return  median_trade_return  win_rate  average_daily_portfolio_return  median_daily_portfolio_return  daily_return_std  best_daily_return  worst_daily_return  cumulative_return
+   Momentum V4 Quality          momentum_v4_quality            10d      3          549           183              4.041730                1.710  0.575592                        4.041730                       1.623333         12.154795          43.276667          -27.586667       42902.942796
+      Momentum V4 Core            momentum_v4_score            10d      3          549           183              3.861767                1.950  0.579235                        3.861767                       2.140000         12.361023          47.946667          -27.586667       29700.263911
+  Momentum V4 Balanced         momentum_v4_balanced            10d      5          915           183              3.530186                1.660  0.567213                        3.530186                       2.320000         10.474010          37.630000          -21.390000       23047.130484
+  Momentum V4 Balanced         momentum_v4_balanced            10d      3          549           183              3.523716                1.590  0.566485                        3.523716                       1.606667         12.258114          47.946667          -29.656667       16458.833338
+      Momentum V4 Core            momentum_v4_score            10d      5          915           183              3.281366                1.560  0.560656                        3.281366                       2.042000         10.468837          37.630000          -26.472000       14596.224619
+   Momentum V4 Quality          momentum_v4_quality            10d      5          915           183              3.256765                1.660  0.563934                        3.256765                       1.756000         10.265124          37.630000          -21.746000       14563.056268
+Momentum V4 Aggressive       momentum_v4_aggressive            10d      3          549           183              3.220874                1.300  0.550091                        3.220874                       1.480000         12.321805          47.946667          -29.656667        9376.001344
+Momentum V4 Aggressive       momentum_v4_aggressive            10d      5          915           183              3.149191                1.130  0.547541                        3.149191                       1.482000         10.820959          42.058000          -26.472000       10876.614307
+   Momentum V4 Quality          momentum_v4_quality             7d      3          549           183              2.787140                1.120  0.564663                        2.787140                       1.326667          9.638537          30.690000          -30.706667        6789.481589
+  Momentum V4 Balanced         momentum_v4_balanced             7d      5          915           183              2.780929                1.310  0.563934                        2.780929                       1.494000          8.698140          32.504000          -26.278000        7863.569728
+      Momentum V4 Core            momentum_v4_score             7d      3          549           183              2.779381                1.130  0.559199                        2.779381                       1.433333          9.944917          35.963333          -30.706667        6374.226887
+   Stock vs Sector 20D stock_vs_sector_20d_rank_pct            10d      3          549           183              2.676175                0.500  0.520947                        2.676175                       2.050000         12.709076          65.693333          -30.250000        3285.603609
+  Momentum V4 Balanced         momentum_v4_balanced            10d     10         1830           183              2.618290                1.320  0.565027                        2.618290                       1.700000          7.935980          29.867000          -14.456000        6562.523337
+Momentum V4 Aggressive       momentum_v4_aggressive            10d     10         1830           183              2.577661                1.210  0.554645                        2.577661                       1.545000          8.249567          28.569000          -14.456000        5838.075022
+   Stock vs Sector 20D stock_vs_sector_20d_rank_pct            10d      5          915           183              2.572197                0.660  0.526776                        2.572197                       1.854000         10.807249          50.692000          -19.236000        3885.475406
+      Momentum V4 Core            momentum_v4_score            10d     10         1830           183              2.558617                1.140  0.557377                        2.558617                       1.425000          7.968392          25.359000          -14.981000        5844.488016
+     Relative Strength   relative_strength_rank_pct            10d      5          915           183              2.547279                0.000  0.499454                        2.547279                      -0.050000         12.671383          50.692000          -21.826000        2567.899241
+  Momentum V4 Balanced         momentum_v4_balanced             7d      3          549           183              2.529126                1.080  0.553734                        2.529126                       1.286667         10.002271          43.653333          -30.706667        4040.081760
+          20D Momentum          return_20d_rank_pct            10d      5          915           183              2.511727                0.030  0.500546                        2.511727                      -0.050000         12.702366          50.692000          -21.826000        2384.566485
+      Momentum V4 Core            momentum_v4_score             7d      5          915           183              2.511038                1.070  0.559563                        2.511038                       1.554000          8.687880          32.012000          -26.846000        4767.511386
+   Momentum V4 Quality          momentum_v4_quality            10d     10         1830           183              2.502317                1.185  0.559563                        2.502317                       1.538000          7.799257          25.359000          -14.456000        5392.080226
+   Momentum V4 Quality          momentum_v4_quality             7d      5          915           183              2.492732                1.070  0.559563                        2.492732                       1.412000          8.463534          28.736000          -26.278000        4774.026920
+Momentum V4 Aggressive       momentum_v4_aggressive             7d      5          915           183              2.475978                1.060  0.550820                        2.475978                       1.500000          9.196350          37.344000          -26.846000        4170.661480
+   Stock vs Sector 20D stock_vs_sector_20d_rank_pct             7d      3          549           183              2.248525                0.520  0.528233                        2.248525                       1.683333         10.958550          43.993333          -30.760000        1959.240934
+   Stock vs Sector 20D stock_vs_sector_20d_rank_pct            10d     10         1830           183              2.224973                0.580  0.524044                        2.224973                       0.769000          8.633567          32.148000          -15.342000        2894.462524
+     Relative Strength   relative_strength_rank_pct             7d      5          915           183              2.171246                0.100  0.509290                        2.171246                       0.376000         10.637675          34.966000          -27.682000        1821.936141
+          20D Momentum          return_20d_rank_pct             7d      5          915           183              2.141530                0.090  0.506011                        2.141530                       0.312000         10.660574          34.966000          -27.682000        1713.446466
+  Momentum V4 Balanced         momentum_v4_balanced             5d      5          915           183              2.134000                1.280  0.568306                        2.134000                       1.712000          7.308715          24.822000          -23.876000        2883.147253
+Momentum V4 Aggressive       momentum_v4_aggressive             7d      3          549           183              2.105574                0.710  0.533698                        2.105574                       0.790000          9.971540          43.993333          -30.706667        1837.972518
+      Momentum V4 Core            momentum_v4_score             5d      3          549           183              2.088506                1.460  0.568306                        2.088506                       1.716667          8.257585          31.393333          -26.190000        2314.356416
+      Momentum V4 Core            momentum_v4_score             7d     10         1830           183              2.054585                0.975  0.548087                        2.054585                       1.349000          6.775438          20.850000          -18.290000        2666.398192
+  Momentum V4 Balanced         momentum_v4_balanced             7d     10         1830           183              2.030672                0.950  0.548634                        2.030672                       1.274000          6.767368          21.088000          -17.949000        2557.134577
+Momentum V4 Aggressive       momentum_v4_aggressive             7d     10         1830           183              2.022792                1.035  0.549180                        2.022792                       0.815000          7.036387          21.490000          -17.949000        2435.545382
+   Stock vs Sector 20D stock_vs_sector_20d_rank_pct             5d      3          549           183              2.017851                1.140  0.561020                        2.017851                       1.810000          9.618331          38.416667          -33.073333        1598.961552
+   Momentum V4 Quality          momentum_v4_quality             5d      3          549           183              2.006211                1.280  0.564663                        2.006211                       1.593333          8.024456          26.303333          -26.190000        2049.841482
+   Momentum V4 Quality          momentum_v4_quality             7d     10         1830           183              1.997546                0.975  0.552459                        1.997546                       1.252000          6.621803          20.850000          -18.290000        2439.933409
+Momentum V4 Aggressive       momentum_v4_aggressive            10d     20         3660           183              1.972120                0.860  0.543169                        1.972120                       1.122000          6.406635          19.834000          -11.928000        2408.555734
+   Momentum V4 Quality          momentum_v4_quality             5d      5          915           183              1.961760                1.010  0.556284                        1.961760                       1.290000          7.024636          21.284000          -24.132000        2158.610402
+  Momentum V4 Balanced         momentum_v4_balanced            10d     20         3660           183              1.954754                0.885  0.543716                        1.954754                       1.080000          6.208196          19.341500          -12.677000        2379.048685
+  Momentum V4 Balanced         momentum_v4_balanced             5d      3          549           183              1.907341                1.280  0.553734                        1.907341                       1.476667          8.266392          31.393333          -26.190000        1644.216145
+
+BEST RESULT
+------------------------------------------------------------------------------------------
+Strategy: Momentum V4 Quality
+Holding period: 10d
+Top N: 3
+Average trade return: 4.0417%
+Average daily portfolio return: 4.0417%
+Win rate: 0.5756
+Cumulative return: 42902.9428%
+Worst daily return: -27.5867%
+
+DECISION RULE
+------------------------------------------------------------------------------------------
+Momentum V4 should only be adopted if it beats Current Pre Score, 20D Momentum, Relative Strength, and Stock vs Sector 20D across realistic return metrics.

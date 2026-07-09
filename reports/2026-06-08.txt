@@ -1,0 +1,115 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-08
+Stocks scanned: 101
+AI sentiment calls: 10
+
+1. LLY
+Score: 38.71
+Momentum: 7.99%
+Volume: 1.15x
+Relative Strength: 19.05%
+AI News Sentiment: Bullish (80.0)
+Recent Headlines:
+- Big Pharma Stock Eli Lilly Concocts New Buy Zone
+- Why Eli Lilly, In A Buy Zone, Is Still The 'Clear Winner' Of The 'Weight Loss Olympics'
+- Why Is Lilly Stock Growing Like A Silicon Valley Tech Darling?
+
+2. DUOL
+Score: 38.47
+Momentum: 7.29%
+Volume: 1.46x
+Relative Strength: 12.19%
+AI News Sentiment: Bullish (65.0)
+Recent Headlines:
+- Duolingo Stock Is Due For a Recovery
+- Is Duolingo, Inc. (DUOL) A Good Stock To Buy Now?
+- Assessing Duolingo (DUOL) Valuation After A Sharp One Year Share Price Decline
+
+3. PINS
+Score: 38.16
+Momentum: 5.37%
+Volume: 1.43x
+Relative Strength: 5.94%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- Is the Market Underestimating Meta Stock’s AI Payoff
+- Here is Why Pinterest (PINS) is One of the Best Large Cap Stocks Under $30
+- Pinterest signs $4bn cloud services deal with AWS
+
+4. KLAC
+Score: 33.86
+Momentum: 3.07%
+Volume: 1.15x
+Relative Strength: 14.4%
+AI News Sentiment: Bullish (70.0)
+Recent Headlines:
+- Should You Buy, Sell, or Hold TER Stock After a 312% Rise in One Year?
+- Is KLA Corporation (KLAC) A Good Stock To Buy Now?
+- Stocks Rally as Buyers Return After AI-Led Selloff
+
+5. AMAT
+Score: 32.53
+Momentum: 0.43%
+Volume: 1.15x
+Relative Strength: 11.09%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- PhysicsX Raises $300 Million At $2.4 Billion Valuation
+- Stocks Rally as Buyers Return After AI-Led Selloff
+- 3 chip stocks to buy after recent SOX pullback: Citi
+
+6. PAL
+Score: 32.18
+Momentum: 19.73%
+Volume: 1.01x
+Relative Strength: 16.06%
+AI News Sentiment: Bearish (30.0)
+Recent Headlines:
+- Proficient’s 1Q earnings: tough quarter, better 2Q ahead, stock takes a dive
+- Proficient Auto Logistics Q1 Earnings Call Highlights
+- Proficient Auto Logistics, Inc. (PAL) Reports Q1 Loss, Beats Revenue Estimates
+
+7. SPOT
+Score: 28.1
+Momentum: 0.33%
+Volume: 0.8x
+Relative Strength: 19.95%
+AI News Sentiment: Bullish (60.0)
+Recent Headlines:
+- Is Spotify Technology S.A. (SPOT) A Good Stock To Buy Now?
+- A Look At Spotify Technology (NYSE:SPOT) Valuation After Recent Share Price Volatility
+- Is Spotify Technology (SPOT) Pricing Reflect Its Streaming Expansion And Recent Share Performance?
+
+8. NOC
+Score: 24.41
+Momentum: 0.79%
+Volume: 0.93x
+Relative Strength: -0.9%
+AI News Sentiment: Bullish (70.0)
+Recent Headlines:
+- Rocket Lab CEO: Only Two Companies Have Successfully Scaled Space Launch
+- Core Natural Resources (CNR) Expands Coal’s Role Beyond Energy Through Aerospace Program
+- US diplomat urges Taiwan to invest more in drones and defense capabilities
+
+9. VRTX
+Score: 22.35
+Momentum: 4.2%
+Volume: 0.85x
+Relative Strength: 1.8%
+AI News Sentiment: Neutral (50.0)
+Recent Headlines:
+- Kyverna Therapeutics vs. Vertex Pharmaceuticals: Which Drug Developer Stock Is a Better Buy in 2026?
+- Assessing Vertex Pharmaceuticals (VRTX) Valuation After Mixed Recent Returns And Long Term Shareholder Gains
+- Acadia (ACAD) Down 3.7% Since Last Earnings Report: Can It Rebound?
+
+10. ISRG
+Score: 19.3
+Momentum: 4.05%
+Volume: 0.85x
+Relative Strength: -0.33%
+AI News Sentiment: Bearish (35.0)
+Recent Headlines:
+- Can Medtronic Finally Challenge Intuitive Surgical's Robotic Surgical Systems Dominance?
+- 1 of Wall Street’s Favorite Stocks for Long-Term Investors and 2 Facing Challenges
+- Is Intuitive Surgical (ISRG) Now Fairly Priced After This Year’s 25% Share Price Slide?
+

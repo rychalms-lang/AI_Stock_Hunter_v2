@@ -1,0 +1,55 @@
+AI STOCK HUNTER V3 - RETURN COMPARISON
+======================================================================
+
+Target win label: future_3d_win
+Target return: future_3d_return
+Train end date: 2025-01-08
+Validation end date: 2025-09-25
+
+Results sorted by average daily portfolio return:
+
+               strategy  top_n  total_picks  trading_days  average_trade_return  median_trade_return  win_rate  average_daily_portfolio_return  median_daily_portfolio_return  daily_return_std  best_daily_return  worst_daily_return
+   Stock vs Sector Rank      5          910           182              0.911352                0.450  0.534066                        0.911352                        0.74300          6.519858            26.4220            -17.0120
+ Relative Strength Rank      5          910           182              0.753637                0.220  0.524176                        0.753637                        0.19300          7.196325            27.7920            -17.0120
+   Stock vs Sector Rank     10         1820           182              0.742379                0.215  0.516484                        0.742379                        0.27800          4.809664            17.0130            -14.5500
+      20D Momentum Rank      5          910           182              0.703462                0.195  0.520879                        0.703462                       -0.28500          7.207099            27.7920            -17.0120
+ML Logistic Probability      5          910           182              0.694527                0.035  0.505495                        0.694527                        0.13800          4.305725            29.4540             -8.3900
+   Stock vs Sector Rank     20         3640           182              0.683764                0.360  0.528571                        0.683764                        0.48250          3.758647            11.4210            -11.2035
+      20D Momentum Rank     10         1820           182              0.635374                0.140  0.511538                        0.635374                        0.08000          5.345016            18.6090            -14.5500
+ML Logistic Probability     10         1820           182              0.626214                0.155  0.521978                        0.626214                        0.05250          3.332857            16.0570             -9.1610
+ Relative Strength Rank     10         1820           182              0.615066                0.115  0.509890                        0.615066                       -0.03350          5.338077            18.6090            -14.5500
+ Relative Strength Rank     20         3640           182              0.572151                0.260  0.524176                        0.572151                        0.41275          4.076860            11.3140            -14.5995
+      20D Momentum Rank     20         3640           182              0.568868                0.280  0.524725                        0.568868                        0.39500          4.077291            11.3140            -14.5995
+      20D Momentum Rank     50         9052           182              0.570927                0.300  0.530932                        0.564921                        0.58120          2.856054             9.6568            -11.3460
+ Relative Strength Rank     50         9052           182              0.562265                0.300  0.530159                        0.556304                        0.59740          2.854328             9.6568            -11.3460
+      Current Pre Score     20         3640           182              0.517321                0.230  0.523901                        0.517321                        0.33675          3.502337            10.6470            -13.4650
+      Current Pre Score     50         9052           182              0.444766                0.240  0.525409                        0.439425                        0.32910          2.460655             7.4312            -10.8542
+ML Logistic Probability     20         3640           182              0.432255                0.130  0.521978                        0.432255                        0.35750          2.411467             9.5500             -8.8435
+      Volume Ratio Rank     20         3640           182              0.426962                0.230  0.524176                        0.426962                        0.21725          2.726809            11.3150             -7.6230
+      Volume Ratio Rank     50         9052           182              0.414737                0.220  0.527176                        0.409555                        0.19940          2.117636             8.1490             -4.7718
+      Current Pre Score     10         1820           182              0.404984                0.210  0.521429                        0.404984                        0.36000          4.251751            14.0210            -12.0450
+   Stock vs Sector Rank     50         9052           182              0.396541                0.160  0.515798                        0.391455                        0.10650          2.449028             6.3042             -8.5010
+      Current Pre Score      5          910           182              0.386055                0.210  0.519780                        0.386055                        0.26700          5.261667            19.7100            -14.3100
+  Momentum Per Vol Rank     50         9052           182              0.379691                0.250  0.534688                        0.374693                        0.51710          2.059262             6.2838             -8.4212
+  Momentum Per Vol Rank     20         3640           182              0.357052                0.260  0.539835                        0.357052                        0.73075          2.468650             6.8020             -9.1905
+ML Logistic Probability     50         9052           182              0.334506                0.155  0.525188                        0.329747                        0.08420          1.760788             7.5252             -5.7604
+  Momentum Per Vol Rank     10         1820           182              0.326654                0.410  0.557692                        0.326654                        0.47900          3.053481            10.8480            -11.6430
+       5D Momentum Rank     50         9052           182              0.263453                0.170  0.517897                        0.259069                        0.54570          2.318368             6.0042             -9.5110
+  Momentum Per Vol Rank      5          910           182              0.238440                0.345  0.556044                        0.238440                        0.33800          3.881898            17.7560            -14.2380
+       5D Momentum Rank     10         1820           182              0.229066                0.150  0.510989                        0.229066                        0.43650          4.264991            12.1020            -11.7870
+      Volume Ratio Rank     10         1820           182              0.181363                0.015  0.500549                        0.181363                       -0.06650          3.098233            13.8400            -11.6670
+       5D Momentum Rank     20         3640           182              0.169865                0.090  0.506319                        0.169865                        0.58600          3.190909             8.5680             -9.9745
+       5D Momentum Rank      5          910           182              0.130857               -0.110  0.493407                        0.130857                        0.47800          5.575446            16.4640            -15.7320
+      Volume Ratio Rank      5          910           182             -0.023747               -0.085  0.491209                       -0.023747                       -0.18000          3.769115            16.4840            -13.1240
+
+BEST RESULT
+----------------------------------------------------------------------
+Strategy: Stock vs Sector Rank
+Top N: 5
+Average trade return: 0.9114%
+Average daily portfolio return: 0.9114%
+Win rate: 0.5341
+Worst daily return: -17.0120%
+
+Decision rule:
+ML should not be adopted unless it beats the current pre_score/momentum baseline on realistic return metrics.

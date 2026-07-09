@@ -1,0 +1,35 @@
+AI STOCK HUNTER V3 - WALK-FORWARD WEIGHT OPTIMIZER
+====================================================================================================
+
+Input: data/historical_training_data_v3_features.csv
+Return target: future_10d_return
+Win target: future_10d_win
+Train months: 24
+Test months: 6
+Top N values: [3, 5, 10]
+
+SUMMARY RESULTS
+----------------------------------------------------------------------------------------------------
+                 strategy  top_n  windows  avg_daily_return  median_daily_return  avg_win_rate  avg_daily_std  avg_worst_day  avg_cumulative_return
+      Stock vs Sector 20D      3        5          5.215328             3.177513      0.532904      17.949613     -32.286000          169915.677732
+        Relative Strength      3        5          5.204510             2.511641      0.529863      17.983145     -29.951333          433049.580422
+             20D Momentum      3        5          5.199380             2.580615      0.528284      17.993825     -29.951333          432069.023974
+     Optimized V4 Weights      3        5          4.502440             2.872487      0.536052      16.040957     -31.789333          270851.729526
+Momentum V4 Quality Fixed      3        5          4.417822             2.970450      0.576628      15.074611     -28.904000          210366.456330
+             20D Momentum      5        5          4.134543             2.391246      0.521159      13.427529     -25.062000          142602.071152
+        Relative Strength      5        5          4.106264             2.407631      0.521786      13.393133     -25.062000          141152.704387
+        Current Pre Score      3        5          3.962271             2.879457      0.541637      15.416102     -29.674000           17245.897895
+      Stock vs Sector 20D      5        5          3.866478             2.994215      0.529315      13.065502     -24.142800           75011.162327
+     Optimized V4 Weights      5        5          3.686246             2.625785      0.538240      12.293692     -25.343200          129950.513512
+        Current Pre Score      5        5          3.621102             2.250738      0.543411      12.076880     -24.297600           23228.701870
+Momentum V4 Quality Fixed      5        5          3.555000             2.257286      0.571669      11.489707     -23.849600           37796.622646
+             20D Momentum     10        5          3.309617             3.031092      0.527474      10.040396     -19.613200           28458.841826
+        Relative Strength     10        5          3.282776             3.100492      0.526689      10.005230     -19.613200           28879.296945
+        Current Pre Score     10        5          2.891346             2.251292      0.541664       8.756132     -18.849600            7117.500631
+     Optimized V4 Weights     10        5          2.791113             2.193185      0.558477       8.233681     -17.450800           16861.363510
+Momentum V4 Quality Fixed     10        5          2.782523             1.591563      0.561352       8.004195     -17.350200           13195.251103
+      Stock vs Sector 20D     10        5          2.755821             2.577785      0.533977       9.105808     -18.678400            9233.447842
+
+DECISION RULE
+----------------------------------------------------------------------------------------------------
+Optimized V4 can only move toward live deployment if it beats Current Pre Score and Stock vs Sector 20D across multiple walk-forward windows, not just one test period.

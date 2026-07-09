@@ -1,0 +1,115 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-04
+Stocks scanned: 101
+AI sentiment calls: 10
+
+1. MRVL
+Score: 95.07
+Momentum: 54.36%
+Volume: 2.07x
+Relative Strength: 94.27%
+AI News Sentiment: Bullish (80.0)
+Recent Headlines:
+- Intel, AMD, Micron shares trim losses after Broadcom results spark semiconductor sector sell-off
+- This Chip Stock Made a Comeback After Broadcom Earnings
+- Quantinuum, Broadcom, UnitedHealth, and More Stocks That Explain Today’s Market
+
+2. ARM
+Score: 55.26
+Momentum: 11.36%
+Volume: 0.83x
+Relative Strength: 80.96%
+AI News Sentiment: Bullish (70.0)
+Recent Headlines:
+- Intel, AMD, Micron shares trim losses after Broadcom results spark semiconductor sector sell-off
+- Dow Hits Record High And S&P 500 Gains As Oil Slides, While Chip Weakness Weighs On Nasdaq — AVGO, UNH, META, PINS, RUM In Focus
+- US Equity Indexes Mixed as Sliding Technology Pulls Nasdaq Composite Lower, Crude Oil Sinks
+
+3. DELL
+Score: 49.62
+Momentum: 0.27%
+Volume: 1.04x
+Relative Strength: 79.8%
+AI News Sentiment: Bearish (40.0)
+Recent Headlines:
+- AI trade is taking a 'healthy' pause amid Broadcom speed bump
+- Morgan Stanley makes bold new call on Micron stock
+- Dell’s Early RTX Spark AI PCs Put Hot Rally Under Fresh Scrutiny
+
+4. ENPH
+Score: 47.18
+Momentum: 0.04%
+Volume: 0.46x
+Relative Strength: 89.32%
+AI News Sentiment: Bullish (60.0)
+Recent Headlines:
+- This Boring Electrical Device Is the Next Hot Data Center Play. Some Stocks Have Doubled.
+- Enphase Energy (ENPH) Registers a Bigger Fall Than the Market: Important Facts to Note
+- 3 Cash-Heavy Stocks That Concern Us
+
+5. TWLO
+Score: 46.35
+Momentum: 24.13%
+Volume: 1.29x
+Relative Strength: 16.59%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- Arista Networks (ANET) Up 18.6% Since Last Earnings Report: Can It Continue?
+- Twilio Inc. (TWLO) Is a Trending Stock: Facts to Know Before Betting on It
+- Wall Street Bulls Look Optimistic About Twilio (TWLO): Should You Buy?
+
+6. FSLR
+Score: 40.68
+Momentum: 2.66%
+Volume: 0.89x
+Relative Strength: 43.29%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- Here is What to Know Beyond Why First Solar, Inc. (FSLR) is a Trending Stock
+- Selling US$8.5m Of First Solar Stock Rewarded Insiders
+- Record Sales Lift First Solar Shares
+
+7. TEM
+Score: 39.34
+Momentum: 3.55%
+Volume: 1.89x
+Relative Strength: 2.15%
+AI News Sentiment: Bullish (60.0)
+Recent Headlines:
+- Why Is Tempus (TEM) Down 11.2% Since Last Earnings Report?
+- H.C. Wainwright Maintains Buy Rating on Tempus AI (TEM) Following Strong Revenue Growth
+- Tempus AI (TEM) Is Up 9.3% After New FDA-Cleared CDx And AI Oncology Platform Upgrades
+
+8. MU
+Score: 38.54
+Momentum: 2.57%
+Volume: 0.98x
+Relative Strength: 50.54%
+AI News Sentiment: Bearish (35.0)
+Recent Headlines:
+- Intel, AMD, Micron shares trim losses after Broadcom results spark semiconductor sector sell-off
+- Tech stocks today: Chip stocks drag down tech sector as Broadcom earnings give investors pause
+- Morgan Stanley makes bold new call on Micron stock
+
+9. CDNS
+Score: 35.63
+Momentum: 9.8%
+Volume: 1.27x
+Relative Strength: 11.86%
+AI News Sentiment: Bullish (60.0)
+Recent Headlines:
+- Here's Why Cadence Design Systems (CDNS) Fell More Than Broader Market
+- ADBE or CDNS: Which Is the Better Value Stock Right Now?
+- 1 Momentum  Stock with Competitive Advantages and 2 We Brush Off
+
+10. OKTA
+Score: 33.92
+Momentum: 0.17%
+Volume: 0.81x
+Relative Strength: 49.18%
+AI News Sentiment: Bearish (30.0)
+Recent Headlines:
+- 3 Software Stocks We Keep Off Our Radar
+- 5 Insightful Analyst Questions From Okta’s Q1 Earnings Call
+- Stocks Retreat as US-Iran Peace Hopes in Doubt
+

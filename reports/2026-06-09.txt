@@ -1,0 +1,127 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-09
+Stocks loaded: 208
+Passed filters: 82
+AI sentiment calls: 10
+Minimum average volume: 1,000,000
+
+1. KLAC
+Score: 41.48
+Momentum: 0.67%
+Volume: 1.57x
+Avg Volume: 1,034,231.0
+Relative Strength: 18.41%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- Can KLA Outgrow Chip Equipment Market Through 2030?
+- Stocks Climb on an AI-Led Rebound
+- Dear KLA Stock Fans, Mark Your Calendars for June 12
+
+2. LLY
+Score: 36.24
+Momentum: 6.11%
+Volume: 1.15x
+Avg Volume: 3,250,301.0
+Relative Strength: 15.99%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- Novo Wegovy Pill Tops 3M Prescriptions
+- Sector Update: Healthcare Stocks Rise Late Afternoon
+- Dow Jones AI Giant Nvidia Stock Tumbles To Key Support Level Amid Market Sell-Off
+
+3. DUOL
+Score: 36.17
+Momentum: 9.74%
+Volume: 1.27x
+Avg Volume: 1,427,654.0
+Relative Strength: 11.33%
+AI News Sentiment: Bullish (65.0)
+Recent Headlines:
+- Duolingo Stock Is Due For a Recovery
+- Is Duolingo, Inc. (DUOL) A Good Stock To Buy Now?
+- Assessing Duolingo (DUOL) Valuation After A Sharp One Year Share Price Decline
+
+4. PINS
+Score: 34.19
+Momentum: 6.05%
+Volume: 1.13x
+Avg Volume: 20,614,734.0
+Relative Strength: 6.77%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- Is the Market Underestimating Meta Stock’s AI Payoff
+- Here is Why Pinterest (PINS) is One of the Best Large Cap Stocks Under $30
+- Pinterest signs $4bn cloud services deal with AWS
+
+5. UNH
+Score: 33.66
+Momentum: 9.55%
+Volume: 1.17x
+Avg Volume: 7,320,942.0
+Relative Strength: 4.34%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- All 30 Dow Jones Stocks Ranked: Buy, Sell or Hold?
+- Dow Jones ETFs: Better Than S&P 500 & Nasdaq Now?
+- Morgan Stanley Remains Bullish on UnitedHealth (UNH) Amid Sector Recovery
+
+6. PNC
+Score: 33.39
+Momentum: 6.37%
+Volume: 1.24x
+Avg Volume: 1,716,883.0
+Relative Strength: 8.04%
+AI News Sentiment: Bullish (65.0)
+Recent Headlines:
+- Why The PNC Financial Services Group, Inc (PNC) is a Great Dividend Stock Right Now
+- LPL Financial Recruits $2 Billion Team From PNC Private Bank
+- June 2026's Top Dividend Stocks For Reliable Income
+
+7. DHR
+Score: 32.1
+Momentum: 5.8%
+Volume: 1.29x
+Avg Volume: 4,558,268.0
+Relative Strength: 13.48%
+AI News Sentiment: Bearish (40.0)
+Recent Headlines:
+- Wolfe Research Downgrades Danaher Corporation (DHR)
+- Everpure Jumps 34% in a Year: Should Investors Bet on the Stock?
+- SIRI Stock Surges 5% After-Hours On S&P MidCap 400 Inclusion
+
+8. HIMS
+Score: 30.99
+Momentum: 5.34%
+Volume: 1.17x
+Avg Volume: 21,437,178.0
+Relative Strength: 15.93%
+AI News Sentiment: Bearish (40.0)
+Recent Headlines:
+- Investors Heavily Search Hims & Hers Health, Inc. (HIMS): Here is What You Need to Know
+- Is Hims & Hers Health, Inc. (HIMS) A Good Stock To Buy Now?
+- Hims CMO Appointment Highlights Longevity Focus And Raises Valuation Questions
+
+9. AI
+Score: 30.03
+Momentum: 0.75%
+Volume: 1.05x
+Avg Volume: 7,794,634.0
+Relative Strength: 22.91%
+AI News Sentiment: Bearish (40.0)
+Recent Headlines:
+- 2 Cash-Heavy Stocks Worth Investigating and 1 We Turn Down
+- Winning Government Business: HighGround Market Founder & CEO John Price, Live at NYSE
+- What's Happening With BigBear.ai Stock?
+
+10. SPG
+Score: 29.25
+Momentum: 4.1%
+Volume: 1.28x
+Avg Volume: 1,717,822.0
+Relative Strength: 3.18%
+AI News Sentiment: Neutral (50.0)
+Recent Headlines:
+- Is Realty Income Stock Underperforming the S&P 500?
+- Four REITs Fund 45% of This Income ETF’s Distributions Right Now
+- Is Simon Property Stock Outperforming the S&P 500?
+

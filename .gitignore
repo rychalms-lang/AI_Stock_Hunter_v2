@@ -1,0 +1,6 @@
+.DS_Store
+data/*.csv
+performance/*.csv
+reports/*.csv
+reports/*.json
+.env

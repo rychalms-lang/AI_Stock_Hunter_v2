@@ -1,0 +1,379 @@
+AI STOCK HUNTER
+Morning Market Brief
+June 29, 2026
+==================================================
+
+MARKET REGIME
+Regime: Risk-On
+Market Score: 75.0/100
+Summary: Major indexes are broadly trending higher.
+
+LEADING SECTORS
+1. Healthcare (XLV) | 5D: +5.62% | 20D: +9.21%
+2. Utilities (XLU) | 5D: +2.11% | 20D: +7.46%
+3. Industrials (XLI) | 5D: +2.59% | 20D: +6.27%
+4. Real Estate (XLRE) | 5D: +0.63% | 20D: +4.72%
+5. Semiconductors (SMH) | 5D: +1.60% | 20D: +3.98%
+
+TOP PICKS
+--------------------------------------------------
+1. AMAT (Semiconductors)
+Score: 63.68
+Confidence: 100%
+Open: $634.10
+Close: $694.64
+Open-to-Close: +9.55%
+5-Day Change: +18.56%
+20-Day Change: +51.61%
+Relative Strength: +53.67%
+
+Historical Pattern:
+Matches: 35
+Best Hold: 7 days
+Best Avg Return: +4.67%
+1D: +0.01% | Win: +48.57%
+3D: +1.62% | Win: +60.00%
+5D: +4.45% | Win: +62.86%
+7D: +4.67% | Win: +65.71%
+10D: +2.58% | Win: +60.00%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Strong historical average return
+- Strong historical win rate
+
+Risk Flags:
+- Very extended 20-day move
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+2. KLAC (Semiconductors)
+Score: 55.81
+Confidence: 100%
+Open: $250.76
+Close: $278.39
+Open-to-Close: +11.02%
+5-Day Change: +13.87%
+20-Day Change: +43.50%
+Relative Strength: +45.56%
+
+Historical Pattern:
+Matches: 145
+Best Hold: 10 days
+Best Avg Return: +3.15%
+1D: -0.07% | Win: +43.45%
+3D: +0.36% | Win: +44.83%
+5D: +0.75% | Win: +45.52%
+7D: +2.31% | Win: +48.28%
+10D: +3.15% | Win: +52.41%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Strong historical average return
+
+Risk Flags:
+- Very extended 20-day move
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+3. LRCX (Semiconductors)
+Score: 50.53
+Confidence: 100%
+Open: $384.24
+Close: $410.91
+Open-to-Close: +6.94%
+5-Day Change: +10.66%
+20-Day Change: +29.67%
+Relative Strength: +31.73%
+
+Historical Pattern:
+Matches: 324
+Best Hold: 10 days
+Best Avg Return: +3.46%
+1D: +0.25% | Win: +49.69%
+3D: +0.90% | Win: +50.31%
+5D: +1.45% | Win: +51.85%
+7D: +2.22% | Win: +52.16%
+10D: +3.46% | Win: +55.56%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Strong historical average return
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+4. RBLX (Gaming / Metaverse)
+Score: 48.68
+Confidence: 85%
+Open: $50.90
+Close: $54.34
+Open-to-Close: +6.76%
+5-Day Change: +15.35%
+20-Day Change: +15.62%
+Relative Strength: +17.68%
+
+Historical Pattern:
+Matches: 58
+Best Hold: 10 days
+Best Avg Return: -0.04%
+1D: -0.76% | Win: +44.83%
+3D: -0.47% | Win: +51.72%
+5D: -0.43% | Win: +50.00%
+7D: -0.53% | Win: +50.00%
+10D: -0.04% | Win: +56.90%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Above-average volume confirmation
+- Positive open-to-close action
+- Supportive risk-on market environment
+
+Risk Flags:
+- Stock belongs to a weak sector
+- Weak historical average return
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+5. PANW (Cybersecurity)
+Score: 45.57
+Confidence: 100%
+Open: $309.83
+Close: $332.00
+Open-to-Close: +7.16%
+5-Day Change: +14.12%
+20-Day Change: +10.49%
+Relative Strength: +12.55%
+
+Historical Pattern:
+Matches: 70
+Best Hold: 10 days
+Best Avg Return: +2.18%
+1D: -0.21% | Win: +52.86%
+3D: -0.68% | Win: +47.14%
+5D: +1.00% | Win: +57.14%
+7D: +1.88% | Win: +57.14%
+10D: +2.18% | Win: +60.00%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Positive historical average return
+- Positive historical win rate
+
+Risk Flags:
+- Stock belongs to a weak sector
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+6. TEM (AI / Healthcare)
+Score: 44.7
+Confidence: 100%
+Open: $56.89
+Close: $58.31
+Open-to-Close: +2.50%
+5-Day Change: +19.95%
+20-Day Change: +10.44%
+Relative Strength: +12.50%
+
+Historical Pattern:
+Matches: 80
+Best Hold: 1 days
+Best Avg Return: +0.72%
+1D: +0.72% | Win: +56.25%
+3D: -0.05% | Win: +41.25%
+5D: -1.01% | Win: +37.50%
+7D: -1.85% | Win: +37.50%
+10D: -4.12% | Win: +32.50%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Stock belongs to a leading sector
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+7. VRTX (Healthcare)
+Score: 42.28
+Confidence: 100%
+Open: $493.92
+Close: $499.65
+Open-to-Close: +1.16%
+5-Day Change: +6.67%
+20-Day Change: +13.97%
+Relative Strength: +16.03%
+
+Historical Pattern:
+Matches: 324
+Best Hold: 10 days
+Best Avg Return: +0.65%
+1D: +0.02% | Win: +53.70%
+3D: +0.12% | Win: +54.94%
+5D: +0.20% | Win: +57.41%
+7D: +0.50% | Win: +58.95%
+10D: +0.65% | Win: +57.10%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Stock belongs to a leading sector
+- Positive historical win rate
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+8. ABBV (Healthcare)
+Score: 41.87
+Confidence: 80%
+Open: $253.05
+Close: $254.31
+Open-to-Close: +0.50%
+5-Day Change: +8.33%
+20-Day Change: +19.43%
+Relative Strength: +21.49%
+
+Historical Pattern:
+Matches: 146
+Best Hold: 1 days
+Best Avg Return: +0.05%
+1D: +0.05% | Win: +50.00%
+3D: -0.30% | Win: +45.89%
+5D: -0.37% | Win: +47.26%
+7D: -0.26% | Win: +52.74%
+10D: -0.28% | Win: +50.00%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Supportive risk-on market environment
+- Stock belongs to a leading sector
+
+Risk Flags:
+- No major risk flags detected
+- Weak historical average return
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+9. HD (Consumer Cyclical)
+Score: 39.2
+Confidence: 70%
+Open: $348.86
+Close: $350.81
+Open-to-Close: +0.56%
+5-Day Change: +8.12%
+20-Day Change: +13.76%
+Relative Strength: +15.82%
+
+Historical Pattern:
+Matches: 55
+Best Hold: 10 days
+Best Avg Return: +0.36%
+1D: -0.16% | Win: +49.09%
+3D: +0.21% | Win: +52.73%
+5D: +0.13% | Win: +49.09%
+7D: +0.27% | Win: +47.27%
+10D: +0.36% | Win: +52.73%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Supportive risk-on market environment
+
+Risk Flags:
+- No major risk flags detected
+- Weak historical average return
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+10. SHOP.TO (Canada / Tech)
+Score: 38.05
+Confidence: 35%
+Open: $168.59
+Close: $162.32
+Open-to-Close: -3.72%
+5-Day Change: +5.95%
+20-Day Change: +0.23%
+Relative Strength: +2.29%
+
+Historical Pattern:
+Matches: 500
+Best Hold: 5 days
+Best Avg Return: +0.22%
+1D: -0.19% | Win: +46.60%
+3D: +0.09% | Win: +48.60%
+5D: +0.22% | Win: +48.20%
+7D: +0.03% | Win: +48.40%
+10D: +0.07% | Win: +47.20%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Above-average volume confirmation
+- Supportive risk-on market environment
+
+Risk Flags:
+- Stock belongs to a weak sector
+- Weak intraday close
+- Weak historical average return
+- Weak historical win rate
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+==================================================
+PORTFOLIO MODEL
+Cash Allocation: 10%
+AMAT: 18.56% Confidence: 100%
+KLAC: 18.56% Confidence: 100%
+LRCX: 18.56% Confidence: 100%
+RBLX: 15.77% Confidence: 85%
+PANW: 18.56% Confidence: 100%

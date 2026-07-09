@@ -1,0 +1,127 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-15
+Stocks loaded: 208
+Passed filters: 141
+AI sentiment calls: 10
+Minimum average volume: 1,000,000
+
+1. ROKU
+Score: 124.19
+Momentum: 16.53%
+Volume: 6.73x
+Avg Volume: 4,016,502.0
+Relative Strength: 11.3%
+AI News Sentiment: Bullish (90.0)
+Recent Headlines:
+- Stock market today: Dow hits record, S&P 500, Nasdaq soar as tech rallies amid US-Iran pact to reopen Hormuz
+- Fox-Roku deal, Salesforce to buy Fin, Nuvei acquiring Payoneer: M&A
+- Fox to acquire Roku for $22B. What's driving M&A mania?
+
+2. ARM
+Score: 70.05
+Momentum: 26.99%
+Volume: 1.05x
+Avg Volume: 13,128,325.0
+Relative Strength: 89.59%
+AI News Sentiment: Bullish (90.0)
+Recent Headlines:
+- Stocks Rally as US-Iran Peace Deal Sinks Oil and Bond Yields
+- Chips Up 8.8% in One Week: 5 Semiconductor Names Breaking Into New Highs
+- Arm Holdings (ARM) Gets BofA Backing, 37% PT Upgrade, Climbs 11%
+
+3. MRVL
+Score: 59.09
+Momentum: 15.74%
+Volume: 0.89x
+Avg Volume: 56,454,765.0
+Relative Strength: 80.65%
+AI News Sentiment: Bullish (80.0)
+Recent Headlines:
+- Stock Market Today: Dow Pops On Trump-Iran Deal; Elon Musk's SpaceX Rockets, Tesla Does This
+- How Marvell Broke The Law Of Large Numbers
+- Stocks to Watch: SpaceX, Micron Technology, Remy Cointreau
+
+4. KLAC
+Score: 54.38
+Momentum: 19.86%
+Volume: 1.44x
+Avg Volume: 11,488,665.0
+Relative Strength: 43.8%
+AI News Sentiment: Bullish (70.0)
+Recent Headlines:
+- Amkor Technology Stock Is An Amplifier, Not An Alternative
+- The Zacks Analyst Blog Highlights Costco, Lam Research, KLA, Blue Ridge and AXIL
+- Jim Cramer Calls KLA Corporation “Too Risky”
+
+5. AMAT
+Score: 51.59
+Momentum: 17.34%
+Volume: 1.36x
+Avg Volume: 8,554,621.0
+Relative Strength: 39.63%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- Amkor Technology Stock Is An Amplifier, Not An Alternative
+- Applied Materials Stock And The Tell Hiding In Its Margins
+- Stocks Rally as US-Iran Peace Deal Sinks Oil and Bond Yields
+
+6. LRCX
+Score: 50.71
+Momentum: 18.88%
+Volume: 1.31x
+Avg Volume: 10,244,465.0
+Relative Strength: 37.73%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- Amkor Technology Stock Is An Amplifier, Not An Alternative
+- Is Lam Research (LRCX) a Solid Growth Stock? 3 Reasons to Think "Yes"
+- Applied Materials Stock And The Tell Hiding In Its Margins
+
+7. MU
+Score: 50.54
+Momentum: 16.25%
+Volume: 0.8x
+Avg Volume: 55,124,731.0
+Relative Strength: 57.45%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- Chip stocks surge, oil slides closer to $80 on US-Iran deal, Fox to acquire Roku
+- Dow Jones Futures: Trump, Iran Deal Spark Stock Market Surge; Nvidia, Micron, Sandisk SpaceX Are Big Winners
+- Stock Market Today: Dow Pops On Trump-Iran Deal; Elon Musk's SpaceX Rockets, Tesla Does This
+
+8. DELL
+Score: 45.34
+Momentum: 7.15%
+Volume: 0.53x
+Avg Volume: 12,199,706.0
+Relative Strength: 69.67%
+AI News Sentiment: Bullish (70.0)
+Recent Headlines:
+- Dell Stock And The Best Kind Of Problem
+- Wall Street Analysts Think Dell Technologies (DELL) Is a Good Investment: Is It?
+- Dell Technologies Inc. (DELL) Is a Trending Stock: Facts to Know Before Betting on It
+
+9. QBTS
+Score: 43.38
+Momentum: 11.65%
+Volume: 0.99x
+Avg Volume: 45,363,590.0
+Relative Strength: 35.58%
+AI News Sentiment: Bullish (80.0)
+Recent Headlines:
+- D-Wave Leads Quantum Computing Stocks Higher as These Experts See More Gains Ahead
+- Is QUBT the Best Quantum Stock to Buy in June With 80% Price Upside?
+- This Beaten-Down Quantum Stock Is Gaining Fans. They’re Starting to Figure It Out.
+
+10. HOOD
+Score: 42.34
+Momentum: 17.13%
+Volume: 1.19x
+Avg Volume: 30,449,880.0
+Relative Strength: 24.99%
+AI News Sentiment: Bullish (65.0)
+Recent Headlines:
+- Thanks to the World Cup, Robinhood's 2026 prediction markets revenue could skyrocket
+- Another analyst raises Robinhood price target
+- Bitcoin Holds Highs as Geopolitical Fear Eases
+

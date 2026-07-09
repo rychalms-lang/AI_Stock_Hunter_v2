@@ -1,0 +1,125 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-16
+Stocks loaded: 208
+Passed filters: 148
+AI sentiment calls: 10
+Minimum average volume: 1,000,000
+
+1. ROKU
+Score: 63.79
+Momentum: 17.97%
+Volume: 3.25x
+Avg Volume: 4,683,170.0
+Relative Strength: 12.14%
+AI News Sentiment: Bearish (30.0)
+Recent Headlines:
+- Netflix reportedly tried & failed to buy Roku, Western Digital is the new AI play
+- Stock market today: Dow hits record, S&P 500, Nasdaq soar as tech rallies amid US-Iran pact to reopen Hormuz
+- Netflix (NFLX) Weighs Lionsgate After Missing Out On Roku And Warner Bros. Discovery
+
+2. ARM
+Score: 57.79
+Momentum: 28.92%
+Volume: 0.92x
+Avg Volume: 13,324,156.0
+Relative Strength: 75.35%
+AI News Sentiment: Neutral (50.0)
+Recent Headlines:
+- SpaceX becomes retail's biggest IPO trade: Chart of the Day
+
+3. AMAT
+Score: 48.16
+Momentum: 14.33%
+Volume: 1.25x
+Avg Volume: 8,687,184.0
+Relative Strength: 37.56%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- Applied Materials (AMAT) Teams Up With EssilorLuxottica To Build AR Smart Eyewear
+- Top Stock Reports for Applied Materials, GE & AstraZeneca
+- Lam Research (LRCX) Is Betting On Advanced Packaging For 50% Growth In 2026
+
+4. HIMS
+Score: 47.64
+Momentum: 13.28%
+Volume: 1.08x
+Avg Volume: 18,553,117.0
+Relative Strength: 37.98%
+AI News Sentiment: Bullish (90.0)
+Recent Headlines:
+- Hims & Hers Stands to Get a Big Chunk of the $2.2B Peptides Market
+- 3 Market-Beating Stocks with Exciting Potential
+- HIMS Stock Logs Best Day In 2 Months: Bull Sees Peptides Driving Up To $19B In Annual Revenue By 2030
+
+5. LRCX
+Score: 46.21
+Momentum: 14.77%
+Volume: 1.12x
+Avg Volume: 10,399,704.0
+Relative Strength: 32.84%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- Lam Research (LRCX) Is Betting On Advanced Packaging For 50% Growth In 2026
+- How Much Upside Can LRCX Stock's Growth Deliver?
+- Lam Research (LRCX) Stands Out on Strong Demand
+
+6. DELL
+Score: 45.72
+Momentum: 9.26%
+Volume: 0.51x
+Avg Volume: 12,287,266.0
+Relative Strength: 69.5%
+AI News Sentiment: Bullish (70.0)
+Recent Headlines:
+- Western Digital Stock's Thousand-Percent Question
+- 3 Dividend Growth Stocks to Buy as Global Oil Prices Tumble
+- British billionaire trader sues Dell in £50m data centre row
+
+7. MU
+Score: 44.39
+Momentum: 14.45%
+Volume: 0.8x
+Avg Volume: 54,343,074.0
+Relative Strength: 43.82%
+AI News Sentiment: Bullish (80.0)
+Recent Headlines:
+- Western Digital stock jumps as AI trade reignites
+- Micron Technology (MU) Wins HBM4 Supplier Role For Nvidia Vera Rubin AI Platform
+- Western Digital Stock's Thousand-Percent Question
+
+8. MRVL
+Score: 42.66
+Momentum: 10.33%
+Volume: 1.0x
+Avg Volume: 58,385,665.0
+Relative Strength: 55.83%
+AI News Sentiment: Bearish (30.0)
+Recent Headlines:
+- US Equity Markets End Mixed as Dow Hits Record High Amid Lower Crude Oil Prices, Tech Stock Sell-Off
+- Sector Update: Tech Stocks Fall Late Afternoon
+- Marvell's 265% Surge Faces $1 Trillion Test
+
+9. KLAC
+Score: 37.88
+Momentum: 11.13%
+Volume: 1.17x
+Avg Volume: 11,797,379.0
+Relative Strength: 34.09%
+AI News Sentiment: Bearish (30.0)
+Recent Headlines:
+- Lam Research (LRCX) Is Betting On Advanced Packaging For 50% Growth In 2026
+- ASML Surges 36% in 3 Months: Should Investors Buy the Stock?
+- How Much Upside Can LRCX Stock's Growth Deliver?
+
+10. SOFI
+Score: 34.16
+Momentum: 11.59%
+Volume: 1.38x
+Avg Volume: 75,959,583.0
+Relative Strength: 14.02%
+AI News Sentiment: Bearish (30.0)
+Recent Headlines:
+- Here's What's Behind SoFi's Big Decline -- and What You Should Do About It
+- SoFi Could Be One of 2026’s Best Fintech Buys at Current Depressed Levels
+- SpaceX Investors at US Brokers Got at Least One IPO Share
+

@@ -1,0 +1,123 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-17
+Stocks loaded: 208
+Passed filters: 86
+AI sentiment calls: 10
+Minimum average volume: 1,000,000
+
+1. HOOD
+Score: 61.29
+Momentum: 14.06%
+Volume: 2.1x
+Avg Volume: 33,518,563.0
+Relative Strength: 38.9%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- Coinbase wants to be your bank. But should it?
+- Dow Jones Futures Rise After Fed Rate Hike Bets Hit Stocks; SpaceX Falls As Robinhood Jumps
+- Robinhood Stock Soars A Day After Big Layoffs. This Is Why.
+
+2. ARM
+Score: 55.76
+Momentum: 22.4%
+Volume: 0.87x
+Avg Volume: 13,346,960.0
+Relative Strength: 63.2%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- AMD, Arm, Intel Get Price-Target Hikes On 'CPU Renaissance'
+- INTC, ARM, AMD Stocks Gain Today — Bernstein Supercharges AI Chip Bull Case
+- Stocks Mixed Ahead of FOMC Meeting Results
+
+3. ROKU
+Score: 51.78
+Momentum: 14.75%
+Volume: 2.21x
+Avg Volume: 5,129,840.0
+Relative Strength: 10.61%
+AI News Sentiment: Bullish (65.0)
+Recent Headlines:
+- Netflix's stock slide is getting worse
+- Roku is reportedly exploring a sale, and its 100 million users are the biggest prize
+- Here's What Fox Buying Roku Means for Netflix Investors
+
+4. DELL
+Score: 50.12
+Momentum: 7.12%
+Volume: 0.68x
+Avg Volume: 12,511,739.0
+Relative Strength: 72.65%
+AI News Sentiment: Bullish (80.0)
+Recent Headlines:
+- Stock Market Today: Dow Slapped As Fed Chair Warsh Stresses Price Stability; SpaceX Falls 5% (Live Coverage)
+- Dell Maintains Payout as AI Demand Builds
+- Jim Cramer Says “It’s an Easy Call to Say to Buy Dell and to Believe in Michael Dell”
+
+5. HIMS
+Score: 48.62
+Momentum: 10.46%
+Volume: 1.25x
+Avg Volume: 18,440,716.0
+Relative Strength: 38.45%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- HIMS Stock Gained Nearly 6% On Wednesday — Barclays Sees Breakout Potential After Novo Partnership
+- HIMS Stock Breaks Above $30 Ahead Of Upcoming FDA Peptide Review: Analysts Eye Next Growth Catalyst
+- Hims & Hers Stands to Get a Big Chunk of the $2.2B Peptides Market
+
+6. AMAT
+Score: 47.59
+Momentum: 7.29%
+Volume: 1.24x
+Avg Volume: 8,815,697.0
+Relative Strength: 39.12%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- Applied Materials, ASML, Lam Hit Record Highs, Lead Chip Gear Stocks Rally
+- Applied Materials (AMAT) Shares Skyrocket, What You Need To Know
+- Update: US Equity Indexes Mixed Ahead of Fed Chair Warsh's Policy Views as Iran Warns Israel Over Lebanon Attacks
+
+7. MRVL
+Score: 42.42
+Momentum: 3.15%
+Volume: 0.82x
+Avg Volume: 59,606,622.0
+Relative Strength: 55.04%
+AI News Sentiment: Bullish (65.0)
+Recent Headlines:
+- What A Patient Holder Is Really Paying For Broadcom Stock
+- Marvell Gains Attention After Nvidia Backing
+- Jim Cramer on Adobe: “I Don’t Want You in It”
+
+8. GEV
+Score: 37.27
+Momentum: 15.73%
+Volume: 1.36x
+Avg Volume: 2,927,384.0
+Relative Strength: 2.47%
+AI News Sentiment: Bullish (70.0)
+Recent Headlines:
+- Dow Jones Futures Rise After Fed Rate Hike Bets Hit Stocks; SpaceX Falls As Robinhood Jumps
+- Cummins, Stock Of The Day, Flirts With A Breakout On AI Power Deal
+- GE Vernova Supplier Near Breakout As Data Centers Lift Construction Sector
+
+9. SOFI
+Score: 35.6
+Momentum: 4.5%
+Volume: 1.51x
+Avg Volume: 78,801,182.0
+Relative Strength: 11.07%
+AI News Sentiment: Neutral (50)
+
+10. MU
+Score: 34.85
+Momentum: 4.75%
+Volume: 0.82x
+Avg Volume: 53,543,101.0
+Relative Strength: 42.55%
+AI News Sentiment: Bearish (40.0)
+Recent Headlines:
+- SpaceX's near $3 trillion rally comes with one big catch: Chart of the Day
+- Is Micron Stock's Record-Breaking Run A Cyclical Peak Or A New AI Reality?
+- Stock Market Today: Dow Slapped As Fed Chair Warsh Stresses Price Stability; SpaceX Falls 5% (Live Coverage)
+

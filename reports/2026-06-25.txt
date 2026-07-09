@@ -1,0 +1,248 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-25
+Stocks loaded: 208
+Passed filters: 84
+AI analysis calls: 10
+Minimum average volume: 1,000,000
+
+TOP SECTORS IN FINAL PICKS
+- Semiconductors: 3
+- Healthcare: 2
+- Industrials: 1
+- AI / Healthcare: 1
+- Financials: 1
+- Consumer Cyclical: 1
+- Travel: 1
+
+TOP PICKS
+
+1. AMAT (Semiconductors)
+Score: 54.63
+Open: $637.73
+Close: $668.0
+Open-to-Close: 4.75%
+5-Day Change: 8.25%
+20-Day Change: 48.55%
+Momentum: 8.25%
+Volume: 1.51x
+Avg Volume: 10,607,346.0
+Relative Strength: 50.99%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Applied Materials, Inc. supplies critical materials engineering solutions and equipment for semiconductor manufacturing, including etch, deposition, and metrology technologies. The stock is likely benefiting from strong semiconductor sector momentum, driven by AI-related demand and positive earnings reports from peers like Micron. AMAT’s 5-day and 20-day gains reflect rising investor confidence in capital spending on chip production. The bullish case centers on ongoing semiconductor content growth and tools upgrades in advanced nodes. Key risks include potential supply chain disruptions and cyclical chip capital spending volatility. Watch for next quarter’s guidance and industry chip capex trends.
+
+Recent Headlines:
+- Sandisk, Western Digital, and others soar as Micron results  'justify elevated valuations'
+- Micron Sparks Fresh AI Stock Rally
+- Micron Q3 earnings beat sends stock surging 18% premarket
+
+------------------------------------------------------------
+
+2. MU (Semiconductors)
+Score: 46.85
+Open: $1233.35
+Close: $1213.56
+Open-to-Close: -1.6%
+5-Day Change: 7.02%
+20-Day Change: 31.41%
+Momentum: 7.02%
+Volume: 1.42x
+Avg Volume: 56,170,685.0
+Relative Strength: 33.85%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Micron Technology designs and manufactures memory and storage products globally, serving diverse segments including cloud, data center, mobile, and automotive markets. Recent stock strength is driven by strong Q3 earnings that highlight ongoing demand from AI applications, which strain existing memory capacity and benefit suppliers like Micron. The bullish case centers on sustained AI growth fueling memory chip demand and robust execution across business units. Key risks include semiconductor sector cyclicality and potential volatility from macroeconomic or supply chain disruptions. Investors should watch upcoming earnings and industry memory pricing trends for continued momentum or early signs of cooling.
+
+Recent Headlines:
+- Sandisk, Western Digital, and others soar as Micron results  'justify elevated valuations'
+- Big Tech stocks tumble while Micron continues to gain on Q3 earnings
+- Micron stock soars after blowout earnings expose AI's memory bottleneck
+
+------------------------------------------------------------
+
+3. ABBV (Healthcare)
+Score: 44.64
+Open: $233.66
+Close: $243.14
+Open-to-Close: 4.06%
+5-Day Change: 12.31%
+20-Day Change: 11.21%
+Momentum: 12.31%
+Volume: 1.62x
+Avg Volume: 6,271,749.0
+Relative Strength: 13.65%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+AbbVie is a biopharmaceutical company focused on developing and marketing therapies for autoimmune diseases, cancers, and aesthetic medicine. The recent stock strength appears linked to positive sentiment around its acquisition of Apogee, which supports long-term growth prospects, and strong performance in key drug franchises like Skyrizi and Rinvoq. The bullish case centers on AbbVie’s diversified portfolio, robust pipeline, and steady dividend, making it resilient in a competitive healthcare sector. However, risks include regulatory scrutiny, patent expirations, and integration challenges post-acquisition. Investors should monitor pipeline developments, regulatory updates, and any further M&A activity to gauge continued momentum.
+
+Recent Headlines:
+- AbbVie vs. Pfizer: Which Pharma Giant Stock Is a Better Buy in 2026?
+- Is AbbVie a Buy After Its Purchase of Apogee?
+- 3 Under-the-Radar Biotech Takeover Targets for the Next Pharma Buying Spree
+
+------------------------------------------------------------
+
+4. LRCX (Semiconductors)
+Score: 42.61
+Open: $407.99
+Close: $401.82
+Open-to-Close: -1.51%
+5-Day Change: 3.29%
+20-Day Change: 26.45%
+Momentum: 3.29%
+Volume: 1.34x
+Avg Volume: 12,449,798.0
+Relative Strength: 28.89%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Lam Research (LRCX) designs and services advanced semiconductor processing equipment critical for integrated circuit fabrication worldwide. The stock has shown strong momentum with a 26.45% gain over 20 days and volume above average, likely benefiting from renewed AI-driven demand and proximity moves to Micron’s memory expansion hub. The bullish case hinges on continued growth in semiconductor capital spending and Lam’s strategic positioning in high-value wafer fabrication technologies. Key risks include supply chain disruptions and semiconductor cyclical volatility impacting order timing. Watch for upcoming earnings and Micron’s memory segment performance as indicators of sustained sector strength.
+
+Recent Headlines:
+- Lam Research (LRCX) Opens Boise Office To Get Closer To Micron’s Memory Expansion
+- Micron Sparks Fresh AI Stock Rally
+- Micron Q3 earnings beat sends stock surging 18% premarket
+
+------------------------------------------------------------
+
+5. CAT (Industrials)
+Score: 38.26
+Open: $1024.64
+Close: $1057.01
+Open-to-Close: 3.16%
+5-Day Change: 7.22%
+20-Day Change: 19.08%
+Momentum: 7.22%
+Volume: 1.38x
+Avg Volume: 3,360,661.0
+Relative Strength: 21.52%
+AI News Sentiment: Neutral (50)
+
+Stock Brief:
+AI analysis failed. Basic price and volume signals are still included.
+
+Recent Headlines:
+- Big Tech stocks tumble while Micron continues to gain on Q3 earnings
+- Alphabet makes the Dow look more like the Nasdaq
+- Caterpillar Soars But Analysts Remain Cautious
+
+------------------------------------------------------------
+
+6. TEM (AI / Healthcare)
+Score: 34.57
+Open: $52.6
+Close: $54.87
+Open-to-Close: 4.32%
+5-Day Change: 7.93%
+20-Day Change: 6.98%
+Momentum: 7.93%
+Volume: 1.18x
+Avg Volume: 7,774,975.0
+Relative Strength: 9.42%
+AI News Sentiment: Bullish (72.0)
+
+Stock Brief:
+Tempus AI, Inc. operates a healthcare technology platform integrating diagnostics, analytics, and multimodal data to support clinical decision-making and precision research. The stock has gained nearly 8% over five days and outperformed the SPY with a 9.42% relative strength, possibly driven by growing investor interest in AI-driven drug discovery and healthcare innovation. The bullish case rests on Tempus expanding adoption of its NGS and molecular testing services alongside its AI-powered analytics, positioning it well in the evolving healthcare AI sector. Key risks include ongoing market volatility in mid-cap AI stocks and the company’s ability to scale diagnostic services profitably amid competition. Watch for upcoming clinical partnerships, diagnostic volume growth, and any updates on regulatory developments or new AI application launches.
+
+Recent Headlines:
+- Is Tempus AI, Inc. (TEM) Among the Best AI Drug Discovery Stocks to Buy According to Hedge Funds?
+- Redditors Think Tempus AI (TEM) Still Has 10X Potential
+- Tempus Al, Inc. (TEM) Opens Open-Source Digital Pathology Consortium
+
+------------------------------------------------------------
+
+7. PNC (Financials)
+Score: 34.06
+Open: $242.66
+Close: $245.28
+Open-to-Close: 1.08%
+5-Day Change: 5.71%
+20-Day Change: 11.6%
+Momentum: 5.71%
+Volume: 1.06x
+Avg Volume: 2,441,143.0
+Relative Strength: 14.04%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+The PNC Financial Services Group, Inc. is a diversified US financial services firm operating through retail banking, corporate & institutional banking, and asset management segments. The stock has shown solid momentum with a 5.71% gain over five days and a 11.6% rise over 20 days, supported by positive earnings previews and strategic expansion, including the recent FirstBank customer conversion. The bullish case centers on PNC’s diversified business model, expanding customer base, and resilience amid economic uncertainties, as highlighted by recent stress test commentary. However, risks include macroeconomic pressures that could impact credit performance and loan demand. Investors should monitor upcoming earnings results and Fed policy developments for further directional cues.
+
+Recent Headlines:
+- PNC Financial Services Earnings Preview: What to Expect
+- Big Banks Can Weather Severe Recession, Fed Says, in Unusual Year for Stress Tests
+- The PNC Financial Services Group (PNC) Resumed with Overweight at Stephens. Here is Why
+
+------------------------------------------------------------
+
+8. HD (Consumer Cyclical)
+Score: 33.95
+Open: $342.25
+Close: $345.0
+Open-to-Close: 0.8%
+5-Day Change: 3.21%
+20-Day Change: 8.21%
+Momentum: 3.21%
+Volume: 1.29x
+Avg Volume: 5,359,784.0
+Relative Strength: 10.65%
+AI News Sentiment: Neutral (65.0)
+
+Stock Brief:
+The Home Depot operates as a leading home improvement retailer, serving both DIY consumers and professional contractors with products and installation services. The stock has shown modest gains recently, supported by a 3.21% 5-day and 8.21% 20-day price increase, along with relative strength versus the S&P 500. Investor interest may be driven by ongoing demand in home renovation and resilient end markets despite housing sector headwinds. However, challenges in the broader housing market and competitive pressures from peers like Lowe’s pose risks to near-term growth. Watch for updates on housing trends and Home Depot’s ability to sustain demand amid economic uncertainties.
+
+Recent Headlines:
+- Home Depot vs. Lowe's: Which Big Box Home Improvement Stock Is a Better Buy in 2026?
+- Wolfe Research Says Home Depot (HD) Remains in Limbo amid Housing Market Challenges
+- Dow Holds Gains as Markets Price the AI Boom: Stock Market Today
+
+------------------------------------------------------------
+
+9. DHR (Healthcare)
+Score: 33.76
+Open: $189.69
+Close: $193.21
+Open-to-Close: 1.86%
+5-Day Change: 9.05%
+20-Day Change: 6.96%
+Momentum: 9.05%
+Volume: 1.14x
+Avg Volume: 4,369,282.0
+Relative Strength: 9.4%
+AI News Sentiment: Neutral (68.0)
+
+Stock Brief:
+Danaher Corporation operates across Biotechnology, Life Sciences, and Diagnostics, providing technologies and solutions for therapeutic development, manufacturing, and research globally. The stock has gained over 9% in the past five days, recently crossing above its 20-day moving average, signaling potential technical momentum. The bullish case centers on Danaher’s integration of Masimo’s FDA-cleared AI tools, which could strengthen its medtech positioning and revenue growth. However, the stock remains down 22% year-to-date, reflecting valuation concerns and mixed signals amid broader healthcare sector uncertainties. Investors should watch for further developments on the Masimo acquisition’s impact and how Danaher navigates valuation pressures versus its fundamental growth prospects.
+
+Recent Headlines:
+- Danaher (DHR) Stock Weighs Mixed Valuation Signals After Recent Price Rebound
+- Danaher (DHR) Crossed Above the 20-Day Moving Average: What That Means for Investors
+- 3 Healthcare Stocks with Questionable Fundamentals
+
+------------------------------------------------------------
+
+10. BKNG (Travel)
+Score: 33.06
+Open: $181.06
+Close: $177.05
+Open-to-Close: -2.21%
+5-Day Change: 3.07%
+20-Day Change: 4.52%
+Momentum: 3.07%
+Volume: 1.27x
+Avg Volume: 8,521,244.0
+Relative Strength: 6.96%
+AI News Sentiment: Bullish (70.0)
+
+Stock Brief:
+Booking Holdings Inc. operates multiple online travel platforms including Booking.com, Priceline, Agoda, and KAYAK, offering reservations for accommodations, flights, rental cars, and vacation packages globally. The recent share price movement may be driven by enthusiasm over Priceline’s new AI assistant integration, signaling the company's investment in technology to enhance customer experience. The bullish case lies in its diversified portfolio of travel services and continued adoption of AI to stay competitive amid rising travel demand. However, risks include sensitivity to economic downturns, travel restrictions, and competition from other travel service providers. Investors should monitor upcoming travel trends, AI implementation outcomes, and broader market tech sentiment.
+
+Recent Headlines:
+- Booking (BKNG) Shares Skyrocket, What You Need To Know
+- Nasdaq, S&P end lower as tech stocks fall
+- Booking Holdings’ (BKNG) Priceline Upgrades AI Assistant Penny With Anthropic’s Claude Integration
+
+------------------------------------------------------------
+

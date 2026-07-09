@@ -1,0 +1,127 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-10
+Stocks loaded: 208
+Passed filters: 57
+AI sentiment calls: 10
+Minimum average volume: 1,000,000
+
+1. DUOL
+Score: 42.04
+Momentum: 11.7%
+Volume: 1.45x
+Avg Volume: 1,456,105.0
+Relative Strength: 18.41%
+AI News Sentiment: Bullish (65.0)
+Recent Headlines:
+- Duolingo Stock Is Due For a Recovery
+- Is Duolingo, Inc. (DUOL) A Good Stock To Buy Now?
+- Assessing Duolingo (DUOL) Valuation After A Sharp One Year Share Price Decline
+
+2. KLAC
+Score: 41.58
+Momentum: 0.21%
+Volume: 1.5x
+Avg Volume: 1,063,407.0
+Relative Strength: 17.88%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- Why KLA Corporation Stock Edged Past the Broader Market Today
+- Applied Materials, Other Chip Gear Stocks Hit Record Highs
+- Barclays raises price targets on chip stocks after raising WFE estimates
+
+3. MMM
+Score: 41.14
+Momentum: 2.67%
+Volume: 1.91x
+Avg Volume: 4,105,960.0
+Relative Strength: 9.45%
+AI News Sentiment: Neutral (55.0)
+Recent Headlines:
+- General Industrial Machinery Stocks Q1 Highlights: 3M (NYSE:MMM)
+- 3M stock rises after CEO touts strategy at conference
+- Nike downgraded, Oscar Health upgraded: Wall Street's top analyst calls
+
+4. USB
+Score: 36.3
+Momentum: 2.43%
+Volume: 1.33x
+Avg Volume: 8,281,467.0
+Relative Strength: 9.99%
+AI News Sentiment: Bullish (80.0)
+Recent Headlines:
+- CG Advances Wealth Management Push With Majority Stake in MAI
+- U.S. Bancorp (USB) Completes Acquisition of  BTIG, LLC
+- 2 Large-Cap Stocks Worth Your Attention and 1 We Turn Down
+
+5. TJX
+Score: 36.03
+Momentum: 5.69%
+Volume: 1.03x
+Avg Volume: 6,814,801.0
+Relative Strength: 16.68%
+AI News Sentiment: Bullish (85.0)
+Recent Headlines:
+- Is TJX (TJX) a Buy as Wall Street Analysts Look Optimistic?
+- Why TJX Companies Stock Climbed While the Market Sputtered Today
+- Will Stronger-Than-Expected Comps and New Debt Shelf Shape TJX Companies' (TJX) Investment Narrative?
+
+6. MAR
+Score: 33.66
+Momentum: 0.24%
+Volume: 1.19x
+Avg Volume: 1,420,240.0
+Relative Strength: 12.78%
+AI News Sentiment: Bullish (75.0)
+Recent Headlines:
+- 3 Consumer Stocks We Approach with Caution
+- Marriott, IBD Stock Of The Day, In Buy Zone Amid AI Volatility
+- Marriott (MAR) Up 9.4% Since Last Earnings Report: Can It Continue?
+
+7. AI
+Score: 33.32
+Momentum: 2.08%
+Volume: 0.94x
+Avg Volume: 7,836,344.0
+Relative Strength: 27.13%
+AI News Sentiment: Bullish (60.0)
+Recent Headlines:
+- 5 Must-Read Analyst Questions From C3.ai’s Q1 Earnings Call
+- 2 Cash-Heavy Stocks Worth Investigating and 1 We Turn Down
+- Winning Government Business: HighGround Market Founder & CEO John Price, Live at NYSE
+
+8. SPOT
+Score: 31.19
+Momentum: 1.93%
+Volume: 0.94x
+Avg Volume: 2,349,831.0
+Relative Strength: 19.03%
+AI News Sentiment: Bullish (65.0)
+Recent Headlines:
+- Spotify (SPOT) Ascends While Market Falls: Some Facts to Note
+- Is Spotify Technology S.A. (SPOT) A Good Stock To Buy Now?
+- A Look At Spotify Technology (NYSE:SPOT) Valuation After Recent Share Price Volatility
+
+9. COP
+Score: 31.0
+Momentum: 0.58%
+Volume: 1.35x
+Avg Volume: 6,457,595.0
+Relative Strength: 4.42%
+AI News Sentiment: Bullish (60.0)
+Recent Headlines:
+- Stocks Resume Decline as Chipmakers and AI Companies Fall
+- Is Diamondback Energy Stock Outperforming the Nasdaq?
+- Stocks Fall on Weakness in Tech and Trucking Companies
+
+10. PNC
+Score: 30.35
+Momentum: 2.45%
+Volume: 1.06x
+Avg Volume: 1,768,754.0
+Relative Strength: 13.13%
+AI News Sentiment: Bullish (60.0)
+Recent Headlines:
+- WFC Stock Rises as CFO Sees Stronger Q2 NII, Reaffirms $50B 2026 Target
+- Why The PNC Financial Services Group, Inc (PNC) is a Great Dividend Stock Right Now
+- LPL Financial Recruits $2 Billion Team From PNC Private Bank
+

@@ -1,0 +1,247 @@
+AI STOCK HUNTER REPORT
+Date: 2026-06-22
+Stocks loaded: 208
+Passed filters: 67
+AI analysis calls: 10
+Minimum average volume: 1,000,000
+
+TOP SECTORS IN FINAL PICKS
+- Semiconductors: 5
+- Consumer Health: 1
+- Fintech / Crypto: 1
+- Other / Uncategorized: 1
+- Industrials: 1
+- Gaming / Metaverse: 1
+
+TOP PICKS
+
+1. MU (Semiconductors)
+Score: 49.09
+Open: $1196.19
+Close: $1211.38
+Open-to-Close: 1.27%
+5-Day Change: 11.34%
+20-Day Change: 61.3%
+Momentum: 11.34%
+Volume: 0.88x
+Avg Volume: 54,717,939.0
+Relative Strength: 61.21%
+AI News Sentiment: Bullish (70.0)
+
+Stock Brief:
+Micron Technology, Inc. designs and manufactures memory and storage products used in cloud, data center, mobile, automotive, and embedded applications globally. The stock has gained significantly over the past 20 days (+61.3%), reflecting optimism ahead of upcoming earnings and strong sector performance amid rising memory prices. The bullish case is supported by Micron's leadership in advanced memory technologies like CXL and high-bandwidth memory, which position it well for growth in data centers and automotive markets. However, memory price volatility, as noted in recent headlines referencing potential impacts on broader tech demand and economic factors, presents a risk. Investors should watch the company's upcoming earnings report and key market data for indications of demand sustainability and margin trends.
+
+Recent Headlines:
+- Memory's price surge threatens Apple's 'magic formula' — and the economy: WSJ reporter
+- Tech stocks live: Tech stocks mixed ahead of Micron earnings Wednesday
+- Tech stocks today: Uber and Lucid expanding in Houston,  Intel's latest chip moves
+
+------------------------------------------------------------
+
+2. AMAT (Semiconductors)
+Score: 47.67
+Open: $626.22
+Close: $640.18
+Open-to-Close: 2.23%
+5-Day Change: 9.29%
+20-Day Change: 48.13%
+Momentum: 9.29%
+Volume: 1.09x
+Avg Volume: 9,552,019.0
+Relative Strength: 48.05%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Applied Materials, Inc. provides advanced materials engineering solutions and equipment for semiconductor manufacturing, serving global markets including the US, Asia, and Europe. Recent price strength reflects growing optimism around a supply gap in the semiconductor sector and strong demand driven by AI and tech industry dynamics. The company's long-term deal with EssilorLuxottica highlights its expanding customer base and diversified revenue streams. However, valuation concerns persist amid the sharp 20-day gain of 48%, suggesting some risk of short-term profit-taking. Investors should monitor semiconductor industry supply-demand trends and any updates on major customer contracts or AI-driven demand shifts.
+
+Recent Headlines:
+- Stocks Erase Early Gains as Alphabet and Software Companies Fall
+- A Growing Supply Gap Has Analysts Eyeing Applied Materials (AMAT)
+- Applied Materials (AMAT) and EssilorLuxottica Sign Long-Term Deal, Reuters Reports
+
+------------------------------------------------------------
+
+3. LRCX (Semiconductors)
+Score: 43.98
+Open: $398.97
+Close: $409.54
+Open-to-Close: 2.65%
+5-Day Change: 5.38%
+20-Day Change: 34.22%
+Momentum: 5.38%
+Volume: 1.23x
+Avg Volume: 11,503,322.0
+Relative Strength: 34.13%
+AI News Sentiment: Bullish (78.0)
+
+Stock Brief:
+Lam Research Corporation designs and supplies advanced semiconductor processing equipment critical for integrated circuit fabrication globally. The stock recently climbed to all-time highs driven by strong AI-related demand, an earnings beat, and raised outlook for chip-equipment sales, underscored by positive analyst upgrades and price target increases. The bullish case centers on sustained AI-driven semiconductor capex growth and Lam’s leadership in deposition and etching technologies. Key risks include semiconductor industry cyclicality, geopolitical exposure across Asia, and competition in capital equipment. Watch upcoming earnings updates and guidance for signs of continued strength or cooling in AI-driven semiconductor investments.
+
+Recent Headlines:
+- Stocks Erase Early Gains as Alphabet and Software Companies Fall
+- Why Analysts See More Upside for Lam Research (LRCX)
+- Cantor Fitzgerald Lifts PT on Lam Research Corporation (LRCX)
+
+------------------------------------------------------------
+
+4. HIMS (Consumer Health)
+Score: 43.8
+Open: $34.63
+Close: $33.54
+Open-to-Close: -3.15%
+5-Day Change: 11.17%
+20-Day Change: 41.22%
+Momentum: 11.17%
+Volume: 1.05x
+Avg Volume: 19,472,425.0
+Relative Strength: 41.13%
+AI News Sentiment: Bullish (65.0)
+
+Stock Brief:
+Hims & Hers Health, Inc. operates a direct-to-consumer health and wellness platform offering prescription and non-prescription products across multiple international markets. The stock has shown strong momentum with a 41.22% gain over 20 days, supported by interest ahead of a July FDA decision and potential integration with Oura wearables as teased by the CEO. The bullish case centers on expanding telehealth demand, broadening product categories, and international growth. However, insider share sales and overnight price declines highlight some caution, reflecting possible profit-taking or uncertainty. Key developments to watch include regulatory outcomes and progress on technology partnerships.
+
+Recent Headlines:
+- 1 Surging  Stock Worth Your Attention and 2 We Find Risky
+- HIMS Stock Slides Overnight: Insider Files Share Sale As CEO Teases Oura Wearable Integration
+- Hims & Hers Health, Inc. (HIMS) Is a Trending Stock: Facts to Know Before Betting on It
+
+------------------------------------------------------------
+
+5. SMCI (Semiconductors)
+Score: 41.23
+Open: $32.33
+Close: $35.46
+Open-to-Close: 9.68%
+5-Day Change: 14.94%
+20-Day Change: -0.34%
+Momentum: 14.94%
+Volume: 1.66x
+Avg Volume: 74,866,348.0
+Relative Strength: -0.43%
+AI News Sentiment: Bullish (75.0)
+
+Stock Brief:
+Super Micro Computer, Inc. specializes in modular server and storage solutions, offering advanced AI-focused hardware including liquid and air-cooled servers with integrated GPUs. The stock has gained nearly 10% intraday and close to 15% over the past 5 days, likely driven by strong investor interest in AI server growth and partnerships tied to Nvidia’s next-generation AI platform. The bullish case centers on Super Micro’s positioning in the expanding AI infrastructure market and continued innovation with scalable, open-architecture systems. A key risk is the semiconductor sector’s cyclicality and potential volatility from broader market or geopolitical uncertainties. Investors should monitor upcoming earnings for order trends and Nvidia platform adoption for sustained momentum.
+
+Recent Headlines:
+- Update: Equities Mixed, Oil Drops as US-Iran Talks Move Forward
+- US Equity Markets Mixed as Communication Services Stocks Fall, Bond Yields Move Up
+- Dell, Super Micro Bet Big on Nvidia's Next AI Platform
+
+------------------------------------------------------------
+
+6. HOOD (Fintech / Crypto)
+Score: 40.87
+Open: $108.01
+Close: $105.71
+Open-to-Close: -2.13%
+5-Day Change: 7.74%
+20-Day Change: 43.55%
+Momentum: 7.74%
+Volume: 0.88x
+Avg Volume: 35,405,196.0
+Relative Strength: 43.46%
+AI News Sentiment: Neutral (65.0)
+
+Stock Brief:
+Robinhood Markets, Inc. operates a U.S.-based fintech platform offering stock, ETF, and crypto trading alongside features like fractional shares, margin investing, and educational content. The stock recently dipped following news of a $2 billion convertible bond raise, which may be causing cautious investor sentiment despite positive sector momentum. The bullish case is supported by strong 20-day gains (43.55%) and expanding user engagement that could drive revenue growth and platform monetization. However, capital raising efforts and competitive pressures from other fintech platforms pose risks to near-term performance. Investors should watch fundraising developments and user growth metrics closely for indications of financial flexibility and market traction.
+
+Recent Headlines:
+- Sector Update: Financial Stocks Higher Late Afternoon
+- Robinhood's multibillion-dollar move sends stock lower
+- Sector Update: Financial Stocks Rise in Afternoon Trading
+
+------------------------------------------------------------
+
+7. BE (Other / Uncategorized)
+Score: 40.48
+Open: $332.0
+Close: $345.85
+Open-to-Close: 4.17%
+5-Day Change: 25.99%
+20-Day Change: 14.33%
+Momentum: 25.99%
+Volume: 1.04x
+Avg Volume: 10,786,853.0
+Relative Strength: 14.24%
+AI News Sentiment: Bullish (72.0)
+
+Stock Brief:
+Bloom Energy Corporation designs and sells solid oxide fuel cell systems for on-site power generation, converting fuels like natural gas and hydrogen into electricity via an electrochemical process. The stock’s recent strong performance, including a 25.99% gain over five days, may be driven by positive sentiment from a new AI-related report and growing interest in clean energy technologies. The bullish case hinges on expanding demand for clean power solutions across industries and Bloom’s innovations in fuel cells and hydrogen production. Key risks include competition from alternative clean energy technologies and margin pressure amid evolving market dynamics. Investors should watch upcoming earnings and further industry or regulatory developments related to hydrogen and fuel cells.
+
+Recent Headlines:
+- Bernstein Initates Coverage of Bloom Energy (BE) with Market Perform. Here is Why
+- Top Stock Picks for Week of June 22, 2026
+- PLUG's Margins Under Pressure: Can It Balance Growth & Profitability?
+
+------------------------------------------------------------
+
+8. KLAC (Semiconductors)
+Score: 40.3
+Open: $265.61
+Close: $269.16
+Open-to-Close: 1.34%
+5-Day Change: 4.97%
+20-Day Change: 42.53%
+Momentum: 4.97%
+Volume: 0.84x
+Avg Volume: 12,897,038.0
+Relative Strength: 42.45%
+AI News Sentiment: Bullish (74.0)
+
+Stock Brief:
+KLA Corporation designs and manufactures process control and yield management solutions critical to semiconductor manufacturing, including inspection and metrology tools for wafers and components. The stock has gained notable momentum recently, driven by increased interest in AI-related semiconductor investments that could boost demand for KLA’s precision equipment. Its strong 20-day performance reflects optimism about capturing growth from the AI buildout and semiconductor process control needs. However, semiconductor equipment markets can be cyclical and sensitive to broader tech spending, posing ongoing demand risk. Watch upcoming earnings and AI spending trends closely for further indications of sustainable growth.
+
+Recent Headlines:
+- Stocks Erase Early Gains as Alphabet and Software Companies Fall
+- ONTO vs. KLAC: Which Semiconductor Equipment Stock is the Better Bet?
+- Is KLA the Biggest Process Control Winner From AI Spending?
+
+------------------------------------------------------------
+
+9. CAT (Industrials)
+Score: 38.94
+Open: $999.28
+Close: $1022.28
+Open-to-Close: 2.3%
+5-Day Change: 9.46%
+20-Day Change: 16.18%
+Momentum: 9.46%
+Volume: 1.28x
+Avg Volume: 3,068,698.0
+Relative Strength: 16.09%
+AI News Sentiment: Bullish (72.0)
+
+Stock Brief:
+Caterpillar Inc. manufactures construction and mining equipment, as well as diesel and natural gas engines, serving global infrastructure and resource industries. The recent 2.3% gain and strong 5- and 20-day momentum likely reflect optimism around industrial demand and infrastructure spending. The bullish case is supported by ongoing investments in heavy machinery amid infrastructure projects and a potential energy sector rebound, given Caterpillar’s exposure to mining and power generation equipment. Risks include sensitivity to global economic cycles, commodity price volatility, and supply chain disruptions that could impact production and sales. Watch for quarterly order trends, commodity prices, and global infrastructure spending updates to gauge momentum.
+
+Recent Headlines:
+- Microsoft and Chevron plan one of the largest gas-powered data center projects in US
+- Stock Market Today: Dow Up As Bessent Makes This Iran Move; SpaceX Craters (Live Coverage)
+- Oil Giant Emerges As An AI Power Play; Two Key Suppliers Rally
+
+------------------------------------------------------------
+
+10. RBLX (Gaming / Metaverse)
+Score: 36.86
+Open: $48.2
+Close: $47.27
+Open-to-Close: -1.93%
+5-Day Change: 3.53%
+20-Day Change: -1.85%
+Momentum: 3.53%
+Volume: 1.87x
+Avg Volume: 11,649,977.0
+Relative Strength: -1.94%
+AI News Sentiment: Neutral (55.0)
+
+Stock Brief:
+Roblox Corporation operates a global immersive platform that enables users to create, share, and explore interactive experiences through its Roblox Client, Roblox Studio, and backend cloud services. Recent price action shows mixed signals—a modest 5-day gain contrasts with a weak 20-day performance and a notable decline in 2026 share price. The bullish case centers on ongoing developer growth, platform engagement, and potential upside from geopolitical shifts like the Russia ban reversal. However, comparisons to high growth peers and uncertain bookings growth pose risks. Traders should monitor upcoming bookings reports and any shifts in user metrics to gauge momentum sustainability.
+
+Recent Headlines:
+- Roblox Is Down 42% in 2026: Will the Pain Be Over Soon?
+- Is Roblox (RBLX) a Buy as Wall Street Analysts Look Optimistic?
+- Roblox Corporation (RBLX): A High-Growth Large-Cap Stock to Invest In, Hurt By Comparisons
+
+------------------------------------------------------------
+

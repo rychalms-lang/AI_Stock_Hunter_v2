@@ -1,0 +1,381 @@
+AI STOCK HUNTER
+Morning Market Brief
+July 06, 2026
+==================================================
+
+MARKET REGIME
+Regime: Risk-On
+Market Score: 100.0/100
+Summary: Major indexes are broadly trending higher.
+
+LEADING SECTORS
+1. Financials (XLF) | 5D: +4.40% | 20D: +7.61%
+2. Industrials (XLI) | 5D: +1.34% | 20D: +6.59%
+3. Healthcare (XLV) | 5D: +0.99% | 20D: +6.56%
+4. Small Caps (IWM) | 5D: +0.15% | 20D: +6.56%
+5. Semiconductors (SMH) | 5D: -3.66% | 20D: +6.87%
+
+TOP PICKS
+--------------------------------------------------
+1. HIMS (Consumer Health)
+Score: 51.59
+Confidence: 100%
+Open: $36.75
+Close: $38.51
+Open-to-Close: +4.79%
+5-Day Change: +15.33%
+20-Day Change: +47.04%
+Relative Strength: +44.81%
+
+Historical Pattern:
+Matches: 61
+Best Hold: 10 days
+Best Avg Return: +5.79%
+1D: +0.21% | Win: +44.26%
+3D: +1.30% | Win: +59.02%
+5D: +2.40% | Win: +54.10%
+7D: +3.82% | Win: +59.02%
+10D: +5.79% | Win: +57.38%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Strong historical average return
+- Positive historical win rate
+
+Risk Flags:
+- Very extended 20-day move
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+2. HOOD (Fintech / Crypto)
+Score: 48.02
+Confidence: 100%
+Open: $111.41
+Close: $118.50
+Open-to-Close: +6.36%
+5-Day Change: +16.37%
+20-Day Change: +43.69%
+Relative Strength: +41.46%
+
+Historical Pattern:
+Matches: 32
+Best Hold: 10 days
+Best Avg Return: +1.91%
+1D: -0.03% | Win: +56.25%
+3D: -0.82% | Win: +50.00%
+5D: +0.21% | Win: +65.62%
+7D: +0.37% | Win: +68.75%
+10D: +1.91% | Win: +65.62%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Positive historical average return
+- Strong historical win rate
+
+Risk Flags:
+- Very extended 20-day move
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+3. CELH (Consumer Staples Growth)
+Score: 43.24
+Confidence: 100%
+Open: $33.38
+Close: $33.38
+Open-to-Close: 0.00%
+5-Day Change: +12.05%
+20-Day Change: +18.66%
+Relative Strength: +16.44%
+
+Historical Pattern:
+Matches: 32
+Best Hold: 10 days
+Best Avg Return: +5.63%
+1D: -0.03% | Win: +34.38%
+3D: +2.26% | Win: +68.75%
+5D: +3.99% | Win: +68.75%
+7D: +4.26% | Win: +71.88%
+10D: +5.63% | Win: +62.50%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Supportive risk-on market environment
+- Strong historical average return
+- Strong historical win rate
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+4. DUOL (Consumer Apps)
+Score: 40.66
+Confidence: 100%
+Open: $123.00
+Close: $129.41
+Open-to-Close: +5.21%
+5-Day Change: +11.53%
+20-Day Change: +18.69%
+Relative Strength: +16.47%
+
+Historical Pattern:
+Matches: 37
+Best Hold: 7 days
+Best Avg Return: +1.82%
+1D: -0.50% | Win: +43.24%
+3D: -0.56% | Win: +48.65%
+5D: +1.69% | Win: +62.16%
+7D: +1.82% | Win: +64.86%
+10D: -0.93% | Win: +45.95%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Positive historical average return
+- Positive historical win rate
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+5. RBLX (Gaming / Metaverse)
+Score: 40.29
+Confidence: 100%
+Open: $55.11
+Close: $57.22
+Open-to-Close: +3.82%
+5-Day Change: +5.29%
+20-Day Change: +36.81%
+Relative Strength: +34.59%
+
+Historical Pattern:
+Matches: 41
+Best Hold: 10 days
+Best Avg Return: +2.78%
+1D: +0.61% | Win: +51.22%
+3D: +0.46% | Win: +65.85%
+5D: +1.69% | Win: +63.41%
+7D: +2.15% | Win: +60.98%
+10D: +2.78% | Win: +65.85%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Positive historical average return
+- Strong historical win rate
+
+Risk Flags:
+- Stock belongs to a weak sector
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+6. SE (International Tech)
+Score: 39.1
+Confidence: 70%
+Open: $103.32
+Close: $105.29
+Open-to-Close: +1.91%
+5-Day Change: +13.28%
+20-Day Change: +21.64%
+Relative Strength: +19.41%
+
+Historical Pattern:
+Matches: 47
+Best Hold: 1 days
+Best Avg Return: -0.66%
+1D: -0.66% | Win: +44.68%
+3D: -1.01% | Win: +44.68%
+5D: -2.66% | Win: +40.43%
+7D: -2.54% | Win: +44.68%
+10D: -4.33% | Win: +38.30%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+
+Risk Flags:
+- No major risk flags detected
+- Weak historical average return
+- Weak historical win rate
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+7. AFRM (Other / Uncategorized)
+Score: 38.53
+Confidence: 85%
+Open: $84.43
+Close: $85.75
+Open-to-Close: +1.56%
+5-Day Change: +4.84%
+20-Day Change: +34.80%
+Relative Strength: +32.57%
+
+Historical Pattern:
+Matches: 211
+Best Hold: 5 days
+Best Avg Return: +0.98%
+1D: +0.67% | Win: +52.61%
+3D: +0.22% | Win: +47.87%
+5D: +0.98% | Win: +51.66%
+7D: +0.77% | Win: +47.87%
+10D: +0.51% | Win: +43.60%
+
+Why It Ranked:
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+
+Risk Flags:
+- No major risk flags detected
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+8. PANW (Cybersecurity)
+Score: 36.11
+Confidence: 65%
+Open: $337.69
+Close: $353.83
+Open-to-Close: +4.78%
+5-Day Change: +6.58%
+20-Day Change: +30.06%
+Relative Strength: +27.84%
+
+Historical Pattern:
+Matches: 62
+Best Hold: 1 days
+Best Avg Return: -0.18%
+1D: -0.18% | Win: +46.77%
+3D: -0.81% | Win: +41.94%
+5D: -1.80% | Win: +45.16%
+7D: -1.55% | Win: +43.55%
+10D: -1.76% | Win: +38.71%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+
+Risk Flags:
+- Stock belongs to a weak sector
+- Weak historical average return
+- Weak historical win rate
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+9. OKTA (Cybersecurity)
+Score: 35.01
+Confidence: 80%
+Open: $144.26
+Close: $147.33
+Open-to-Close: +2.13%
+5-Day Change: +12.20%
+20-Day Change: +24.10%
+Relative Strength: +21.87%
+
+Historical Pattern:
+Matches: 124
+Best Hold: 3 days
+Best Avg Return: +0.31%
+1D: +0.28% | Win: +54.84%
+3D: +0.31% | Win: +54.03%
+5D: +0.26% | Win: +64.52%
+7D: +0.20% | Win: +59.68%
+10D: -0.25% | Win: +51.61%
+
+Why It Ranked:
+- Strong 5-day momentum
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Positive open-to-close action
+- Supportive risk-on market environment
+- Positive historical win rate
+
+Risk Flags:
+- Stock belongs to a weak sector
+- Weak historical average return
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+--------------------------------------------------
+10. TEM (AI / Healthcare)
+Score: 32.08
+Confidence: 60%
+Open: $60.10
+Close: $60.53
+Open-to-Close: +0.72%
+5-Day Change: +3.81%
+20-Day Change: +30.37%
+Relative Strength: +28.14%
+
+Historical Pattern:
+Matches: 58
+Best Hold: 5 days
+Best Avg Return: -0.33%
+1D: -0.99% | Win: +31.03%
+3D: -0.77% | Win: +39.66%
+5D: -0.33% | Win: +48.28%
+7D: -2.71% | Win: +34.48%
+10D: -4.08% | Win: +36.21%
+
+Why It Ranked:
+- Strong 20-day trend
+- Strong relative strength vs SPY
+- Supportive risk-on market environment
+- Stock belongs to a leading sector
+
+Risk Flags:
+- No major risk flags detected
+- Weak historical average return
+- Weak historical win rate
+
+Stock Brief:
+AI analysis module not connected yet in v2.
+
+==================================================
+PORTFOLIO MODEL
+Cash Allocation: 10%
+HIMS: 18.0% Confidence: 100%
+HOOD: 18.0% Confidence: 100%
+CELH: 18.0% Confidence: 100%
+DUOL: 18.0% Confidence: 100%
+RBLX: 18.0% Confidence: 100%

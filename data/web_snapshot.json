@@ -1,0 +1,179 @@
+{
+  "generated_at": "2026-07-06T15:56:44",
+  "source_file": "reports/2026-07-06_v2.csv",
+  "market_regime": {
+    "label": "Risk-On",
+    "score": 100.0
+  },
+  "top_opportunity": {
+    "ticker": "HIMS",
+    "sector": "Consumer Health",
+    "score": 51.59,
+    "confidence": 100.0,
+    "expected_return": 5.79,
+    "best_hold_period_days": 10,
+    "historical_matches": 61,
+    "risk": "Medium",
+    "action": "BUY",
+    "reason": "HIMS is the strongest current opportunity in Consumer Health. The setup is supported by a strong expected 10-day return of 5.79%, 61 comparable historical setups, very high confidence at 100%. This is a candidate for active review before the next session."
+  },
+  "portfolio_summary": {
+    "status": "Selective",
+    "health_label": "Cautious",
+    "total_value": 25000,
+    "total_return": 16.4,
+    "cash_percent": 12,
+    "positions": 8,
+    "expected_10_day_return": 1.81,
+    "ai_confidence": 86.0,
+    "summary": "1 buy candidates, 4 watch candidates, and 3 avoid candidates were identified."
+  },
+  "today_actions": [
+    {
+      "ticker": "HIMS",
+      "action": "Review buy",
+      "badge": "BUY",
+      "tone": "green",
+      "confidence": 100.0,
+      "reason": "HIMS is the strongest current opportunity in Consumer Health. The setup is supported by a strong expected 10-day return of 5.79%, 61 comparable historical setups, very high confidence at 100%. This is a candidate for active review before the next session."
+    },
+    {
+      "ticker": "CELH",
+      "action": "Watch setup",
+      "badge": "WATCH",
+      "tone": "amber",
+      "confidence": 100.0,
+      "reason": "CELH is worth watching in Consumer Staples Growth. The setup has a strong expected 10-day return of 5.63%, 32 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
+    },
+    {
+      "ticker": "RBLX",
+      "action": "Watch setup",
+      "badge": "WATCH",
+      "tone": "amber",
+      "confidence": 100.0,
+      "reason": "RBLX is worth watching in Gaming / Metaverse. The setup has a positive expected 10-day return of 2.78%, 41 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
+    }
+  ],
+  "ranked_candidates": [
+    {
+      "ticker": "HIMS",
+      "sector": "Consumer Health",
+      "score": 51.59,
+      "confidence": 100.0,
+      "expected_return": 5.79,
+      "best_hold_period_days": 10,
+      "historical_matches": 61,
+      "risk": "Medium",
+      "action": "BUY",
+      "reason": "HIMS is the strongest current opportunity in Consumer Health. The setup is supported by a strong expected 10-day return of 5.79%, 61 comparable historical setups, very high confidence at 100%. This is a candidate for active review before the next session."
+    },
+    {
+      "ticker": "CELH",
+      "sector": "Consumer Staples Growth",
+      "score": 43.24,
+      "confidence": 100.0,
+      "expected_return": 5.63,
+      "best_hold_period_days": 10,
+      "historical_matches": 32,
+      "risk": "Medium",
+      "action": "WATCH",
+      "reason": "CELH is worth watching in Consumer Staples Growth. The setup has a strong expected 10-day return of 5.63%, 32 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
+    },
+    {
+      "ticker": "RBLX",
+      "sector": "Gaming / Metaverse",
+      "score": 40.29,
+      "confidence": 100.0,
+      "expected_return": 2.78,
+      "best_hold_period_days": 10,
+      "historical_matches": 41,
+      "risk": "Medium",
+      "action": "WATCH",
+      "reason": "RBLX is worth watching in Gaming / Metaverse. The setup has a positive expected 10-day return of 2.78%, 41 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
+    },
+    {
+      "ticker": "HOOD",
+      "sector": "Fintech / Crypto",
+      "score": 48.02,
+      "confidence": 100.0,
+      "expected_return": 1.91,
+      "best_hold_period_days": 10,
+      "historical_matches": 32,
+      "risk": "High",
+      "action": "WATCH",
+      "reason": "HOOD is worth watching in Fintech / Crypto. The setup has a positive expected 10-day return of 1.91%, 32 comparable historical setups, very high confidence at 100%, elevated risk, but it is not strong enough for an automatic buy yet."
+    },
+    {
+      "ticker": "DUOL",
+      "sector": "Consumer Apps",
+      "score": 40.66,
+      "confidence": 100.0,
+      "expected_return": 1.82,
+      "best_hold_period_days": 7,
+      "historical_matches": 37,
+      "risk": "Medium",
+      "action": "WATCH",
+      "reason": "DUOL is worth watching in Consumer Apps. The setup has a positive expected 7-day return of 1.82%, 37 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
+    },
+    {
+      "ticker": "AFRM",
+      "sector": "Other / Uncategorized",
+      "score": 38.53,
+      "confidence": 85.0,
+      "expected_return": 0.98,
+      "best_hold_period_days": 5,
+      "historical_matches": 211,
+      "risk": "Medium",
+      "action": "HOLD",
+      "reason": "AFRM is acceptable but not high conviction. The setup has 211 historical matches, solid confidence at 85%, so the best action is to hold or wait for stronger confirmation."
+    },
+    {
+      "ticker": "OKTA",
+      "sector": "Cybersecurity",
+      "score": 35.01,
+      "confidence": 80.0,
+      "expected_return": 0.31,
+      "best_hold_period_days": 3,
+      "historical_matches": 124,
+      "risk": "Medium",
+      "action": "HOLD",
+      "reason": "OKTA is acceptable but not high conviction. The setup has 124 historical matches, solid confidence at 80%, so the best action is to hold or wait for stronger confirmation."
+    },
+    {
+      "ticker": "PANW",
+      "sector": "Cybersecurity",
+      "score": 36.11,
+      "confidence": 65.0,
+      "expected_return": -0.18,
+      "best_hold_period_days": 1,
+      "historical_matches": 62,
+      "risk": "Medium",
+      "action": "AVOID",
+      "reason": "PANW should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.18%, 62 comparable historical setups, moderate confidence at 65%, which does not justify new capital."
+    },
+    {
+      "ticker": "TEM",
+      "sector": "AI / Healthcare",
+      "score": 32.08,
+      "confidence": 60.0,
+      "expected_return": -0.33,
+      "best_hold_period_days": 5,
+      "historical_matches": 58,
+      "risk": "Medium",
+      "action": "AVOID",
+      "reason": "TEM should be avoided for now. Although it passed the scanner, the setup shows a weak expected 5-day return of -0.33%, 58 comparable historical setups, moderate confidence at 60%, which does not justify new capital."
+    },
+    {
+      "ticker": "SE",
+      "sector": "International Tech",
+      "score": 39.1,
+      "confidence": 70.0,
+      "expected_return": -0.66,
+      "best_hold_period_days": 1,
+      "historical_matches": 47,
+      "risk": "Medium",
+      "action": "AVOID",
+      "reason": "SE should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.66%, 47 comparable historical setups, moderate confidence at 70%, which does not justify new capital."
+    }
+  ]
+}
