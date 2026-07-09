@@ -1,0 +1,338 @@
+import Card from "@/components/ui/Card";
+import Metric from "@/components/ui/Metric";
+import {
+  ClosedTrade,
+  EquityPoint,
+  OpenPosition,
+  PaperTradingData,
+  PaperTradingLoadResult,
+} from "@/lib/paperTrading";
+import PaperTradingBanner from "./PaperTradingBanner";
+import PaperTradingStateCard from "./PaperTradingStateCard";
+
+function money(value: number) {
+  return `$${value.toLocaleString(undefined, {
+    maximumFractionDigits: 2,
+  })}`;
+}
+
+function pct(value: number) {
+  const sign = value > 0 ? "+" : "";
+  return `${sign}${value.toFixed(2)}%`;
+}
+
+function pnlClass(value: number) {
+  if (value > 0) return "text-emerald-600";
+  if (value < 0) return "text-red-600";
+  return "text-neutral-700";
+}
+
+function EquityCurve({ points }: { points: EquityPoint[] }) {
+  if (points.length === 0) {
+    return (
+      <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-sm text-neutral-500">
+        No equity points available.
+      </div>
+    );
+  }
+
+  const values = points.map((point) => point.total_equity);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = Math.max(max - min, 1);
+  const width = 720;
+  const height = 220;
+  const padding = 24;
+
+  const pathData = points
+    .map((point, index) => {
+      const x =
+        points.length === 1
+          ? width / 2
+          : padding +
+            (index / (points.length - 1)) * (width - padding * 2);
+      const y =
+        height -
+        padding -
+        ((point.total_equity - min) / range) * (height - padding * 2);
+
+      return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+    })
+    .join(" ");
+
+  return (
+    <div>
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        className="h-[220px] w-full overflow-visible"
+        role="img"
+        aria-label="Mock paper trading equity curve"
+      >
+        <line
+          x1={padding}
+          y1={height - padding}
+          x2={width - padding}
+          y2={height - padding}
+          stroke="#e5e5e5"
+          strokeWidth="1"
+        />
+        <path
+          d={pathData}
+          fill="none"
+          stroke="#111111"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="4"
+        />
+        {points.map((point, index) => {
+          const x =
+            points.length === 1
+              ? width / 2
+              : padding +
+                (index / (points.length - 1)) * (width - padding * 2);
+          const y =
+            height -
+            padding -
+            ((point.total_equity - min) / range) * (height - padding * 2);
+
+          return (
+            <circle
+              key={point.date}
+              cx={x}
+              cy={y}
+              r={index === points.length - 1 ? 5 : 3}
+              fill="#111111"
+            />
+          );
+        })}
+      </svg>
+
+      <div className="mt-4 grid grid-cols-2 gap-3 text-xs text-neutral-500 md:grid-cols-4">
+        {points.map((point) => (
+          <div key={point.date} className="border-t border-neutral-200 pt-3">
+            <div>{point.date}</div>
+            <div className="mt-1 font-bold text-neutral-900">
+              {money(point.total_equity)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OpenPositionsTable({ positions }: { positions: OpenPosition[] }) {
+  if (positions.length === 0) {
+    return <EmptyState label="No open paper positions." />;
+  }
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[860px] text-left text-sm">
+        <thead className="border-b border-neutral-200 text-xs uppercase tracking-[0.18em] text-neutral-500">
+          <tr>
+            <th className="py-3 pr-4">Ticker</th>
+            <th className="py-3 pr-4">Sector</th>
+            <th className="py-3 pr-4">Entry</th>
+            <th className="py-3 pr-4">Current</th>
+            <th className="py-3 pr-4">Value</th>
+            <th className="py-3 pr-4">Unrealized</th>
+            <th className="py-3 pr-4">Hold</th>
+            <th className="py-3 pr-4">Risk</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-neutral-200">
+          {positions.map((position) => (
+            <tr key={position.position_id}>
+              <td className="py-4 pr-4 text-xl font-black tracking-[-0.05em]">
+                {position.ticker}
+              </td>
+              <td className="py-4 pr-4 text-neutral-600">{position.sector}</td>
+              <td className="py-4 pr-4">{money(position.entry_price)}</td>
+              <td className="py-4 pr-4">{money(position.current_price)}</td>
+              <td className="py-4 pr-4">{money(position.current_value)}</td>
+              <td className={`py-4 pr-4 font-bold ${pnlClass(position.unrealized_pnl)}`}>
+                {money(position.unrealized_pnl)} ·{" "}
+                {pct(position.unrealized_return_pct)}
+              </td>
+              <td className="py-4 pr-4">
+                {position.days_held}/{position.planned_hold_period_days}D
+              </td>
+              <td className="py-4 pr-4">{position.entry_risk}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function ClosedTradesTable({ trades }: { trades: ClosedTrade[] }) {
+  if (trades.length === 0) {
+    return <EmptyState label="No closed paper trades." />;
+  }
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[820px] text-left text-sm">
+        <thead className="border-b border-neutral-200 text-xs uppercase tracking-[0.18em] text-neutral-500">
+          <tr>
+            <th className="py-3 pr-4">Ticker</th>
+            <th className="py-3 pr-4">Dates</th>
+            <th className="py-3 pr-4">Entry</th>
+            <th className="py-3 pr-4">Exit</th>
+            <th className="py-3 pr-4">Realized P/L</th>
+            <th className="py-3 pr-4">Outcome</th>
+            <th className="py-3 pr-4">Regime</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-neutral-200">
+          {trades.map((trade) => (
+            <tr key={trade.trade_id}>
+              <td className="py-4 pr-4 text-xl font-black tracking-[-0.05em]">
+                {trade.ticker}
+              </td>
+              <td className="py-4 pr-4 text-neutral-600">
+                {trade.entry_date} to {trade.exit_date}
+              </td>
+              <td className="py-4 pr-4">{money(trade.entry_price)}</td>
+              <td className="py-4 pr-4">{money(trade.exit_price)}</td>
+              <td className={`py-4 pr-4 font-bold ${pnlClass(trade.realized_pnl)}`}>
+                {money(trade.realized_pnl)} · {pct(trade.realized_return_pct)}
+              </td>
+              <td className="py-4 pr-4">{trade.thesis_outcome}</td>
+              <td className="py-4 pr-4">{trade.entry_market_regime}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function EmptyState({ label }: { label: string }) {
+  return (
+    <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-sm text-neutral-500">
+      {label}
+    </div>
+  );
+}
+
+function PortfolioContent({ data }: { data: PaperTradingData }) {
+  const summary = data.portfolioSummary.summary;
+  const overall = data.performanceStatistics.overall;
+
+  return (
+    <div className="space-y-8">
+      <PaperTradingBanner />
+
+      <Card className="p-0">
+        <div className="grid grid-cols-1 divide-y divide-neutral-200 md:grid-cols-4 md:divide-x md:divide-y-0">
+          <Metric
+            label="Portfolio Summary"
+            value={money(summary.total_equity)}
+          />
+          <Metric label="Total Return" value={pct(summary.total_return_pct)} />
+          <Metric
+            label="Open Positions"
+            value={`${summary.open_positions_count}`}
+          />
+          <Metric label="Win Rate" value={`${overall.win_rate_pct.toFixed(0)}%`} />
+        </div>
+      </Card>
+
+      <div className="grid grid-cols-1 gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+        <Card className="p-8">
+          <div className="text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
+            Simple Equity Curve
+          </div>
+          <h2 className="mt-2 text-4xl font-black tracking-[-0.07em]">
+            {pct(summary.total_return_pct)} mock return.
+          </h2>
+          <div className="mt-8">
+            <EquityCurve points={data.equityCurve.points} />
+          </div>
+        </Card>
+
+        <Card className="p-8">
+          <div className="text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
+            Performance Statistics
+          </div>
+          <div className="mt-6 grid grid-cols-2 gap-5">
+            <Stat label="Trades" value={`${overall.total_trades}`} />
+            <Stat label="Winners" value={`${overall.winning_trades}`} />
+            <Stat label="Avg Return" value={pct(overall.average_return_pct)} />
+            <Stat label="Max Drawdown" value={pct(overall.max_drawdown_pct)} />
+            <Stat label="Realized P/L" value={money(overall.total_realized_pnl)} />
+            <Stat
+              label="Unrealized P/L"
+              value={money(overall.total_unrealized_pnl)}
+            />
+          </div>
+        </Card>
+      </div>
+
+      <Card className="p-8">
+        <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
+              Open Positions
+            </div>
+            <h2 className="mt-2 text-4xl font-black tracking-[-0.07em]">
+              Active mock exposure.
+            </h2>
+          </div>
+          <div className="text-sm text-neutral-500">
+            {data.openPositions.positions.length} positions
+          </div>
+        </div>
+        <OpenPositionsTable positions={data.openPositions.positions} />
+      </Card>
+
+      <Card className="p-8">
+        <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
+              Closed Trades
+            </div>
+            <h2 className="mt-2 text-4xl font-black tracking-[-0.07em]">
+              Completed simulations.
+            </h2>
+          </div>
+          <div className="text-sm text-neutral-500">
+            {data.closedTrades.trades.length} trades
+          </div>
+        </div>
+        <ClosedTradesTable trades={data.closedTrades.trades} />
+      </Card>
+    </div>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border-t border-neutral-200 pt-4">
+      <div className="text-xs text-neutral-500">{label}</div>
+      <div className="mt-2 text-3xl font-black tracking-[-0.06em]">
+        {value}
+      </div>
+    </div>
+  );
+}
+
+export default function PaperTradingPortfolio({
+  result,
+}: {
+  result: PaperTradingLoadResult;
+}) {
+  if (result.status !== "ready") {
+    return (
+      <div className="space-y-8">
+        <PaperTradingBanner />
+        <PaperTradingStateCard result={result} />
+      </div>
+    );
+  }
+
+  return <PortfolioContent data={result.data} />;
+}

@@ -1,22 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 import Ticker from "@/components/layout/Ticker";
 import Sidebar from "@/components/layout/Sidebar";
 import PortfolioSummary from "@/components/portfolio/PortfolioSummary";
-import PortfolioPositionCard from "@/components/portfolio/PortfolioPositionCard";
-import { WebSnapshot } from "@/lib/webSnapshot";
+import PaperTradingPortfolio from "@/components/paperTrading/PaperTradingPortfolio";
+import { loadPaperTradingData } from "@/lib/paperTrading";
 
-export default function PortfolioPage() {
-  const [snapshot, setSnapshot] = useState<WebSnapshot | null>(null);
-
-  useEffect(() => {
-    fetch("/web_snapshot.json", { cache: "no-store" })
-      .then((res) => res.json())
-      .then(setSnapshot)
-      .catch(() => setSnapshot(null));
-  }, []);
+export default async function PortfolioPage() {
+  const paperTrading = await loadPaperTradingData();
 
   return (
     <main className="min-h-screen bg-[#f5f5f2] text-[#111111]">
@@ -34,21 +23,15 @@ export default function PortfolioPage() {
               </h1>
             </div>
 
-            <PortfolioSummary />
+            <div className="space-y-12">
+              <PaperTradingPortfolio result={paperTrading} />
 
-            <div className="mt-12 space-y-8">
-              {snapshot ? (
-                snapshot.ranked_candidates.slice(0, 10).map((candidate) => (
-                  <PortfolioPositionCard
-                    key={candidate.ticker}
-                    recommendation={candidate}
-                  />
-                ))
-              ) : (
-                <div className="text-neutral-500">
-                  Loading live recommendations...
+              <div>
+                <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
+                  Existing Allocation Model
                 </div>
-              )}
+                <PortfolioSummary />
+              </div>
             </div>
           </div>
         </section>

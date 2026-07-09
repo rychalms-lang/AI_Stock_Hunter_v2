@@ -5,8 +5,12 @@ import TopBar from "@/components/home/TopBar";
 import MorningBrief from "@/components/home/MorningBrief";
 import SignalStrip from "@/components/home/SignalStrip";
 import OpportunityCard from "@/components/home/OpportunityCard";
+import PaperTradingDashboard from "@/components/paperTrading/PaperTradingDashboard";
+import { loadPaperTradingData } from "@/lib/paperTrading";
 
-export default function Home() {
+export default async function Home() {
+  const paperTrading = await loadPaperTradingData();
+
   return (
     <main className="min-h-screen bg-[#f5f5f2] text-[#111111]">
       <Ticker />
@@ -20,6 +24,7 @@ export default function Home() {
             <MorningBrief />
             <SignalStrip />
             <OpportunityCard />
+            <PaperTradingDashboard result={paperTrading} />
           </div>
         </section>
       </div>

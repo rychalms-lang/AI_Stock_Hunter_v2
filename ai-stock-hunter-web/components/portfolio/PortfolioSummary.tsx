@@ -110,7 +110,30 @@ export default function PortfolioSummary() {
     { label: "Cash", value: `${summary.cash_percent}%` },
   ];
 
-  let currentAngle = 0;
+  const allocationWithAngles = allocation.reduce<
+    Array<
+      (typeof allocation)[number] & {
+        startAngle: number;
+        endAngle: number;
+        midAngle: number;
+      }
+    >
+  >((items, item) => {
+    const previous = items.length > 0 ? items[items.length - 1] : null;
+    const startAngle = previous ? previous.endAngle : 0;
+    const endAngle = startAngle + item.percent * 3.6;
+    const midAngle = (startAngle + endAngle) / 2;
+
+    return [
+      ...items,
+      {
+        ...item,
+        startAngle,
+        endAngle,
+        midAngle,
+      },
+    ];
+  }, []);
 
   return (
     <Card className="p-9">
@@ -159,20 +182,26 @@ export default function PortfolioSummary() {
               viewBox="0 0 260 260"
               className="h-full w-full overflow-visible"
             >
-              {allocation.map((item, index) => {
-                const startAngle = currentAngle;
-                const endAngle = currentAngle + item.percent * 3.6;
-                const midAngle = (startAngle + endAngle) / 2;
-                currentAngle = endAngle;
-
+              {allocationWithAngles.map((item, index) => {
                 const isActive = index === activeIndex;
                 const offset = isActive ? 7 : 0;
-                const offsetPoint = polarToCartesian(0, 0, offset, midAngle);
+                const offsetPoint = polarToCartesian(
+                  0,
+                  0,
+                  offset,
+                  item.midAngle
+                );
 
                 return (
                   <path
                     key={item.ticker}
-                    d={describeArc(130, 130, 92, startAngle, endAngle)}
+                    d={describeArc(
+                      130,
+                      130,
+                      92,
+                      item.startAngle,
+                      item.endAngle
+                    )}
                     fill="none"
                     stroke={item.color}
                     strokeWidth={isActive ? 39 : 33}
