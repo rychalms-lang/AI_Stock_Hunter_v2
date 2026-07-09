@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-09T16:15:00",
+  "trade_date": "2026-07-09",
+  "mock_data": true,
+  "data_source": {
+    "type": "mock",
+    "generated_by": "paper_trading_phase_1_mock",
+    "generator_version": "1.0"
+  },
+  "strategy": {
+    "name": "V8",
+    "version": "8.0",
+    "status": "Champion"
+  },
+  "research_metadata": {
+    "scanner_version": "current",
+    "strategy_version": "V8",
+    "feature_version": "current",
+    "market_regime_version": "current",
+    "generated_from": "mock_phase_1"
+  },
+  "market_regime": {
+    "label": "Risk-On",
+    "score": 82.5,
+    "description": "Mock Phase 1 market regime context."
+  },
+  "picks": [
+    {
+      "pick_id": "2026-07-09_AAPL",
+      "trade_date": "2026-07-09",
+      "ticker": "AAPL",
+      "company_name": "Apple Inc.",
+      "sector": "Mega Cap Tech",
+      "sector_rank": 2,
+      "rank": 1,
+      "action": "REVIEW",
+      "score": 54.25,
+      "confidence": 84.0,
+      "risk": "Low",
+      "expected_return_pct": 2.75,
+      "win_probability_pct": 68.5,
+      "best_hold_period_days": 7,
+      "historical_matches": 143,
+      "historical_best_avg_return_pct": 2.75,
+      "latest_open": 214.35,
+      "latest_close": 216.1,
+      "five_day_change_pct": 4.2,
+      "twenty_day_change_pct": 8.4,
+      "relative_strength_pct": 3.1,
+      "volume_ratio": 1.62,
+      "paper_trade_candidate": true,
+      "paper_trade_decision": "eligible_mock",
+      "paper_trade_decision_reason": "Meets Phase 1 mock eligibility rules.",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "mock_phase_1"
+      },
+      "ai_explanation": {
+        "summary": "Mock explanation based on high confidence, positive relative strength, and favorable historical evidence.",
+        "strengths": [
+          "Confidence is above 80%.",
+          "Relative strength is positive.",
+          "Historical setup average return is positive."
+        ],
+        "risks": [
+          "Paper trading outcome is unknown.",
+          "This is mock Phase 1 data."
+        ],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable 7-day setups",
+            "count": 143,
+            "average_return_pct": 2.75,
+            "win_rate_pct": 62.0
+          }
+        ]
+      }
+    },
+    {
+      "pick_id": "2026-07-09_NVDA",
+      "trade_date": "2026-07-09",
+      "ticker": "NVDA",
+      "company_name": "NVIDIA Corporation",
+      "sector": "Semiconductors",
+      "sector_rank": 1,
+      "rank": 2,
+      "action": "WATCH",
+      "score": 49.8,
+      "confidence": 76.5,
+      "risk": "Medium",
+      "expected_return_pct": 2.15,
+      "win_probability_pct": 64.0,
+      "best_hold_period_days": 5,
+      "historical_matches": 96,
+      "historical_best_avg_return_pct": 2.15,
+      "latest_open": 158.4,
+      "latest_close": 160.2,
+      "five_day_change_pct": 3.35,
+      "twenty_day_change_pct": 7.1,
+      "relative_strength_pct": 2.4,
+      "volume_ratio": 1.48,
+      "paper_trade_candidate": true,
+      "paper_trade_decision": "watch_mock",
+      "paper_trade_decision_reason": "Mock setup is constructive but carries medium risk.",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "mock_phase_1"
+      },
+      "ai_explanation": {
+        "summary": "Mock explanation showing a watchlist setup with strong sector context and moderate risk.",
+        "strengths": [
+          "Sector rank is first.",
+          "Expected return is positive.",
+          "Relative strength is positive."
+        ],
+        "risks": [
+          "Risk label is Medium.",
+          "Confidence is below the top mock candidate."
+        ],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable 5-day setups",
+            "count": 96,
+            "average_return_pct": 2.15,
+            "win_rate_pct": 58.4
+          }
+        ]
+      }
+    }
+  ],
+  "disclaimer": "Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice."
+}

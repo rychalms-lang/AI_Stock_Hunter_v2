@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-09T16:15:00",
+  "mock_data": true,
+  "data_source": {
+    "type": "mock",
+    "generated_by": "paper_trading_phase_1_mock",
+    "generator_version": "1.0"
+  },
+  "strategy": {
+    "name": "V8",
+    "version": "8.0",
+    "status": "Champion"
+  },
+  "research_metadata": {
+    "scanner_version": "current",
+    "strategy_version": "V8",
+    "feature_version": "current",
+    "market_regime_version": "current",
+    "generated_from": "mock_phase_1"
+  },
+  "account": {
+    "account_id": "paper_default",
+    "mode": "paper_only",
+    "starting_capital": 25000.0,
+    "currency": "USD"
+  },
+  "points": [
+    {
+      "date": "2026-07-06",
+      "cash": 24246.4,
+      "invested_value": 753.6,
+      "total_equity": 25000.0,
+      "daily_pnl": 0.0,
+      "daily_return_pct": 0.0,
+      "cumulative_pnl": 0.0,
+      "cumulative_return_pct": 0.0,
+      "drawdown_pct": 0.0,
+      "open_positions_count": 1,
+      "closed_trades_count": 0
+    },
+    {
+      "date": "2026-07-07",
+      "cash": 23251.4,
+      "invested_value": 1728.2,
+      "total_equity": 24979.6,
+      "daily_pnl": -20.4,
+      "daily_return_pct": -0.08,
+      "cumulative_pnl": -20.4,
+      "cumulative_return_pct": -0.08,
+      "drawdown_pct": -0.08,
+      "open_positions_count": 2,
+      "closed_trades_count": 0
+    },
+    {
+      "date": "2026-07-08",
+      "cash": 23991.0,
+      "invested_value": 971.5,
+      "total_equity": 24962.5,
+      "daily_pnl": -17.1,
+      "daily_return_pct": -0.07,
+      "cumulative_pnl": -37.5,
+      "cumulative_return_pct": -0.15,
+      "drawdown_pct": -0.15,
+      "open_positions_count": 1,
+      "closed_trades_count": 1
+    },
+    {
+      "date": "2026-07-09",
+      "cash": 23333.5,
+      "invested_value": 1671.65,
+      "total_equity": 25005.15,
+      "daily_pnl": 42.65,
+      "daily_return_pct": 0.17,
+      "cumulative_pnl": 5.15,
+      "cumulative_return_pct": 0.02,
+      "drawdown_pct": 0.0,
+      "open_positions_count": 2,
+      "closed_trades_count": 2
+    }
+  ],
+  "disclaimer": "Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice."
+}
