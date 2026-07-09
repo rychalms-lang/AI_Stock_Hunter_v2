@@ -1,10 +1,10 @@
 import json
+import csv
 from pathlib import Path
 from datetime import datetime
 
-import pandas as pd
-
-from ai_engine import build_recommendations_from_dataframe
+from ai_engine import recommendation_from_row
+from paper_trading_exporter import export_paper_trading_snapshot
 
 
 REPORTS_DIR = Path("reports")
@@ -23,12 +23,13 @@ def latest_report():
 
 def load_report():
     report_file = latest_report()
-    df = pd.read_csv(report_file)
+    with report_file.open(newline="") as f:
+        rows = list(csv.DictReader(f))
 
-    if df.empty:
+    if not rows:
         raise ValueError(f"{report_file} is empty.")
 
-    return report_file, df
+    return report_file, rows
 
 
 def build_portfolio_summary(recommendations):
@@ -108,8 +109,21 @@ def build_today_actions(recommendations):
 
 
 def export_snapshot():
-    report_file, df = load_report()
-    recommendations = build_recommendations_from_dataframe(df)
+    report_file, rows = load_report()
+    recommendations = [
+        recommendation_from_row(row)
+        for row in rows
+    ]
+
+    recommendations.sort(
+        key=lambda item: (
+            item.action == "BUY",
+            item.expected_return,
+            item.confidence,
+            item.score,
+        ),
+        reverse=True,
+    )
 
     if not recommendations:
         raise ValueError("No recommendations were generated.")
@@ -141,6 +155,12 @@ def export_snapshot():
         f"Action: {snapshot['top_opportunity']['action']} | "
         f"Expected Return: {snapshot['top_opportunity']['expected_return']}% | "
         f"Matches: {snapshot['top_opportunity']['historical_matches']}"
+    )
+
+    paper_result = export_paper_trading_snapshot(report_file)
+    print(
+        "Paper trading JSON written: "
+        f"{paper_result['daily_picks']} and {paper_result['portfolio_summary']}"
     )
 
 
