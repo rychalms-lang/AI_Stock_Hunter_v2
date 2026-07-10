@@ -35,6 +35,11 @@ PY
 }
 
 market_hhmm() {
+  if [[ -n "${AI_STOCK_HUNTER_TEST_MARKET_HHMM:-}" ]]; then
+    printf "%s\n" "${AI_STOCK_HUNTER_TEST_MARKET_HHMM}"
+    return 0
+  fi
+
   "${PYTHON_BIN}" - <<'PY'
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -44,12 +49,30 @@ PY
 }
 
 market_weekday() {
+  if [[ -n "${AI_STOCK_HUNTER_TEST_MARKET_WEEKDAY:-}" ]]; then
+    printf "%s\n" "${AI_STOCK_HUNTER_TEST_MARKET_WEEKDAY}"
+    return 0
+  fi
+
   "${PYTHON_BIN}" - <<'PY'
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
 print(datetime.now(ZoneInfo("America/New_York")).isoweekday())
 PY
+}
+
+hhmm_to_minutes() {
+  local hhmm="$1"
+  local hour
+  local minute
+
+  [[ "${hhmm}" =~ ^[0-9]{4}$ ]] || fail "Invalid HHMM market time: ${hhmm}"
+
+  hour="${hhmm:0:2}"
+  minute="${hhmm:2:2}"
+
+  printf "%d\n" $((10#${hour} * 60 + 10#${minute}))
 }
 
 log_line() {
@@ -135,14 +158,18 @@ is_market_weekday() {
 
 is_regular_market_window_ny() {
   local hhmm
+  local minutes
   hhmm="$(market_hhmm)"
-  is_market_weekday && [[ "${hhmm}" -ge 0930 && "${hhmm}" -lt 1600 ]]
+  minutes="$(hhmm_to_minutes "${hhmm}")"
+  is_market_weekday && (( minutes >= 570 && minutes < 960 ))
 }
 
 is_daily_pipeline_window_ny() {
   local hhmm
+  local minutes
   hhmm="$(market_hhmm)"
-  is_market_weekday && [[ "${hhmm}" -ge 1800 ]]
+  minutes="$(hhmm_to_minutes "${hhmm}")"
+  is_market_weekday && (( minutes >= 1080 ))
 }
 
 market_state_authority() {
