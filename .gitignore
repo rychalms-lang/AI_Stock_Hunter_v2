@@ -16,4 +16,8 @@ performance/*.json
 
 data/*.csv
 
+# Paper trading ledger state is mutable local runtime data.
+# Keep exported frontend JSON files under data/paper_trading/ tracked.
+data/paper_trading/state/
+
 *.pkl

@@ -750,6 +750,36 @@ Later live wiring:
 
 Even when live-wired, the system remains paper trading only.
 
+## 9.1 Paper Trading Refresh Command
+
+Paper trading has two separate backend workflows:
+
+1. Scanner/export run:
+   - Generates the current scanner recommendations.
+   - Normalizes daily picks into `daily_picks.json`.
+   - Opens eligible new paper positions from authoritative raw scanner `BUY` actions.
+   - Preserves V8 Champion strategy metadata and research metadata.
+
+2. Refresh run:
+   - Uses `refresh_paper_trading.py`.
+   - Does not run the scanner.
+   - Does not generate new signals.
+   - Does not open new paper positions.
+   - Loads existing paper-trading state.
+   - Fetches current quotes through `MarketDataService`.
+   - Updates existing open positions, unrealized P/L, stop-loss exits, take-profit exits, hold-period exits, portfolio summary, equity curve, and performance statistics.
+   - Regenerates lifecycle JSON files while leaving `daily_picks.json` and `data/web_snapshot.json` unchanged.
+
+The refresh command is designed for future scheduling. It is non-interactive, safe to run repeatedly, supports dry runs, and should be suitable for cron, launchd, GitHub Actions, or a future hosted job runner. If market prices are unavailable or stale, the refresh command must retain the last known paper price, mark affected positions clearly, and avoid processing exits from stale quotes.
+
+### 9.2 Local Runtime State
+
+Paper-trading ledger files under `data/paper_trading/state/` are mutable local runtime state. They store account cash, open-position ledger entries, closed-trade ledger entries, processed pick IDs, and equity history used by the paper-trading runtime.
+
+These state files are excluded from Git and should not be committed. The paper-trading engine creates the state directory and default state files automatically when it saves runtime state, so a fresh checkout can start without checked-in ledger files.
+
+The exported frontend JSON files under `data/paper_trading/` remain separate from internal ledger state. The website consumes those export files, not the mutable ledger files. A production deployment will eventually need durable external storage for paper-trading state, such as a database or managed object store, instead of local JSON files.
+
 ## 10. Safety Rules
 
 Required rules:
