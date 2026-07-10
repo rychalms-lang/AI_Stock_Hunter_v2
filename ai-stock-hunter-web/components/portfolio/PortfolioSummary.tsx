@@ -248,7 +248,7 @@ export default function PortfolioSummary() {
       <div className="mt-8 grid grid-cols-1 gap-7 border-t border-neutral-200 pt-7 xl:grid-cols-[0.75fr_1.25fr]">
         <div>
           <div className="text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
-            Today’s Actions
+            Research Ratings
           </div>
 
           <div className="mt-4 space-y-3">
@@ -263,12 +263,12 @@ export default function PortfolioSummary() {
                   </div>
 
                   <span className="rounded-full bg-black px-3.5 py-1.5 text-xs font-bold text-white">
-                    {item.badge}
+                    Research Rating: {item.badge}
                   </span>
                 </div>
 
                 <div className="mt-3 text-xl font-black tracking-[-0.04em]">
-                  {item.action}
+                  Research note: {item.action}
                 </div>
 
                 <p className="mt-1 text-sm leading-6 text-neutral-600">
@@ -281,12 +281,13 @@ export default function PortfolioSummary() {
 
         <div>
           <div className="text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
-            Live Candidate Breakdown
+            Research Candidate Breakdown
           </div>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-600">
-            These are the highest-ranked opportunities from today’s Python AI
-            engine output.
+            These are the highest-ranked research ratings from today’s Python
+            AI engine output. Paper execution is authorized only by the raw
+            scanner action.
           </p>
 
           <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -326,7 +327,7 @@ export default function PortfolioSummary() {
                         : "text-red-600"
                     }`}
                   >
-                    {formatPercent(item.expected_return)} · {item.action}
+                    {formatPercent(item.expected_return)} · Research Rating: {item.action}
                   </div>
                 </div>
               );

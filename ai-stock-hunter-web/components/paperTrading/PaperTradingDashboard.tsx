@@ -18,6 +18,12 @@ function pct(value: number) {
   return `${sign}${value.toFixed(2)}%`;
 }
 
+function optionalPct(value: number | null | undefined, digits = 2) {
+  if (typeof value !== "number") return "Insufficient data";
+  const sign = value > 0 ? "+" : "";
+  return `${sign}${value.toFixed(digits)}%`;
+}
+
 function DashboardContent({ data }: { data: PaperTradingData }) {
   const summary = data.portfolioSummary.summary;
   const overall = data.performanceStatistics.overall;
@@ -28,13 +34,13 @@ function DashboardContent({ data }: { data: PaperTradingData }) {
       <PaperTradingBanner />
 
       <Card className="p-0">
-        <div className="grid grid-cols-1 divide-y divide-white/10 md:grid-cols-5 md:divide-x md:divide-y-0">
+        <div className="grid grid-cols-1 divide-y divide-black/10 md:grid-cols-5 md:divide-x md:divide-y-0">
           <Metric
             label="Paper Portfolio Value"
             value={money(summary.total_equity)}
           />
           <Metric label="Total Return" value={pct(summary.total_return_pct)} />
-          <Metric label="Win Rate" value={`${overall.win_rate_pct.toFixed(0)}%`} />
+          <Metric label="Win Rate" value={optionalPct(overall.win_rate_pct, 0)} />
           <Metric
             label="Active Positions"
             value={`${summary.open_positions_count}`}
@@ -46,51 +52,51 @@ function DashboardContent({ data }: { data: PaperTradingData }) {
       <Card className="p-8">
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
-            <div className="text-xs font-black uppercase tracking-[0.25em] text-[#d7ff5f]">
+            <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
               Today&apos;s Picks · Scanner Feed
             </div>
-            <h2 className="mt-2 text-4xl font-black tracking-[-0.07em] text-white">
+            <h2 className="mt-2 text-4xl font-black tracking-[-0.07em] text-black">
               Research queue feeding paper mode.
             </h2>
           </div>
 
-          <div className="text-sm text-white/45">
+          <div className="text-sm text-black/45">
             Generated {data.dailyPicks.generated_at}
           </div>
         </div>
 
-        <div className="mt-6 divide-y divide-white/10">
+        <div className="mt-6 divide-y divide-black/10">
           {picks.map((pick) => (
             <div
               key={pick.pick_id}
               className="grid grid-cols-2 gap-4 py-4 md:grid-cols-[0.6fr_1fr_0.7fr_0.7fr_0.7fr]"
             >
               <div>
-                <div className="text-2xl font-black tracking-[-0.05em] text-white">
+                <div className="text-2xl font-black tracking-[-0.05em] text-black">
                   {pick.ticker}
                 </div>
-                <div className="text-xs text-white/42">{pick.sector}</div>
+                <div className="text-xs text-black/42">{pick.sector}</div>
               </div>
 
-              <div className="text-sm leading-6 text-white/60">
+              <div className="text-sm leading-6 text-black/60">
                 {pick.ai_explanation.summary}
               </div>
 
               <div>
-                <div className="text-xs text-white/42">Action</div>
-                <div className="mt-1 font-black text-white">{pick.action}</div>
+                <div className="text-xs text-black/42">Scanner Action</div>
+                <div className="mt-1 font-black text-black">{pick.action}</div>
               </div>
 
               <div>
-                <div className="text-xs text-white/42">Confidence</div>
-                <div className="mt-1 font-black text-white">
+                <div className="text-xs text-black/42">Confidence</div>
+                <div className="mt-1 font-black text-black">
                   {pick.confidence.toFixed(0)}%
                 </div>
               </div>
 
               <div>
-                <div className="text-xs text-white/42">Expected</div>
-                <div className="mt-1 font-black text-white">
+                <div className="text-xs text-black/42">Expected</div>
+                <div className="mt-1 font-black text-black">
                   {pct(pick.expected_return_pct)}
                 </div>
               </div>

@@ -35,7 +35,7 @@ export default function PortfolioPositionCard({
 
           <div className="mt-5">
             <Badge tone={badgeTone(recommendation.action)}>
-              {recommendation.action}
+              {`Research Rating: ${recommendation.action}`}
             </Badge>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function PortfolioPositionCard({
 
       <div className="mt-7 flex flex-wrap gap-3">
         <Button>Open Research</Button>
-        <Button variant="secondary">Add to Portfolio</Button>
+        <Button variant="secondary">Review Evidence</Button>
       </div>
     </Card>
   );

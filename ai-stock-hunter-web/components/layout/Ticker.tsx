@@ -17,50 +17,35 @@ export default function Ticker() {
     snapshot?.ranked_candidates.slice(0, 12).map((item) => ({
       symbol: item.ticker,
       value: `${item.expected_return > 0 ? "+" : ""}${item.expected_return.toFixed(2)}%`,
-      label: item.action,
+      label: `Rating: ${item.action}`,
       up: item.expected_return >= 0,
     })) ?? [];
 
   return (
-    <div className="h-12 overflow-hidden border-b border-white/10 bg-[#050608] text-white">
-      <div className="ticker-track flex h-full w-max items-center">
-        {[...items, ...items, ...items, ...items].map((item, index) => (
+    <div className="border-b border-[#e8e8e3] bg-[#fafafa] text-black">
+      <div className="mx-auto flex h-9 max-w-[1600px] items-center gap-6 overflow-hidden px-5 text-[11px] md:px-10 xl:px-16">
+        <div className="shrink-0 font-semibold uppercase tracking-[0.2em] text-black/35">
+          Research Tape
+        </div>
+        <div className="flex min-w-0 items-center gap-5 overflow-hidden">
+        {items.slice(0, 6).map((item, index) => (
           <div
             key={`${item.symbol}-${index}`}
-            className="flex h-full min-w-[188px] items-center justify-center border-r border-white/10 px-5 font-mono"
+            className="flex shrink-0 items-center gap-2 font-mono text-black/55 transition-colors duration-200 hover:text-black"
           >
-            <span className="mr-3 text-sm font-bold">{item.symbol}</span>
-            <span className="mr-3 text-xs text-white/55">{item.label}</span>
+            <span className="font-bold text-black/75">{item.symbol}</span>
+            <span>{item.label}</span>
             <span
-              className={`text-xs font-semibold ${
-                item.up ? "text-emerald-400" : "text-red-400"
+              className={`font-semibold ${
+                item.up ? "text-emerald-700" : "text-red-600"
               }`}
             >
               {item.value}
             </span>
           </div>
         ))}
+        </div>
       </div>
-
-      <style jsx>{`
-        .ticker-track {
-          animation: ticker-scroll 28s linear infinite;
-        }
-
-        .ticker-track:hover {
-          animation-play-state: paused;
-        }
-
-        @keyframes ticker-scroll {
-          from {
-            transform: translateX(0);
-          }
-
-          to {
-            transform: translateX(-50%);
-          }
-        }
-      `}</style>
     </div>
   );
 }

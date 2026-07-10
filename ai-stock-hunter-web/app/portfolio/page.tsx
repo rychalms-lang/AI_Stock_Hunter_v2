@@ -8,22 +8,22 @@ export default async function PortfolioPage() {
   const paperTrading = await loadPaperTradingData();
 
   return (
-    <main className="min-h-screen bg-[#050608] text-white">
+    <main className="min-h-screen bg-[#fafafa] text-black">
       <Ticker />
 
       <div className="flex">
         <Sidebar />
 
-        <section className="min-h-[calc(100vh-48px)] flex-1 px-5 py-8 md:px-8 xl:px-12">
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-10 border-b border-white/10 pb-8">
-              <div className="text-xs font-black uppercase tracking-[0.28em] text-[#d7ff5f]">
+        <section className="min-h-[calc(100vh-48px)] flex-1 px-5 py-14 md:px-10 xl:px-16">
+          <div className="page-enter mx-auto max-w-[1400px]">
+            <div className="reveal mb-14 border-b border-[#e8e8e3] pb-10">
+              <div className="text-xs font-black uppercase tracking-[0.28em] text-black/40">
                 Paper Portfolio Command Center
               </div>
-              <h1 className="mt-3 text-5xl font-black tracking-[-0.08em] text-white md:text-7xl">
+              <h1 className="mt-5 text-6xl font-black tracking-[-0.08em] text-black md:text-8xl">
                 Portfolio.
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/48">
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-black/52">
                 Position state, performance telemetry, sector exposure, and
                 confidence buckets for the paper-only research account.
               </p>
@@ -33,7 +33,7 @@ export default async function PortfolioPage() {
               <PaperTradingPortfolio result={paperTrading} />
 
               <div>
-                <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-white/42">
+                <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-black/42">
                   Existing Allocation Model
                 </div>
                 <PortfolioSummary />
