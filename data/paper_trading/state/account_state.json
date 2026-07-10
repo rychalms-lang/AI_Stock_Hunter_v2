@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "account_id": "paper_default",
+  "starting_capital": 25000.0,
+  "cash": 25000.0,
+  "realized_pnl": 0.0,
+  "currency": "USD",
+  "updated_at": "2026-07-09T21:31:20"
+}

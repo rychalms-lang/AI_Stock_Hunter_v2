@@ -1,11 +1,10 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-09T16:15:00",
-  "as_of_date": "2026-07-09",
-  "mock_data": true,
+  "generated_at": "2026-07-09T21:31:20",
+  "mock_data": false,
   "data_source": {
-    "type": "mock",
-    "generated_by": "paper_trading_phase_1_mock",
+    "type": "paper_ledger",
+    "generated_by": "paper_trading_engine",
     "generator_version": "1.0"
   },
   "strategy": {
@@ -18,137 +17,13 @@
     "strategy_version": "V8",
     "feature_version": "current",
     "market_regime_version": "current",
-    "generated_from": "mock_phase_1"
+    "generated_from": "paper_trading_update"
   },
-  "trades": [
-    {
-      "trade_id": "trade_MSFT_2026-06-30_2026-07-09",
-      "position_id": "paper_MSFT_2026-06-30",
-      "source_pick_id": "2026-06-30_MSFT",
-      "ticker": "MSFT",
-      "sector": "Mega Cap Tech",
-      "status": "closed",
-      "entry_date": "2026-06-30",
-      "exit_date": "2026-07-09",
-      "entry_price": 497.5,
-      "exit_price": 509.2,
-      "quantity": 2.0,
-      "notional_cost": 995.0,
-      "exit_value": 1018.4,
-      "realized_pnl": 23.4,
-      "realized_return_pct": 2.35,
-      "planned_hold_period_days": 7,
-      "actual_hold_days": 7,
-      "exit_reason": "planned_hold_period",
-      "entry_action": "REVIEW",
-      "entry_score": 51.7,
-      "entry_confidence": 81.5,
-      "entry_expected_return_pct": 2.1,
-      "entry_risk": "Low",
-      "entry_market_regime": "Risk-On",
-      "entry_sector_rank": 2,
-      "max_unrealized_gain_pct": 3.1,
-      "max_unrealized_loss_pct": -0.8,
-      "thesis_outcome": "confirmed_mock",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "mock_phase_1"
-      },
-      "ai_explanation": {
-        "summary": "Mock closed paper trade with positive realized return over the planned hold period.",
-        "strengths": [
-          "Realized return was positive.",
-          "Exit followed the planned hold period."
-        ],
-        "risks": [
-          "Single mock trade does not prove strategy quality.",
-          "Future results may differ."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable 7-day setups at entry",
-            "count": 118,
-            "average_return_pct": 2.1,
-            "win_rate_pct": 60.2
-          }
-        ]
-      },
-      "fees": 0.0,
-      "slippage": 0.0,
-      "notes": "Mock closed simulation only. No real order was placed."
-    },
-    {
-      "trade_id": "trade_GOOG_2026-06-27_2026-07-08",
-      "position_id": "paper_GOOG_2026-06-27",
-      "source_pick_id": "2026-06-27_GOOG",
-      "ticker": "GOOG",
-      "sector": "Mega Cap Tech",
-      "status": "closed",
-      "entry_date": "2026-06-27",
-      "exit_date": "2026-07-08",
-      "entry_price": 188.4,
-      "exit_price": 184.9,
-      "quantity": 4.0,
-      "notional_cost": 753.6,
-      "exit_value": 739.6,
-      "realized_pnl": -14.0,
-      "realized_return_pct": -1.86,
-      "planned_hold_period_days": 7,
-      "actual_hold_days": 7,
-      "exit_reason": "planned_hold_period",
-      "entry_action": "WATCH",
-      "entry_score": 44.3,
-      "entry_confidence": 69.0,
-      "entry_expected_return_pct": 1.4,
-      "entry_risk": "Medium",
-      "entry_market_regime": "Neutral",
-      "entry_sector_rank": 3,
-      "max_unrealized_gain_pct": 1.2,
-      "max_unrealized_loss_pct": -2.4,
-      "thesis_outcome": "failed_mock",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "mock_phase_1"
-      },
-      "ai_explanation": {
-        "summary": "Mock closed paper trade showing that paper trading must preserve losing outcomes.",
-        "strengths": [
-          "Original expected return was positive.",
-          "The trade followed the planned exit rule."
-        ],
-        "risks": [
-          "The realized return was negative.",
-          "Medium-risk setups can fail even when the thesis is plausible."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable 7-day watch setups at entry",
-            "count": 74,
-            "average_return_pct": 1.4,
-            "win_rate_pct": 53.1
-          }
-        ]
-      },
-      "fees": 0.0,
-      "slippage": 0.0,
-      "notes": "Mock closed simulation only. No real order was placed."
-    }
-  ],
+  "source_file": "reports/2026-07-06_v2.csv",
+  "as_of_date": "2026-07-06",
+  "source_market_date": "2026-07-06",
+  "price_data_status": "stale_price_data",
+  "stale_price_data": true,
+  "trades": [],
   "disclaimer": "Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice."
 }

@@ -1,11 +1,10 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-09T16:15:00",
-  "as_of_date": "2026-07-09",
-  "mock_data": true,
+  "generated_at": "2026-07-09T21:31:20",
+  "mock_data": false,
   "data_source": {
-    "type": "mock",
-    "generated_by": "paper_trading_phase_1_mock",
+    "type": "paper_ledger",
+    "generated_by": "paper_trading_engine",
     "generator_version": "1.0"
   },
   "strategy": {
@@ -18,143 +17,19 @@
     "strategy_version": "V8",
     "feature_version": "current",
     "market_regime_version": "current",
-    "generated_from": "mock_phase_1"
+    "generated_from": "paper_trading_update"
   },
+  "source_file": "reports/2026-07-06_v2.csv",
+  "as_of_date": "2026-07-06",
+  "source_market_date": "2026-07-06",
+  "price_data_status": "stale_price_data",
+  "stale_price_data": true,
   "account": {
     "account_id": "paper_default",
     "mode": "paper_only",
     "starting_capital": 25000.0,
     "currency": "USD"
   },
-  "positions": [
-    {
-      "position_id": "paper_AAPL_2026-07-09",
-      "source_pick_id": "2026-07-09_AAPL",
-      "ticker": "AAPL",
-      "sector": "Mega Cap Tech",
-      "status": "open",
-      "opened_at": "2026-07-09T09:35:00",
-      "entry_date": "2026-07-09",
-      "entry_price": 216.25,
-      "current_price": 218.1,
-      "quantity": 4.0,
-      "notional_cost": 865.0,
-      "current_value": 872.4,
-      "unrealized_pnl": 7.4,
-      "unrealized_return_pct": 0.86,
-      "planned_hold_period_days": 7,
-      "planned_exit_date": "2026-07-18",
-      "days_held": 0,
-      "entry_action": "REVIEW",
-      "entry_score": 54.25,
-      "entry_confidence": 84.0,
-      "entry_expected_return_pct": 2.75,
-      "entry_risk": "Low",
-      "entry_market_regime": "Risk-On",
-      "entry_sector_rank": 2,
-      "thesis": "Mock paper position created from an eligible V8 Champion signal.",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "mock_phase_1"
-      },
-      "ai_explanation": {
-        "summary": "Mock open position explanation preserving the original V8 paper signal context.",
-        "strengths": [
-          "Original signal had high confidence.",
-          "Entry was linked to positive historical evidence."
-        ],
-        "risks": [
-          "Unrealized gains can reverse.",
-          "This is mock Phase 1 data."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable 7-day setups at entry",
-            "count": 143,
-            "average_return_pct": 2.75,
-            "win_rate_pct": 62.0
-          }
-        ]
-      },
-      "exit_rule": "planned_hold_period",
-      "stop_rule": null,
-      "take_profit_rule": null,
-      "fees": 0.0,
-      "slippage": 0.0,
-      "notes": "Mock paper position only. No real order was placed."
-    },
-    {
-      "position_id": "paper_NVDA_2026-07-09",
-      "source_pick_id": "2026-07-09_NVDA",
-      "ticker": "NVDA",
-      "sector": "Semiconductors",
-      "status": "open",
-      "opened_at": "2026-07-09T09:40:00",
-      "entry_date": "2026-07-09",
-      "entry_price": 160.3,
-      "current_price": 159.85,
-      "quantity": 5.0,
-      "notional_cost": 801.5,
-      "current_value": 799.25,
-      "unrealized_pnl": -2.25,
-      "unrealized_return_pct": -0.28,
-      "planned_hold_period_days": 5,
-      "planned_exit_date": "2026-07-16",
-      "days_held": 0,
-      "entry_action": "WATCH",
-      "entry_score": 49.8,
-      "entry_confidence": 76.5,
-      "entry_expected_return_pct": 2.15,
-      "entry_risk": "Medium",
-      "entry_market_regime": "Risk-On",
-      "entry_sector_rank": 1,
-      "thesis": "Mock paper watch position created to test medium-risk tracking.",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "mock_phase_1"
-      },
-      "ai_explanation": {
-        "summary": "Mock open position explanation for a watched semiconductor setup.",
-        "strengths": [
-          "Sector rank is first.",
-          "Expected return is positive."
-        ],
-        "risks": [
-          "Risk label is Medium.",
-          "Position is slightly negative in the mock mark-to-market."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable 5-day setups at entry",
-            "count": 96,
-            "average_return_pct": 2.15,
-            "win_rate_pct": 58.4
-          }
-        ]
-      },
-      "exit_rule": "planned_hold_period",
-      "stop_rule": null,
-      "take_profit_rule": null,
-      "fees": 0.0,
-      "slippage": 0.0,
-      "notes": "Mock paper position only. No real order was placed."
-    }
-  ],
+  "positions": [],
   "disclaimer": "Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice."
 }

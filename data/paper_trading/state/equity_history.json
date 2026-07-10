@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "points": [
+    {
+      "date": "2026-07-06",
+      "timestamp": "2026-07-09T21:31:20",
+      "source_file": "reports/2026-07-06_v2.csv",
+      "price_data_status": "stale_price_data",
+      "stale_price_data": true,
+      "cash": 25000.0,
+      "invested_value": 0.0,
+      "total_equity": 25000.0,
+      "realized_pnl": 0.0,
+      "unrealized_pnl": 0.0,
+      "daily_pnl": 0.0,
+      "daily_return_pct": 0.0,
+      "cumulative_pnl": 0.0,
+      "cumulative_return_pct": 0.0,
+      "drawdown_pct": 0.0,
+      "open_positions_count": 0,
+      "closed_trades_count": 0
+    }
+  ]
+}

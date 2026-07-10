@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "picks": {
+    "2026-07-06_HIMS": {
+      "status": "skipped_not_buy",
+      "ticker": "HIMS",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    },
+    "2026-07-06_HOOD": {
+      "status": "skipped_not_buy",
+      "ticker": "HOOD",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    },
+    "2026-07-06_CELH": {
+      "status": "skipped_not_buy",
+      "ticker": "CELH",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    },
+    "2026-07-06_DUOL": {
+      "status": "skipped_not_buy",
+      "ticker": "DUOL",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    },
+    "2026-07-06_RBLX": {
+      "status": "skipped_not_buy",
+      "ticker": "RBLX",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    },
+    "2026-07-06_SE": {
+      "status": "skipped_not_buy",
+      "ticker": "SE",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    },
+    "2026-07-06_AFRM": {
+      "status": "skipped_not_buy",
+      "ticker": "AFRM",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    },
+    "2026-07-06_PANW": {
+      "status": "skipped_not_buy",
+      "ticker": "PANW",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    },
+    "2026-07-06_OKTA": {
+      "status": "skipped_not_buy",
+      "ticker": "OKTA",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    },
+    "2026-07-06_TEM": {
+      "status": "skipped_not_buy",
+      "ticker": "TEM",
+      "processed_at": "2026-07-09T21:18:15",
+      "action": "WATCH",
+      "reason": "Only scanner BUY actions open paper positions."
+    }
+  }
+}

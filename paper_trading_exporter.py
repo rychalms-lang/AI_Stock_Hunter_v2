@@ -4,6 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from paper_trading_engine import process_paper_trading
 from portfolio import build_portfolio
 
 
@@ -404,16 +405,26 @@ def export_paper_trading_snapshot(report_file: Optional[Path] = None) -> Dict[st
     generated_at = datetime.now().isoformat(timespec="seconds")
 
     daily_picks = build_daily_picks_file(rows, report, generated_at)
-    portfolio_summary = build_portfolio_summary_file(rows, report, generated_at)
 
     write_json(PAPER_TRADING_DIR / "daily_picks.json", daily_picks)
-    write_json(PAPER_TRADING_DIR / "portfolio_summary.json", portfolio_summary)
+    engine_result = process_paper_trading(
+        daily_picks=daily_picks,
+        raw_rows=rows,
+        output_dir=PAPER_TRADING_DIR,
+        state_dir=PAPER_TRADING_DIR / "state",
+        generated_at=generated_at,
+    )
 
     return {
         "daily_picks": str(PAPER_TRADING_DIR / "daily_picks.json"),
+        "open_positions": str(PAPER_TRADING_DIR / "open_positions.json"),
+        "closed_trades": str(PAPER_TRADING_DIR / "closed_trades.json"),
         "portfolio_summary": str(PAPER_TRADING_DIR / "portfolio_summary.json"),
+        "equity_curve": str(PAPER_TRADING_DIR / "equity_curve.json"),
+        "performance_statistics": str(PAPER_TRADING_DIR / "performance_statistics.json"),
         "source_file": str(report),
         "trade_date": trade_date_from_report(report),
+        "engine": engine_result,
     }
 
 
