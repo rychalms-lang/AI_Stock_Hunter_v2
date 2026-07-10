@@ -780,6 +780,32 @@ These state files are excluded from Git and should not be committed. The paper-t
 
 The exported frontend JSON files under `data/paper_trading/` remain separate from internal ledger state. The website consumes those export files, not the mutable ledger files. A production deployment will eventually need durable external storage for paper-trading state, such as a database or managed object store, instead of local JSON files.
 
+### 9.3 Scheduling Architecture
+
+Paper-trading automation should use two separate launchd workflows on macOS:
+
+1. Daily scanner/export pipeline:
+   - Launchd triggers at 6:00 PM in the Mac's local timezone.
+   - The wrapper records the `America/New_York` market date and uses that date for duplicate-run protection.
+   - The wrapper should run only after the New York post-close window unless manually forced.
+   - Runs after end-of-day U.S. market data is expected to be available.
+   - Runs `main.py` from the project venv.
+   - Runs `web_exporter.py` after the scanner, because the scanner pipeline does not currently export frontend JSON by itself.
+   - May open newly eligible paper positions through the approved scanner/export path.
+
+2. Intraday paper-ledger refresh:
+   - Runs `refresh_paper_trading.py` from the project venv.
+   - Updates only existing paper positions.
+   - Does not generate scanner recommendations.
+   - Does not open new paper positions.
+   - Uses `America/New_York` for market-session checks, with daylight saving handled by timezone-aware logic.
+   - Uses `MarketDataService` market state as the final scheduled-run authority where practical.
+   - Exits safely outside the configured market-hours window or when market data is stale or unavailable.
+
+Automation source files live under `automation/`. Runtime logs and lock files are local artifacts and excluded from Git. Launch agents must not be installed or loaded automatically during development; they should be enabled only by an explicit user-run install script.
+
+If the Mac is asleep or powered off at a scheduled time, launchd does not guarantee execution during the missed window or catch-up execution after wake. Existing cron jobs should be inspected manually with `crontab -l` and disabled before launchd is enabled to avoid duplicate scanner runs.
+
 ## 10. Safety Rules
 
 Required rules:

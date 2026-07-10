@@ -20,4 +20,9 @@ data/*.csv
 # Keep exported frontend JSON files under data/paper_trading/ tracked.
 data/paper_trading/state/
 
+# Local automation runtime artifacts.
+automation/logs/*.log
+automation/locks/
+automation/rendered/
+
 *.pkl

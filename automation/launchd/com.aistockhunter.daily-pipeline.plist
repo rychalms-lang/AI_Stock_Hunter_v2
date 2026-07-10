@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.aistockhunter.daily-pipeline</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/run_daily_pipeline.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2</string>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Weekday</key>
+      <integer>1</integer>
+      <key>Hour</key>
+      <integer>18</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key>
+      <integer>2</integer>
+      <key>Hour</key>
+      <integer>18</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key>
+      <integer>3</integer>
+      <key>Hour</key>
+      <integer>18</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key>
+      <integer>4</integer>
+      <key>Hour</key>
+      <integer>18</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key>
+      <integer>5</integer>
+      <key>Hour</key>
+      <integer>18</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+  </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/logs/daily-pipeline.launchd.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/logs/daily-pipeline.launchd-error.log</string>
+</dict>
+</plist>
