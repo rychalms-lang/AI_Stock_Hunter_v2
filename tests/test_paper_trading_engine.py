@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from market_data_service import market_state
 from paper_trading_engine import (
     DEFAULT_CONFIG,
     PaperTradingStateError,
@@ -10,6 +11,46 @@ from paper_trading_engine import (
     max_drawdown,
     process_paper_trading,
 )
+
+
+class FakeMarketDataService:
+    def __init__(self, quotes=None, state="OPEN"):
+        self.quotes = quotes or {}
+        self.state = state
+        self.calls = {}
+
+    def get_market_state(self):
+        return self.state
+
+    def get_quote(self, ticker):
+        normalized = ticker.upper()
+        self.calls[normalized] = self.calls.get(normalized, 0) + 1
+        return self.quotes.get(
+            normalized,
+            {
+                "ticker": normalized,
+                "price": None,
+                "previous_close": None,
+                "price_change_today": None,
+                "market_state": self.state,
+                "last_price_update": "2026-07-01T10:00:00-04:00",
+                "price_source": "fake",
+                "price_status": "unavailable",
+            },
+        )
+
+
+def quote(ticker="TEST", price=100.0, status="fresh", timestamp="2026-07-01T10:00:00-04:00"):
+    return {
+        "ticker": ticker,
+        "price": price,
+        "previous_close": price - 1 if price else None,
+        "price_change_today": 1.0 if price else None,
+        "market_state": "OPEN",
+        "last_price_update": timestamp,
+        "price_source": "fake",
+        "price_status": status,
+    }
 
 
 def pick(
@@ -90,7 +131,26 @@ def raw_rows_from(picks, action="BUY"):
 
 
 class PaperTradingEngineTest(unittest.TestCase):
-    def run_engine(self, payload, rows, temp_dir, config=None, generated_at=None):
+    def market_data_from_payload(self, payload, status="fresh", timestamp=None):
+        return FakeMarketDataService({
+            item["ticker"]: quote(
+                ticker=item["ticker"],
+                price=item["latest_close"],
+                status=status,
+                timestamp=timestamp or f"{payload['trade_date']}T10:00:00-04:00",
+            )
+            for item in payload["picks"]
+        })
+
+    def run_engine(
+        self,
+        payload,
+        rows,
+        temp_dir,
+        config=None,
+        generated_at=None,
+        market_data_service=None,
+    ):
         root = Path(temp_dir)
         return process_paper_trading(
             daily_picks=payload,
@@ -99,6 +159,7 @@ class PaperTradingEngineTest(unittest.TestCase):
             state_dir=root / "state",
             config=config,
             generated_at=generated_at or payload["generated_at"],
+            market_data_service=market_data_service or self.market_data_from_payload(payload),
         )
 
     def test_first_run_opens_buy_and_writes_json_outputs(self):
@@ -179,14 +240,20 @@ class PaperTradingEngineTest(unittest.TestCase):
     def test_stale_report_price_blocks_new_entry(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             item = pick(price=100, trade_date="2026-07-01")
+            payload = daily_picks([item], "2026-07-01")
             result = self.run_engine(
-                daily_picks([item], "2026-07-01"),
+                payload,
                 raw_rows_from([item]),
                 temp_dir,
                 generated_at="2026-07-10T10:00:00",
+                market_data_service=self.market_data_from_payload(
+                    payload,
+                    status="stale",
+                    timestamp="2026-07-01T16:00:00-04:00",
+                ),
             )
             self.assertEqual(result["open_positions"], 0)
-            self.assertEqual(result["price_data_status"], "stale_price_data")
+            self.assertEqual(result["price_data_status"], "waiting_for_fresh_market_prices")
             with open(Path(temp_dir) / "state" / "processed_picks.json") as f:
                 processed = json.load(f)["picks"][item["pick_id"]]
             self.assertEqual(processed["status"], "skipped_stale_price")
@@ -264,23 +331,46 @@ class PaperTradingEngineTest(unittest.TestCase):
             item = pick(price=100, trade_date="2026-07-01")
             payload = daily_picks([item], "2026-07-01")
             rows = raw_rows_from([item])
-            self.run_engine(payload, rows, temp_dir, generated_at="2026-07-10T10:00:00")
-            self.run_engine(payload, rows, temp_dir, generated_at="2026-07-11T10:00:00")
+            market_data = self.market_data_from_payload(
+                payload,
+                status="stale",
+                timestamp="2026-07-01T16:00:00-04:00",
+            )
+            self.run_engine(
+                payload,
+                rows,
+                temp_dir,
+                generated_at="2026-07-10T10:00:00",
+                market_data_service=market_data,
+            )
+            self.run_engine(
+                payload,
+                rows,
+                temp_dir,
+                generated_at="2026-07-11T10:00:00",
+                market_data_service=market_data,
+            )
             with open(Path(temp_dir) / "out" / "equity_curve.json") as f:
                 points = json.load(f)["points"]
             self.assertEqual(len(points), 1)
-            self.assertEqual(points[0]["price_data_status"], "stale_price_data")
+            self.assertEqual(points[0]["price_data_status"], "waiting_for_fresh_market_prices")
 
     def test_stale_prices_do_not_trigger_exits(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             first = pick(price=100, hold_days=1)
             self.run_engine(daily_picks([first], "2026-07-01"), raw_rows_from([first]), temp_dir)
             stale_stop = pick(price=94, trade_date="2026-07-02", hold_days=1)
+            payload = daily_picks([stale_stop], "2026-07-02")
             result = self.run_engine(
-                daily_picks([stale_stop], "2026-07-02"),
+                payload,
                 raw_rows_from([stale_stop]),
                 temp_dir,
                 generated_at="2026-07-10T10:00:00",
+                market_data_service=self.market_data_from_payload(
+                    payload,
+                    status="stale",
+                    timestamp="2026-07-02T16:00:00-04:00",
+                ),
             )
             self.assertEqual(result["closed_trades"], 0)
             self.assertEqual(result["open_positions"], 1)
@@ -289,6 +379,15 @@ class PaperTradingEngineTest(unittest.TestCase):
             self.assertEqual(position["status"], "stale_price_data")
             self.assertEqual(position["current_price"], 100)
             self.assertEqual(position["days_held"], 0)
+
+    def test_market_data_service_is_cached_during_run(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            item = pick(price=100, hold_days=10)
+            payload = daily_picks([item], "2026-07-01")
+            market_data = self.market_data_from_payload(payload)
+            self.run_engine(payload, raw_rows_from([item]), temp_dir, market_data_service=market_data)
+            self.run_engine(payload, raw_rows_from([item]), temp_dir, market_data_service=market_data)
+            self.assertLessEqual(market_data.calls["TEST"], 2)
 
     def test_max_drawdown_calculation(self):
         points = [
@@ -320,6 +419,13 @@ class PaperTradingEngineTest(unittest.TestCase):
                 summary = json.load(f)["summary"]
             self.assertGreaterEqual(summary["cash"], 2500)
             self.assertLessEqual(result["open_positions"], 7)
+
+    def test_market_state_helper_classifies_closed_weekend(self):
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+
+        state = market_state(datetime(2026, 7, 11, 12, 0, tzinfo=ZoneInfo("America/New_York")))
+        self.assertEqual(state, "CLOSED")
 
 
 if __name__ == "__main__":

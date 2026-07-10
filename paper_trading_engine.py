@@ -7,6 +7,8 @@ from pathlib import Path
 from statistics import mean, median
 from typing import Any, Dict, List, Optional
 
+from market_data_service import MarketDataService
+
 
 SCHEMA_VERSION = "1.0"
 STARTING_CAPITAL = 25000.0
@@ -173,30 +175,6 @@ class PaperTradingStore:
         atomic_write_json(self._path("equity_history.json"), state["equity_history"])
 
 
-class ScannerPriceProvider:
-    def __init__(self, daily_picks: Dict[str, Any], generated_at: str):
-        self.generated_at = daily_picks.get("generated_at")
-        self.source_market_date = daily_picks.get("trade_date", generated_at[:10])
-        self.stale_price_data = is_stale_source_date(self.source_market_date, generated_at)
-        self.prices: Dict[str, Dict[str, Any]] = {}
-
-        for pick in daily_picks.get("picks", []):
-            ticker = str(pick.get("ticker", "")).upper()
-            price = safe_float(pick.get("latest_close"))
-            if ticker and price > 0:
-                self.prices[ticker] = {
-                    "price": price,
-                    "source": "scanner_csv_latest_close",
-                    "timestamp": self.generated_at,
-                    "source_market_date": self.source_market_date,
-                    "stale_price_data": self.stale_price_data,
-                    "price_data_status": "stale_price_data" if self.stale_price_data else "fresh",
-                }
-
-    def get_price(self, ticker: str) -> Optional[Dict[str, Any]]:
-        return self.prices.get(ticker.upper())
-
-
 def pick_lookup(daily_picks: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
     return {
         str(pick.get("pick_id")): pick
@@ -251,13 +229,13 @@ def days_between(start_date: str, end_date: str) -> int:
 
 def build_open_position(
     pick: Dict[str, Any],
-    price: Dict[str, Any],
+    quote: Dict[str, Any],
     quantity: int,
     generated_at: str,
     market_regime: str,
     config: Dict[str, float],
 ) -> Dict[str, Any]:
-    entry_price = round_money(price["price"])
+    entry_price = round_money(quote["price"])
     cost_basis = round_money(quantity * entry_price)
     hold_days = max(safe_int(pick.get("best_hold_period_days"), 1), 1)
     trade_date = pick.get("trade_date", generated_at[:10])
@@ -308,13 +286,16 @@ def build_open_position(
         "exit_rule": "hold_period_or_risk_rule",
         "stop_rule": f"{config['stop_loss_pct']}%",
         "take_profit_rule": f"{config['take_profit_pct']}%",
-        "price_source": price["source"],
-        "price_timestamp": price.get("timestamp"),
-        "source_market_date": price.get("source_market_date"),
+        "price_change_today": quote.get("price_change_today"),
+        "market_state": quote.get("market_state", "CLOSED"),
+        "last_price_update": quote.get("last_price_update"),
+        "price_source": quote.get("price_source"),
+        "price_timestamp": quote.get("last_price_update"),
         "stale_price_data": False,
-        "price_data_status": "fresh",
+        "price_status": quote.get("price_status", "fresh"),
+        "price_data_status": quote.get("price_status", "fresh"),
         "last_updated_at": generated_at,
-        "last_price_source_market_date": price.get("source_market_date"),
+        "last_price_update_seen": quote.get("last_price_update"),
         "max_unrealized_gain_pct": 0.0,
         "max_unrealized_loss_pct": 0.0,
         "fees": safe_float(config["fees_per_trade"]),
@@ -334,39 +315,51 @@ def empty_explanation(ticker: str) -> Dict[str, Any]:
 
 def update_position_price(
     position: Dict[str, Any],
-    price: Optional[Dict[str, Any]],
+    quote: Optional[Dict[str, Any]],
     as_of_date: str,
     generated_at: str,
 ) -> None:
-    if not price:
+    if not quote or safe_float(quote.get("price")) <= 0:
         position["status"] = "open_price_unavailable"
         position["price_data_status"] = "price_unavailable"
+        position["price_status"] = "unavailable"
+        if quote:
+            position["market_state"] = quote.get("market_state", position.get("market_state", "CLOSED"))
+            position["last_price_update"] = quote.get("last_price_update")
+            position["price_source"] = quote.get("price_source")
         position["last_price_check_at"] = generated_at
         return
 
-    source_market_date = price.get("source_market_date", as_of_date)
-    previous_source_market_date = position.get("last_price_source_market_date")
+    price_status = str(quote.get("price_status", "unavailable"))
+    last_price_update = quote.get("last_price_update")
+    previous_price_update = position.get("last_price_update_seen")
 
-    if price.get("stale_price_data"):
+    if price_status not in {"fresh", "delayed"}:
         position["status"] = "stale_price_data"
         position["stale_price_data"] = True
-        position["price_data_status"] = "stale_price_data"
-        position["source_market_date"] = source_market_date
+        position["price_status"] = price_status
+        position["price_data_status"] = price_status
+        position["market_state"] = quote.get("market_state", position.get("market_state", "CLOSED"))
+        position["last_price_update"] = last_price_update
+        position["price_source"] = quote.get("price_source")
         position["last_price_check_at"] = generated_at
         position["stale_price_reason"] = (
-            "Scanner price source is older than the paper-engine run date; "
+            "Market data service did not return a usable fresh price; "
             "position price, days held, and exit rules were not updated."
         )
         return
 
-    if previous_source_market_date and source_market_date <= previous_source_market_date:
+    if previous_price_update and last_price_update and last_price_update <= previous_price_update:
         position["status"] = "stale_price_data"
         position["stale_price_data"] = True
         position["price_data_status"] = "unchanged_source_market_date"
-        position["source_market_date"] = source_market_date
+        position["price_status"] = "unchanged_price_update"
+        position["market_state"] = quote.get("market_state", position.get("market_state", "CLOSED"))
+        position["last_price_update"] = last_price_update
+        position["price_source"] = quote.get("price_source")
         position["last_price_check_at"] = generated_at
         position["stale_price_reason"] = (
-            "Scanner source market date did not advance; position price, days held, "
+            "Market data timestamp did not advance; position price, days held, "
             "and exit rules were not updated."
         )
         return
@@ -374,7 +367,7 @@ def update_position_price(
     position["days_held"] = days_between(position["entry_date"], as_of_date)
     position["last_updated_at"] = generated_at
 
-    current_price = round_money(price["price"])
+    current_price = round_money(quote["price"])
     market_value = round_money(position["quantity"] * current_price)
     pnl = round_money(market_value - safe_float(position.get("cost_basis", position.get("notional_cost"))))
     return_pct = round_pct((pnl / safe_float(position.get("cost_basis", position.get("notional_cost")), 1)) * 100)
@@ -385,12 +378,15 @@ def update_position_price(
     position["current_value"] = market_value
     position["unrealized_pnl"] = pnl
     position["unrealized_return_pct"] = return_pct
-    position["price_source"] = price["source"]
-    position["price_timestamp"] = price.get("timestamp")
-    position["source_market_date"] = source_market_date
+    position["price_change_today"] = quote.get("price_change_today")
+    position["market_state"] = quote.get("market_state", "CLOSED")
+    position["last_price_update"] = last_price_update
+    position["price_source"] = quote.get("price_source")
+    position["price_timestamp"] = last_price_update
     position["stale_price_data"] = False
-    position["price_data_status"] = "fresh"
-    position["last_price_source_market_date"] = source_market_date
+    position["price_status"] = price_status
+    position["price_data_status"] = price_status
+    position["last_price_update_seen"] = last_price_update
     position.pop("stale_price_reason", None)
     position["max_unrealized_gain_pct"] = max(
         safe_float(position.get("max_unrealized_gain_pct")),
@@ -473,9 +469,12 @@ def close_position(position: Dict[str, Any], generated_at: str, reason: str) -> 
         "slippage": safe_float(position.get("slippage")),
         "price_source": position.get("price_source"),
         "price_timestamp": position.get("price_timestamp"),
-        "source_market_date": position.get("source_market_date"),
+        "price_change_today": position.get("price_change_today"),
+        "market_state": position.get("market_state"),
+        "last_price_update": position.get("last_price_update"),
         "stale_price_data": False,
-        "price_data_status": "fresh",
+        "price_status": position.get("price_status", "fresh"),
+        "price_data_status": position.get("price_data_status", "fresh"),
         "notes": "Closed by deterministic paper trading rules. No real order was placed.",
     }
 
@@ -680,19 +679,30 @@ def export_files(
     portfolio: Dict[str, Any],
     equity_points: List[Dict[str, Any]],
     price_data_status: str,
-    source_market_date: str,
+    market_state: str,
+    last_market_update: Optional[str],
+    live_prices: bool,
+    stale_positions: int,
 ) -> Dict[str, str]:
     output_dir.mkdir(parents=True, exist_ok=True)
-    portfolio_with_drawdown = {**portfolio, "max_drawdown_pct": max_drawdown(equity_points) or 0.0}
+    portfolio_with_drawdown = {
+        **portfolio,
+        "max_drawdown_pct": max_drawdown(equity_points) or 0.0,
+        "last_market_update": last_market_update,
+        "market_state": market_state,
+        "live_prices": live_prices,
+        "stale_positions": stale_positions,
+    }
 
     payloads = {
         "open_positions.json": {
             **file_base(generated_at),
             "source_file": source_file,
             "as_of_date": as_of_date,
-            "source_market_date": source_market_date,
             "price_data_status": price_data_status,
             "stale_price_data": price_data_status != "fresh",
+            "market_state": market_state,
+            "last_market_update": last_market_update,
             "account": ACCOUNT,
             "positions": open_positions,
             "disclaimer": DISCLAIMER,
@@ -701,9 +711,10 @@ def export_files(
             **file_base(generated_at),
             "source_file": source_file,
             "as_of_date": as_of_date,
-            "source_market_date": source_market_date,
             "price_data_status": price_data_status,
             "stale_price_data": price_data_status != "fresh",
+            "market_state": market_state,
+            "last_market_update": last_market_update,
             "trades": closed_trades,
             "disclaimer": DISCLAIMER,
         },
@@ -712,9 +723,12 @@ def export_files(
             "source_file": source_file,
             "trade_date": as_of_date,
             "as_of_date": as_of_date,
-            "source_market_date": source_market_date,
             "price_data_status": price_data_status,
             "stale_price_data": price_data_status != "fresh",
+            "market_state": market_state,
+            "last_market_update": last_market_update,
+            "live_prices": live_prices,
+            "stale_positions": stale_positions,
             "account": ACCOUNT,
             "summary": portfolio_with_drawdown,
             "disclaimer": DISCLAIMER,
@@ -722,9 +736,10 @@ def export_files(
         "equity_curve.json": {
             **file_base(generated_at),
             "source_file": source_file,
-            "source_market_date": source_market_date,
             "price_data_status": price_data_status,
             "stale_price_data": price_data_status != "fresh",
+            "market_state": market_state,
+            "last_market_update": last_market_update,
             "account": ACCOUNT,
             "points": equity_points,
             "disclaimer": DISCLAIMER,
@@ -733,9 +748,10 @@ def export_files(
             **file_base(generated_at),
             "source_file": source_file,
             "as_of_date": as_of_date,
-            "source_market_date": source_market_date,
             "price_data_status": price_data_status,
             "stale_price_data": price_data_status != "fresh",
+            "market_state": market_state,
+            "last_market_update": last_market_update,
             "account": ACCOUNT,
             "overall": performance_stats(closed_trades, open_positions, equity_points),
             **performance_buckets(closed_trades),
@@ -751,6 +767,194 @@ def export_files(
     return paths
 
 
+def market_metadata(
+    quotes: Dict[str, Dict[str, Any]],
+    equity_history: Dict[str, Any],
+    as_of_date: str,
+    market_data: MarketDataService,
+) -> Dict[str, Any]:
+    live_prices = bool(quotes) and all(
+        str(quote.get("price_status")) in {"fresh", "delayed"}
+        for quote in quotes.values()
+    )
+
+    if live_prices:
+        price_data_status = "fresh"
+    elif quotes:
+        price_data_status = "waiting_for_fresh_market_prices"
+    else:
+        same_day_points = [
+            point
+            for point in equity_history.get("points", [])
+            if point.get("date") == as_of_date
+        ]
+        price_data_status = (
+            same_day_points[-1].get("price_data_status", "no_price_requests")
+            if same_day_points
+            else "no_price_requests"
+        )
+
+    return {
+        "price_data_status": price_data_status,
+        "market_state": market_data.get_market_state(),
+        "last_market_update": max(
+            [
+                str(quote.get("last_price_update"))
+                for quote in quotes.values()
+                if quote.get("last_price_update")
+            ],
+            default=None,
+        ),
+        "live_prices": live_prices,
+    }
+
+
+def stale_position_count(open_positions: List[Dict[str, Any]]) -> int:
+    return len([
+        position
+        for position in open_positions
+        if position.get("stale_price_data")
+        or position.get("price_status") not in {"fresh", "delayed"}
+    ])
+
+
+def update_open_positions(
+    account: Dict[str, Any],
+    open_positions: List[Dict[str, Any]],
+    closed_trades: List[Dict[str, Any]],
+    market_data: MarketDataService,
+    as_of_date: str,
+    generated_at: str,
+) -> Dict[str, Any]:
+    quotes: Dict[str, Dict[str, Any]] = {}
+    still_open = []
+    updated = 0
+    stale = 0
+    closed = 0
+
+    for position in open_positions:
+        quote = quotes.setdefault(position["ticker"], market_data.get_quote(position["ticker"]))
+        before_status = position.get("status")
+        update_position_price(position, quote, as_of_date, generated_at)
+        reason = exit_reason(position)
+
+        if reason:
+            trade = close_position(position, generated_at, reason)
+            closed_trades.append(trade)
+            account["cash"] = round_money(safe_float(account.get("cash")) + trade["proceeds"])
+            account["realized_pnl"] = round_money(safe_float(account.get("realized_pnl")) + trade["realized_pnl"])
+            closed += 1
+        else:
+            still_open.append(position)
+            if position.get("price_status") in {"fresh", "delayed"} and not position.get("stale_price_data"):
+                updated += 1
+            elif position.get("status") != before_status or position.get("stale_price_data"):
+                stale += 1
+
+    open_positions[:] = still_open
+
+    return {
+        "quotes": quotes,
+        "positions_updated": updated,
+        "positions_stale": stale,
+        "positions_closed": closed,
+    }
+
+
+def refresh_paper_trading(
+    output_dir: Path = Path("data/paper_trading"),
+    state_dir: Path = Path("data/paper_trading/state"),
+    daily_picks: Optional[Dict[str, Any]] = None,
+    generated_at: Optional[str] = None,
+    market_data_service: Optional[MarketDataService] = None,
+    dry_run: bool = False,
+) -> Dict[str, Any]:
+    generated_at = generated_at or now_iso()
+    store = PaperTradingStore(state_dir)
+    state = store.load()
+    if dry_run:
+        state = deepcopy(state)
+
+    account = state["account"]
+    open_ledger = state["open_positions"]
+    closed_ledger = state["closed_trades"]
+    equity_history = state["equity_history"]
+
+    open_positions = open_ledger.setdefault("positions", [])
+    closed_trades = closed_ledger.setdefault("trades", [])
+    as_of_date = generated_at[:10]
+    source_file = daily_picks.get("source_file") if daily_picks else None
+    market_data = market_data_service or MarketDataService()
+
+    update_result = update_open_positions(
+        account=account,
+        open_positions=open_positions,
+        closed_trades=closed_trades,
+        market_data=market_data,
+        as_of_date=as_of_date,
+        generated_at=generated_at,
+    )
+
+    account["updated_at"] = generated_at
+    portfolio = calculate_portfolio(account, open_positions, closed_trades)
+    metadata = market_metadata(
+        update_result["quotes"],
+        equity_history,
+        as_of_date,
+        market_data,
+    )
+    stale_positions = stale_position_count(open_positions)
+
+    upsert_equity_point(
+        equity_history,
+        portfolio,
+        as_of_date,
+        source_file,
+        metadata["price_data_status"],
+    )
+
+    paths: Dict[str, str] = {}
+    if not dry_run:
+        store.save(state)
+        paths = export_files(
+            output_dir,
+            generated_at,
+            as_of_date,
+            source_file,
+            open_positions,
+            closed_trades,
+            portfolio,
+            equity_history.get("points", []),
+            metadata["price_data_status"],
+            metadata["market_state"],
+            metadata["last_market_update"],
+            metadata["live_prices"],
+            stale_positions,
+        )
+
+    return {
+        "dry_run": dry_run,
+        "state_dir": str(state_dir),
+        "output_dir": str(output_dir),
+        "as_of_date": as_of_date,
+        "open_positions": len(open_positions),
+        "closed_trades": len(closed_trades),
+        "positions_updated": update_result["positions_updated"],
+        "positions_stale": update_result["positions_stale"] + stale_positions,
+        "positions_closed": update_result["positions_closed"],
+        "cash": portfolio["cash"],
+        "total_equity": portfolio["total_equity"],
+        "realized_pnl": portfolio["realized_pnl"],
+        "unrealized_pnl": portfolio["unrealized_pnl"],
+        "price_data_status": metadata["price_data_status"],
+        "market_state": metadata["market_state"],
+        "last_market_update": metadata["last_market_update"],
+        "live_prices": metadata["live_prices"],
+        "stale_positions": stale_positions,
+        "paths": paths,
+    }
+
+
 def process_paper_trading(
     daily_picks: Dict[str, Any],
     raw_rows: List[Dict[str, str]],
@@ -758,6 +962,7 @@ def process_paper_trading(
     state_dir: Path = Path("data/paper_trading/state"),
     config: Optional[Dict[str, float]] = None,
     generated_at: Optional[str] = None,
+    market_data_service: Optional[MarketDataService] = None,
 ) -> Dict[str, Any]:
     generated_at = generated_at or now_iso()
     active_config = {**DEFAULT_CONFIG, **(config or {})}
@@ -772,8 +977,8 @@ def process_paper_trading(
 
     as_of_date = daily_picks.get("trade_date", generated_at[:10])
     market_regime = daily_picks.get("market_regime", {}).get("label", "Current")
-    prices = ScannerPriceProvider(daily_picks, generated_at)
-    price_data_status = "stale_price_data" if prices.stale_price_data else "fresh"
+    market_data = market_data_service or MarketDataService()
+    quotes: Dict[str, Dict[str, Any]] = {}
     raw_actions = raw_action_lookup(raw_rows, as_of_date)
     allocations = allocation_lookup(raw_rows)
     source_file = daily_picks.get("source_file")
@@ -781,18 +986,15 @@ def process_paper_trading(
     open_positions = open_ledger.setdefault("positions", [])
     closed_trades = closed_ledger.setdefault("trades", [])
 
-    still_open = []
-    for position in open_positions:
-        update_position_price(position, prices.get_price(position["ticker"]), as_of_date, generated_at)
-        reason = exit_reason(position)
-        if reason:
-            trade = close_position(position, generated_at, reason)
-            closed_trades.append(trade)
-            account["cash"] = round_money(safe_float(account.get("cash")) + trade["proceeds"])
-            account["realized_pnl"] = round_money(safe_float(account.get("realized_pnl")) + trade["realized_pnl"])
-        else:
-            still_open.append(position)
-    open_positions[:] = still_open
+    update_result = update_open_positions(
+        account=account,
+        open_positions=open_positions,
+        closed_trades=closed_trades,
+        market_data=market_data,
+        as_of_date=as_of_date,
+        generated_at=generated_at,
+    )
+    quotes.update(update_result["quotes"])
 
     open_tickers = {position["ticker"] for position in open_positions}
     open_pick_ids = {position["source_pick_id"] for position in open_positions}
@@ -836,24 +1038,27 @@ def process_paper_trading(
             }
             continue
 
-        price = prices.get_price(ticker)
-        if not price:
+        quote = quotes.setdefault(ticker, market_data.get_quote(ticker))
+        if safe_float(quote.get("price")) <= 0:
             processed[pick_id] = {
                 "status": "skipped_missing_price",
                 "ticker": ticker,
                 "processed_at": generated_at,
-                "reason": "No valid current price was available from scanner output.",
+                "price_status": quote.get("price_status", "unavailable"),
+                "market_state": quote.get("market_state"),
+                "reason": "No valid current price was available from the market data service.",
             }
             continue
 
-        if price.get("stale_price_data"):
+        if quote.get("price_status") not in {"fresh", "delayed"}:
             processed[pick_id] = {
                 "status": "skipped_stale_price",
                 "ticker": ticker,
                 "processed_at": generated_at,
-                "source_market_date": price.get("source_market_date"),
-                "price_data_status": price.get("price_data_status"),
-                "reason": "Scanner latest_close is stale relative to the paper-engine run date.",
+                "last_price_update": quote.get("last_price_update"),
+                "price_status": quote.get("price_status"),
+                "market_state": quote.get("market_state"),
+                "reason": "Market data service did not return a usable fresh price.",
             }
             continue
 
@@ -862,7 +1067,7 @@ def process_paper_trading(
         target_notional = STARTING_CAPITAL * (allocation_pct / 100)
         spendable_cash = max(available_cash - minimum_cash, 0)
         notional = min(target_notional, spendable_cash)
-        quantity = int(notional // safe_float(price["price"]))
+        quantity = int(notional // safe_float(quote["price"]))
 
         if quantity <= 0:
             processed[pick_id] = {
@@ -873,7 +1078,7 @@ def process_paper_trading(
             }
             continue
 
-        position = build_open_position(pick, price, quantity, generated_at, market_regime, active_config)
+        position = build_open_position(pick, quote, quantity, generated_at, market_regime, active_config)
         open_positions.append(position)
         available_cash = round_money(available_cash - position["cost_basis"])
         account["cash"] = available_cash
@@ -884,12 +1089,20 @@ def process_paper_trading(
             "ticker": ticker,
             "trade_id": position["trade_id"],
             "processed_at": generated_at,
-            "price": price["price"],
-            "price_source": price["source"],
+            "price": quote["price"],
+            "price_source": quote.get("price_source"),
+            "market_state": quote.get("market_state"),
+            "last_price_update": quote.get("last_price_update"),
         }
 
     account["updated_at"] = generated_at
     portfolio = calculate_portfolio(account, open_positions, closed_trades)
+    stale_positions = stale_position_count(open_positions)
+    metadata = market_metadata(quotes, equity_history, as_of_date, market_data)
+    price_data_status = metadata["price_data_status"]
+    market_state = metadata["market_state"]
+    last_market_update = metadata["last_market_update"]
+    live_prices = metadata["live_prices"]
     upsert_equity_point(equity_history, portfolio, as_of_date, source_file, price_data_status)
 
     store.save(state)
@@ -904,7 +1117,10 @@ def process_paper_trading(
         portfolio,
         equity_history.get("points", []),
         price_data_status,
-        as_of_date,
+        market_state,
+        last_market_update,
+        live_prices,
+        stale_positions,
     )
 
     return {
@@ -914,7 +1130,10 @@ def process_paper_trading(
         "open_positions": len(open_positions),
         "closed_trades": len(closed_trades),
         "price_data_status": price_data_status,
-        "source_market_date": as_of_date,
+        "market_state": market_state,
+        "last_market_update": last_market_update,
+        "live_prices": live_prices,
+        "stale_positions": stale_positions,
         "paths": paths,
     }
 
@@ -923,7 +1142,7 @@ __all__ = [
     "DEFAULT_CONFIG",
     "PaperTradingStateError",
     "PaperTradingStore",
-    "ScannerPriceProvider",
+    "refresh_paper_trading",
     "is_stale_source_date",
     "process_paper_trading",
 ]
