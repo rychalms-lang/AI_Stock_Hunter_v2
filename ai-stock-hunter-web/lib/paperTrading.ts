@@ -98,6 +98,11 @@ export type OpenPosition = {
   entry_date: string;
   entry_price: number;
   current_price: number;
+  price_change_today?: number | null;
+  market_state?: string;
+  last_price_update?: string;
+  price_source?: string;
+  price_status?: string;
   quantity: number;
   notional_cost: number;
   current_value: number;
@@ -182,6 +187,10 @@ export type PaperAccount = {
 
 export type PortfolioSummaryFile = PaperFileBase & {
   as_of_date: string;
+  market_state?: string;
+  last_market_update?: string | null;
+  live_prices?: boolean;
+  stale_positions?: number;
   account: PaperAccount;
   summary: {
     cash: number;
@@ -210,6 +219,10 @@ export type PortfolioSummaryFile = PaperFileBase & {
       portfolio_pct: number;
       position_count: number;
     }>;
+    market_state?: string;
+    last_market_update?: string | null;
+    live_prices?: boolean;
+    stale_positions?: number;
   };
 };
 

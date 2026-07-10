@@ -18,6 +18,23 @@ function pct(value: number) {
   return `${sign}${value.toFixed(2)}%`;
 }
 
+function formatMarketState(value?: string) {
+  if (value === "OPEN") return "Market Open";
+  if (value === "PRE_MARKET") return "Pre Market";
+  if (value === "AFTER_HOURS") return "After Hours";
+  return "Market Closed";
+}
+
+function updatedAgo(value?: string | null) {
+  if (!value) return "Waiting for fresh market prices";
+  const timestamp = new Date(value).getTime();
+  if (Number.isNaN(timestamp)) return "Update time unavailable";
+  const seconds = Math.max(0, Math.round((Date.now() - timestamp) / 1000));
+  if (seconds < 60) return `Updated ${seconds} seconds ago`;
+  const minutes = Math.round(seconds / 60);
+  return minutes < 60 ? `Updated ${minutes} minutes ago` : `Updated ${Math.round(minutes / 60)} hours ago`;
+}
+
 function optionalPct(value: number | null | undefined, digits = 2) {
   if (typeof value !== "number") return "Insufficient data";
   const sign = value > 0 ? "+" : "";
@@ -28,10 +45,24 @@ function DashboardContent({ data }: { data: PaperTradingData }) {
   const summary = data.portfolioSummary.summary;
   const overall = data.performanceStatistics.overall;
   const picks = data.dailyPicks.picks.slice(0, 5);
+  const marketState = data.portfolioSummary.market_state ?? summary.market_state;
+  const lastMarketUpdate =
+    data.portfolioSummary.last_market_update ?? summary.last_market_update;
+  const livePrices = data.portfolioSummary.live_prices ?? summary.live_prices;
 
   return (
     <section className="mt-12 space-y-6">
       <PaperTradingBanner />
+
+      <div className="flex flex-col gap-2 border-y border-black/10 py-4 text-sm text-black/52 md:flex-row md:items-center md:justify-between">
+        <span className="font-semibold text-black">{formatMarketState(marketState)}</span>
+        <span>{updatedAgo(lastMarketUpdate)}</span>
+        <span>
+          {livePrices
+            ? "Live market prices loaded"
+            : "Waiting for fresh market prices"}
+        </span>
+      </div>
 
       <Card className="p-0">
         <div className="grid grid-cols-1 divide-y divide-black/10 md:grid-cols-5 md:divide-x md:divide-y-0">

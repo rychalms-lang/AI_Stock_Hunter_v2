@@ -19,6 +19,29 @@ function pct(value: number) {
   return `${sign}${value.toFixed(2)}%`;
 }
 
+function formatMarketState(value?: string) {
+  if (value === "OPEN") return "Market Open";
+  if (value === "PRE_MARKET") return "Pre Market";
+  if (value === "AFTER_HOURS") return "After Hours";
+  return "Market Closed";
+}
+
+function updatedAgo(value?: string | null) {
+  if (!value) return "Waiting for fresh market prices";
+
+  const timestamp = new Date(value).getTime();
+  if (Number.isNaN(timestamp)) return "Update time unavailable";
+
+  const seconds = Math.max(0, Math.round((Date.now() - timestamp) / 1000));
+  if (seconds < 60) return `Updated ${seconds} seconds ago`;
+
+  const minutes = Math.round(seconds / 60);
+  if (minutes < 60) return `Updated ${minutes} minutes ago`;
+
+  const hours = Math.round(minutes / 60);
+  return `Updated ${hours} hours ago`;
+}
+
 function optionalPct(value: number | null | undefined, digits = 2) {
   if (typeof value !== "number") return "Insufficient data";
   const sign = value > 0 ? "+" : "";
@@ -234,12 +257,37 @@ function PortfolioContent({ data }: { data: PaperTradingData }) {
   const overall = data.performanceStatistics.overall;
   const sectorExposure = summary.sector_exposure;
   const confidenceBuckets = data.performanceStatistics.by_confidence_bucket;
+  const marketState = data.portfolioSummary.market_state ?? summary.market_state;
+  const lastMarketUpdate =
+    data.portfolioSummary.last_market_update ?? summary.last_market_update;
+  const livePrices = data.portfolioSummary.live_prices ?? summary.live_prices;
+  const stalePositions =
+    data.portfolioSummary.stale_positions ?? summary.stale_positions ?? 0;
 
   return (
     <div className="space-y-8">
       <PaperTradingBanner />
 
-      <section className="reveal grid grid-cols-2 gap-x-10 gap-y-6 border-y border-[#e8e8e3] py-8 md:grid-cols-4">
+      <section className="reveal flex flex-col gap-3 border-y border-[#e8e8e3] py-5 text-sm text-black/52 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-wrap gap-x-8 gap-y-2">
+          <span className="font-semibold text-black">
+            {formatMarketState(marketState)}
+          </span>
+          <span>{updatedAgo(lastMarketUpdate)}</span>
+          <span>
+            {livePrices
+              ? "Live market prices loaded"
+              : "Waiting for fresh market prices"}
+          </span>
+        </div>
+        {stalePositions > 0 ? (
+          <div className="text-black/45">
+            {stalePositions} stale paper positions
+          </div>
+        ) : null}
+      </section>
+
+      <section className="reveal grid grid-cols-2 gap-x-10 gap-y-6 border-b border-[#e8e8e3] py-8 md:grid-cols-4">
         <ReportMetric label="Portfolio Value" value={money(summary.total_equity)} />
         <ReportMetric label="Total Return" value={pct(summary.total_return_pct)} />
         <ReportMetric label="Open Positions" value={`${summary.open_positions_count}`} />
