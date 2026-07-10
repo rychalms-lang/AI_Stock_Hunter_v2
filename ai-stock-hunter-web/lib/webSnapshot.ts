@@ -1,3 +1,6 @@
+import { readFile } from "fs/promises";
+import path from "path";
+
 export type AIRecommendation = {
   ticker: string;
   sector: string;
@@ -53,4 +56,14 @@ export async function getWebSnapshot(): Promise<WebSnapshot> {
   }
 
   return response.json();
+}
+
+export async function loadWebSnapshotFromData(): Promise<WebSnapshot | null> {
+  try {
+    const filePath = path.join(process.cwd(), "..", "data", "web_snapshot.json");
+    const raw = await readFile(filePath, "utf8");
+    return JSON.parse(raw) as WebSnapshot;
+  } catch {
+    return null;
+  }
 }

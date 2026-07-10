@@ -6,6 +6,7 @@ import {
   PaperTradingData,
   PaperTradingLoadResult,
 } from "@/lib/paperTrading";
+import { SystemStatus } from "@/lib/systemStatus";
 import { WebSnapshot } from "@/lib/webSnapshot";
 import { paperTradingDisclaimer } from "@/components/paperTrading/PaperTradingBanner";
 
@@ -179,10 +180,14 @@ function buildNarrative(snapshot: WebSnapshot, paperData: PaperTradingData | nul
 
 export default function MorningBrief({
   paperTrading,
+  initialSnapshot,
+  systemStatus,
 }: {
   paperTrading: PaperTradingLoadResult;
+  initialSnapshot: WebSnapshot | null;
+  systemStatus: SystemStatus | null;
 }) {
-  const [snapshot, setSnapshot] = useState<WebSnapshot | null>(null);
+  const [snapshot, setSnapshot] = useState<WebSnapshot | null>(initialSnapshot);
   const [clock, setClock] = useState<MarketClock>(() => getMarketClock(new Date()));
 
   useEffect(() => {
@@ -195,9 +200,9 @@ export default function MorningBrief({
         setSnapshot(data);
       })
       .catch(() => {
-        setSnapshot(null);
+        setSnapshot(initialSnapshot);
       });
-  }, []);
+  }, [initialSnapshot]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -218,6 +223,13 @@ export default function MorningBrief({
   const generatedAt =
     paperData?.dailyPicks.generated_at ?? snapshot?.generated_at ?? undefined;
   const statusLabel = paperData ? dataStatus(paperData) : "Paper data unavailable";
+  const healthLabel = systemStatus
+    ? systemStatus.daily_pipeline.status === "healthy" &&
+      (systemStatus.paper_refresh.status === "healthy" ||
+        systemStatus.paper_refresh.status === "unknown")
+      ? "System healthy"
+      : "System needs review"
+    : "System status unavailable";
 
   return (
     <section className="page-enter space-y-12">
@@ -246,6 +258,7 @@ export default function MorningBrief({
               <InlineDatum label="Scanner Action" value={topScannerPick?.action ?? "-"} />
               <InlineDatum label="Paper Execution" value={topPaperExecution} />
               <InlineDatum label="Market Regime" value={snapshot?.market_regime.label ?? "-"} />
+              <InlineDatum label="System" value={healthLabel} />
               <InlineDatum label="Generated" value={formatTimestamp(generatedAt)} />
             </div>
           </div>
@@ -279,6 +292,12 @@ export default function MorningBrief({
                 value={top ? formatPercent(top.expected_return) : "-"}
               />
             </div>
+            <Link
+              href="/mission-control"
+              className="mt-7 inline-flex text-xs font-black uppercase tracking-[0.18em] text-black/42 transition-colors hover:text-black"
+            >
+              Open Mission Control →
+            </Link>
           </div>
         </div>
       </header>
@@ -342,6 +361,7 @@ export default function MorningBrief({
               <StatusItem label="No broker connected" value="Yes" />
               <StatusItem label="V8 remains Champion" value="Yes" />
               <StatusItem label="Mock/live data status" value={statusLabel} />
+              <StatusItem label="Operational health" value={healthLabel} />
             </div>
             <p className="mt-7 border-t border-black/10 pt-5 text-xs leading-5 text-black/42">
               {paperTradingDisclaimer}

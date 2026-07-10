@@ -304,6 +304,34 @@ function CandidateDetail({
             </section>
 
             <section className="reveal memo-panel border-t border-transparent pt-1">
+              <SectionLabel title="Why V8 Surfaced It" />
+              <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-3">
+                <MemoNarrative
+                  title="Scanner thesis"
+                  body={`${pick.ticker} ranked #${pick.rank} with ${pick.confidence.toFixed(
+                    0
+                  )}% confidence, ${pct(pick.expected_return_pct)} expected return, ${pick.historical_matches.toLocaleString()} historical matches, and ${pick.volume_ratio.toFixed(
+                    2
+                  )}x volume ratio.`}
+                />
+                <MemoNarrative
+                  title="Bull case"
+                  body={
+                    pick.ai_explanation.strengths[0] ??
+                    "No explicit strength notes were exported for this candidate."
+                  }
+                />
+                <MemoNarrative
+                  title="Risk case"
+                  body={
+                    pick.ai_explanation.risks[0] ??
+                    "No explicit risk notes were exported for this candidate."
+                  }
+                />
+              </div>
+            </section>
+
+            <section className="reveal memo-panel border-t border-transparent pt-1">
               <SectionLabel title="Scanner Evidence" />
               <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
                 <EvidenceMetric
@@ -404,6 +432,10 @@ function CandidateDetail({
                     ? `Source: ${data.dailyPicks.source_file}`
                     : "Source file unavailable"}
                 </div>
+                <div>Daily picks generated: {formatTimestamp(data.dailyPicks.generated_at)}</div>
+                <div>
+                  Portfolio generated: {formatTimestamp(data.portfolioSummary.generated_at)}
+                </div>
               </div>
             </section>
 
@@ -484,6 +516,17 @@ function MemoMetric({ label, value }: { label: string; value: string }) {
       <div className="mt-2 text-2xl font-black tracking-[-0.05em] text-black">
         {value}
       </div>
+    </div>
+  );
+}
+
+function MemoNarrative({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="border-t border-[#e8e8e3] pt-4">
+      <div className="text-xs font-black uppercase tracking-[0.2em] text-black/35">
+        {title}
+      </div>
+      <p className="mt-3 text-sm leading-6 text-black/62">{body}</p>
     </div>
   );
 }

@@ -4,6 +4,8 @@ import Sidebar from "@/components/layout/Sidebar";
 import Ticker from "@/components/layout/Ticker";
 import { paperTradingDisclaimer } from "@/components/paperTrading/PaperTradingBanner";
 import { loadPaperTradingData } from "@/lib/paperTrading";
+import { loadResearchArchive } from "@/lib/researchArchive";
+import { loadSystemStatus } from "@/lib/systemStatus";
 
 function pct(value: number) {
   const sign = value > 0 ? "+" : "";
@@ -27,12 +29,17 @@ function formatTimestamp(value?: string) {
 }
 
 export default async function ResearchPage() {
-  const paperTrading = await loadPaperTradingData();
+  const [paperTrading, systemStatus, archive] = await Promise.all([
+    loadPaperTradingData(),
+    loadSystemStatus(),
+    loadResearchArchive(),
+  ]);
   const data = paperTrading.status === "ready" ? paperTrading.data : null;
   const picks = data?.dailyPicks.picks.slice(0, 6) ?? [];
   const generatedAt = data?.dailyPicks.generated_at;
   const sourceFile = data?.dailyPicks.source_file;
   const topPick = picks[0];
+  const archiveCount = archive?.items.length ?? 0;
 
   return (
     <main className="min-h-screen bg-[#fafafa] text-black">
@@ -54,10 +61,30 @@ export default async function ResearchPage() {
                   Every signal needs a paper trail.
                 </h1>
                 <p className="mt-9 max-w-3xl text-xl leading-9 text-black/58">
-                  Scanner complete. Candidate evidence, provenance, and V8
-                  Champion context are prepared for review without touching
-                  strategy or training logic.
+                  Scanner complete. Candidate evidence, provenance, V8
+                  Champion context, and paper-mode constraints are prepared for
+                  review without touching strategy or training logic.
                 </p>
+                <div className="mt-8 flex flex-wrap gap-x-9 gap-y-3 border-y border-[#e8e8e3] py-4 text-sm text-black/45">
+                  <span>
+                    <span className="text-black/30">Market State</span>{" "}
+                    <span className="font-semibold text-black/72">
+                      {systemStatus?.market_state ?? "Unavailable"}
+                    </span>
+                  </span>
+                  <span>
+                    <span className="text-black/30">Evidence Count</span>{" "}
+                    <span className="font-semibold text-black/72">
+                      {picks.reduce((total, pick) => total + pick.historical_matches, 0).toLocaleString()}
+                    </span>
+                  </span>
+                  <span>
+                    <span className="text-black/30">Archive</span>{" "}
+                    <span className="font-semibold text-black/72">
+                      {archiveCount} reports indexed
+                    </span>
+                  </span>
+                </div>
               </div>
 
               <aside className="border-l border-[#e8e8e3] pl-7">
@@ -71,6 +98,11 @@ export default async function ResearchPage() {
                   <div>{formatTimestamp(generatedAt)}</div>
                   <div>{sourceFile ?? "Source file unavailable"}</div>
                   <div>V8 remains Champion</div>
+                  <div>
+                    {systemStatus?.daily_pipeline.status
+                      ? `Pipeline ${systemStatus.daily_pipeline.status}`
+                      : "Pipeline unavailable"}
+                  </div>
                 </div>
               </aside>
             </header>
@@ -94,6 +126,12 @@ export default async function ResearchPage() {
                       Open top case →
                     </Link>
                   ) : null}
+                  <Link
+                    href="/research/archive"
+                    className="subtle-link text-xs font-black uppercase tracking-[0.18em] text-black/42 hover:text-black"
+                  >
+                    Archive →
+                  </Link>
                 </div>
 
                 <div className="divide-y divide-[#e8e8e3]">
@@ -152,6 +190,17 @@ export default async function ResearchPage() {
                   <p className="mt-5 border-t border-[#e8e8e3] pt-5 text-xs leading-5 text-black/42">
                     Research ratings summarize the web analysis layer. Paper
                     trades are authorized only by the raw scanner action.
+                  </p>
+                </section>
+
+                <section className="memo-panel border-t border-transparent pt-1">
+                  <div className="text-xs font-black uppercase tracking-[0.25em] text-black/35">
+                    What Changed
+                  </div>
+                  <p className="mt-5 text-base font-medium leading-8 text-black/62">
+                    {archiveCount > 1
+                      ? `${archiveCount} historical scanner packages are indexed. Comparative diffs are ready for a future archive detail view.`
+                      : "Waiting for additional historical packages before a reliable change summary can be prepared."}
                   </p>
                 </section>
 

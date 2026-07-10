@@ -287,10 +287,15 @@ function PortfolioContent({ data }: { data: PaperTradingData }) {
         ) : null}
       </section>
 
-      <section className="reveal grid grid-cols-2 gap-x-10 gap-y-6 border-b border-[#e8e8e3] py-8 md:grid-cols-4">
-        <ReportMetric label="Portfolio Value" value={money(summary.total_equity)} />
+      <section className="reveal grid grid-cols-2 gap-x-10 gap-y-6 border-b border-[#e8e8e3] py-8 md:grid-cols-4 xl:grid-cols-8">
+        <ReportMetric label="Total Equity" value={money(summary.total_equity)} />
+        <ReportMetric label="Cash" value={money(summary.cash)} />
+        <ReportMetric label="Invested" value={money(summary.invested_value)} />
         <ReportMetric label="Total Return" value={pct(summary.total_return_pct)} />
         <ReportMetric label="Open Positions" value={`${summary.open_positions_count}`} />
+        <ReportMetric label="Closed Trades" value={`${summary.closed_trades_count}`} />
+        <ReportMetric label="Realized P/L" value={money(summary.realized_pnl)} />
+        <ReportMetric label="Unrealized P/L" value={money(summary.unrealized_pnl)} />
         <ReportMetric label="Win Rate" value={optionalPct(overall.win_rate_pct, 0)} />
       </section>
 
