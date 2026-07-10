@@ -68,4 +68,10 @@ fi
 
 log_line "Running paper-trading refresh command."
 "${PYTHON_BIN}" refresh_paper_trading.py "${ARGS[@]}"
+
+if (( DRY_RUN != 1 )); then
+  log_line "Exporting system status."
+  "${PYTHON_BIN}" system_status_exporter.py
+fi
+
 log_line "Paper ledger refresh completed successfully."

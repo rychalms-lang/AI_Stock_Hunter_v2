@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-10T13:12:52-04:00",
+  "items": [
+    {
+      "date": "2026-07-09",
+      "market_regime": "Unavailable",
+      "candidate_count": 10,
+      "top_opportunity": {
+        "ticker": "GTLB",
+        "sector": "Software",
+        "action": "WATCH",
+        "confidence": 100.0,
+        "expected_return_pct": 5.65,
+        "score": 58.55
+      },
+      "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-09_v2.csv"
+    },
+    {
+      "date": "2026-07-06",
+      "market_regime": "Unavailable",
+      "candidate_count": 10,
+      "top_opportunity": {
+        "ticker": "HIMS",
+        "sector": "Consumer Health",
+        "action": "WATCH",
+        "confidence": 100.0,
+        "expected_return_pct": 8.0,
+        "score": 51.59
+      },
+      "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-06_v2.csv"
+    },
+    {
+      "date": "2026-06-29",
+      "market_regime": "Unavailable",
+      "candidate_count": 10,
+      "top_opportunity": {
+        "ticker": "AMAT",
+        "sector": "Semiconductors",
+        "action": "Unavailable",
+        "confidence": 100.0,
+        "expected_return_pct": null,
+        "score": 63.68
+      },
+      "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-06-29_v2.csv"
+    }
+  ]
+}

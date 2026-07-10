@@ -12,6 +12,7 @@ Automation is split into two independent workflows:
    - Runs `web_exporter.py` after the scanner because `main.py` does not currently call the exporter.
    - Updates `data/web_snapshot.json`.
    - Updates paper-trading daily picks and opens newly eligible paper positions through the exporter path.
+   - Updates `data/research_archive.json` and `data/system_status.json`.
 
 2. Intraday paper-ledger refresh:
    - Runs `refresh_paper_trading.py`.
@@ -20,6 +21,7 @@ Automation is split into two independent workflows:
    - Does not run the scanner.
    - Does not generate new signals.
    - Does not open new positions.
+   - Updates `data/system_status.json` after successful non-dry-run refreshes.
 
 ## Project Paths
 

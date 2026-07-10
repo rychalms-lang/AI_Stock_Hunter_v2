@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-10T13:12:52-04:00",
+  "market_state": "OPEN",
+  "daily_pipeline": {
+    "status": "warning",
+    "last_success_at": "Not yet recorded",
+    "last_market_date": "2026-07-06",
+    "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-09_v2.csv"
+  },
+  "paper_refresh": {
+    "status": "unknown",
+    "last_success_at": "Not yet recorded",
+    "positions_updated": 0,
+    "positions_stale": 0,
+    "positions_closed": 0
+  },
+  "data_freshness": {
+    "daily_picks": "2026-07-09T21:57:48",
+    "portfolio": "2026-07-09T22:57:20",
+    "web_snapshot": "2026-07-09T21:57:48"
+  },
+  "strategy": {
+    "name": "V8",
+    "version": "8.0",
+    "status": "Champion"
+  },
+  "automation": {
+    "daily_pipeline_enabled": true,
+    "paper_refresh_enabled": true,
+    "daily_pipeline_label": "com.aistockhunter.daily-pipeline",
+    "paper_refresh_label": "com.aistockhunter.paper-refresh"
+  },
+  "scanner": {
+    "candidate_count": 10,
+    "last_export_timestamp": "2026-07-09T21:57:48",
+    "source_file": "reports/2026-07-06_v2.csv"
+  },
+  "paper_portfolio": {
+    "open_positions": 0,
+    "stale_positions": 0,
+    "price_status": "no_price_requests",
+    "last_market_update": null
+  },
+  "events": [
+    {
+      "timestamp": "2026-07-10T13:05:03-0400",
+      "level": "info",
+      "message": "Market timezone: America/New_York"
+    },
+    {
+      "timestamp": "2026-07-10T13:05:03-0400",
+      "level": "info",
+      "message": "New York market timestamp: 2026-07-10T13:05:03-04:00"
+    },
+    {
+      "timestamp": "2026-07-10T13:05:03-0400",
+      "level": "info",
+      "message": "New York market date: 2026-07-10"
+    },
+    {
+      "timestamp": "2026-07-10T13:05:04-0400",
+      "level": "info",
+      "message": "Running paper-trading refresh command."
+    },
+    {
+      "timestamp": "Not yet recorded",
+      "level": "info",
+      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
+    },
+    {
+      "timestamp": "Not yet recorded",
+      "level": "info",
+      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
+    },
+    {
+      "timestamp": "Not yet recorded",
+      "level": "info",
+      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
+    },
+    {
+      "timestamp": "Not yet recorded",
+      "level": "info",
+      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
+    }
+  ]
+}
