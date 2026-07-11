@@ -6,7 +6,10 @@ import Sidebar from "@/components/layout/Sidebar";
 import Ticker from "@/components/layout/Ticker";
 import PaperTradingStateCard from "@/components/paperTrading/PaperTradingStateCard";
 import { paperTradingDisclaimer } from "@/components/paperTrading/PaperTradingBanner";
+import { LiveQuoteContext } from "@/components/market/LiveQuoteContext";
 import Card from "@/components/ui/Card";
+import { MarketSnapshot } from "@/lib/marketSnapshot";
+import { loadMarketSnapshot } from "@/lib/marketSnapshotServer";
 import {
   ClosedTrade,
   DailyPick,
@@ -240,12 +243,14 @@ function CandidateDetail({
   researchRating,
   openPosition,
   closedTrade,
+  marketSnapshot,
 }: {
   data: PaperTradingData;
   pick: DailyPick;
   researchRating?: AIRecommendation;
   openPosition?: OpenPosition;
   closedTrade?: ClosedTrade;
+  marketSnapshot: MarketSnapshot | null;
 }) {
   const regime = data.dailyPicks.market_regime.label;
   const executionStatus = paperExecutionStatus(
@@ -327,6 +332,17 @@ function CandidateDetail({
                     pick.ai_explanation.risks[0] ??
                     "No explicit risk notes were exported for this candidate."
                   }
+                />
+              </div>
+            </section>
+
+            <section className="reveal memo-panel border-t border-transparent pt-1">
+              <SectionLabel title="Current Market Context" />
+              <div className="mt-5">
+                <LiveQuoteContext
+                  ticker={pick.ticker}
+                  scannerReferencePrice={pick.latest_close}
+                  initialSnapshot={marketSnapshot}
                 />
               </div>
             </section>
@@ -533,9 +549,10 @@ function MemoNarrative({ title, body }: { title: string; body: string }) {
 
 export default async function CandidatePage({ params }: PageProps) {
   const { ticker } = await params;
-  const [result, snapshot] = await Promise.all([
+  const [result, snapshot, marketSnapshot] = await Promise.all([
     loadPaperTradingData(),
     loadWebSnapshot(),
+    loadMarketSnapshot(),
   ]);
 
   if (result.status !== "ready") {
@@ -561,6 +578,7 @@ export default async function CandidatePage({ params }: PageProps) {
       researchRating={findResearchRating(snapshot, pick.ticker)}
       openPosition={findOpenPosition(result.data, pick)}
       closedTrade={findClosedTrade(result.data, pick)}
+      marketSnapshot={marketSnapshot.status === "ready" ? marketSnapshot.data : null}
     />
   );
 }

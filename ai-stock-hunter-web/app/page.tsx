@@ -6,13 +6,15 @@ import { loadPaperTradingData } from "@/lib/paperTrading";
 import { loadSystemStatus } from "@/lib/systemStatus";
 import { loadWebSnapshotFromData } from "@/lib/webSnapshot";
 import { loadResearchChanges } from "@/lib/researchChanges";
+import { loadMarketSnapshot } from "@/lib/marketSnapshotServer";
 
 export default async function Home() {
-  const [paperTrading, snapshot, systemStatus, researchChanges] = await Promise.all([
+  const [paperTrading, snapshot, systemStatus, researchChanges, marketSnapshot] = await Promise.all([
     loadPaperTradingData(),
     loadWebSnapshotFromData(),
     loadSystemStatus(),
     loadResearchChanges(),
+    loadMarketSnapshot(),
   ]);
 
   return (
@@ -29,6 +31,7 @@ export default async function Home() {
               initialSnapshot={snapshot}
               systemStatus={systemStatus}
               researchChanges={researchChanges}
+              marketSnapshot={marketSnapshot.status === "ready" ? marketSnapshot.data : null}
             />
           </div>
         </section>

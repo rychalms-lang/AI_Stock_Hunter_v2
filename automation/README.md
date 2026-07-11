@@ -44,11 +44,13 @@ Daily scanner/export:
 
 Paper ledger refresh:
 
-- Launchd checks hourly at `:05` between 9:05 AM and 4:05 PM local time.
+- Launchd checks every 15 minutes with `StartInterval=900`.
 - The wrapper evaluates the actual market window in `America/New_York`, not the Mac's local timezone.
 - The wrapper performs a scheduled refresh only on weekdays during the New York 9:30 AM to 4:00 PM regular market window.
 - `MarketDataService` must report `market_state=OPEN` before a scheduled refresh proceeds.
 - If quotes are unavailable or stale, the paper-trading engine retains last known prices, marks positions stale, and does not process exits from stale quotes.
+- Successful non-dry-run refreshes also regenerate `data/market_snapshot.json` for frontend quote context.
+- The 15-minute launchd interval is a local scheduling trigger, not a market-data freshness guarantee.
 
 The launchd trigger itself remains local-time based because launchd calendar intervals are local to the Mac. The wrappers are timezone-aware and use `America/New_York` with daylight saving handled by Python `zoneinfo`, so market-session decisions remain correct if the Mac travels to another timezone.
 
@@ -118,6 +120,12 @@ Run one manual paper refresh:
 
 ```bash
 automation/scripts/refresh_paper_ledger.sh --force
+```
+
+Refresh only the frontend quote snapshot without rerunning the scanner:
+
+```bash
+python3 refresh_market_snapshot.py
 ```
 
 View status:
@@ -191,7 +199,7 @@ automation/scripts/install_launch_agents.sh --yes
 
 - Mac asleep: launchd does not guarantee missed calendar jobs run while the Mac is asleep or powered off, and it does not guarantee catch-up execution after wake. Check status/logs after wake.
 - Delayed wake-up: daily duplicate markers are keyed to the New York market date, and the wrapper refuses pre-close runs unless forced. This prevents a late launchd event from silently processing the wrong market date or duplicating a completed date.
-- No internet or yfinance failure: scanner or refresh may fail or mark prices stale; no ledger reset is performed.
+- No internet or yfinance failure: scanner or refresh may fail or mark prices stale; no ledger reset is performed. The frontend retains the last successful market snapshot until a new one is generated.
 - Market holiday: scheduled refresh should no-op when the market is not open. If the clock window is open but market data is unavailable or stale, the engine marks prices stale and avoids processing exits.
 - Missing `.env`: allowed unless email delivery is required.
 - Missing venv: wrappers fail before running jobs.

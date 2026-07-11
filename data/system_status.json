@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-10T14:52:59-04:00",
-  "market_state": "OPEN",
+  "generated_at": "2026-07-10T23:49:39-04:00",
+  "market_state": "CLOSED",
   "daily_pipeline": {
     "status": "warning",
     "last_success_at": "Not yet recorded",
     "last_market_date": "2026-07-06",
-    "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-09_v2.csv"
+    "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-10_v2.csv"
   },
   "paper_refresh": {
     "status": "unknown",
@@ -42,34 +42,43 @@
     "price_status": "fresh",
     "last_market_update": "2026-07-10T14:31:39-04:00"
   },
+  "market_snapshot": {
+    "provider": "yfinance",
+    "quote_status": "MARKET_CLOSED",
+    "last_successful_quote_refresh": "2026-07-10T23:49:24-04:00",
+    "tickers_requested": 13,
+    "tickers_updated": 13,
+    "failed_quotes": 0,
+    "market_state": "CLOSED"
+  },
   "portfolio_governance": {
-    "current_mode": "ai_assisted",
-    "label": "AI Assisted",
-    "decision_authority": "user_approved_v8",
-    "automatic_entries_enabled": false,
-    "automatic_exits_enabled": false,
-    "manual_entries_enabled": true,
-    "approval_required": true,
+    "current_mode": "ai_managed",
+    "label": "AI Managed",
+    "decision_authority": "v8",
+    "automatic_entries_enabled": true,
+    "automatic_exits_enabled": true,
+    "manual_entries_enabled": false,
+    "approval_required": false,
     "pending_proposal_count": 0,
-    "last_mode_change": "2026-07-10T14:52:59",
-    "governance_status": "ai_assisted_active",
-    "legacy_position_handling": "Existing positions keep their original origin and lifecycle metadata."
+    "last_mode_change": "2026-07-10T23:28:40",
+    "governance_status": "ai_managed_active",
+    "legacy_position_handling": "Existing user-directed positions remain user-directed and keep manual lifecycle authority."
   },
   "events": [
     {
-      "timestamp": "2026-07-10T14:05:04-0400",
-      "level": "info",
-      "message": "New York market timestamp: 2026-07-10T14:05:04-04:00"
-    },
-    {
-      "timestamp": "2026-07-10T14:05:04-0400",
+      "timestamp": "2026-07-10T16:09:41-0400",
       "level": "info",
       "message": "New York market date: 2026-07-10"
     },
     {
-      "timestamp": "2026-07-10T14:05:04-0400",
+      "timestamp": "2026-07-10T16:09:41-0400",
+      "level": "warning",
+      "message": "Outside regular New York market window; refresh skipped safely."
+    },
+    {
+      "timestamp": "Not yet recorded",
       "level": "info",
-      "message": "Running paper-trading refresh command."
+      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
     },
     {
       "timestamp": "Not yet recorded",

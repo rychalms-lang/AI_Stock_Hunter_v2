@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-09T22:57:20",
+  "generated_at": "2026-07-10T14:31:39",
   "mock_data": false,
   "data_source": {
     "type": "paper_ledger",
@@ -20,11 +20,11 @@
     "generated_from": "paper_trading_update"
   },
   "source_file": "reports/2026-07-06_v2.csv",
-  "as_of_date": "2026-07-09",
-  "price_data_status": "no_price_requests",
-  "stale_price_data": true,
-  "market_state": "CLOSED",
-  "last_market_update": null,
+  "as_of_date": "2026-07-10",
+  "price_data_status": "fresh",
+  "stale_price_data": false,
+  "market_state": "OPEN",
+  "last_market_update": "2026-07-10T14:31:39-04:00",
   "trades": [],
   "disclaimer": "Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice."
 }

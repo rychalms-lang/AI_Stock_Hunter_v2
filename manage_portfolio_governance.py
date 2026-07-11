@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from market_data_service import MarketDataService
+from market_data_service import MarketDataService, is_usable_price_status
 from paper_trading_engine import (
     DEFAULT_CONFIG,
     PaperTradingStore,
@@ -116,7 +116,8 @@ def approve_open_position_proposal(
 
     market_data = market_data_service or MarketDataService()
     quote = market_data.get_quote(ticker)
-    if safe_float(quote.get("price")) <= 0 or quote.get("price_status") not in {"fresh", "delayed"}:
+    quote_price = safe_float(quote.get("current_price", quote.get("price")))
+    if quote_price <= 0 or not is_usable_price_status(quote.get("price_status")):
         raise GovernanceError("price_unavailable", "Fresh market price was unavailable; proposal was not executed.")
 
     cash = safe_float(account.get("cash"))
@@ -124,7 +125,7 @@ def approve_open_position_proposal(
     spendable_cash = max(cash - minimum_cash, 0)
     max_position_notional = 25000.0 * (safe_float(DEFAULT_CONFIG["max_position_pct"]) / 100)
     target_notional = min(safe_float(proposal.get("proposed_amount")), spendable_cash, max_position_notional)
-    quantity = int(target_notional // safe_float(quote["price"]))
+    quantity = int(target_notional // quote_price)
     if quantity <= 0:
         raise GovernanceError("insufficient_cash", "Available cash is insufficient for one whole share while preserving reserve.")
 

@@ -51,6 +51,15 @@ export type SystemStatus = {
     price_status: string;
     last_market_update: string | null;
   };
+  market_snapshot?: {
+    provider: string;
+    quote_status: string;
+    last_successful_quote_refresh: string;
+    tickers_requested: number;
+    tickers_updated: number;
+    failed_quotes: number;
+    market_state: string;
+  };
   portfolio_governance?: {
     current_mode: string;
     label: string;

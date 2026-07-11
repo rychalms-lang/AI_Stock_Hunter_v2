@@ -67,7 +67,18 @@ if (( VERBOSE == 1 )); then
 fi
 
 log_line "Running paper-trading refresh command."
-"${PYTHON_BIN}" refresh_paper_trading.py "${ARGS[@]}"
+if (( ${#ARGS[@]} > 0 )); then
+  "${PYTHON_BIN}" refresh_paper_trading.py "${ARGS[@]}"
+else
+  "${PYTHON_BIN}" refresh_paper_trading.py
+fi
+
+log_line "Refreshing market snapshot."
+if (( DRY_RUN == 1 )); then
+  "${PYTHON_BIN}" refresh_market_snapshot.py --dry-run
+else
+  "${PYTHON_BIN}" refresh_market_snapshot.py
+fi
 
 if (( DRY_RUN != 1 )); then
   log_line "Exporting system status."

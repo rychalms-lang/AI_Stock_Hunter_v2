@@ -6,7 +6,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from market_data_service import MarketDataService
+from market_data_service import MarketDataService, is_usable_price_status
 from paper_trading_engine import (
     DATA_SOURCE,
     DEFAULT_CONFIG,
@@ -252,7 +252,8 @@ def add_user_directed_position(
 
     market_data = market_data_service or MarketDataService()
     quote = market_data.get_quote(ticker)
-    if safe_float(quote.get("price")) <= 0 or quote.get("price_status") not in {"fresh", "delayed"}:
+    quote_price = safe_float(quote.get("current_price", quote.get("price")))
+    if quote_price <= 0 or not is_usable_price_status(quote.get("price_status")):
         reason = "Fresh market price was unavailable; no simulated position was created."
         append_user_action(
             state_dir,
@@ -267,7 +268,7 @@ def add_user_directed_position(
     spendable_cash = max(cash - minimum_cash, 0)
     max_position_notional = STARTING_CAPITAL * (safe_float(active_config["max_position_pct"]) / 100)
     target_notional = min(requested_amount, spendable_cash, max_position_notional)
-    quantity = int(target_notional // safe_float(quote["price"]))
+    quantity = int(target_notional // quote_price)
 
     if quantity <= 0:
         reason = "Requested amount cannot buy one whole share while preserving the cash reserve."
@@ -287,7 +288,7 @@ def add_user_directed_position(
         active_config,
     )
     position_id = f"user_{ticker}_{generated_at[:10]}_{request_id[:12]}"
-    cost_basis = round_money(quantity * safe_float(quote["price"]))
+    cost_basis = round_money(quantity * quote_price)
     position.update(
         {
             "trade_id": position_id,

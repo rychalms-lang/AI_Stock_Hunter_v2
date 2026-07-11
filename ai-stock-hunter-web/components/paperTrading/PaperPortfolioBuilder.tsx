@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
 import { DailyPick, PaperTradingData } from "@/lib/paperTrading";
 import { PortfolioGovernance } from "@/lib/governanceDisplay";
+import { MarketSnapshot, priceStatusLabel, quoteForTicker, usableQuoteStatus } from "@/lib/marketSnapshot";
 import { WebSnapshot } from "@/lib/webSnapshot";
+import { LiveQuoteContext } from "@/components/market/LiveQuoteContext";
 
 type SortKey = "rank" | "confidence" | "expected_return_pct" | "risk";
 
@@ -13,6 +15,8 @@ type BuilderProps = {
   data: PaperTradingData;
   webSnapshot: WebSnapshot | null;
   governance?: PortfolioGovernance;
+  marketSnapshot?: MarketSnapshot | null;
+  hideLauncher?: boolean;
 };
 
 type ApiResult = {
@@ -89,7 +93,13 @@ function executionState(pick: DailyPick, data: PaperTradingData) {
   return isEligible(pick) ? "Eligible" : "Not eligible";
 }
 
-export default function PaperPortfolioBuilder({ data, webSnapshot, governance }: BuilderProps) {
+export default function PaperPortfolioBuilder({
+  data,
+  webSnapshot,
+  governance,
+  marketSnapshot,
+  hideLauncher = false,
+}: BuilderProps) {
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -149,7 +159,11 @@ export default function PaperPortfolioBuilder({ data, webSnapshot, governance }:
   );
 
   const numericAmount = Number(amount);
-  const latestClose = selected?.latest_close ?? 0;
+  const selectedQuote = quoteForTicker(marketSnapshot ?? null, selected?.ticker);
+  const selectedQuotePrice = selectedQuote?.current_price ?? null;
+  const selectedQuoteBlocked =
+    selectedQuote ? !usableQuoteStatus(selectedQuote.price_status) : false;
+  const latestClose = selectedQuotePrice ?? selected?.latest_close ?? 0;
   const estimatedShares =
     latestClose > 0 && Number.isFinite(numericAmount)
       ? Math.floor(numericAmount / latestClose)
@@ -179,6 +193,7 @@ export default function PaperPortfolioBuilder({ data, webSnapshot, governance }:
     numericAmount > 0 &&
     estimatedShares > 0 &&
     !alreadyHeld &&
+    !selectedQuoteBlocked &&
     (!needsOverride || acknowledgeOverride);
   const manualAddDisabled = governance?.mode === "ai_managed";
 
@@ -295,7 +310,7 @@ export default function PaperPortfolioBuilder({ data, webSnapshot, governance }:
   const portalTarget = typeof document === "undefined" ? null : document.body;
 
   return (
-    <section className="reveal border-b border-[#e8e8e3] pb-10">
+    <section className={hideLauncher ? "hidden" : "reveal border-b border-[#e8e8e3] pb-10"}>
       <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
@@ -550,6 +565,10 @@ export default function PaperPortfolioBuilder({ data, webSnapshot, governance }:
                     <SectionTitle label="Position preview" />
                     <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 2xl:grid-cols-3">
                       <PreviewTile label="Estimated price" value={money(latestClose)} />
+                      <PreviewTile
+                        label="Quote status"
+                        value={priceStatusLabel(selectedQuote?.price_status)}
+                      />
                       <PreviewTile label="Estimated shares" value={`${estimatedShares}`} />
                       <PreviewTile label="Invested amount" value={money(estimatedNotional)} />
                       <PreviewTile label="Cash remaining" value={money(cashRemaining)} />
@@ -558,6 +577,15 @@ export default function PaperPortfolioBuilder({ data, webSnapshot, governance }:
                       <PreviewTile label="Sector exposure" value={`${projectedSectorExposure.toFixed(1)}%`} />
                       <PreviewTile label="Planned hold" value={`${selected.best_hold_period_days}D`} />
                     </div>
+                  </div>
+
+                  <div className="mt-7 border-t border-[#e8e8e3] pt-6">
+                    <LiveQuoteContext
+                      ticker={selected.ticker}
+                      scannerReferencePrice={selected.latest_close}
+                      initialSnapshot={marketSnapshot ?? null}
+                      compact
+                    />
                   </div>
 
                   <div className="mt-7 border-t border-[#e8e8e3] pt-6">
@@ -607,6 +635,12 @@ export default function PaperPortfolioBuilder({ data, webSnapshot, governance }:
                     {alreadyHeld ? (
                       <div className="mt-5 border border-[#e8e8e3] bg-[#fafafa] p-4 text-base text-black/60">
                         This ticker already has an open simulated position.
+                      </div>
+                    ) : null}
+
+                    {selectedQuoteBlocked ? (
+                      <div className="mt-5 border border-amber-200 bg-amber-50 p-4 text-base text-amber-900">
+                        The current quote is {priceStatusLabel(selectedQuote?.price_status).toLowerCase()}; simulated entry is waiting for a usable market price.
                       </div>
                     ) : null}
 

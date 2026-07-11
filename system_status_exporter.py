@@ -189,6 +189,7 @@ def build_status() -> Dict[str, Any]:
     open_positions = read_json(PAPER_DIR / "open_positions.json") or {}
     portfolio = read_json(PAPER_DIR / "portfolio_summary.json") or {}
     web_snapshot = read_json(DATA_DIR / "web_snapshot.json") or {}
+    market_snapshot = read_json(DATA_DIR / "market_snapshot.json") or {}
 
     try:
         market_state = MarketDataService().get_market_state()
@@ -232,6 +233,15 @@ def build_status() -> Dict[str, Any]:
             "stale_positions": int(stale_positions or 0),
             "price_status": portfolio.get("price_data_status", "Unavailable"),
             "last_market_update": portfolio.get("last_market_update", "Not yet recorded"),
+        },
+        "market_snapshot": {
+            "provider": market_snapshot.get("provider", "Unavailable"),
+            "quote_status": market_snapshot.get("quote_status", "Unavailable"),
+            "last_successful_quote_refresh": market_snapshot.get("generated_at", "Not yet recorded"),
+            "tickers_requested": len(market_snapshot.get("tickers_requested", [])),
+            "tickers_updated": int(market_snapshot.get("tickers_updated") or 0),
+            "failed_quotes": len(market_snapshot.get("errors", [])),
+            "market_state": market_snapshot.get("market_state", market_state),
         },
         "portfolio_governance": {
             "current_mode": governance["current_mode"],

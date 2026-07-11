@@ -94,6 +94,7 @@ validate_project() {
   [[ -f "${PROJECT_ROOT}/main.py" ]] || fail "Missing main.py"
   [[ -f "${PROJECT_ROOT}/web_exporter.py" ]] || fail "Missing web_exporter.py"
   [[ -f "${PROJECT_ROOT}/refresh_paper_trading.py" ]] || fail "Missing refresh_paper_trading.py"
+  [[ -f "${PROJECT_ROOT}/refresh_market_snapshot.py" ]] || fail "Missing refresh_market_snapshot.py"
 }
 
 load_local_env() {

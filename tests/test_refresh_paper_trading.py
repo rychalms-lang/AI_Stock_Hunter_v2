@@ -111,7 +111,7 @@ class RefreshPaperTradingTest(unittest.TestCase):
             with open(root / "out" / "open_positions.json") as f:
                 position = json.load(f)["positions"][0]
             self.assertEqual(position["current_price"], 100)
-            self.assertEqual(position["price_status"], "unavailable")
+            self.assertEqual(position["price_status"], "UNAVAILABLE")
 
     def test_stale_quote_does_not_exit(self):
         with tempfile.TemporaryDirectory() as temp_dir:

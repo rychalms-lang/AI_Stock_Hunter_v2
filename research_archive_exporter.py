@@ -25,9 +25,54 @@ def safe_float(value: Any) -> Optional[float]:
         return None
 
 
+def safe_int(value: Any) -> Optional[int]:
+    try:
+        if value is None or value == "":
+            return None
+        return int(round(float(value)))
+    except (TypeError, ValueError):
+        return None
+
+
+def parse_hold_days(value: Any) -> Optional[int]:
+    if value is None:
+        return None
+    text = str(value).strip().lower()
+    digits = "".join(char for char in text if char.isdigit())
+    return safe_int(digits)
+
+
 def read_rows(path: Path) -> List[Dict[str, str]]:
     with path.open(newline="") as f:
         return list(csv.DictReader(f))
+
+
+def candidate_from_row(row: Dict[str, str], index: int) -> Dict[str, Any]:
+    confidence = safe_float(row.get("confidence_score") or row.get("confidence"))
+    expected_return = safe_float(row.get("expected_return"))
+
+    return {
+        "rank": index + 1,
+        "ticker": row.get("ticker") or "Unavailable",
+        "sector": row.get("sector") or "Unavailable",
+        "action": row.get("action") or "Unavailable",
+        "confidence": confidence,
+        "score": safe_float(row.get("score")),
+        "expected_return_pct": expected_return,
+        "best_hold_period_days": parse_hold_days(row.get("best_hold_period")),
+        "historical_matches": safe_int(row.get("historical_matches")),
+        "risk": row.get("risk") or "Unavailable",
+        "reason": row.get("reason") or "",
+        "source_fields": {
+            "latest_open": safe_float(row.get("latest_open")),
+            "latest_close": safe_float(row.get("latest_close")),
+            "five_day_change_pct": safe_float(row.get("five_day_change")),
+            "twenty_day_change_pct": safe_float(row.get("twenty_day_change")),
+            "relative_strength_pct": safe_float(row.get("relative_strength")),
+            "volume_ratio": safe_float(row.get("volume_ratio")),
+            "best_avg_return_pct": safe_float(row.get("best_avg_return")),
+        },
+    }
 
 
 def archive_item(path: Path) -> Optional[Dict[str, Any]]:
@@ -41,6 +86,7 @@ def archive_item(path: Path) -> Optional[Dict[str, Any]]:
 
     top = rows[0]
     report_date = path.name.replace("_v2.csv", "")
+    candidates = [candidate_from_row(row, index) for index, row in enumerate(rows)]
 
     return {
         "date": report_date,
@@ -53,6 +99,16 @@ def archive_item(path: Path) -> Optional[Dict[str, Any]]:
             "confidence": safe_float(top.get("confidence_score") or top.get("confidence")),
             "expected_return_pct": safe_float(top.get("expected_return")),
             "score": safe_float(top.get("score")),
+        },
+        "candidates": candidates,
+        "strategy": {
+            "name": "V8",
+            "version": "8.0",
+            "status": "Champion",
+        },
+        "source_metadata": {
+            "schema": "scanner_report_v2_csv",
+            "future_outcomes_exposed": False,
         },
         "source_report": str(path),
     }

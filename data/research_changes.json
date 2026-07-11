@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-10T13:40:30-04:00",
+  "status": "ready",
+  "current_date": "2026-07-09",
+  "previous_date": "2026-07-06",
+  "current_source": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-09_v2.csv",
+  "previous_source": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-06_v2.csv",
+  "summary": {
+    "new_candidates": 6,
+    "removed_candidates": 6,
+    "rank_changes": 3,
+    "action_changes": 1,
+    "confidence_changes": 3,
+    "expected_return_changes": 1,
+    "sector_changes": 0
+  },
+  "new_candidates": [
+    {
+      "ticker": "GTLB",
+      "rank": 1,
+      "sector": "Software",
+      "action": "WATCH",
+      "confidence": 100.0,
+      "score": 58.55,
+      "expected_return_pct": 5.65,
+      "best_hold_period_days": 3,
+      "historical_matches": 33,
+      "risk": "High"
+    },
+    {
+      "ticker": "ANET",
+      "rank": 2,
+      "sector": "Other / Uncategorized",
+      "action": "WATCH",
+      "confidence": 90.0,
+      "score": 46.25,
+      "expected_return_pct": 7.32,
+      "best_hold_period_days": 10,
+      "historical_matches": 207,
+      "risk": "Medium"
+    },
+    {
+      "ticker": "DELL",
+      "rank": 3,
+      "sector": "Other / Uncategorized",
+      "action": "WATCH",
+      "confidence": 100.0,
+      "score": 45.77,
+      "expected_return_pct": 7.05,
+      "best_hold_period_days": 10,
+      "historical_matches": 207,
+      "risk": "Medium"
+    },
+    {
+      "ticker": "NET",
+      "rank": 4,
+      "sector": "Cloud Software",
+      "action": "WATCH",
+      "confidence": 100.0,
+      "score": 43.93,
+      "expected_return_pct": 7.69,
+      "best_hold_period_days": 7,
+      "historical_matches": 70,
+      "risk": "Medium"
+    },
+    {
+      "ticker": "S",
+      "rank": 6,
+      "sector": "Cybersecurity",
+      "action": "WATCH",
+      "confidence": 85.0,
+      "score": 40.55,
+      "expected_return_pct": 7.01,
+      "best_hold_period_days": 1,
+      "historical_matches": 99,
+      "risk": "High"
+    },
+    {
+      "ticker": "AMD",
+      "rank": 7,
+      "sector": "Semiconductors",
+      "action": "WATCH",
+      "confidence": 100.0,
+      "score": 40.07,
+      "expected_return_pct": 5.27,
+      "best_hold_period_days": 10,
+      "historical_matches": 1272,
+      "risk": "Medium"
+    }
+  ],
+  "removed_candidates": [
+    {
+      "ticker": "HIMS",
+      "rank": 1,
+      "sector": "Consumer Health",
+      "action": "WATCH",
+      "confidence": 100.0,
+      "score": 51.59,
+      "expected_return_pct": 8.0,
+      "best_hold_period_days": 10,
+      "historical_matches": 61,
+      "risk": "Medium"
+    },
+    {
+      "ticker": "CELH",
+      "rank": 3,
+      "sector": "Consumer Staples Growth",
+      "action": "WATCH",
+      "confidence": 100.0,
+      "score": 43.24,
+      "expected_return_pct": 6.13,
+      "best_hold_period_days": 10,
+      "historical_matches": 32,
+      "risk": "Medium"
+    },
+    {
+      "ticker": "DUOL",
+      "rank": 4,
+      "sector": "Consumer Apps",
+      "action": "WATCH",
+      "confidence": 100.0,
+      "score": 40.66,
+      "expected_return_pct": 6.07,
+      "best_hold_period_days": 7,
+      "historical_matches": 37,
+      "risk": "Medium"
+    },
+    {
+      "ticker": "AFRM",
+      "rank": 7,
+      "sector": "Other / Uncategorized",
+      "action": "WATCH",
+      "confidence": 85.0,
+      "score": 38.53,
+      "expected_return_pct": 7.94,
+      "best_hold_period_days": 5,
+      "historical_matches": 211,
+      "risk": "Medium"
+    },
+    {
+      "ticker": "PANW",
+      "rank": 8,
+      "sector": "Cybersecurity",
+      "action": "WATCH",
+      "confidence": 65.0,
+      "score": 36.11,
+      "expected_return_pct": 7.37,
+      "best_hold_period_days": 1,
+      "historical_matches": 62,
+      "risk": "Medium"
+    },
+    {
+      "ticker": "TEM",
+      "rank": 10,
+      "sector": "AI / Healthcare",
+      "action": "WATCH",
+      "confidence": 60.0,
+      "score": 32.08,
+      "expected_return_pct": 6.82,
+      "best_hold_period_days": 5,
+      "historical_matches": 58,
+      "risk": "Medium"
+    }
+  ],
+  "rank_changes": [
+    {
+      "ticker": "HOOD",
+      "previous_rank": 2,
+      "current_rank": 8,
+      "movement": -6
+    },
+    {
+      "ticker": "RBLX",
+      "previous_rank": 5,
+      "current_rank": 10,
+      "movement": -5
+    },
+    {
+      "ticker": "SE",
+      "previous_rank": 6,
+      "current_rank": 5,
+      "movement": 1
+    }
+  ],
+  "action_changes": [
+    {
+      "ticker": "SE",
+      "previous_action": "WATCH",
+      "current_action": "BUY"
+    }
+  ],
+  "confidence_changes": [
+    {
+      "ticker": "SE",
+      "previous_confidence": 70.0,
+      "current_confidence": 95.0,
+      "change_points": 25.0
+    },
+    {
+      "ticker": "RBLX",
+      "previous_confidence": 100.0,
+      "current_confidence": 80.0,
+      "change_points": -20.0
+    },
+    {
+      "ticker": "OKTA",
+      "previous_confidence": 80.0,
+      "current_confidence": 75.0,
+      "change_points": -5.0
+    }
+  ],
+  "expected_return_changes": [
+    {
+      "ticker": "HOOD",
+      "previous_expected_return_pct": 8.0,
+      "current_expected_return_pct": 6.94,
+      "change_points": -1.06
+    }
+  ],
+  "sector_changes": [],
+  "top_opportunity_change": {
+    "previous": {
+      "ticker": "HIMS",
+      "rank": 1,
+      "sector": "Consumer Health",
+      "action": "WATCH",
+      "confidence": 100.0,
+      "score": 51.59,
+      "expected_return_pct": 8.0,
+      "best_hold_period_days": 10,
+      "historical_matches": 61,
+      "risk": "Medium"
+    },
+    "current": {
+      "ticker": "GTLB",
+      "rank": 1,
+      "sector": "Software",
+      "action": "WATCH",
+      "confidence": 100.0,
+      "score": 58.55,
+      "expected_return_pct": 5.65,
+      "best_hold_period_days": 3,
+      "historical_matches": 33,
+      "risk": "High"
+    }
+  }
+}

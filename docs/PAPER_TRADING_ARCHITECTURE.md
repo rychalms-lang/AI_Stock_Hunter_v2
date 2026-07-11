@@ -772,6 +772,31 @@ Paper trading has two separate backend workflows:
 
 The refresh command is designed for future scheduling. It is non-interactive, safe to run repeatedly, supports dry runs, and should be suitable for cron, launchd, GitHub Actions, or a future hosted job runner. If market prices are unavailable or stale, the refresh command must retain the last known paper price, mark affected positions clearly, and avoid processing exits from stale quotes.
 
+## 9.2 Intraday Market Snapshot
+
+`refresh_market_snapshot.py` creates `data/market_snapshot.json` without rerunning the scanner or changing V8 research outputs.
+
+The market snapshot may be used by the website to display current quote context for:
+
+- open paper-position valuation
+- user-directed entry previews
+- candidate detail pages
+- Mission Control provider/freshness telemetry
+
+The snapshot is not an input to V8 ranking, confidence, expected-return calculation, hold-period recommendations, scanner actions, or backtested rules. V8 remains a daily research strategy unless separate intraday rules are explicitly researched, validated, and approved.
+
+Current public quote statuses are:
+
+- `LIVE`: provider contract explicitly supports real-time data.
+- `DELAYED`: usable quote data, but not contractually real time.
+- `STALE`: quote timestamp is too old for trading-day valuation or risk controls.
+- `MARKET_CLOSED`: current session is closed; values may represent the last available close.
+- `UNAVAILABLE`: provider did not return a usable quote.
+
+The current fallback provider is yfinance. Because the project does not have a real-time market-data contract, usable yfinance intraday quotes must be treated as `DELAYED`, not real time. Stale or unavailable quotes must never trigger paper exits or simulated entries.
+
+The frontend may poll `data/market_snapshot.json` through a local API every 30-60 seconds while the page is open, with slower polling when the browser tab is hidden or the market is closed. This polling updates display context only. Durable paper ledger state is refreshed by `refresh_paper_trading.py`.
+
 ### 9.2 Local Runtime State
 
 Paper-trading ledger files under `data/paper_trading/state/` are mutable local runtime state. They store account cash, open-position ledger entries, closed-trade ledger entries, processed pick IDs, and equity history used by the paper-trading runtime.

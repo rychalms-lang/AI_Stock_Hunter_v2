@@ -32,6 +32,8 @@ function pct(value: number | null | undefined) {
 export default function PortfolioGovernanceControl({ data }: { data: GovernanceData }) {
   const router = useRouter();
   const [pendingMode, setPendingMode] = useState<GovernanceMode | null>(null);
+  const [showModeChooser, setShowModeChooser] = useState(false);
+  const [showProposals, setShowProposals] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const currentMode = data.governance.mode;
@@ -57,81 +59,90 @@ export default function PortfolioGovernanceControl({ data }: { data: GovernanceD
   }
 
   return (
-    <section className="border border-[#e8e8e3] bg-white p-7 md:p-9">
-      <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
-        <div>
-          <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-            Portfolio Control
+    <section className="border-y border-[#e8e8e3] bg-white py-5">
+      <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
+              Governance
+            </div>
+            <span className="h-1.5 w-1.5 rounded-full bg-[#7fb000]" />
+            <div className="text-xs font-bold text-black/45">
+              {MODE_LABELS[currentMode]}
+            </div>
           </div>
-          <h2 className="mt-3 text-4xl font-black tracking-[-0.07em] text-black md:text-5xl">
+          <h2 className="mt-2 text-2xl font-black tracking-[-0.055em] text-black md:text-3xl">
             {capabilities.message}
           </h2>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-black/55">
-            Portfolio control mode affects simulated decision authority only.
-            Paper trading simulation only. No real trades are placed. This is
-            research and decision support, not investment advice.
+          <p className="mt-2 max-w-4xl text-sm leading-6 text-black/50">
+            Decision authority is simulated only. Paper trades remain research
+            software, never brokerage instructions.
           </p>
         </div>
-        <div className="border-l border-[#e8e8e3] pl-6">
-          <div className="text-xs uppercase tracking-[0.18em] text-black/35">Current Mode</div>
-          <div className="mt-2 text-3xl font-black tracking-[-0.06em] text-black">
-            {MODE_LABELS[currentMode]}
-          </div>
-          <div className="mt-2 text-sm text-black/45">
-            Last changed {data.governance.updated_at ?? "Not yet recorded"}
-          </div>
+
+        <div className="flex flex-wrap items-center gap-3">
+          {pendingProposals.length > 0 ? (
+            <button
+              type="button"
+              onClick={() => setShowProposals((value) => !value)}
+              className="border border-[#e8e8e3] bg-white px-4 py-2 text-sm font-bold text-black transition duration-200 hover:border-black/30"
+            >
+              {pendingProposals.length} proposal{pendingProposals.length === 1 ? "" : "s"}
+            </button>
+          ) : null}
+          <button
+            type="button"
+            onClick={() => setShowModeChooser((value) => !value)}
+            className="border border-black bg-black px-4 py-2 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-black/86"
+          >
+            {showModeChooser ? "Hide modes" : "Change mode"}
+          </button>
         </div>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 xl:grid-cols-3">
-        {modes.map((mode) => {
-          const selected = mode === currentMode;
-          const modeInfo = modeCapabilities(mode);
-          return (
-            <button
-              key={mode}
-              type="button"
-              onClick={() => mode !== currentMode && setPendingMode(mode)}
-              className={`min-h-[210px] border p-5 text-left transition duration-200 hover:-translate-y-0.5 ${
-                selected
-                  ? "border-black bg-[#fafafa] shadow-[0_18px_55px_rgba(0,0,0,0.06)]"
-                  : "border-[#e8e8e3] bg-white"
-              }`}
-            >
-              <div className="flex items-center justify-between gap-4">
-                <div className="text-2xl font-black tracking-[-0.055em] text-black">
-                  {MODE_LABELS[mode]}
-                </div>
-                {selected ? (
-                  <span className="bg-[#7fb000] px-2 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">
-                    Active
-                  </span>
-                ) : null}
-              </div>
-              <p className="mt-4 text-sm leading-6 text-black/55">
-                {modeInfo.entries}
-              </p>
-              <div className="mt-5 grid grid-cols-2 gap-3 text-xs text-black/50">
-                <Mini label="Authority" value={modeInfo.authority} />
-                <Mini label="Approval" value={modeInfo.approval} />
-                <Mini label="Manual" value={modeInfo.manual} />
-                <Mini label="Automation" value={modeInfo.automation} />
-              </div>
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="mt-7 grid grid-cols-1 gap-5 border-y border-[#e8e8e3] py-6 md:grid-cols-4">
+      <div className="mt-5 grid grid-cols-2 gap-x-7 gap-y-4 md:grid-cols-4">
         <Mini label="Decision Authority" value={capabilities.authority} />
         <Mini label="Entries" value={capabilities.entries} />
-        <Mini label="Exits" value={capabilities.exits} />
+        <Mini label="Manual Control" value={capabilities.manual} />
         <Mini label="Pending Approvals" value={`${pendingProposals.length}`} />
       </div>
 
-      {currentMode === "ai_managed" ? (
-        <div className="mt-5 border border-[#e8e8e3] bg-[#fafafa] p-4 text-sm text-black/55">
-          Manual position creation is unavailable while AI Managed mode is active.
+      {showModeChooser ? (
+        <div className="mt-6 grid grid-cols-1 gap-3 xl:grid-cols-3">
+          {modes.map((mode) => {
+            const selected = mode === currentMode;
+            const modeInfo = modeCapabilities(mode);
+            return (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => mode !== currentMode && setPendingMode(mode)}
+                className={`min-h-[150px] border p-5 text-left transition duration-200 hover:-translate-y-0.5 ${
+                  selected
+                    ? "border-black bg-[#fafafa]"
+                    : "border-[#e8e8e3] bg-white hover:border-black/25"
+                }`}
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <div className="text-xl font-black tracking-[-0.045em] text-black">
+                    {MODE_LABELS[mode]}
+                  </div>
+                  {selected ? (
+                    <span className="text-xs font-black uppercase tracking-[0.16em] text-[#5f8600]">
+                      Active
+                    </span>
+                  ) : null}
+                </div>
+                <p className="mt-3 text-sm leading-6 text-black/55">
+                  {modeInfo.entries}
+                </p>
+                <div className="mt-4 grid grid-cols-2 gap-3">
+                  <Mini label="Authority" value={modeInfo.authority} />
+                  <Mini label="Approval" value={modeInfo.approval} />
+                </div>
+              </button>
+            );
+          })}
         </div>
       ) : null}
 
@@ -141,12 +152,14 @@ export default function PortfolioGovernanceControl({ data }: { data: GovernanceD
         </div>
       ) : null}
 
-      <ProposalList
-        proposals={pendingProposals}
-        disabled={isPending}
-        onApprove={(proposalId) => submit({ action: "approve_proposal", proposalId })}
-        onReject={(proposalId) => submit({ action: "reject_proposal", proposalId })}
-      />
+      {showProposals && pendingProposals.length > 0 ? (
+        <ProposalList
+          proposals={pendingProposals}
+          disabled={isPending}
+          onApprove={(proposalId) => submit({ action: "approve_proposal", proposalId })}
+          onReject={(proposalId) => submit({ action: "reject_proposal", proposalId })}
+        />
+      ) : null}
 
       {pendingMode ? (
         <ModeConfirmation

@@ -1,11 +1,15 @@
+"use client";
+
 import {
   ClosedTrade,
   EquityPoint,
-  OpenPosition,
   PaperTradingData,
   PaperTradingLoadResult,
 } from "@/lib/paperTrading";
 import { PortfolioGovernance } from "@/lib/governanceDisplay";
+import { MarketSnapshot, priceStatusLabel } from "@/lib/marketSnapshot";
+import { DisplayPosition, deriveDisplayValuation } from "@/lib/portfolioDisplayValuation";
+import { useMarketSnapshot } from "@/lib/useMarketSnapshot";
 import { WebSnapshot } from "@/lib/webSnapshot";
 import PaperTradingBanner from "./PaperTradingBanner";
 import PaperPortfolioBuilder from "./PaperPortfolioBuilder";
@@ -152,7 +156,7 @@ function EquityCurve({ points }: { points: EquityPoint[] }) {
   );
 }
 
-function OpenPositionsTable({ positions }: { positions: OpenPosition[] }) {
+function OpenPositionsTable({ positions }: { positions: DisplayPosition[] }) {
   if (positions.length === 0) {
     return <EmptyState label="No open paper positions." />;
   }
@@ -166,8 +170,10 @@ function OpenPositionsTable({ positions }: { positions: OpenPosition[] }) {
             <th className="py-3 pr-4">Sector</th>
             <th className="py-3 pr-4">Entry</th>
             <th className="py-3 pr-4">Current</th>
+            <th className="py-3 pr-4">Today</th>
             <th className="py-3 pr-4">Value</th>
             <th className="py-3 pr-4">Unrealized</th>
+            <th className="py-3 pr-4">Quote</th>
             <th className="py-3 pr-4">Hold</th>
             <th className="py-3 pr-4">Risk</th>
           </tr>
@@ -183,11 +189,17 @@ function OpenPositionsTable({ positions }: { positions: OpenPosition[] }) {
               </td>
               <td className="py-4 pr-4 text-black/58">{position.sector}</td>
               <td className="py-4 pr-4">{money(position.entry_price)}</td>
-              <td className="py-4 pr-4">{money(position.current_price)}</td>
-              <td className="py-4 pr-4">{money(position.current_value)}</td>
-              <td className={`py-4 pr-4 font-bold ${pnlClass(position.unrealized_pnl)}`}>
-                {money(position.unrealized_pnl)} ·{" "}
-                {pct(position.unrealized_return_pct)}
+              <td className="py-4 pr-4">{money(position.display_current_price)}</td>
+              <td className={`py-4 pr-4 font-bold ${pnlClass(position.display_price_change_today_pct ?? 0)}`}>
+                {optionalPct(position.display_price_change_today_pct)}
+              </td>
+              <td className="py-4 pr-4">{money(position.display_market_value)}</td>
+              <td className={`py-4 pr-4 font-bold ${pnlClass(position.display_unrealized_pnl)}`}>
+                {money(position.display_unrealized_pnl)} ·{" "}
+                {pct(position.display_unrealized_return_pct)}
+              </td>
+              <td className="py-4 pr-4 text-black/58">
+                {priceStatusLabel(position.display_price_status)}
               </td>
               <td className="py-4 pr-4">
                 {position.days_held}/{position.planned_hold_period_days}D
@@ -259,11 +271,15 @@ function PortfolioContent({
   data,
   webSnapshot,
   governance,
+  marketSnapshot,
 }: {
   data: PaperTradingData;
   webSnapshot: WebSnapshot | null;
   governance?: PortfolioGovernance;
+  marketSnapshot?: MarketSnapshot | null;
 }) {
+  const { snapshot: currentMarketSnapshot, error: marketSnapshotError } = useMarketSnapshot(marketSnapshot ?? null);
+  const displayValuation = deriveDisplayValuation(data, currentMarketSnapshot);
   const summary = data.portfolioSummary.summary;
   const overall = data.performanceStatistics.overall;
   const sectorExposure = summary.sector_exposure;
@@ -272,6 +288,7 @@ function PortfolioContent({
   const lastMarketUpdate =
     data.portfolioSummary.last_market_update ?? summary.last_market_update;
   const livePrices = data.portfolioSummary.live_prices ?? summary.live_prices;
+  const priceStatus = data.portfolioSummary.price_data_status ?? "UNAVAILABLE";
   const stalePositions =
     data.portfolioSummary.stale_positions ?? summary.stale_positions ?? 0;
 
@@ -288,7 +305,9 @@ function PortfolioContent({
           <span>
             {livePrices
               ? "Live market prices loaded"
-              : "Waiting for fresh market prices"}
+              : priceStatus === "DELAYED"
+                ? "Delayed market prices loaded"
+                : "Waiting for fresh market prices"}
           </span>
         </div>
         {stalePositions > 0 ? (
@@ -298,19 +317,42 @@ function PortfolioContent({
         ) : null}
       </section>
 
+      <section className="reveal border-b border-[#e8e8e3] pb-5">
+        <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-black/45">
+          <span className="font-semibold text-black/72">
+            {currentMarketSnapshot?.market_state ?? "Market state unavailable"}
+          </span>
+          <span>{priceStatusLabel(displayValuation.price_status)}</span>
+          <span>
+            {displayValuation.usable_quote_count}/{data.openPositions.positions.length} holdings using current quote snapshot
+          </span>
+          <span>
+            {displayValuation.latest_quote_timestamp
+              ? `Updated ${updatedAgo(displayValuation.latest_quote_timestamp).replace("Updated ", "")}`
+              : "Waiting for current market prices"}
+          </span>
+          {marketSnapshotError ? <span className="text-amber-700">Retaining last quote snapshot</span> : null}
+        </div>
+      </section>
+
       <section className="reveal grid grid-cols-2 gap-x-10 gap-y-6 border-b border-[#e8e8e3] py-8 md:grid-cols-4 xl:grid-cols-8">
-        <ReportMetric label="Total Equity" value={money(summary.total_equity)} />
-        <ReportMetric label="Cash" value={money(summary.cash)} />
-        <ReportMetric label="Invested" value={money(summary.invested_value)} />
-        <ReportMetric label="Total Return" value={pct(summary.total_return_pct)} />
+        <ReportMetric label="Total Equity" value={money(displayValuation.display_total_equity)} />
+        <ReportMetric label="Cash" value={money(displayValuation.cash)} />
+        <ReportMetric label="Invested" value={money(displayValuation.display_invested_value)} />
+        <ReportMetric label="Total Return" value={pct(displayValuation.display_total_return_pct)} />
         <ReportMetric label="Open Positions" value={`${summary.open_positions_count}`} />
         <ReportMetric label="Closed Trades" value={`${summary.closed_trades_count}`} />
-        <ReportMetric label="Realized P/L" value={money(summary.realized_pnl)} />
-        <ReportMetric label="Unrealized P/L" value={money(summary.unrealized_pnl)} />
+        <ReportMetric label="Realized P/L" value={money(displayValuation.realized_pnl)} />
+        <ReportMetric label="Unrealized P/L" value={money(displayValuation.display_unrealized_pnl)} />
         <ReportMetric label="Win Rate" value={optionalPct(overall.win_rate_pct, 0)} />
       </section>
 
-      <PaperPortfolioBuilder data={data} webSnapshot={webSnapshot} governance={governance} />
+      <PaperPortfolioBuilder
+        data={data}
+        webSnapshot={webSnapshot}
+        governance={governance}
+        marketSnapshot={marketSnapshot ?? null}
+      />
 
       <div className="grid grid-cols-1 gap-8 xl:grid-cols-[1.1fr_0.9fr]">
         <section className="reveal border-b border-[#e8e8e3] pb-10">
@@ -318,7 +360,7 @@ function PortfolioContent({
             Simple Equity Curve
           </div>
           <h2 className="mt-2 text-4xl font-black tracking-[-0.07em] text-black">
-            {pct(summary.total_return_pct)} mock return.
+            {pct(displayValuation.display_total_return_pct)} display return.
           </h2>
           <div className="mt-8">
             <EquityCurve points={data.equityCurve.points} />
@@ -409,7 +451,7 @@ function PortfolioContent({
             {data.openPositions.positions.length} positions
           </div>
         </div>
-        <OpenPositionsTable positions={data.openPositions.positions} />
+        <OpenPositionsTable positions={displayValuation.positions} />
       </section>
 
       <section className="reveal border-b border-[#e8e8e3] pb-10">
@@ -479,10 +521,12 @@ export default function PaperTradingPortfolio({
   result,
   webSnapshot = null,
   governance,
+  marketSnapshot,
 }: {
   result: PaperTradingLoadResult;
   webSnapshot?: WebSnapshot | null;
   governance?: PortfolioGovernance;
+  marketSnapshot?: MarketSnapshot | null;
 }) {
   if (result.status !== "ready") {
     return (
@@ -493,7 +537,14 @@ export default function PaperTradingPortfolio({
     );
   }
 
-  return <PortfolioContent data={result.data} webSnapshot={webSnapshot} governance={governance} />;
+  return (
+    <PortfolioContent
+      data={result.data}
+      webSnapshot={webSnapshot}
+      governance={governance}
+      marketSnapshot={marketSnapshot ?? null}
+    />
+  );
 }
 
 function ReportMetric({ label, value }: { label: string; value: string }) {

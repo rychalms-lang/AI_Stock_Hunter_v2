@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-09T22:57:20",
+  "generated_at": "2026-07-10T14:31:39",
   "mock_data": false,
   "data_source": {
     "type": "paper_ledger",
@@ -20,13 +20,13 @@
     "generated_from": "paper_trading_update"
   },
   "source_file": "reports/2026-07-06_v2.csv",
-  "trade_date": "2026-07-09",
-  "as_of_date": "2026-07-09",
-  "price_data_status": "no_price_requests",
-  "stale_price_data": true,
-  "market_state": "CLOSED",
-  "last_market_update": null,
-  "live_prices": false,
+  "trade_date": "2026-07-10",
+  "as_of_date": "2026-07-10",
+  "price_data_status": "fresh",
+  "stale_price_data": false,
+  "market_state": "OPEN",
+  "last_market_update": "2026-07-10T14:31:39-04:00",
+  "live_prices": true,
   "stale_positions": 0,
   "account": {
     "account_id": "paper_default",
@@ -35,25 +35,63 @@
     "currency": "USD"
   },
   "summary": {
-    "cash": 25000.0,
-    "invested_value": 0.0,
+    "cash": 15760.72,
+    "invested_value": 9239.28,
     "total_equity": 25000.0,
-    "open_positions_count": 0,
+    "open_positions_count": 4,
     "closed_trades_count": 0,
-    "cash_pct": 100.0,
-    "invested_pct": 0.0,
+    "cash_pct": 63.04,
+    "invested_pct": 36.96,
     "total_return_pct": 0.0,
     "realized_pnl": 0.0,
     "unrealized_pnl": 0.0,
     "day_pnl": 0.0,
     "day_return_pct": 0.0,
     "max_drawdown_pct": 0.0,
-    "largest_position_pct": 0.0,
-    "sector_exposure": [],
-    "risk_exposure": [],
-    "last_market_update": null,
-    "market_state": "CLOSED",
-    "live_prices": false,
+    "largest_position_pct": 17.46,
+    "sector_exposure": [
+      {
+        "sector": "International Tech",
+        "value": 4364.4,
+        "portfolio_pct": 17.46,
+        "position_count": 1
+      },
+      {
+        "sector": "Fintech / Crypto",
+        "value": 1911.14,
+        "portfolio_pct": 7.64,
+        "position_count": 1
+      },
+      {
+        "sector": "Consumer Staples Growth",
+        "value": 1497.44,
+        "portfolio_pct": 5.99,
+        "position_count": 1
+      },
+      {
+        "sector": "Consumer Health",
+        "value": 1466.3,
+        "portfolio_pct": 5.87,
+        "position_count": 1
+      }
+    ],
+    "risk_exposure": [
+      {
+        "risk": "Medium",
+        "value": 7328.14,
+        "portfolio_pct": 29.31,
+        "position_count": 3
+      },
+      {
+        "risk": "High",
+        "value": 1911.14,
+        "portfolio_pct": 7.64,
+        "position_count": 1
+      }
+    ],
+    "last_market_update": "2026-07-10T14:31:39-04:00",
+    "market_state": "OPEN",
+    "live_prices": true,
     "stale_positions": 0
   },
   "disclaimer": "Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice."

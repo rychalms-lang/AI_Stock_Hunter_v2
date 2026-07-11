@@ -9,6 +9,8 @@ import {
 import { SystemStatus } from "@/lib/systemStatus";
 import { WebSnapshot } from "@/lib/webSnapshot";
 import { ResearchChanges } from "@/lib/researchChanges";
+import { MarketSnapshot } from "@/lib/marketSnapshot";
+import { LiveQuoteContext, MarketSnapshotStatus } from "@/components/market/LiveQuoteContext";
 import { paperTradingDisclaimer } from "@/components/paperTrading/PaperTradingBanner";
 
 type MarketClock = {
@@ -184,11 +186,13 @@ export default function MorningBrief({
   initialSnapshot,
   systemStatus,
   researchChanges,
+  marketSnapshot,
 }: {
   paperTrading: PaperTradingLoadResult;
   initialSnapshot: WebSnapshot | null;
   systemStatus: SystemStatus | null;
   researchChanges: ResearchChanges | null;
+  marketSnapshot: MarketSnapshot | null;
 }) {
   const [snapshot, setSnapshot] = useState<WebSnapshot | null>(initialSnapshot);
   const [clock, setClock] = useState<MarketClock>(() => getMarketClock(new Date()));
@@ -264,6 +268,10 @@ export default function MorningBrief({
               <InlineDatum label="System" value={healthLabel} />
               <InlineDatum label="Generated" value={formatTimestamp(generatedAt)} />
             </div>
+
+            <div className="mt-5">
+              <MarketSnapshotStatus initialSnapshot={marketSnapshot} />
+            </div>
           </div>
 
           <div className="reveal reveal-delay-2 border-l border-[#e8e8e3] pl-6 pt-2">
@@ -304,6 +312,17 @@ export default function MorningBrief({
           </div>
         </div>
       </header>
+
+      {top ? (
+        <div className="reveal reveal-delay-1">
+          <LiveQuoteContext
+            ticker={top.ticker}
+            scannerReferencePrice={topScannerPick?.latest_close ?? null}
+            initialSnapshot={marketSnapshot}
+            compact
+          />
+        </div>
+      ) : null}
 
       <div className="grid grid-cols-1 gap-14 xl:grid-cols-[1fr_320px]">
         <section className="reveal reveal-delay-1">

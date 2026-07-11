@@ -67,14 +67,17 @@ log_line "New York market timestamp for this run: ${MARKET_NOW}"
 log_line "Stage 1/2: running scanner pipeline."
 "${PYTHON_BIN}" main.py
 
-log_line "Stage 2/4: exporting web and paper-trading JSON."
+log_line "Stage 2/5: exporting web and paper-trading JSON."
 "${PYTHON_BIN}" web_exporter.py
 
-log_line "Stage 3/4: exporting research archive index."
+log_line "Stage 3/5: exporting research archive index."
 "${PYTHON_BIN}" research_archive_exporter.py
 
-log_line "Stage 4/4: exporting system status."
+log_line "Stage 4/5: exporting system status."
 "${PYTHON_BIN}" system_status_exporter.py
+
+log_line "Stage 5/5: exporting research change detection."
+"${PYTHON_BIN}" research_change_exporter.py
 
 printf "completed_at=%s\n" "$(timestamp)" > "${SUCCESS_MARKER}"
 printf "market_timezone=%s\n" "${MARKET_TIMEZONE}" >> "${SUCCESS_MARKER}"
