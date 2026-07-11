@@ -8,6 +8,13 @@ from statistics import mean, median
 from typing import Any, Dict, List, Optional
 
 from market_data_service import MarketDataService
+from portfolio_governance import (
+    auto_exit_allowed,
+    create_open_position_proposal,
+    load_governance,
+    mode_capabilities,
+    position_with_governance,
+)
 
 
 SCHEMA_VERSION = "1.0"
@@ -825,6 +832,7 @@ def update_open_positions(
     market_data: MarketDataService,
     as_of_date: str,
     generated_at: str,
+    governance_mode: str = "ai_managed",
 ) -> Dict[str, Any]:
     quotes: Dict[str, Dict[str, Any]] = {}
     still_open = []
@@ -836,7 +844,7 @@ def update_open_positions(
         quote = quotes.setdefault(position["ticker"], market_data.get_quote(position["ticker"]))
         before_status = position.get("status")
         update_position_price(position, quote, as_of_date, generated_at)
-        reason = exit_reason(position)
+        reason = exit_reason(position) if auto_exit_allowed(position, governance_mode) else None
 
         if reason:
             trade = close_position(position, generated_at, reason)
@@ -870,6 +878,8 @@ def refresh_paper_trading(
     dry_run: bool = False,
 ) -> Dict[str, Any]:
     generated_at = generated_at or now_iso()
+    governance = load_governance(state_dir)
+    governance_mode = governance["mode"]
     store = PaperTradingStore(state_dir)
     state = store.load()
     if dry_run:
@@ -893,6 +903,7 @@ def refresh_paper_trading(
         market_data=market_data,
         as_of_date=as_of_date,
         generated_at=generated_at,
+        governance_mode=governance_mode,
     )
 
     account["updated_at"] = generated_at
@@ -951,6 +962,7 @@ def refresh_paper_trading(
         "last_market_update": metadata["last_market_update"],
         "live_prices": metadata["live_prices"],
         "stale_positions": stale_positions,
+        "governance": mode_capabilities(governance_mode),
         "paths": paths,
     }
 
@@ -966,6 +978,8 @@ def process_paper_trading(
 ) -> Dict[str, Any]:
     generated_at = generated_at or now_iso()
     active_config = {**DEFAULT_CONFIG, **(config or {})}
+    governance = load_governance(state_dir)
+    governance_mode = governance["mode"]
     store = PaperTradingStore(state_dir)
     state = store.load()
 
@@ -993,6 +1007,7 @@ def process_paper_trading(
         market_data=market_data,
         as_of_date=as_of_date,
         generated_at=generated_at,
+        governance_mode=governance_mode,
     )
     quotes.update(update_result["quotes"])
 
@@ -1026,6 +1041,16 @@ def process_paper_trading(
                 "processed_at": generated_at,
                 "action": raw_action,
                 "reason": "Only scanner BUY actions open paper positions.",
+            }
+            continue
+
+        if governance_mode == "user_managed":
+            processed[pick_id] = {
+                "status": "skipped_governance_user_managed",
+                "ticker": ticker,
+                "processed_at": generated_at,
+                "action": raw_action,
+                "reason": "User Managed mode blocks automatic V8 paper entries.",
             }
             continue
 
@@ -1078,7 +1103,35 @@ def process_paper_trading(
             }
             continue
 
+        if governance_mode == "ai_assisted":
+            proposal = create_open_position_proposal(
+                state_dir=state_dir,
+                pick=pick,
+                quote=quote,
+                generated_at=generated_at,
+                proposed_amount=notional,
+                proposed_quantity=quantity,
+                scanner_action=raw_action,
+                research_rating=str(pick.get("action", raw_action)).upper(),
+            )
+            processed[pick_id] = {
+                "status": "proposed_ai_assisted",
+                "ticker": ticker,
+                "proposal_id": proposal["proposal_id"],
+                "processed_at": generated_at,
+                "reason": "AI Assisted mode requires user approval before opening a paper position.",
+            }
+            continue
+
         position = build_open_position(pick, quote, quantity, generated_at, market_regime, active_config)
+        position = position_with_governance(
+            position,
+            mode=governance_mode,
+            origin="strategy_directed",
+            decision_authority="v8",
+            lifecycle_authority="v8_rules",
+            user_approved=False,
+        )
         open_positions.append(position)
         available_cash = round_money(available_cash - position["cost_basis"])
         account["cash"] = available_cash
@@ -1134,6 +1187,7 @@ def process_paper_trading(
         "last_market_update": last_market_update,
         "live_prices": live_prices,
         "stale_positions": stale_positions,
+        "governance": mode_capabilities(governance_mode),
         "paths": paths,
     }
 

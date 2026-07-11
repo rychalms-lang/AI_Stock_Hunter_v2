@@ -150,13 +150,27 @@ class PaperTradingEngineTest(unittest.TestCase):
         config=None,
         generated_at=None,
         market_data_service=None,
+        governance_mode="ai_managed",
     ):
         root = Path(temp_dir)
+        state_dir = root / "state"
+        state_dir.mkdir(parents=True, exist_ok=True)
+        with open(state_dir / "portfolio_governance.json", "w") as f:
+            json.dump({
+                "schema_version": "1.0",
+                "mode": governance_mode,
+                "updated_at": payload["generated_at"],
+                "updated_by": "test",
+                "effective_from": payload["generated_at"],
+                "previous_mode": None,
+                "mode_version": 1,
+                "pending_transition": None,
+            }, f)
         return process_paper_trading(
             daily_picks=payload,
             raw_rows=rows,
             output_dir=root / "out",
-            state_dir=root / "state",
+            state_dir=state_dir,
             config=config,
             generated_at=generated_at or payload["generated_at"],
             market_data_service=market_data_service or self.market_data_from_payload(payload),

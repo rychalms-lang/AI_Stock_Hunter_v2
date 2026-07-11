@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from market_data_service import MarketDataService
+from portfolio_governance import governance_summary
 
 
 SCHEMA_VERSION = "1.0"
@@ -202,6 +203,7 @@ def build_status() -> Dict[str, Any]:
     )
     summary = portfolio.get("summary") if isinstance(portfolio.get("summary"), dict) else {}
     stale_positions = portfolio.get("stale_positions", summary.get("stale_positions", 0))
+    governance = governance_summary(PAPER_DIR / "state")
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -230,6 +232,19 @@ def build_status() -> Dict[str, Any]:
             "stale_positions": int(stale_positions or 0),
             "price_status": portfolio.get("price_data_status", "Unavailable"),
             "last_market_update": portfolio.get("last_market_update", "Not yet recorded"),
+        },
+        "portfolio_governance": {
+            "current_mode": governance["current_mode"],
+            "label": governance["label"],
+            "decision_authority": governance["decision_authority"],
+            "automatic_entries_enabled": governance["automatic_entries_enabled"],
+            "automatic_exits_enabled": governance["automatic_exits_enabled"],
+            "manual_entries_enabled": governance["manual_entries_enabled"],
+            "approval_required": governance["approval_required"],
+            "pending_proposal_count": governance["pending_proposal_count"],
+            "last_mode_change": governance["last_mode_change"],
+            "governance_status": governance["governance_status"],
+            "legacy_position_handling": governance["legacy_position_handling"],
         },
         "events": latest_events(),
     }

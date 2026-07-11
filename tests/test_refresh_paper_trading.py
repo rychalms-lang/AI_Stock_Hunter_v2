@@ -13,10 +13,12 @@ from tests.test_paper_trading_engine import (
     raw_rows_from,
 )
 from paper_trading_engine import process_paper_trading
+from portfolio_governance import set_mode
 
 
 def open_position_fixture(temp_dir, ticker="TEST", entry_price=100, hold_days=5):
     root = Path(temp_dir)
+    set_mode("ai_managed", f"fixture-{ticker.lower()}-0001", root / "state", generated_at="2026-07-01T09:59:00")
     item = pick(ticker=ticker, price=entry_price, hold_days=hold_days)
     payload = daily_picks([item])
     process_paper_trading(
@@ -70,6 +72,7 @@ class RefreshPaperTradingTest(unittest.TestCase):
             root = Path(temp_dir)
             items = [pick("AAA", price=50), pick("BBB", price=100)]
             payload = daily_picks(items)
+            set_mode("ai_managed", "fixture-multi-0001", root / "state", generated_at="2026-07-01T09:59:00")
             process_paper_trading(
                 daily_picks=payload,
                 raw_rows=raw_rows_from(items),
