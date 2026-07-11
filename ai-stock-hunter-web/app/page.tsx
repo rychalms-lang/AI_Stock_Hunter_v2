@@ -5,12 +5,14 @@ import MorningBrief from "@/components/home/MorningBrief";
 import { loadPaperTradingData } from "@/lib/paperTrading";
 import { loadSystemStatus } from "@/lib/systemStatus";
 import { loadWebSnapshotFromData } from "@/lib/webSnapshot";
+import { loadResearchChanges } from "@/lib/researchChanges";
 
 export default async function Home() {
-  const [paperTrading, snapshot, systemStatus] = await Promise.all([
+  const [paperTrading, snapshot, systemStatus, researchChanges] = await Promise.all([
     loadPaperTradingData(),
     loadWebSnapshotFromData(),
     loadSystemStatus(),
+    loadResearchChanges(),
   ]);
 
   return (
@@ -26,6 +28,7 @@ export default async function Home() {
               paperTrading={paperTrading}
               initialSnapshot={snapshot}
               systemStatus={systemStatus}
+              researchChanges={researchChanges}
             />
           </div>
         </section>

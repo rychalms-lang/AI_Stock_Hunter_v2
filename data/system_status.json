@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-10T13:12:52-04:00",
+  "generated_at": "2026-07-10T14:52:59-04:00",
   "market_state": "OPEN",
   "daily_pipeline": {
     "status": "warning",
@@ -17,7 +17,7 @@
   },
   "data_freshness": {
     "daily_picks": "2026-07-09T21:57:48",
-    "portfolio": "2026-07-09T22:57:20",
+    "portfolio": "2026-07-10T14:31:39",
     "web_snapshot": "2026-07-09T21:57:48"
   },
   "strategy": {
@@ -37,31 +37,44 @@
     "source_file": "reports/2026-07-06_v2.csv"
   },
   "paper_portfolio": {
-    "open_positions": 0,
+    "open_positions": 4,
     "stale_positions": 0,
-    "price_status": "no_price_requests",
-    "last_market_update": null
+    "price_status": "fresh",
+    "last_market_update": "2026-07-10T14:31:39-04:00"
+  },
+  "portfolio_governance": {
+    "current_mode": "ai_assisted",
+    "label": "AI Assisted",
+    "decision_authority": "user_approved_v8",
+    "automatic_entries_enabled": false,
+    "automatic_exits_enabled": false,
+    "manual_entries_enabled": true,
+    "approval_required": true,
+    "pending_proposal_count": 0,
+    "last_mode_change": "2026-07-10T14:52:59",
+    "governance_status": "ai_assisted_active",
+    "legacy_position_handling": "Existing positions keep their original origin and lifecycle metadata."
   },
   "events": [
     {
-      "timestamp": "2026-07-10T13:05:03-0400",
+      "timestamp": "2026-07-10T14:05:04-0400",
       "level": "info",
-      "message": "Market timezone: America/New_York"
+      "message": "New York market timestamp: 2026-07-10T14:05:04-04:00"
     },
     {
-      "timestamp": "2026-07-10T13:05:03-0400",
-      "level": "info",
-      "message": "New York market timestamp: 2026-07-10T13:05:03-04:00"
-    },
-    {
-      "timestamp": "2026-07-10T13:05:03-0400",
+      "timestamp": "2026-07-10T14:05:04-0400",
       "level": "info",
       "message": "New York market date: 2026-07-10"
     },
     {
-      "timestamp": "2026-07-10T13:05:04-0400",
+      "timestamp": "2026-07-10T14:05:04-0400",
       "level": "info",
       "message": "Running paper-trading refresh command."
+    },
+    {
+      "timestamp": "Not yet recorded",
+      "level": "info",
+      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
     },
     {
       "timestamp": "Not yet recorded",

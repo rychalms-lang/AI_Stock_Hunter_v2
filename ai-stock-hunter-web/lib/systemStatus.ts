@@ -51,6 +51,19 @@ export type SystemStatus = {
     price_status: string;
     last_market_update: string | null;
   };
+  portfolio_governance?: {
+    current_mode: string;
+    label: string;
+    decision_authority: string;
+    automatic_entries_enabled: boolean;
+    automatic_exits_enabled: boolean;
+    manual_entries_enabled: boolean;
+    approval_required: boolean;
+    pending_proposal_count: number;
+    last_mode_change: string | null;
+    governance_status: string;
+    legacy_position_handling: string;
+  };
   events: SystemEvent[];
 };
 

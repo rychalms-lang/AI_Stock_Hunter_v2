@@ -5,7 +5,10 @@ import {
   PaperTradingData,
   PaperTradingLoadResult,
 } from "@/lib/paperTrading";
+import { PortfolioGovernance } from "@/lib/governanceDisplay";
+import { WebSnapshot } from "@/lib/webSnapshot";
 import PaperTradingBanner from "./PaperTradingBanner";
+import PaperPortfolioBuilder from "./PaperPortfolioBuilder";
 import PaperTradingStateCard from "./PaperTradingStateCard";
 
 function money(value: number) {
@@ -252,7 +255,15 @@ function EmptyState({ label }: { label: string }) {
   );
 }
 
-function PortfolioContent({ data }: { data: PaperTradingData }) {
+function PortfolioContent({
+  data,
+  webSnapshot,
+  governance,
+}: {
+  data: PaperTradingData;
+  webSnapshot: WebSnapshot | null;
+  governance?: PortfolioGovernance;
+}) {
   const summary = data.portfolioSummary.summary;
   const overall = data.performanceStatistics.overall;
   const sectorExposure = summary.sector_exposure;
@@ -298,6 +309,8 @@ function PortfolioContent({ data }: { data: PaperTradingData }) {
         <ReportMetric label="Unrealized P/L" value={money(summary.unrealized_pnl)} />
         <ReportMetric label="Win Rate" value={optionalPct(overall.win_rate_pct, 0)} />
       </section>
+
+      <PaperPortfolioBuilder data={data} webSnapshot={webSnapshot} governance={governance} />
 
       <div className="grid grid-cols-1 gap-8 xl:grid-cols-[1.1fr_0.9fr]">
         <section className="reveal border-b border-[#e8e8e3] pb-10">
@@ -464,8 +477,12 @@ function ExposureBar({
 
 export default function PaperTradingPortfolio({
   result,
+  webSnapshot = null,
+  governance,
 }: {
   result: PaperTradingLoadResult;
+  webSnapshot?: WebSnapshot | null;
+  governance?: PortfolioGovernance;
 }) {
   if (result.status !== "ready") {
     return (
@@ -476,7 +493,7 @@ export default function PaperTradingPortfolio({
     );
   }
 
-  return <PortfolioContent data={result.data} />;
+  return <PortfolioContent data={result.data} webSnapshot={webSnapshot} governance={governance} />;
 }
 
 function ReportMetric({ label, value }: { label: string; value: string }) {

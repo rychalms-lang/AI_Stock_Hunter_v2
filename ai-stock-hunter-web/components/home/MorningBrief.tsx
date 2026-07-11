@@ -8,6 +8,7 @@ import {
 } from "@/lib/paperTrading";
 import { SystemStatus } from "@/lib/systemStatus";
 import { WebSnapshot } from "@/lib/webSnapshot";
+import { ResearchChanges } from "@/lib/researchChanges";
 import { paperTradingDisclaimer } from "@/components/paperTrading/PaperTradingBanner";
 
 type MarketClock = {
@@ -182,10 +183,12 @@ export default function MorningBrief({
   paperTrading,
   initialSnapshot,
   systemStatus,
+  researchChanges,
 }: {
   paperTrading: PaperTradingLoadResult;
   initialSnapshot: WebSnapshot | null;
   systemStatus: SystemStatus | null;
+  researchChanges: ResearchChanges | null;
 }) {
   const [snapshot, setSnapshot] = useState<WebSnapshot | null>(initialSnapshot);
   const [clock, setClock] = useState<MarketClock>(() => getMarketClock(new Date()));
@@ -340,6 +343,8 @@ export default function MorningBrief({
         </section>
 
         <aside className="reveal reveal-delay-2 space-y-12 border-l border-[#e8e8e3] pl-8">
+          <WhatChanged changes={researchChanges} />
+
           <section className="memo-panel border-t border-transparent pt-1">
             <div className="text-xs font-black uppercase tracking-[0.25em] text-black/35">
               Why It Matters Today
@@ -369,6 +374,70 @@ export default function MorningBrief({
           </section>
         </aside>
       </div>
+    </section>
+  );
+}
+
+function WhatChanged({ changes }: { changes: ResearchChanges | null }) {
+  const largestMover = changes?.rank_changes?.[0];
+  const actionChange = changes?.action_changes?.[0];
+  const confidenceShift = changes?.confidence_changes?.[0];
+  const topChanged =
+    changes?.top_opportunity_change.previous?.ticker &&
+    changes?.top_opportunity_change.current?.ticker &&
+    changes.top_opportunity_change.previous.ticker !==
+      changes.top_opportunity_change.current.ticker;
+
+  return (
+    <section className="memo-panel border-t border-transparent pt-1">
+      <div className="text-xs font-black uppercase tracking-[0.25em] text-black/35">
+        What Changed
+      </div>
+      {changes?.status === "ready" ? (
+        <div className="mt-5 space-y-4 text-sm leading-6 text-black/58">
+          <div>
+            {changes.summary.new_candidates} new candidates,{" "}
+            {changes.summary.removed_candidates} removed.
+          </div>
+          {largestMover ? (
+            <div>
+              Largest rank mover: {largestMover.ticker} from #
+              {largestMover.previous_rank} to #{largestMover.current_rank}.
+            </div>
+          ) : null}
+          {actionChange ? (
+            <div>
+              Action change: {actionChange.ticker} moved from{" "}
+              {actionChange.previous_action} to {actionChange.current_action}.
+            </div>
+          ) : null}
+          {topChanged ? (
+            <div>
+              Top opportunity changed from{" "}
+              {changes.top_opportunity_change.previous?.ticker} to{" "}
+              {changes.top_opportunity_change.current?.ticker}.
+            </div>
+          ) : null}
+          {confidenceShift ? (
+            <div>
+              Confidence shift: {confidenceShift.ticker} moved{" "}
+              {confidenceShift.change_points > 0 ? "+" : ""}
+              {confidenceShift.change_points.toFixed(1)} points.
+            </div>
+          ) : null}
+          <Link
+            href="/research/archive"
+            className="inline-flex text-xs font-black uppercase tracking-[0.18em] text-black/42 hover:text-black"
+          >
+            Open archive comparison →
+          </Link>
+        </div>
+      ) : (
+        <p className="mt-5 text-sm leading-6 text-black/48">
+          Waiting for two scanner reports before a day-over-day comparison can
+          be prepared.
+        </p>
+      )}
     </section>
   );
 }

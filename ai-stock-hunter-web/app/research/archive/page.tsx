@@ -55,8 +55,9 @@ export default async function ResearchArchivePage() {
             <section className="reveal reveal-delay-1 divide-y divide-[#e8e8e3] py-8">
               {items.length > 0 ? (
                 items.map((item, index) => (
-                  <div
+                  <Link
                     key={item.source_report}
+                    href={`/research/archive/${item.date}`}
                     className="interactive-row grid grid-cols-1 gap-5 py-7 md:grid-cols-[120px_1fr_120px_120px_160px] md:items-center"
                     style={{ animationDelay: `${index * 55}ms` }}
                   >
@@ -77,7 +78,7 @@ export default async function ResearchArchivePage() {
                       label="Expected"
                       value={pct(item.top_opportunity.expected_return_pct)}
                     />
-                  </div>
+                  </Link>
                 ))
               ) : (
                 <div className="py-10 text-sm text-black/48">

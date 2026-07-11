@@ -5,6 +5,7 @@ import Ticker from "@/components/layout/Ticker";
 import { paperTradingDisclaimer } from "@/components/paperTrading/PaperTradingBanner";
 import { loadPaperTradingData } from "@/lib/paperTrading";
 import { loadResearchArchive } from "@/lib/researchArchive";
+import { loadResearchChanges } from "@/lib/researchChanges";
 import { loadSystemStatus } from "@/lib/systemStatus";
 
 function pct(value: number) {
@@ -29,10 +30,11 @@ function formatTimestamp(value?: string) {
 }
 
 export default async function ResearchPage() {
-  const [paperTrading, systemStatus, archive] = await Promise.all([
+  const [paperTrading, systemStatus, archive, changes] = await Promise.all([
     loadPaperTradingData(),
     loadSystemStatus(),
     loadResearchArchive(),
+    loadResearchChanges(),
   ]);
   const data = paperTrading.status === "ready" ? paperTrading.data : null;
   const picks = data?.dailyPicks.picks.slice(0, 6) ?? [];
@@ -40,6 +42,7 @@ export default async function ResearchPage() {
   const sourceFile = data?.dailyPicks.source_file;
   const topPick = picks[0];
   const archiveCount = archive?.items.length ?? 0;
+  const latestArchive = archive?.items[0];
 
   return (
     <main className="min-h-screen bg-[#fafafa] text-black">
@@ -82,6 +85,13 @@ export default async function ResearchPage() {
                     <span className="text-black/30">Archive</span>{" "}
                     <span className="font-semibold text-black/72">
                       {archiveCount} reports indexed
+                    </span>
+                  </span>
+                  <span>
+                    <span className="text-black/30">Latest / Prior</span>{" "}
+                    <span className="font-semibold text-black/72">
+                      {changes?.current_date ?? "Unavailable"} /{" "}
+                      {changes?.previous_date ?? "Unavailable"}
                     </span>
                   </span>
                 </div>
@@ -132,6 +142,14 @@ export default async function ResearchPage() {
                   >
                     Archive →
                   </Link>
+                  {latestArchive ? (
+                    <Link
+                      href={`/research/archive/${latestArchive.date}`}
+                      className="subtle-link text-xs font-black uppercase tracking-[0.18em] text-black/42 hover:text-black"
+                    >
+                      Latest detail →
+                    </Link>
+                  ) : null}
                 </div>
 
                 <div className="divide-y divide-[#e8e8e3]">
@@ -198,10 +216,17 @@ export default async function ResearchPage() {
                     What Changed
                   </div>
                   <p className="mt-5 text-base font-medium leading-8 text-black/62">
-                    {archiveCount > 1
-                      ? `${archiveCount} historical scanner packages are indexed. Comparative diffs are ready for a future archive detail view.`
+                    {changes?.status === "ready"
+                      ? `${changes.summary.new_candidates} new candidates, ${changes.summary.removed_candidates} removed, ${changes.summary.rank_changes} rank movements, and ${changes.summary.action_changes} action changes versus ${changes.previous_date}.`
                       : "Waiting for additional historical packages before a reliable change summary can be prepared."}
                   </p>
+                  {changes?.rank_changes?.[0] ? (
+                    <p className="mt-4 text-sm leading-6 text-black/48">
+                      Largest mover: {changes.rank_changes[0].ticker} from #
+                      {changes.rank_changes[0].previous_rank} to #
+                      {changes.rank_changes[0].current_rank}.
+                    </p>
+                  ) : null}
                 </section>
 
                 <section className="memo-panel border-t border-transparent pt-1">

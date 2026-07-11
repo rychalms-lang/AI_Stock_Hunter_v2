@@ -252,6 +252,35 @@ export default async function MissionControlPage() {
                     <Mini label="Closed" value={display(status?.paper_refresh.positions_closed)} />
                   </div>
                 </div>
+
+                <div className="border-t border-[#e8e8e3] pt-8">
+                  <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
+                    Portfolio Governance
+                  </div>
+                  <div className="mt-6 grid grid-cols-2 gap-5">
+                    <Mini label="Mode" value={status?.portfolio_governance?.label} />
+                    <Mini label="Authority" value={status?.portfolio_governance?.decision_authority} />
+                    <Mini
+                      label="Automation"
+                      value={
+                        status?.portfolio_governance
+                          ? status.portfolio_governance.automatic_entries_enabled
+                            ? "Entries enabled"
+                            : "Approval/manual"
+                          : "Unavailable"
+                      }
+                    />
+                    <Mini
+                      label="Pending approvals"
+                      value={display(status?.portfolio_governance?.pending_proposal_count)}
+                    />
+                    <Mini
+                      label="Last transition"
+                      value={formatTimestamp(status?.portfolio_governance?.last_mode_change)}
+                    />
+                    <Mini label="Status" value={status?.portfolio_governance?.governance_status} />
+                  </div>
+                </div>
               </aside>
             </div>
 

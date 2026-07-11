@@ -1,11 +1,18 @@
 import Ticker from "@/components/layout/Ticker";
 import Sidebar from "@/components/layout/Sidebar";
+import PortfolioGovernanceControl from "@/components/portfolio/PortfolioGovernanceControl";
 import PortfolioSummary from "@/components/portfolio/PortfolioSummary";
 import PaperTradingPortfolio from "@/components/paperTrading/PaperTradingPortfolio";
+import { loadGovernanceData } from "@/lib/portfolioGovernance";
 import { loadPaperTradingData } from "@/lib/paperTrading";
+import { loadWebSnapshotFromData } from "@/lib/webSnapshot";
 
 export default async function PortfolioPage() {
-  const paperTrading = await loadPaperTradingData();
+  const [paperTrading, webSnapshot, governance] = await Promise.all([
+    loadPaperTradingData(),
+    loadWebSnapshotFromData(),
+    loadGovernanceData(),
+  ]);
 
   return (
     <main className="min-h-screen bg-[#fafafa] text-black">
@@ -30,13 +37,23 @@ export default async function PortfolioPage() {
             </div>
 
             <div className="space-y-10">
-              <PaperTradingPortfolio result={paperTrading} />
+              <PortfolioGovernanceControl data={governance} />
+
+              <PaperTradingPortfolio
+                result={paperTrading}
+                webSnapshot={webSnapshot}
+                governance={governance.governance}
+              />
 
               <div>
                 <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-black/42">
-                  Existing Allocation Model
+                  Paper Portfolio Overview
                 </div>
-                <PortfolioSummary />
+                <PortfolioSummary
+                  result={paperTrading}
+                  webSnapshot={webSnapshot}
+                  governance={governance}
+                />
               </div>
             </div>
           </div>
