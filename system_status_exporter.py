@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional
 
 from market_data_service import MarketDataService
 from portfolio_governance import governance_summary
+from scanner_status import latest_valid_report, read_status
 
 
 SCHEMA_VERSION = "1.0"
@@ -32,8 +33,7 @@ def read_json(path: Path) -> Optional[Dict[str, Any]]:
 
 
 def latest_report() -> Optional[Path]:
-    reports = sorted(REPORTS_DIR.glob("*_v2.csv"))
-    return reports[-1] if reports else None
+    return latest_valid_report(REPORTS_DIR)
 
 
 def file_status(path: Path) -> str:
@@ -64,13 +64,20 @@ def daily_pipeline_status(report: Optional[Path]) -> Dict[str, Any]:
     marker = latest_daily_marker()
     marker_data = parse_marker(marker) if marker else {}
     daily_picks = read_json(PAPER_DIR / "daily_picks.json")
+    scanner = read_status()
 
-    last_success = marker_data.get("completed_at")
-    last_market_date = marker_data.get("market_date") or (
-        str(daily_picks.get("trade_date")) if daily_picks else None
+    last_success = scanner.get("last_success_at") or marker_data.get("completed_at")
+    last_market_date = (
+        scanner.get("last_success_market_date")
+        or marker_data.get("market_date")
+        or (str(daily_picks.get("trade_date")) if daily_picks else None)
     )
+    last_attempt_status = scanner.get("last_attempt_status")
+    production_completed = bool(scanner.get("production_pipeline_completed"))
 
-    if last_success:
+    if last_attempt_status == "failed_data_unavailable":
+        status = "failed"
+    elif last_success and production_completed:
         status = "healthy"
     elif report:
         status = "warning"
@@ -81,6 +88,14 @@ def daily_pipeline_status(report: Optional[Path]) -> Dict[str, Any]:
         "status": status,
         "last_success_at": last_success or "Not yet recorded",
         "last_market_date": last_market_date or "Unavailable",
+        "last_attempt_at": scanner.get("last_attempt_at", "Not yet recorded"),
+        "last_attempt_market_date": scanner.get("last_attempt_market_date", "Unavailable"),
+        "last_attempt_status": last_attempt_status or "unknown",
+        "last_attempt_type": scanner.get("last_attempt_type", "unknown"),
+        "last_failure_reason": scanner.get("last_failure_reason"),
+        "data_coverage_pct": scanner.get("data_coverage_pct"),
+        "exporter_completed": bool(scanner.get("exporter_completed")),
+        "production_pipeline_completed": production_completed,
         "source_report": str(report) if report else "Unavailable",
     }
 
@@ -190,6 +205,7 @@ def build_status() -> Dict[str, Any]:
     portfolio = read_json(PAPER_DIR / "portfolio_summary.json") or {}
     web_snapshot = read_json(DATA_DIR / "web_snapshot.json") or {}
     market_snapshot = read_json(DATA_DIR / "market_snapshot.json") or {}
+    scanner_status = read_status()
 
     try:
         market_state = MarketDataService().get_market_state()
@@ -225,8 +241,34 @@ def build_status() -> Dict[str, Any]:
         "automation": automation_status(),
         "scanner": {
             "candidate_count": len(picks),
+            "status": (
+                "failed"
+                if scanner_status.get("last_attempt_status") == "failed_data_unavailable"
+                else "warning"
+                if scanner_status.get("production_pipeline_completed") is False
+                else "healthy"
+            ),
+            "latest_attempt_at": scanner_status.get("last_attempt_at", "Not yet recorded"),
+            "latest_attempt_type": scanner_status.get("last_attempt_type", "unknown"),
+            "latest_success_at": scanner_status.get("last_success_at", "Not yet recorded"),
+            "latest_valid_market_date": scanner_status.get("last_success_market_date", "Unavailable"),
+            "latest_manual_test_at": scanner_status.get("latest_manual_test_at", "Not yet recorded"),
+            "latest_manual_test_market_date": scanner_status.get("latest_manual_test_market_date", "Unavailable"),
+            "latest_manual_test_report": scanner_status.get("latest_manual_test_report", "Unavailable"),
+            "latest_failed_attempt_at": scanner_status.get("latest_failed_attempt_at", "Not yet recorded"),
+            "latest_failed_attempt_market_date": scanner_status.get("latest_failed_attempt_market_date", "Unavailable"),
+            "latest_failed_artifact": scanner_status.get("latest_failed_artifact", "Unavailable"),
+            "failure_reason": scanner_status.get("last_failure_reason"),
+            "data_coverage_pct": scanner_status.get("data_coverage_pct", "Unavailable"),
+            "tickers_requested": scanner_status.get("tickers_requested", 0),
+            "tickers_succeeded": scanner_status.get("tickers_succeeded", 0),
+            "tickers_failed": scanner_status.get("tickers_failed", 0),
+            "benchmark_data_status": scanner_status.get("benchmark_data_status", "Unavailable"),
+            "sector_data_status": scanner_status.get("sector_data_status", "Unavailable"),
+            "exporter_completed": bool(scanner_status.get("exporter_completed")),
+            "production_pipeline_completed": bool(scanner_status.get("production_pipeline_completed")),
             "last_export_timestamp": web_snapshot.get("generated_at", "Unavailable"),
-            "source_file": web_snapshot.get("source_file", "Unavailable"),
+            "source_file": scanner_status.get("latest_valid_report") or web_snapshot.get("source_file", "Unavailable"),
         },
         "paper_portfolio": {
             "open_positions": len(positions),

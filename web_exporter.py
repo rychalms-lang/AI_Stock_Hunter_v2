@@ -5,6 +5,7 @@ from datetime import datetime
 
 from ai_engine import recommendation_from_row
 from paper_trading_exporter import export_paper_trading_snapshot
+from scanner_status import latest_valid_report, report_validation, write_status
 
 
 REPORTS_DIR = Path("reports")
@@ -13,21 +14,22 @@ OUTPUT_FILE = DATA_DIR / "web_snapshot.json"
 
 
 def latest_report():
-    files = sorted(REPORTS_DIR.glob("*_v2.csv"))
+    report = latest_valid_report(REPORTS_DIR)
 
-    if not files:
-        raise FileNotFoundError("No report CSV found in reports/.")
+    if not report:
+        raise FileNotFoundError("No valid report CSV found in reports/.")
 
-    return files[-1]
+    return report
 
 
 def load_report():
     report_file = latest_report()
+    validation = report_validation(report_file)
+    if not validation["valid"]:
+        raise ValueError(f"{report_file} is invalid: {validation['reason']}")
+
     with report_file.open(newline="") as f:
         rows = list(csv.DictReader(f))
-
-    if not rows:
-        raise ValueError(f"{report_file} is empty.")
 
     return report_file, rows
 
@@ -125,9 +127,6 @@ def export_snapshot():
         reverse=True,
     )
 
-    if not recommendations:
-        raise ValueError("No recommendations were generated.")
-
     snapshot = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "source_file": str(report_file),
@@ -135,7 +134,7 @@ def export_snapshot():
             "label": "Risk-On",
             "score": 100.0,
         },
-        "top_opportunity": recommendations[0].to_dict(),
+        "top_opportunity": recommendations[0].to_dict() if recommendations else None,
         "portfolio_summary": build_portfolio_summary(recommendations),
         "today_actions": build_today_actions(recommendations),
         "ranked_candidates": [
@@ -146,22 +145,31 @@ def export_snapshot():
 
     DATA_DIR.mkdir(exist_ok=True)
 
+    paper_result = export_paper_trading_snapshot(report_file)
+
     with open(OUTPUT_FILE, "w") as f:
         json.dump(snapshot, f, indent=2)
 
     print(f"Web snapshot written to {OUTPUT_FILE}")
-    print(
-        f"Top opportunity: {snapshot['top_opportunity']['ticker']} | "
-        f"Action: {snapshot['top_opportunity']['action']} | "
-        f"Expected Return: {snapshot['top_opportunity']['expected_return']}% | "
-        f"Matches: {snapshot['top_opportunity']['historical_matches']}"
-    )
+    if recommendations:
+        print(
+            f"Top opportunity: {snapshot['top_opportunity']['ticker']} | "
+            f"Action: {snapshot['top_opportunity']['action']} | "
+            f"Expected Return: {snapshot['top_opportunity']['expected_return']}% | "
+            f"Matches: {snapshot['top_opportunity']['historical_matches']}"
+        )
+    else:
+        print("No qualifying candidates in the latest valid scanner report.")
 
-    paper_result = export_paper_trading_snapshot(report_file)
     print(
         "Paper trading JSON written: "
         f"{paper_result['daily_picks']} and {paper_result['portfolio_summary']}"
     )
+    write_status({
+        "exporter_completed": True,
+        "production_pipeline_completed": True,
+        "latest_valid_report": str(report_file),
+    })
 
 
 if __name__ == "__main__":

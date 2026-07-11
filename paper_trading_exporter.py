@@ -6,6 +6,8 @@ from typing import Any, Dict, List, Optional
 
 from paper_trading_engine import process_paper_trading
 from portfolio import build_portfolio
+from scanner_status import latest_valid_report as find_latest_valid_report
+from scanner_status import report_validation
 
 
 REPORTS_DIR = Path("reports")
@@ -41,12 +43,12 @@ DATA_SOURCE = {
 
 
 def latest_report() -> Path:
-    files = sorted(REPORTS_DIR.glob("*_v2.csv"))
+    report = find_latest_valid_report(REPORTS_DIR)
 
-    if not files:
-        raise FileNotFoundError("No report CSV found in reports/.")
+    if not report:
+        raise FileNotFoundError("No valid report CSV found in reports/.")
 
-    return files[-1]
+    return report
 
 
 def trade_date_from_report(report_file: Path) -> str:
@@ -54,6 +56,10 @@ def trade_date_from_report(report_file: Path) -> str:
 
 
 def read_report_rows(report_file: Path) -> List[Dict[str, str]]:
+    validation = report_validation(report_file)
+    if not validation["valid"]:
+        raise ValueError(f"{report_file} is invalid: {validation['reason']}")
+
     with report_file.open(newline="") as f:
         return list(csv.DictReader(f))
 
@@ -398,9 +404,6 @@ def write_json(path: Path, payload: Dict[str, Any]) -> None:
 def export_paper_trading_snapshot(report_file: Optional[Path] = None) -> Dict[str, Any]:
     report = report_file or latest_report()
     rows = read_report_rows(report)
-
-    if not rows:
-        raise ValueError(f"{report} is empty.")
 
     generated_at = datetime.now().isoformat(timespec="seconds")
 

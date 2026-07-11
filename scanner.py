@@ -8,6 +8,9 @@ from settings import (
 )
 
 
+MIN_HISTORY_ROWS = 20
+
+
 def load_tickers():
     with open(TICKERS_FILE, "r") as f:
         return list(dict.fromkeys([
@@ -24,12 +27,32 @@ def safe_pct_change(current, previous):
 
 
 def get_spy_return():
-    spy = yf.Ticker(MARKET_BENCHMARK).history(period="3mo")
+    result = get_spy_return_with_status()
+    return result["return_pct"]
 
-    if len(spy) < 20:
-        return 0
 
-    return safe_pct_change(spy["Close"].iloc[-1], spy["Close"].iloc[-20])
+def get_spy_return_with_status():
+    try:
+        spy = yf.Ticker(MARKET_BENCHMARK).history(period="3mo")
+    except Exception as e:
+        return {
+            "return_pct": 0,
+            "status": "failed",
+            "reason": str(e),
+        }
+
+    if len(spy) < MIN_HISTORY_ROWS:
+        return {
+            "return_pct": 0,
+            "status": "failed",
+            "reason": f"insufficient_{MARKET_BENCHMARK}_history",
+        }
+
+    return {
+        "return_pct": safe_pct_change(spy["Close"].iloc[-1], spy["Close"].iloc[-20]),
+        "status": "ok",
+        "reason": None,
+    }
 
 
 def calculate_risk_label(volume_ratio, twenty_day_change, open_to_close_change):
@@ -131,18 +154,30 @@ def build_reason(ticker, five_day_change, relative_strength, volume_ratio, expec
     )
 
 
-def scan_market():
+def scan_market_with_health():
     stocks = load_tickers()
-    spy_return = get_spy_return()
+    benchmark = get_spy_return_with_status()
+    spy_return = benchmark["return_pct"]
 
     results = []
+    tickers_requested = len(stocks)
+    tickers_succeeded = 0
+    tickers_failed = 0
+    failed_tickers = []
 
     for ticker in stocks:
         try:
             hist = yf.Ticker(ticker).history(period="3mo")
 
-            if len(hist) < 20:
+            if len(hist) < MIN_HISTORY_ROWS:
+                tickers_failed += 1
+                failed_tickers.append({
+                    "ticker": ticker,
+                    "reason": "insufficient_history",
+                })
                 continue
+
+            tickers_succeeded += 1
 
             latest_open = hist["Open"].iloc[-1]
             latest_close = hist["Close"].iloc[-1]
@@ -238,9 +273,14 @@ def scan_market():
             })
 
         except Exception as e:
+            tickers_failed += 1
+            failed_tickers.append({
+                "ticker": ticker,
+                "reason": str(e),
+            })
             print(f"Error scanning {ticker}: {e}")
 
-    return sorted(
+    sorted_results = sorted(
         results,
         key=lambda x: (
             x["action"] == "BUY",
@@ -250,3 +290,26 @@ def scan_market():
         ),
         reverse=True
     )
+
+    coverage_pct = (
+        (tickers_succeeded / tickers_requested) * 100
+        if tickers_requested
+        else 0
+    )
+
+    return {
+        "results": sorted_results,
+        "health": {
+            "tickers_requested": tickers_requested,
+            "tickers_succeeded": tickers_succeeded,
+            "tickers_failed": tickers_failed,
+            "failed_tickers": failed_tickers[:50],
+            "data_coverage_pct": round(coverage_pct, 2),
+            "benchmark_data_status": benchmark["status"],
+            "benchmark_failure_reason": benchmark["reason"],
+        },
+    }
+
+
+def scan_market():
+    return scan_market_with_health()["results"]

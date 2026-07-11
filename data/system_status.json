@@ -1,24 +1,32 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-10T23:49:39-04:00",
+  "generated_at": "2026-07-11T19:25:21-04:00",
   "market_state": "CLOSED",
   "daily_pipeline": {
-    "status": "warning",
-    "last_success_at": "Not yet recorded",
-    "last_market_date": "2026-07-06",
-    "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-10_v2.csv"
+    "status": "healthy",
+    "last_success_at": "2026-07-09T23:55:58-04:00",
+    "last_market_date": "2026-07-09",
+    "last_attempt_at": "2026-07-11T19:17:20-04:00",
+    "last_attempt_market_date": "2026-07-11",
+    "last_attempt_status": "success",
+    "last_attempt_type": "manual_test",
+    "last_failure_reason": null,
+    "data_coverage_pct": null,
+    "exporter_completed": true,
+    "production_pipeline_completed": true,
+    "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-09_v2.csv"
   },
   "paper_refresh": {
-    "status": "unknown",
+    "status": "healthy",
     "last_success_at": "Not yet recorded",
     "positions_updated": 0,
     "positions_stale": 0,
     "positions_closed": 0
   },
   "data_freshness": {
-    "daily_picks": "2026-07-09T21:57:48",
-    "portfolio": "2026-07-10T14:31:39",
-    "web_snapshot": "2026-07-09T21:57:48"
+    "daily_picks": "2026-07-11T19:18:54",
+    "portfolio": "2026-07-11T19:18:54",
+    "web_snapshot": "2026-07-11T19:18:54"
   },
   "strategy": {
     "name": "V8",
@@ -33,14 +41,34 @@
   },
   "scanner": {
     "candidate_count": 10,
-    "last_export_timestamp": "2026-07-09T21:57:48",
-    "source_file": "reports/2026-07-06_v2.csv"
+    "status": "healthy",
+    "latest_attempt_at": "2026-07-11T19:17:20-04:00",
+    "latest_attempt_type": "manual_test",
+    "latest_success_at": "2026-07-09T23:55:58-04:00",
+    "latest_valid_market_date": "2026-07-09",
+    "latest_manual_test_at": "2026-07-11T19:17:20-04:00",
+    "latest_manual_test_market_date": "2026-07-11",
+    "latest_manual_test_report": "reports/manual-tests/2026-07-11_v2.csv",
+    "latest_failed_attempt_at": "2026-07-10T18:03:59-04:00",
+    "latest_failed_attempt_market_date": "2026-07-10",
+    "latest_failed_artifact": "reports/failed/2026-07-10_v2.csv",
+    "failure_reason": null,
+    "data_coverage_pct": null,
+    "tickers_requested": 0,
+    "tickers_succeeded": 0,
+    "tickers_failed": 0,
+    "benchmark_data_status": "unknown",
+    "sector_data_status": "unknown",
+    "exporter_completed": true,
+    "production_pipeline_completed": true,
+    "last_export_timestamp": "2026-07-11T19:18:54",
+    "source_file": "reports/2026-07-09_v2.csv"
   },
   "paper_portfolio": {
     "open_positions": 4,
-    "stale_positions": 0,
-    "price_status": "fresh",
-    "last_market_update": "2026-07-10T14:31:39-04:00"
+    "stale_positions": 4,
+    "price_status": "waiting_for_fresh_market_prices",
+    "last_market_update": "2026-07-10T19:59:00-04:00"
   },
   "market_snapshot": {
     "provider": "yfinance",
@@ -66,12 +94,12 @@
   },
   "events": [
     {
-      "timestamp": "2026-07-10T16:09:41-0400",
+      "timestamp": "2026-07-11T16:16:15-0400",
       "level": "info",
-      "message": "New York market date: 2026-07-10"
+      "message": "New York market date: 2026-07-11"
     },
     {
-      "timestamp": "2026-07-10T16:09:41-0400",
+      "timestamp": "2026-07-11T16:16:15-0400",
       "level": "warning",
       "message": "Outside regular New York market window; refresh skipped safely."
     },
