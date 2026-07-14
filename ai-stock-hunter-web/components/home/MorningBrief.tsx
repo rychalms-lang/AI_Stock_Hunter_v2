@@ -4,43 +4,20 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   PaperTradingData,
-  PaperTradingLoadResult,
 } from "@/lib/paperTrading";
-import { SystemStatus } from "@/lib/systemStatus";
 import { WebSnapshot } from "@/lib/webSnapshot";
 import { ResearchChanges } from "@/lib/researchChanges";
 import { MarketSnapshot } from "@/lib/marketSnapshot";
+import { explainers, formatDateTime, formatPercent, terminology } from "@/lib/displayText";
 import { LiveQuoteContext, MarketSnapshotStatus } from "@/components/market/LiveQuoteContext";
 import { paperTradingDisclaimer } from "@/components/paperTrading/PaperTradingBanner";
+import { ResearchPackageResult } from "@/lib/researchPackage";
 
 type MarketClock = {
   label: string;
   detail: string;
   tone: "open" | "closed" | "pending";
 };
-
-function formatPercent(value: number) {
-  const sign = value > 0 ? "+" : "";
-  return `${sign}${value.toFixed(2)}%`;
-}
-
-function formatTimestamp(value?: string) {
-  if (!value) return "Timestamp unavailable";
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return value;
-  }
-
-  return new Intl.DateTimeFormat(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(date);
-}
 
 function minutesUntil(target: Date, now: Date) {
   return Math.max(0, Math.round((target.getTime() - now.getTime()) / 60000));
@@ -162,54 +139,33 @@ function dataStatus(data: PaperTradingData) {
   ];
 
   if (files.every(Boolean)) return "Mock data";
-  if (files.every((file) => !file)) return "Live scanner exports";
-  return "Mixed scanner/mock";
+  if (files.every((file) => !file)) return "Production research data";
+  return "Mixed research data";
 }
 
 function buildNarrative(snapshot: WebSnapshot, paperData: PaperTradingData | null) {
   const top = snapshot.top_opportunity;
-  const scannerPick = findDailyPick(paperData, top.ticker);
-  const scannerAction = scannerPick?.action ?? "unavailable";
+  const strategyPick = findDailyPick(paperData, top.ticker);
+  const strategySignal = strategyPick?.action ?? "unavailable";
   const execution = paperExecutionLabel(paperData, top.ticker).toLowerCase();
   const counts = actionCounts(snapshot.ranked_candidates);
   const countSummary = Object.entries(counts)
     .map(([action, count]) => `${count} ${action.toLowerCase()}`)
     .join(", ");
 
-  return `${top.ticker} carries a research rating of ${top.action} under a ${snapshot.market_regime.label} regime, while its scanner action is ${scannerAction} and paper execution is ${execution}. The web analysis layer shows ${top.confidence.toFixed(
+  return `${top.ticker} carries an AI research rating of ${top.action} under a ${snapshot.market_regime.label} regime, while the active strategy signal is ${strategySignal} and simulated trade status is ${execution}. The research view shows ${top.confidence.toFixed(
     0
-  )}% confidence, ${formatPercent(top.expected_return)} expected return, ${top.historical_matches.toLocaleString()} historical matches, and a suggested ${top.best_hold_period_days}-day hold. Research ratings summarize ${countSummary || "no action counts"} across ${snapshot.ranked_candidates.length} candidates; paper trades are authorized only by the raw scanner action.`;
+  )}% confidence, ${formatPercent(top.expected_return)} expected return, ${top.historical_matches.toLocaleString()} similar historical setups, and a suggested ${top.best_hold_period_days}-day hold. AI research ratings summarize ${countSummary || "no action counts"} across ${snapshot.ranked_candidates.length} opportunities; simulated trades act only when the active strategy signal allows it.`;
 }
 
 export default function MorningBrief({
-  paperTrading,
-  initialSnapshot,
-  systemStatus,
-  researchChanges,
+  researchPackage,
   marketSnapshot,
 }: {
-  paperTrading: PaperTradingLoadResult;
-  initialSnapshot: WebSnapshot | null;
-  systemStatus: SystemStatus | null;
-  researchChanges: ResearchChanges | null;
+  researchPackage: ResearchPackageResult;
   marketSnapshot: MarketSnapshot | null;
 }) {
-  const [snapshot, setSnapshot] = useState<WebSnapshot | null>(initialSnapshot);
   const [clock, setClock] = useState<MarketClock>(() => getMarketClock(new Date()));
-
-  useEffect(() => {
-    fetch("/web_snapshot.json", { cache: "no-store" })
-      .then((res) => {
-        if (!res.ok) throw new Error("Snapshot unavailable");
-        return res.json();
-      })
-      .then((data) => {
-        setSnapshot(data);
-      })
-      .catch(() => {
-        setSnapshot(initialSnapshot);
-      });
-  }, [initialSnapshot]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -219,16 +175,27 @@ export default function MorningBrief({
     return () => window.clearInterval(timer);
   }, []);
 
+  if (researchPackage.status === "mismatch") {
+    return (
+      <IncompleteResearchState
+        packageResult={researchPackage}
+        clock={clock}
+        marketSnapshot={marketSnapshot}
+      />
+    );
+  }
+
+  const { snapshot, paperTrading, researchChanges, systemStatus, topOpportunity, marketDate, sourceReport, generatedAt: packageGeneratedAt } = researchPackage;
   const paperReady = paperTrading.status === "ready";
   const paperData = paperReady ? paperTrading.data : null;
   const dailyPicks = paperData?.dailyPicks.picks ?? [];
-  const candidates = snapshot?.ranked_candidates ?? [];
+  const candidates = snapshot.ranked_candidates;
   const queue = dailyPicks.length > 0 ? dailyPicks.slice(0, 8) : candidates.slice(0, 8);
-  const top = snapshot?.top_opportunity ?? candidates[0];
+  const top = topOpportunity;
   const topScannerPick = findDailyPick(paperData, top?.ticker);
   const topPaperExecution = paperExecutionLabel(paperData, top?.ticker);
   const generatedAt =
-    paperData?.dailyPicks.generated_at ?? snapshot?.generated_at ?? undefined;
+    packageGeneratedAt ?? paperData?.dailyPicks.generated_at ?? snapshot.generated_at ?? undefined;
   const statusLabel = paperData ? dataStatus(paperData) : "Paper data unavailable";
   const healthLabel = systemStatus
     ? systemStatus.daily_pipeline.status === "healthy" &&
@@ -253,20 +220,21 @@ export default function MorningBrief({
             </h1>
 
             <p className="mt-7 max-w-3xl text-lg leading-8 text-black/58 md:text-xl">
-              Scanner complete. Today&apos;s research ratings are ready for review.
-              Paper execution remains governed by the raw scanner action, V8
-              remains Champion, and no broker is connected.
+              Today&apos;s research ratings are ready for review. Simulated trades
+              remain separate from research ratings, Active Strategy: V8 is in
+              place, and no broker is connected.
             </p>
 
             <div className="reveal reveal-delay-1 mt-8 flex flex-wrap gap-x-10 gap-y-4 border-y border-[#e8e8e3] py-4 text-sm text-black/45">
               <InlineDatum label="Session" value={clock.label} />
               <InlineDatum label="Top Opportunity" value={top?.ticker ?? "-"} />
-              <InlineDatum label="Research Rating" value={top?.action ?? "-"} />
-              <InlineDatum label="Scanner Action" value={topScannerPick?.action ?? "-"} />
-              <InlineDatum label="Paper Execution" value={topPaperExecution} />
-              <InlineDatum label="Market Regime" value={snapshot?.market_regime.label ?? "-"} />
+              <InlineDatum label={terminology.aiResearchRating} value={top?.action ?? "-"} />
+              <InlineDatum label={terminology.strategySignal} value={topScannerPick?.action ?? "-"} />
+              <InlineDatum label={terminology.simulatedTradeStatus} value={topPaperExecution} />
+              <InlineDatum label="Market Regime" value={snapshot.market_regime.label ?? "-"} />
+              <InlineDatum label="Market Date" value={marketDate ?? "-"} />
               <InlineDatum label="System" value={healthLabel} />
-              <InlineDatum label="Generated" value={formatTimestamp(generatedAt)} />
+              <InlineDatum label="Updated" value={formatDateTime(generatedAt)} />
             </div>
 
             <div className="mt-5">
@@ -276,7 +244,7 @@ export default function MorningBrief({
 
           <div className="reveal reveal-delay-2 border-l border-[#e8e8e3] pl-6 pt-2">
             <div className="text-xs font-black uppercase tracking-[0.24em] text-black/35">
-              Top Research Case
+              Top Opportunity
             </div>
             {top ? (
               <Link
@@ -291,9 +259,9 @@ export default function MorningBrief({
               </div>
             )}
             <div className="mt-5 grid grid-cols-2 gap-4 border-t border-[#e8e8e3] pt-5">
-              <QuietStat label="Research Rating" value={top?.action ?? "-"} />
-              <QuietStat label="Scanner Action" value={topScannerPick?.action ?? "-"} />
-              <QuietStat label="Paper Execution" value={topPaperExecution} />
+              <QuietStat label={terminology.aiResearchRating} value={top?.action ?? "-"} />
+              <QuietStat label={terminology.strategySignal} value={topScannerPick?.action ?? "-"} />
+              <QuietStat label={terminology.simulatedTradeStatus} value={topPaperExecution} />
               <QuietStat
                 label="Confidence"
                 value={top ? `${top.confidence.toFixed(0)}%` : "-"}
@@ -309,6 +277,9 @@ export default function MorningBrief({
             >
               Open Mission Control →
             </Link>
+            <div className="mt-4 text-xs leading-5 text-black/35">
+              Source: {sourceReport ?? "Unavailable"}
+            </div>
           </div>
         </div>
       </header>
@@ -329,19 +300,19 @@ export default function MorningBrief({
           <div className="mb-3 flex flex-col gap-3 border-b border-[#e8e8e3] pb-7 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-xs font-black uppercase tracking-[0.25em] text-black/35">
-                Today&apos;s Research Queue
+                {terminology.todayOpportunities}
               </div>
               <h2 className="mt-3 text-4xl font-black tracking-[-0.07em] text-black md:text-5xl">
-                Candidates worth opening.
+                Stocks worth reviewing.
               </h2>
             </div>
             <div className="text-sm text-black/40">
-              {queue.length} visible / {snapshot?.ranked_candidates.length ?? "-"} total
+              {queue.length} visible / {snapshot.ranked_candidates.length} total
             </div>
           </div>
           <p className="mb-5 max-w-3xl text-xs leading-5 text-black/42">
-            Research ratings summarize the web analysis layer. Paper trades are
-            authorized only by the raw scanner action.
+            {explainers.aiResearchRating} {explainers.strategySignal}{" "}
+            {explainers.simulatedTradeStatus}
           </p>
           <div className="divide-y divide-[#e8e8e3]">
             {queue.length > 0 ? (
@@ -355,7 +326,7 @@ export default function MorningBrief({
               ))
             ) : (
               <div className="py-8 text-sm text-black/48">
-                No scanner candidates are available yet.
+                No research opportunities are available yet.
               </div>
             )}
           </div>
@@ -369,9 +340,7 @@ export default function MorningBrief({
               Why It Matters Today
             </div>
             <p className="mt-5 text-base font-medium leading-8 text-black/62">
-              {snapshot
-                ? buildNarrative(snapshot, paperData)
-                : "Waiting for the latest scanner snapshot before generating the evidence narrative."}
+              {buildNarrative(snapshot, paperData)}
             </p>
           </section>
 
@@ -380,10 +349,10 @@ export default function MorningBrief({
               System Status
             </div>
             <div className="mt-6 space-y-4">
-              <StatusItem label="Scanner export loaded" value={snapshot ? "Yes" : "Pending"} />
-              <StatusItem label="Paper trading mode enforced" value={paperReady ? "Yes" : "Pending"} />
+              <StatusItem label="Daily research loaded" value="Yes" />
+              <StatusItem label="Simulated trading mode enforced" value={paperReady ? "Yes" : "Pending"} />
               <StatusItem label="No broker connected" value="Yes" />
-              <StatusItem label="V8 remains Champion" value="Yes" />
+              <StatusItem label="Active Strategy: V8" value="Yes" />
               <StatusItem label="Mock/live data status" value={statusLabel} />
               <StatusItem label="Operational health" value={healthLabel} />
             </div>
@@ -415,7 +384,7 @@ function WhatChanged({ changes }: { changes: ResearchChanges | null }) {
       {changes?.status === "ready" ? (
         <div className="mt-5 space-y-4 text-sm leading-6 text-black/58">
           <div>
-            {changes.summary.new_candidates} new candidates,{" "}
+            {changes.summary.new_candidates} new opportunities,{" "}
             {changes.summary.removed_candidates} removed.
           </div>
           {largestMover ? (
@@ -453,7 +422,7 @@ function WhatChanged({ changes }: { changes: ResearchChanges | null }) {
         </div>
       ) : (
         <p className="mt-5 text-sm leading-6 text-black/48">
-          Waiting for two scanner reports before a day-over-day comparison can
+          Waiting for two research updates before a day-over-day comparison can
           be prepared.
         </p>
       )}
@@ -462,6 +431,85 @@ function WhatChanged({ changes }: { changes: ResearchChanges | null }) {
 }
 
 type QueueCandidate = WebSnapshot["ranked_candidates"][number] | PaperTradingData["dailyPicks"]["picks"][number];
+
+function IncompleteResearchState({
+  packageResult,
+  clock,
+  marketSnapshot,
+}: {
+  packageResult: Extract<ResearchPackageResult, { status: "mismatch" }>;
+  clock: MarketClock;
+  marketSnapshot: MarketSnapshot | null;
+}) {
+  const officialDate =
+    packageResult.systemStatus?.research_package?.official_market_date ??
+    packageResult.systemStatus?.daily_pipeline.last_market_date ??
+    "Unavailable";
+  const officialReport =
+    packageResult.systemStatus?.research_package?.official_source_report ??
+    packageResult.systemStatus?.daily_pipeline.source_report ??
+    "Unavailable";
+
+  return (
+    <section className="page-enter space-y-12">
+      <header className="reveal border-b border-[#e8e8e3] pb-10">
+        <div className="text-xs font-black uppercase tracking-[0.28em] text-black/40">
+          Morning Brief
+        </div>
+        <h1 className="mt-6 max-w-4xl text-[clamp(3.25rem,6vw,6.75rem)] font-black leading-[0.94] tracking-[-0.075em] text-black">
+          Research update incomplete.
+        </h1>
+        <p className="mt-7 max-w-3xl text-lg leading-8 text-black/58 md:text-xl">
+          The latest research files disagree about the official production report.
+          The Morning Brief is paused so stale and current data are not mixed.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-y border-[#e8e8e3] py-4 text-sm text-black/45">
+          <InlineDatum label="Session" value={clock.label} />
+          <InlineDatum label="Official Market Date" value={officialDate} />
+          <InlineDatum label="Official Source" value={officialReport} />
+          <InlineDatum label="Package Status" value="Needs review" />
+        </div>
+        <div className="mt-5">
+          <MarketSnapshotStatus initialSnapshot={marketSnapshot} />
+        </div>
+      </header>
+
+      <section className="reveal grid grid-cols-1 gap-10 xl:grid-cols-[1fr_320px]">
+        <div>
+          <div className="text-xs font-black uppercase tracking-[0.25em] text-black/35">
+            Consistency Check
+          </div>
+          <h2 className="mt-3 text-4xl font-black tracking-[-0.07em] text-black md:text-5xl">
+            No mixed research package was rendered.
+          </h2>
+          <div className="mt-7 divide-y divide-[#e8e8e3] border-y border-[#e8e8e3]">
+            {packageResult.mismatches.map((item) => (
+              <div key={item} className="py-4 text-sm leading-6 text-black/58">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <aside className="border-l border-[#e8e8e3] pl-8">
+          <div className="text-xs font-black uppercase tracking-[0.25em] text-black/35">
+            Next Step
+          </div>
+          <p className="mt-5 text-sm leading-6 text-black/58">
+            Open Mission Control to inspect the research-package mismatch and
+            regenerate the official production export.
+          </p>
+          <Link
+            href="/mission-control"
+            className="mt-7 inline-flex text-xs font-black uppercase tracking-[0.18em] text-black/42 transition-colors hover:text-black"
+          >
+            Open Mission Control →
+          </Link>
+        </aside>
+      </section>
+    </section>
+  );
+}
 
 function getExpectedReturn(candidate: QueueCandidate) {
   return "expected_return_pct" in candidate
@@ -500,7 +548,7 @@ function ResearchQueueRow({
         <div className="mt-2 text-xs text-black/42">{candidate.sector}</div>
       </div>
       <QueueStat
-        label={isDailyPick(candidate) ? "Scanner Action" : "Research Rating"}
+        label={isDailyPick(candidate) ? terminology.strategySignal : terminology.aiResearchRating}
         value={candidate.action}
       />
       <QueueStat label="Confidence" value={`${candidate.confidence.toFixed(0)}%`} />

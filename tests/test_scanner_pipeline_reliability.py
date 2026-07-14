@@ -311,6 +311,34 @@ class ScannerPipelineReliabilityTests(unittest.TestCase):
                 web_exporter.export_snapshot()
             self.assertEqual(json.loads(snapshot.read_text()), {"previous": True})
 
+    def test_web_exporter_refreshes_public_snapshot_after_newer_official_export(self):
+        with TempCwd() as cwd, patch.object(
+            web_exporter,
+            "export_paper_trading_snapshot",
+            return_value={
+                "daily_picks": "data/paper_trading/daily_picks.json",
+                "portfolio_summary": "data/paper_trading/portfolio_summary.json",
+            },
+        ):
+            write_report(cwd / "reports" / "2026-07-12_v2.csv", [sample_candidate("HIMS")])
+            write_report(cwd / "reports" / "2026-07-13_v2.csv", [sample_candidate("SE")])
+            public_snapshot = cwd / "ai-stock-hunter-web" / "public" / "web_snapshot.json"
+            public_snapshot.parent.mkdir(parents=True)
+            public_snapshot.write_text(json.dumps({
+                "source_file": "reports/2026-07-06_v2.csv",
+                "top_opportunity": {"ticker": "HIMS"},
+                "ranked_candidates": [{"ticker": "HIMS"}],
+            }))
+
+            web_exporter.export_snapshot()
+
+            data_snapshot = json.loads((cwd / "data" / "web_snapshot.json").read_text())
+            public_payload = json.loads(public_snapshot.read_text())
+            changes = json.loads((cwd / "data" / "research_changes.json").read_text())
+            self.assertEqual(data_snapshot["top_opportunity"]["ticker"], "SE")
+            self.assertEqual(public_payload["top_opportunity"]["ticker"], "SE")
+            self.assertEqual(changes["current_date"], "2026-07-13")
+
     def test_mission_control_reports_attempt_and_success_separately(self):
         with TempCwd():
             scanner_status.write_status({

@@ -135,6 +135,20 @@ class ResearchChangeExporterTest(unittest.TestCase):
                 payload = json.load(f)
             self.assertEqual(payload["status"], "ready")
 
+    def test_current_report_parameter_pins_current_date(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            reports = Path(temp_dir)
+            write_report(reports, "2026-07-11_v2.csv", [row("HIMS")])
+            write_report(reports, "2026-07-12_v2.csv", [row("AAA")])
+            current = write_report(reports, "2026-07-13_v2.csv", [row("SE")])
+            write_report(reports, "2026-07-14_v2.csv", [row("ZZZ")])
+
+            result = build_research_changes(reports, current_report=current)
+
+            self.assertEqual(result["current_date"], "2026-07-13")
+            self.assertEqual(result["previous_date"], "2026-07-12")
+            self.assertEqual(result["top_opportunity_change"]["current"]["ticker"], "SE")
+
 
 if __name__ == "__main__":
     unittest.main()

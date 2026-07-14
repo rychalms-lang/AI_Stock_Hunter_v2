@@ -2,38 +2,24 @@ import Sidebar from "@/components/layout/Sidebar";
 import Ticker from "@/components/layout/Ticker";
 import { loadPaperTradingData } from "@/lib/paperTrading";
 import { loadSystemStatus, SystemStatus } from "@/lib/systemStatus";
+import { cleanStatus, formatDate, formatDateTime, sourceLabel, strategyStatusLabel } from "@/lib/displayText";
 
 function display(value?: string | number | boolean | null) {
   if (value === true) return "Enabled";
   if (value === false) return "Not installed";
   if (value === null || value === undefined || value === "") return "Unavailable";
-  return String(value);
-}
-
-function formatTimestamp(value?: string | null) {
-  if (!value || value === "Not yet recorded" || value === "Unavailable") {
-    return value ?? "Unavailable";
-  }
-
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-
-  return new Intl.DateTimeFormat(undefined, {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(date);
+  return cleanStatus(value);
 }
 
 function statusTone(status?: string) {
-  if (status === "healthy" || status === "OPEN" || status === "Champion") {
+  const normalized = status?.toLowerCase();
+  if (normalized === "healthy" || normalized === "open" || normalized === "champion") {
     return "bg-[#7fb000]";
   }
-  if (status === "warning" || status === "stale" || status === "PRE_MARKET") {
+  if (normalized === "warning" || normalized === "stale" || normalized === "pre_market") {
     return "bg-amber-500";
   }
-  if (status === "failed") return "bg-red-600";
+  if (normalized === "failed") return "bg-red-600";
   return "bg-black/25";
 }
 
@@ -51,7 +37,7 @@ function StatusLine({
       <div className="text-sm font-medium text-black/62">{label}</div>
       <div className="flex items-center gap-3 text-sm font-black text-black">
         <span className={`h-2 w-2 rounded-full ${statusTone(state ?? value)}`} />
-        {value}
+        {cleanStatus(value)}
       </div>
     </div>
   );
@@ -76,10 +62,10 @@ function EventLog({ status }: { status: SystemStatus | null }) {
   return (
     <section className="reveal reveal-delay-2 border-b border-[#e8e8e3] pb-12">
       <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-        Latest System Events
+        Recent System Activity
       </div>
       <h2 className="mt-3 text-4xl font-black tracking-[-0.07em]">
-        Operating record.
+        What changed recently.
       </h2>
 
       <div className="mt-8 divide-y divide-[#e8e8e3]">
@@ -90,17 +76,17 @@ function EventLog({ status }: { status: SystemStatus | null }) {
               className="interactive-row grid grid-cols-1 gap-3 py-5 md:grid-cols-[140px_90px_1fr]"
             >
               <div className="font-mono text-xs text-black/42">
-                {formatTimestamp(event.timestamp)}
+                {formatDateTime(event.timestamp)}
               </div>
               <div className="text-xs font-black uppercase tracking-[0.16em] text-black/45">
-                {event.level}
+                {cleanStatus(event.level)}
               </div>
               <div className="text-sm leading-6 text-black/62">{event.message}</div>
             </div>
           ))
         ) : (
           <div className="py-6 text-sm text-black/45">
-            Waiting for first live run.
+            No recent system activity is available yet.
           </div>
         )}
       </div>
@@ -121,7 +107,7 @@ export default async function MissionControlPage() {
     paperData?.portfolioSummary.stale_positions ??
     paperData?.portfolioSummary.summary.stale_positions ??
     0;
-  const candidates =
+  const opportunities =
     status?.scanner.candidate_count ?? paperData?.dailyPicks.picks.length ?? 0;
 
   return (
@@ -140,9 +126,9 @@ export default async function MissionControlPage() {
                   System healthy, or honestly waiting.
                 </h1>
                 <p className="mt-8 max-w-3xl text-xl leading-9 text-black/58">
-                  Operational telemetry for scanner exports, paper-ledger
-                  refreshes, automation, and V8 Champion status. Every value is
-                  read from system files; unavailable data stays unavailable.
+                  A clear view of the daily research update, market prices,
+                  simulated portfolio, automation, website data, and active
+                  strategy. If something needs attention, it appears here first.
                 </p>
               </div>
 
@@ -152,54 +138,84 @@ export default async function MissionControlPage() {
                 </div>
                 <div className="mt-5 flex items-center gap-3 text-5xl font-black tracking-[-0.08em]">
                   <span className={`h-3 w-3 rounded-full ${statusTone(status?.market_state)}`} />
-                  {status?.market_state ?? "Unavailable"}
+                  {cleanStatus(status?.market_state)}
                 </div>
                 <div className="mt-5 text-sm leading-6 text-black/45">
-                  Status generated {formatTimestamp(status?.generated_at)}
+                  Status updated {formatDateTime(status?.generated_at)}
                 </div>
               </aside>
             </header>
 
-            <section className="reveal reveal-delay-1 grid grid-cols-2 gap-x-10 gap-y-7 border-b border-[#e8e8e3] py-10 md:grid-cols-5">
-              <Metric label="Candidates" value={display(candidates)} />
-              <Metric label="Open Paper Positions" value={display(openPositions)} />
-              <Metric label="Stale Positions" value={display(stalePositions)} />
+            <section className="reveal reveal-delay-1 grid grid-cols-2 gap-x-10 gap-y-7 border-b border-[#e8e8e3] py-10 md:grid-cols-6">
+              <Metric label="Opportunities" value={display(opportunities)} />
+              <Metric label="Open Simulated Positions" value={display(openPositions)} />
+              <Metric label="Out-of-Date Positions" value={display(stalePositions)} />
               <Metric
-                label="Last Export"
-                value={formatTimestamp(status?.scanner.last_export_timestamp)}
+                label="Website Data"
+                value={formatDateTime(status?.scanner.last_export_timestamp)}
               />
-              <Metric label="V8 Status" value={status?.strategy.status ?? "Champion"} />
+              <Metric label="Active Strategy" value={`V8 ${strategyStatusLabel(status?.strategy.status)}`} />
+              <Metric label="Research Package" value={cleanStatus(status?.research_package?.status)} />
             </section>
 
             <div className="grid grid-cols-1 gap-14 py-14 xl:grid-cols-[1fr_0.8fr]">
               <section className="reveal space-y-10">
                 <div>
                   <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-                    Core Runtime
+                    System Health
                   </div>
                   <div className="mt-6">
                     <StatusLine
-                      label="Daily scanner status"
-                      value={status?.daily_pipeline.status ?? "unknown"}
+                      label="Daily Research Update"
+                      value={cleanStatus(status?.daily_pipeline.status)}
                       state={status?.daily_pipeline.status}
                     />
                     <StatusLine
-                      label="Last successful scanner run"
-                      value={formatTimestamp(status?.daily_pipeline.last_success_at)}
+                      label="Last successful research update"
+                      value={formatDateTime(status?.daily_pipeline.last_success_at)}
                     />
                     <StatusLine
-                      label="Last scanner market date"
-                      value={status?.daily_pipeline.last_market_date ?? "Unavailable"}
+                      label="Latest official market date"
+                      value={formatDate(status?.daily_pipeline.last_market_date)}
                     />
                     <StatusLine
-                      label="Last paper-ledger refresh"
-                      value={formatTimestamp(status?.paper_refresh.last_success_at)}
+                      label="Last simulated portfolio refresh"
+                      value={formatDateTime(status?.paper_refresh.last_success_at)}
                       state={status?.paper_refresh.status}
                     />
                     <StatusLine
-                      label="Current data freshness"
-                      value={status?.paper_portfolio.price_status ?? "Unavailable"}
+                      label="Portfolio price data"
+                      value={cleanStatus(status?.paper_portfolio.price_status)}
                       state={status?.paper_refresh.status}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
+                    Research Package
+                  </div>
+                  <div className="mt-6">
+                    <StatusLine
+                      label="Consistency"
+                      value={cleanStatus(status?.research_package?.status)}
+                      state={status?.research_package?.status === "mismatch" ? "failed" : "healthy"}
+                    />
+                    <StatusLine
+                      label="Official market date"
+                      value={formatDate(status?.research_package?.official_market_date)}
+                    />
+                    <StatusLine
+                      label="Resolved top opportunity"
+                      value={status?.research_package?.top_opportunity_ticker ?? "Unavailable"}
+                    />
+                    <StatusLine
+                      label="Mismatch details"
+                      value={
+                        status?.research_package?.mismatches?.length
+                          ? status.research_package.mismatches.join(" | ")
+                          : "None"
+                      }
                     />
                   </div>
                 </div>
@@ -210,11 +226,11 @@ export default async function MissionControlPage() {
                   </div>
                   <div className="mt-6">
                     <StatusLine
-                      label="Daily pipeline"
+                      label="Daily Update"
                       value={display(status?.automation.daily_pipeline_enabled)}
                     />
                     <StatusLine
-                      label="Paper refresh"
+                      label="Simulated Portfolio Refresh"
                       value={display(status?.automation.paper_refresh_enabled)}
                     />
                     <StatusLine
@@ -235,20 +251,20 @@ export default async function MissionControlPage() {
                     Freshness
                   </div>
                   <div className="mt-6 space-y-5">
-                    <Mini label="Daily picks" value={status?.data_freshness.daily_picks} />
+                    <Mini label="Research list" value={formatDateTime(status?.data_freshness.daily_picks)} />
                     <Mini label="Portfolio" value={status?.data_freshness.portfolio} />
-                    <Mini label="Web snapshot" value={status?.data_freshness.web_snapshot} />
-                    <Mini label="Source report" value={status?.scanner.source_file} />
+                    <Mini label="Website data" value={formatDateTime(status?.data_freshness.web_snapshot)} />
+                    <Mini label="Research source" value={sourceLabel(status?.scanner.source_file)} />
                   </div>
                 </div>
 
                 <div className="border-t border-[#e8e8e3] pt-8">
                   <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-                    Paper Refresh
+                    Simulated Portfolio Refresh
                   </div>
                   <div className="mt-6 grid grid-cols-3 gap-5">
                     <Mini label="Updated" value={display(status?.paper_refresh.positions_updated)} />
-                    <Mini label="Stale" value={display(status?.paper_refresh.positions_stale)} />
+                    <Mini label="Out of date" value={display(status?.paper_refresh.positions_stale)} />
                     <Mini label="Closed" value={display(status?.paper_refresh.positions_closed)} />
                   </div>
                 </div>
@@ -262,7 +278,7 @@ export default async function MissionControlPage() {
                     <Mini label="Quote status" value={status?.market_snapshot?.quote_status} />
                     <Mini
                       label="Last quote refresh"
-                      value={formatTimestamp(status?.market_snapshot?.last_successful_quote_refresh)}
+                      value={formatDateTime(status?.market_snapshot?.last_successful_quote_refresh)}
                     />
                     <Mini label="Requested" value={display(status?.market_snapshot?.tickers_requested)} />
                     <Mini label="Updated" value={display(status?.market_snapshot?.tickers_updated)} />
@@ -272,7 +288,7 @@ export default async function MissionControlPage() {
 
                 <div className="border-t border-[#e8e8e3] pt-8">
                   <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-                    Portfolio Governance
+                    Portfolio Control
                   </div>
                   <div className="mt-6 grid grid-cols-2 gap-5">
                     <Mini label="Mode" value={status?.portfolio_governance?.label} />
@@ -293,9 +309,9 @@ export default async function MissionControlPage() {
                     />
                     <Mini
                       label="Last transition"
-                      value={formatTimestamp(status?.portfolio_governance?.last_mode_change)}
+                      value={formatDateTime(status?.portfolio_governance?.last_mode_change)}
                     />
-                    <Mini label="Status" value={status?.portfolio_governance?.governance_status} />
+                    <Mini label="Status" value={cleanStatus(status?.portfolio_governance?.governance_status)} />
                   </div>
                 </div>
               </aside>

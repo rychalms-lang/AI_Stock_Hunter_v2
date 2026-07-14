@@ -75,6 +75,18 @@ def report_files(reports_dir: Path) -> List[Path]:
     return sorted(reports_dir.glob("*_v2.csv"))
 
 
+def report_files_through(reports_dir: Path, current_report: Optional[Path]) -> List[Path]:
+    files = report_files(reports_dir)
+    if not current_report:
+        return files
+
+    current_name = current_report.name
+    filtered = [path for path in files if path.name <= current_name]
+    if not any(path.name == current_name for path in filtered):
+        filtered.append(current_report)
+    return sorted(filtered)
+
+
 def empty_payload(files: List[Path]) -> Dict[str, Any]:
     current = files[-1] if files else None
     return {
@@ -230,8 +242,11 @@ def compare_reports(previous_path: Path, current_path: Path) -> Dict[str, Any]:
     }
 
 
-def build_research_changes(reports_dir: Path = REPORTS_DIR) -> Dict[str, Any]:
-    files = report_files(reports_dir)
+def build_research_changes(
+    reports_dir: Path = REPORTS_DIR,
+    current_report: Optional[Path] = None,
+) -> Dict[str, Any]:
+    files = report_files_through(reports_dir, current_report)
     if len(files) < 2:
         return empty_payload(files)
     return compare_reports(files[-2], files[-1])
@@ -240,8 +255,9 @@ def build_research_changes(reports_dir: Path = REPORTS_DIR) -> Dict[str, Any]:
 def export_research_changes(
     reports_dir: Path = REPORTS_DIR,
     output_file: Path = OUTPUT_FILE,
+    current_report: Optional[Path] = None,
 ) -> Dict[str, Any]:
-    payload = build_research_changes(reports_dir)
+    payload = build_research_changes(reports_dir, current_report=current_report)
     output_file.parent.mkdir(exist_ok=True)
     with output_file.open("w") as f:
         json.dump(payload, f, indent=2)

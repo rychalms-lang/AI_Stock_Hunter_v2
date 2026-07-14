@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional
 
 from market_data_service import MarketDataService
 from portfolio_governance import governance_summary
+from research_package import resolve_research_package
 from scanner_status import latest_valid_report, read_status
 
 
@@ -221,6 +222,7 @@ def build_status() -> Dict[str, Any]:
     summary = portfolio.get("summary") if isinstance(portfolio.get("summary"), dict) else {}
     stale_positions = portfolio.get("stale_positions", summary.get("stale_positions", 0))
     governance = governance_summary(PAPER_DIR / "state")
+    research_package = resolve_research_package(data_dir=DATA_DIR, reports_dir=REPORTS_DIR)
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -233,6 +235,7 @@ def build_status() -> Dict[str, Any]:
             "portfolio": file_status(PAPER_DIR / "portfolio_summary.json"),
             "web_snapshot": file_status(DATA_DIR / "web_snapshot.json"),
         },
+        "research_package": research_package,
         "strategy": {
             "name": "V8",
             "version": "8.0",
@@ -269,6 +272,8 @@ def build_status() -> Dict[str, Any]:
             "production_pipeline_completed": bool(scanner_status.get("production_pipeline_completed")),
             "last_export_timestamp": web_snapshot.get("generated_at", "Unavailable"),
             "source_file": scanner_status.get("latest_valid_report") or web_snapshot.get("source_file", "Unavailable"),
+            "research_package_status": research_package["status"],
+            "research_package_mismatches": research_package["mismatches"],
         },
         "paper_portfolio": {
             "open_positions": len(positions),

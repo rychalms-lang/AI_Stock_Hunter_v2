@@ -1,16 +1,19 @@
 import json
 import csv
+import shutil
 from pathlib import Path
 from datetime import datetime
 
 from ai_engine import recommendation_from_row
 from paper_trading_exporter import export_paper_trading_snapshot
+from research_change_exporter import export_research_changes
 from scanner_status import latest_valid_report, report_validation, write_status
 
 
 REPORTS_DIR = Path("reports")
 DATA_DIR = Path("data")
 OUTPUT_FILE = DATA_DIR / "web_snapshot.json"
+PUBLIC_SNAPSHOT_FILE = Path("ai-stock-hunter-web/public/web_snapshot.json")
 
 
 def latest_report():
@@ -130,6 +133,7 @@ def export_snapshot():
     snapshot = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "source_file": str(report_file),
+        "source_market_date": report_file.name.replace("_v2.csv", ""),
         "market_regime": {
             "label": "Risk-On",
             "score": 100.0,
@@ -146,9 +150,14 @@ def export_snapshot():
     DATA_DIR.mkdir(exist_ok=True)
 
     paper_result = export_paper_trading_snapshot(report_file)
+    changes_result = export_research_changes(REPORTS_DIR, DATA_DIR / "research_changes.json", current_report=report_file)
 
     with open(OUTPUT_FILE, "w") as f:
         json.dump(snapshot, f, indent=2)
+        f.write("\n")
+
+    PUBLIC_SNAPSHOT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(OUTPUT_FILE, PUBLIC_SNAPSHOT_FILE)
 
     print(f"Web snapshot written to {OUTPUT_FILE}")
     if recommendations:
@@ -164,6 +173,10 @@ def export_snapshot():
     print(
         "Paper trading JSON written: "
         f"{paper_result['daily_picks']} and {paper_result['portfolio_summary']}"
+    )
+    print(
+        "Research changes written: "
+        f"status={changes_result['status']} current={changes_result['current_date']}"
     )
     write_status({
         "exporter_completed": True,

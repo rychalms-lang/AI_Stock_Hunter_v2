@@ -29,6 +29,13 @@ export type SystemStatus = {
     portfolio: string;
     web_snapshot: string;
   };
+  research_package?: {
+    status: "ready" | "mismatch";
+    mismatches: string[];
+    official_market_date: string | null;
+    official_source_report: string | null;
+    top_opportunity_ticker: string | null;
+  };
   strategy: {
     name: string;
     version: string;
