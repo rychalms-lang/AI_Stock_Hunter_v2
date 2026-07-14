@@ -1,32 +1,51 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-11T19:25:21-04:00",
-  "market_state": "CLOSED",
+  "generated_at": "2026-07-14T12:24:11-04:00",
+  "market_state": "OPEN",
   "daily_pipeline": {
     "status": "healthy",
-    "last_success_at": "2026-07-09T23:55:58-04:00",
-    "last_market_date": "2026-07-09",
-    "last_attempt_at": "2026-07-11T19:17:20-04:00",
-    "last_attempt_market_date": "2026-07-11",
+    "last_success_at": "2026-07-13T18:33:52-04:00",
+    "last_market_date": "2026-07-13",
+    "last_attempt_at": "2026-07-13T18:33:52-04:00",
+    "last_attempt_market_date": "2026-07-13",
     "last_attempt_status": "success",
-    "last_attempt_type": "manual_test",
+    "last_attempt_type": "production",
     "last_failure_reason": null,
-    "data_coverage_pct": null,
+    "data_coverage_pct": 97.97,
     "exporter_completed": true,
     "production_pipeline_completed": true,
-    "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-09_v2.csv"
+    "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-13_v2.csv"
   },
   "paper_refresh": {
     "status": "healthy",
     "last_success_at": "Not yet recorded",
     "positions_updated": 0,
     "positions_stale": 0,
-    "positions_closed": 0
+    "positions_closed": 0,
+    "overlap_skips": 0,
+    "last_failure_reason": null
   },
   "data_freshness": {
-    "daily_picks": "2026-07-11T19:18:54",
-    "portfolio": "2026-07-11T19:18:54",
-    "web_snapshot": "2026-07-11T19:18:54"
+    "daily_picks": "2026-07-13T18:42:51",
+    "portfolio": "2026-07-14T12:20:50",
+    "web_snapshot": "2026-07-13T18:42:51"
+  },
+  "research_package": {
+    "schema_version": "1.0",
+    "status": "ready",
+    "mismatches": [],
+    "official_market_date": "2026-07-13",
+    "official_source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-13_v2.csv",
+    "source_report": "reports/2026-07-13_v2.csv",
+    "source_report_name": "2026-07-13_v2.csv",
+    "generated_at": "2026-07-13T18:42:51",
+    "top_opportunity_ticker": "SE",
+    "snapshot_top_opportunity_ticker": "SE",
+    "daily_picks_top_ticker": "SE",
+    "research_changes_top_ticker": "SE",
+    "web_snapshot_market_date": "2026-07-13",
+    "daily_picks_market_date": "2026-07-13",
+    "research_changes_current_date": "2026-07-13"
   },
   "strategy": {
     "name": "V8",
@@ -42,10 +61,10 @@
   "scanner": {
     "candidate_count": 10,
     "status": "healthy",
-    "latest_attempt_at": "2026-07-11T19:17:20-04:00",
-    "latest_attempt_type": "manual_test",
-    "latest_success_at": "2026-07-09T23:55:58-04:00",
-    "latest_valid_market_date": "2026-07-09",
+    "latest_attempt_at": "2026-07-13T18:33:52-04:00",
+    "latest_attempt_type": "production",
+    "latest_success_at": "2026-07-13T18:33:52-04:00",
+    "latest_valid_market_date": "2026-07-13",
     "latest_manual_test_at": "2026-07-11T19:17:20-04:00",
     "latest_manual_test_market_date": "2026-07-11",
     "latest_manual_test_report": "reports/manual-tests/2026-07-11_v2.csv",
@@ -53,31 +72,63 @@
     "latest_failed_attempt_market_date": "2026-07-10",
     "latest_failed_artifact": "reports/failed/2026-07-10_v2.csv",
     "failure_reason": null,
-    "data_coverage_pct": null,
-    "tickers_requested": 0,
-    "tickers_succeeded": 0,
-    "tickers_failed": 0,
-    "benchmark_data_status": "unknown",
-    "sector_data_status": "unknown",
+    "data_coverage_pct": 97.97,
+    "tickers_requested": 246,
+    "tickers_succeeded": 241,
+    "tickers_failed": 5,
+    "benchmark_data_status": "ok",
+    "sector_data_status": "ok",
     "exporter_completed": true,
     "production_pipeline_completed": true,
-    "last_export_timestamp": "2026-07-11T19:18:54",
-    "source_file": "reports/2026-07-09_v2.csv"
+    "last_export_timestamp": "2026-07-13T18:42:51",
+    "source_file": "reports/2026-07-13_v2.csv",
+    "research_package_status": "ready",
+    "research_package_mismatches": []
   },
   "paper_portfolio": {
     "open_positions": 4,
-    "stale_positions": 4,
-    "price_status": "waiting_for_fresh_market_prices",
-    "last_market_update": "2026-07-10T19:59:00-04:00"
+    "stale_positions": 0,
+    "price_status": "DELAYED",
+    "last_market_update": "2026-07-14T12:20:00-04:00",
+    "valuation_batch_id": "valuation_20260714T1220370400",
+    "valuation_generated_at": "2026-07-14T12:20:37-04:00"
   },
   "market_snapshot": {
     "provider": "yfinance",
-    "quote_status": "MARKET_CLOSED",
-    "last_successful_quote_refresh": "2026-07-10T23:49:24-04:00",
-    "tickers_requested": 13,
-    "tickers_updated": 13,
+    "quote_status": "DELAYED",
+    "last_successful_quote_refresh": "2026-07-14T12:20:37-04:00",
+    "tickers_requested": 16,
+    "tickers_updated": 16,
+    "tickers_stale": 0,
     "failed_quotes": 0,
-    "market_state": "CLOSED"
+    "market_state": "OPEN",
+    "valuation_batch_id": "valuation_20260714T1220370400",
+    "valuation_generated_at": "2026-07-14T12:20:37-04:00"
+  },
+  "portfolio_pricing": {
+    "refresh_cadence_seconds": 300,
+    "refresh_cadence_label": "Every 5 minutes during regular New York market hours",
+    "last_market_snapshot": "2026-07-14T12:20:37-04:00",
+    "last_durable_valuation": "2026-07-14T12:20:37-04:00",
+    "next_expected_refresh": "2026-07-14T12:25:37-04:00",
+    "tickers_requested": 16,
+    "tickers_updated": 16,
+    "tickers_stale": 0,
+    "provider": "yfinance",
+    "quote_status": "DELAYED",
+    "latest_refresh_duration": "Unavailable",
+    "overlap_skips": 0,
+    "last_failure_reason": null
+  },
+  "trade_email_notifications": {
+    "enabled": true,
+    "recipient_configured": true,
+    "last_successful_email": "2026-07-14T12:23:29",
+    "last_failed_email": null,
+    "pending_retries": 0,
+    "total_sent": 1,
+    "total_failed": 0,
+    "last_failure_reason": null
   },
   "portfolio_governance": {
     "current_mode": "ai_managed",
@@ -94,44 +145,44 @@
   },
   "events": [
     {
-      "timestamp": "2026-07-11T16:16:15-0400",
+      "timestamp": "2026-07-14T12:20:37-0400",
       "level": "info",
-      "message": "New York market date: 2026-07-11"
+      "message": "Refreshing market snapshot."
     },
     {
-      "timestamp": "2026-07-11T16:16:15-0400",
+      "timestamp": "Not yet recorded",
+      "level": "error",
+      "message": "{\"dry_run\": false, \"errors\": 0, \"market_state\": \"OPEN\", \"output\": \"data/market_snapshot.json\", \"quote_status\": \"DELAYED\", \"status\": \"success\", \"tickers_requested\": 16, \"tickers_updated\": 16}"
+    },
+    {
+      "timestamp": "2026-07-14T12:20:50-0400",
+      "level": "info",
+      "message": "Running paper-trading refresh command using shared market snapshot batch."
+    },
+    {
+      "timestamp": "Not yet recorded",
       "level": "warning",
-      "message": "Outside regular New York market window; refresh skipped safely."
+      "message": "{\"cash\": 15529.02, \"dry_run\": false, \"market_state\": \"OPEN\", \"positions_closed\": 0, \"positions_stale\": 0, \"positions_updated\": 4, \"price_data_status\": \"DELAYED\", \"realized_pnl\": 383.6, \"status\": \"success\", \"timestamp\": \"2026-07-14T12:20:00-"
+    },
+    {
+      "timestamp": "2026-07-14T12:20:50-0400",
+      "level": "info",
+      "message": "Exporting system status."
     },
     {
       "timestamp": "Not yet recorded",
       "level": "info",
-      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
+      "message": "System status written to /Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/data/system_status.json"
     },
     {
       "timestamp": "Not yet recorded",
       "level": "info",
-      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
+      "message": "{\"daily_pipeline\": \"healthy\", \"market_state\": \"OPEN\", \"paper_refresh\": \"healthy\"}"
     },
     {
-      "timestamp": "Not yet recorded",
+      "timestamp": "2026-07-14T12:20:51-0400",
       "level": "info",
-      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
-    },
-    {
-      "timestamp": "Not yet recorded",
-      "level": "info",
-      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
-    },
-    {
-      "timestamp": "Not yet recorded",
-      "level": "info",
-      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
-    },
-    {
-      "timestamp": "Not yet recorded",
-      "level": "info",
-      "message": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/automation/scripts/refresh_paper_ledger.sh: line 70: ARGS[@]: unbound variable"
+      "message": "Paper ledger refresh completed successfully."
     }
   ]
 }

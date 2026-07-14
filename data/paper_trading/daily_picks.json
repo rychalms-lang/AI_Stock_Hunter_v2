@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-11T19:18:54",
-  "source_file": "reports/2026-07-09_v2.csv",
-  "trade_date": "2026-07-09",
+  "generated_at": "2026-07-13T18:42:51",
+  "source_file": "reports/2026-07-13_v2.csv",
+  "trade_date": "2026-07-13",
   "mock_data": false,
   "data_source": {
     "type": "scanner_export",
@@ -28,310 +28,28 @@
   },
   "picks": [
     {
-      "pick_id": "2026-07-09_GTLB",
-      "trade_date": "2026-07-09",
-      "ticker": "GTLB",
-      "company_name": null,
-      "sector": "Software",
-      "sector_rank": 2,
-      "rank": 1,
-      "action": "WATCH",
-      "score": 58.55,
-      "confidence": 100.0,
-      "risk": "High",
-      "expected_return_pct": 3.38,
-      "win_probability_pct": 72.6,
-      "best_hold_period_days": 3,
-      "historical_matches": 33,
-      "historical_best_avg_return_pct": 3.38,
-      "latest_open": 30.81,
-      "latest_close": 33.86,
-      "five_day_change_pct": 5.58,
-      "twenty_day_change_pct": 18.77,
-      "relative_strength_pct": 14.88,
-      "volume_ratio": 2.09,
-      "paper_trade_candidate": true,
-      "paper_trade_decision": "watch_scanner_export",
-      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "daily_scanner"
-      },
-      "ai_explanation": {
-        "summary": "GTLB is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
-        "strengths": [
-          "Confidence is high at 100%.",
-          "Relative strength is positive at 14.88%.",
-          "Historical average return evidence is positive at 3.38%.",
-          "33 comparable historical setups were found."
-        ],
-        "risks": [
-          "Risk label is High."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable scanner setups",
-            "count": 33,
-            "average_return_pct": 3.38,
-            "win_rate_pct": 54.55
-          }
-        ]
-      },
-      "confidence_reasons": [
-        "Strong 5-day momentum",
-        "Strong 20-day trend",
-        "Strong relative strength vs SPY",
-        "Above-average volume confirmation",
-        "Positive open-to-close action",
-        "Supportive risk-on market environment",
-        "Stock belongs to a leading sector",
-        "Strong historical average return"
-      ],
-      "risk_flags": [
-        "No major risk flags detected"
-      ]
-    },
-    {
-      "pick_id": "2026-07-09_ANET",
-      "trade_date": "2026-07-09",
-      "ticker": "ANET",
-      "company_name": null,
-      "sector": "Other / Uncategorized",
-      "sector_rank": 0,
-      "rank": 2,
-      "action": "WATCH",
-      "score": 46.25,
-      "confidence": 90.0,
-      "risk": "Medium",
-      "expected_return_pct": 3.75,
-      "win_probability_pct": 67.5,
-      "best_hold_period_days": 10,
-      "historical_matches": 207,
-      "historical_best_avg_return_pct": 3.75,
-      "latest_open": 187.0,
-      "latest_close": 184.69,
-      "five_day_change_pct": 15.44,
-      "twenty_day_change_pct": 21.7,
-      "relative_strength_pct": 17.81,
-      "volume_ratio": 1.02,
-      "paper_trade_candidate": true,
-      "paper_trade_decision": "watch_scanner_export",
-      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "daily_scanner"
-      },
-      "ai_explanation": {
-        "summary": "ANET is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
-        "strengths": [
-          "Confidence is high at 90%.",
-          "Relative strength is positive at 17.81%.",
-          "Historical average return evidence is positive at 3.75%.",
-          "207 similar historical setups were found."
-        ],
-        "risks": [
-          "Risk label is Medium."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable scanner setups",
-            "count": 207,
-            "average_return_pct": 3.75,
-            "win_rate_pct": 52.66
-          }
-        ]
-      },
-      "confidence_reasons": [
-        "Strong 5-day momentum",
-        "Strong 20-day trend",
-        "Strong relative strength vs SPY",
-        "Supportive risk-on market environment",
-        "Strong historical average return"
-      ],
-      "risk_flags": [
-        "Weak intraday close"
-      ]
-    },
-    {
-      "pick_id": "2026-07-09_DELL",
-      "trade_date": "2026-07-09",
-      "ticker": "DELL",
-      "company_name": null,
-      "sector": "Other / Uncategorized",
-      "sector_rank": 0,
-      "rank": 3,
-      "action": "WATCH",
-      "score": 45.77,
-      "confidence": 100.0,
-      "risk": "Medium",
-      "expected_return_pct": 3.75,
-      "win_probability_pct": 66.8,
-      "best_hold_period_days": 10,
-      "historical_matches": 207,
-      "historical_best_avg_return_pct": 3.75,
-      "latest_open": 443.83,
-      "latest_close": 450.22,
-      "five_day_change_pct": 14.18,
-      "twenty_day_change_pct": 21.74,
-      "relative_strength_pct": 17.85,
-      "volume_ratio": 0.95,
-      "paper_trade_candidate": true,
-      "paper_trade_decision": "watch_scanner_export",
-      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "daily_scanner"
-      },
-      "ai_explanation": {
-        "summary": "DELL is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
-        "strengths": [
-          "Confidence is high at 100%.",
-          "Relative strength is positive at 17.85%.",
-          "Historical average return evidence is positive at 3.75%.",
-          "207 similar historical setups were found."
-        ],
-        "risks": [
-          "Risk label is Medium."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable scanner setups",
-            "count": 207,
-            "average_return_pct": 3.75,
-            "win_rate_pct": 52.66
-          }
-        ]
-      },
-      "confidence_reasons": [
-        "Strong 5-day momentum",
-        "Strong 20-day trend",
-        "Strong relative strength vs SPY",
-        "Positive open-to-close action",
-        "Supportive risk-on market environment",
-        "Strong historical average return"
-      ],
-      "risk_flags": [
-        "No major risk flags detected"
-      ]
-    },
-    {
-      "pick_id": "2026-07-09_NET",
-      "trade_date": "2026-07-09",
-      "ticker": "NET",
-      "company_name": null,
-      "sector": "Cloud Software",
-      "sector_rank": 2,
-      "rank": 4,
-      "action": "WATCH",
-      "score": 43.93,
-      "confidence": 100.0,
-      "risk": "Medium",
-      "expected_return_pct": 1.1,
-      "win_probability_pct": 67.9,
-      "best_hold_period_days": 7,
-      "historical_matches": 70,
-      "historical_best_avg_return_pct": 1.1,
-      "latest_open": 272.54,
-      "latest_close": 275.8,
-      "five_day_change_pct": 13.77,
-      "twenty_day_change_pct": 25.55,
-      "relative_strength_pct": 21.66,
-      "volume_ratio": 0.88,
-      "paper_trade_candidate": true,
-      "paper_trade_decision": "watch_scanner_export",
-      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "daily_scanner"
-      },
-      "ai_explanation": {
-        "summary": "NET is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
-        "strengths": [
-          "Confidence is high at 100%.",
-          "Relative strength is positive at 21.66%.",
-          "Historical average return evidence is positive at 1.10%.",
-          "70 comparable historical setups were found."
-        ],
-        "risks": [
-          "Risk label is Medium."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable scanner setups",
-            "count": 70,
-            "average_return_pct": 1.1,
-            "win_rate_pct": 51.43
-          }
-        ]
-      },
-      "confidence_reasons": [
-        "Strong 5-day momentum",
-        "Strong 20-day trend",
-        "Strong relative strength vs SPY",
-        "Positive open-to-close action",
-        "Supportive risk-on market environment",
-        "Stock belongs to a leading sector",
-        "Positive historical average return"
-      ],
-      "risk_flags": [
-        "No major risk flags detected"
-      ]
-    },
-    {
-      "pick_id": "2026-07-09_SE",
-      "trade_date": "2026-07-09",
+      "pick_id": "2026-07-13_SE",
+      "trade_date": "2026-07-13",
       "ticker": "SE",
       "company_name": null,
       "sector": "International Tech",
       "sector_rank": 0,
-      "rank": 5,
+      "rank": 1,
       "action": "REVIEW",
-      "score": 43.61,
-      "confidence": 95.0,
+      "score": 55.31,
+      "confidence": 100.0,
       "risk": "Medium",
-      "expected_return_pct": 0.58,
-      "win_probability_pct": 68.3,
-      "best_hold_period_days": 1,
+      "expected_return_pct": 4.73,
+      "win_probability_pct": 72.0,
+      "best_hold_period_days": 7,
       "historical_matches": 33,
-      "historical_best_avg_return_pct": 0.58,
-      "latest_open": 105.76,
-      "latest_close": 109.11,
-      "five_day_change_pct": 5.62,
-      "twenty_day_change_pct": 32.35,
-      "relative_strength_pct": 28.46,
-      "volume_ratio": 0.95,
+      "historical_best_avg_return_pct": 4.73,
+      "latest_open": 111.22,
+      "latest_close": 110.66,
+      "five_day_change_pct": 6.17,
+      "twenty_day_change_pct": 33.42,
+      "relative_strength_pct": 32.16,
+      "volume_ratio": 1.39,
       "paper_trade_candidate": true,
       "paper_trade_decision": "eligible_scanner_export",
       "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
@@ -350,9 +68,9 @@
       "ai_explanation": {
         "summary": "SE is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
         "strengths": [
-          "Confidence is high at 95%.",
-          "Relative strength is positive at 28.46%.",
-          "Historical average return evidence is positive at 0.58%.",
+          "Confidence is high at 100%.",
+          "Relative strength is positive at 32.16%.",
+          "Historical average return evidence is positive at 4.73%.",
           "33 comparable historical setups were found."
         ],
         "risks": [
@@ -362,8 +80,8 @@
           {
             "label": "Comparable scanner setups",
             "count": 33,
-            "average_return_pct": 0.58,
-            "win_rate_pct": 54.55
+            "average_return_pct": 4.73,
+            "win_rate_pct": 75.76
           }
         ]
       },
@@ -371,38 +89,39 @@
         "Strong 5-day momentum",
         "Strong 20-day trend",
         "Strong relative strength vs SPY",
-        "Positive open-to-close action",
-        "Supportive risk-on market environment"
+        "Above-average volume confirmation",
+        "Strong historical average return",
+        "Strong historical win rate"
       ],
       "risk_flags": [
         "No major risk flags detected"
       ]
     },
     {
-      "pick_id": "2026-07-09_S",
-      "trade_date": "2026-07-09",
+      "pick_id": "2026-07-13_S",
+      "trade_date": "2026-07-13",
       "ticker": "S",
       "company_name": null,
       "sector": "Cybersecurity",
-      "sector_rank": 2,
-      "rank": 6,
-      "action": "WATCH",
-      "score": 40.55,
-      "confidence": 85.0,
-      "risk": "High",
-      "expected_return_pct": 0.11,
-      "win_probability_pct": 67.7,
+      "sector_rank": 10,
+      "rank": 2,
+      "action": "REVIEW",
+      "score": 41.75,
+      "confidence": 75.0,
+      "risk": "Medium",
+      "expected_return_pct": 0.62,
+      "win_probability_pct": 69.1,
       "best_hold_period_days": 1,
-      "historical_matches": 99,
-      "historical_best_avg_return_pct": 0.11,
-      "latest_open": 17.38,
-      "latest_close": 18.86,
-      "five_day_change_pct": 7.71,
-      "twenty_day_change_pct": 27.52,
-      "relative_strength_pct": 23.63,
-      "volume_ratio": 0.9,
+      "historical_matches": 39,
+      "historical_best_avg_return_pct": 0.62,
+      "latest_open": 17.89,
+      "latest_close": 18.55,
+      "five_day_change_pct": 2.15,
+      "twenty_day_change_pct": 24.92,
+      "relative_strength_pct": 23.66,
+      "volume_ratio": 1.15,
       "paper_trade_candidate": true,
-      "paper_trade_decision": "watch_scanner_export",
+      "paper_trade_decision": "eligible_scanner_export",
       "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
       "strategy": {
         "name": "V8",
@@ -419,20 +138,87 @@
       "ai_explanation": {
         "summary": "S is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
         "strengths": [
-          "Confidence is high at 85%.",
-          "Relative strength is positive at 23.63%.",
-          "Historical average return evidence is positive at 0.11%.",
-          "99 comparable historical setups were found."
+          "Confidence is constructive at 75%.",
+          "Relative strength is positive at 23.66%.",
+          "Historical average return evidence is positive at 0.62%.",
+          "39 comparable historical setups were found."
         ],
         "risks": [
-          "Risk label is High."
+          "Risk label is Medium."
         ],
         "similar_historical_cases": [
           {
             "label": "Comparable scanner setups",
-            "count": 99,
-            "average_return_pct": 0.11,
-            "win_rate_pct": 57.58
+            "count": 39,
+            "average_return_pct": 0.62,
+            "win_rate_pct": 53.85
+          }
+        ]
+      },
+      "confidence_reasons": [
+        "Strong 20-day trend",
+        "Strong relative strength vs SPY",
+        "Positive open-to-close action"
+      ],
+      "risk_flags": [
+        "Stock belongs to a weak sector"
+      ]
+    },
+    {
+      "pick_id": "2026-07-13_META",
+      "trade_date": "2026-07-13",
+      "ticker": "META",
+      "company_name": null,
+      "sector": "Mega Cap Tech",
+      "sector_rank": 10,
+      "rank": 3,
+      "action": "WATCH",
+      "score": 41.48,
+      "confidence": 100.0,
+      "risk": "Medium",
+      "expected_return_pct": 4.21,
+      "win_probability_pct": 63.5,
+      "best_hold_period_days": 10,
+      "historical_matches": 31,
+      "historical_best_avg_return_pct": 4.21,
+      "latest_open": 661.51,
+      "latest_close": 656.73,
+      "five_day_change_pct": 6.68,
+      "twenty_day_change_pct": 15.94,
+      "relative_strength_pct": 14.68,
+      "volume_ratio": 0.89,
+      "paper_trade_candidate": true,
+      "paper_trade_decision": "watch_scanner_export",
+      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "daily_scanner"
+      },
+      "ai_explanation": {
+        "summary": "META is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "strengths": [
+          "Confidence is high at 100%.",
+          "Relative strength is positive at 14.68%.",
+          "Historical average return evidence is positive at 4.21%.",
+          "31 comparable historical setups were found."
+        ],
+        "risks": [
+          "Risk label is Medium."
+        ],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable scanner setups",
+            "count": 31,
+            "average_return_pct": 4.21,
+            "win_rate_pct": 77.42
           }
         ]
       },
@@ -440,9 +226,140 @@
         "Strong 5-day momentum",
         "Strong 20-day trend",
         "Strong relative strength vs SPY",
-        "Positive open-to-close action",
-        "Supportive risk-on market environment",
-        "Stock belongs to a leading sector"
+        "Strong historical average return",
+        "Strong historical win rate"
+      ],
+      "risk_flags": [
+        "Stock belongs to a weak sector"
+      ]
+    },
+    {
+      "pick_id": "2026-07-13_CMG",
+      "trade_date": "2026-07-13",
+      "ticker": "CMG",
+      "company_name": null,
+      "sector": "Consumer Cyclical",
+      "sector_rank": 12,
+      "rank": 4,
+      "action": "WATCH",
+      "score": 38.71,
+      "confidence": 85.0,
+      "risk": "Low",
+      "expected_return_pct": 0.6,
+      "win_probability_pct": 63.1,
+      "best_hold_period_days": 3,
+      "historical_matches": 154,
+      "historical_best_avg_return_pct": 0.6,
+      "latest_open": 36.13,
+      "latest_close": 36.63,
+      "five_day_change_pct": 6.64,
+      "twenty_day_change_pct": 13.65,
+      "relative_strength_pct": 12.39,
+      "volume_ratio": 1.04,
+      "paper_trade_candidate": true,
+      "paper_trade_decision": "watch_scanner_export",
+      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "daily_scanner"
+      },
+      "ai_explanation": {
+        "summary": "CMG is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "strengths": [
+          "Confidence is high at 85%.",
+          "Relative strength is positive at 12.39%.",
+          "Historical average return evidence is positive at 0.60%.",
+          "154 similar historical setups were found."
+        ],
+        "risks": [],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable scanner setups",
+            "count": 154,
+            "average_return_pct": 0.6,
+            "win_rate_pct": 55.84
+          }
+        ]
+      },
+      "confidence_reasons": [
+        "Strong 5-day momentum",
+        "Strong 20-day trend",
+        "Strong relative strength vs SPY",
+        "Positive open-to-close action"
+      ],
+      "risk_flags": [
+        "Stock belongs to a weak sector"
+      ]
+    },
+    {
+      "pick_id": "2026-07-13_VLO",
+      "trade_date": "2026-07-13",
+      "ticker": "VLO",
+      "company_name": null,
+      "sector": "Energy",
+      "sector_rank": 5,
+      "rank": 5,
+      "action": "WATCH",
+      "score": 36.38,
+      "confidence": 75.0,
+      "risk": "Low",
+      "expected_return_pct": 0.22,
+      "win_probability_pct": 62.5,
+      "best_hold_period_days": 1,
+      "historical_matches": 119,
+      "historical_best_avg_return_pct": 0.22,
+      "latest_open": 285.82,
+      "latest_close": 295.79,
+      "five_day_change_pct": 11.11,
+      "twenty_day_change_pct": 14.35,
+      "relative_strength_pct": 13.09,
+      "volume_ratio": 0.85,
+      "paper_trade_candidate": true,
+      "paper_trade_decision": "watch_scanner_export",
+      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "daily_scanner"
+      },
+      "ai_explanation": {
+        "summary": "VLO is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "strengths": [
+          "Confidence is constructive at 75%.",
+          "Relative strength is positive at 13.09%.",
+          "Historical average return evidence is positive at 0.22%.",
+          "119 similar historical setups were found."
+        ],
+        "risks": [],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable scanner setups",
+            "count": 119,
+            "average_return_pct": 0.22,
+            "win_rate_pct": 56.3
+          }
+        ]
+      },
+      "confidence_reasons": [
+        "Strong 5-day momentum",
+        "Strong 20-day trend",
+        "Strong relative strength vs SPY",
+        "Positive open-to-close action"
       ],
       "risk_flags": [
         "No major risk flags detected",
@@ -450,169 +367,28 @@
       ]
     },
     {
-      "pick_id": "2026-07-09_AMD",
-      "trade_date": "2026-07-09",
-      "ticker": "AMD",
+      "pick_id": "2026-07-13_PSX",
+      "trade_date": "2026-07-13",
+      "ticker": "PSX",
       "company_name": null,
-      "sector": "Semiconductors",
-      "sector_rank": 1,
-      "rank": 7,
+      "sector": "Energy",
+      "sector_rank": 5,
+      "rank": 6,
       "action": "WATCH",
-      "score": 40.07,
-      "confidence": 100.0,
-      "risk": "Medium",
-      "expected_return_pct": 2.18,
-      "win_probability_pct": 64.8,
-      "best_hold_period_days": 10,
-      "historical_matches": 1272,
-      "historical_best_avg_return_pct": 2.18,
-      "latest_open": 537.33,
-      "latest_close": 546.72,
-      "five_day_change_pct": 5.58,
-      "twenty_day_change_pct": 20.85,
-      "relative_strength_pct": 16.96,
-      "volume_ratio": 0.87,
-      "paper_trade_candidate": true,
-      "paper_trade_decision": "watch_scanner_export",
-      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "daily_scanner"
-      },
-      "ai_explanation": {
-        "summary": "AMD is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
-        "strengths": [
-          "Confidence is high at 100%.",
-          "Relative strength is positive at 16.96%.",
-          "Historical average return evidence is positive at 2.18%.",
-          "1272 similar historical setups were found."
-        ],
-        "risks": [
-          "Risk label is Medium."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable scanner setups",
-            "count": 1272,
-            "average_return_pct": 2.18,
-            "win_rate_pct": 56.6
-          }
-        ]
-      },
-      "confidence_reasons": [
-        "Strong 5-day momentum",
-        "Strong 20-day trend",
-        "Strong relative strength vs SPY",
-        "Positive open-to-close action",
-        "Supportive risk-on market environment",
-        "Stock belongs to a leading sector",
-        "Positive historical average return"
-      ],
-      "risk_flags": [
-        "No major risk flags detected"
-      ]
-    },
-    {
-      "pick_id": "2026-07-09_HOOD",
-      "trade_date": "2026-07-09",
-      "ticker": "HOOD",
-      "company_name": null,
-      "sector": "Fintech / Crypto",
-      "sector_rank": 0,
-      "rank": 8,
-      "action": "WATCH",
-      "score": 40.02,
-      "confidence": 100.0,
-      "risk": "Medium",
-      "expected_return_pct": 3.92,
-      "win_probability_pct": 65.2,
-      "best_hold_period_days": 10,
-      "historical_matches": 37,
-      "historical_best_avg_return_pct": 3.92,
-      "latest_open": 112.29,
-      "latest_close": 115.11,
-      "five_day_change_pct": 2.11,
-      "twenty_day_change_pct": 33.29,
-      "relative_strength_pct": 29.4,
-      "volume_ratio": 0.57,
-      "paper_trade_candidate": true,
-      "paper_trade_decision": "watch_scanner_export",
-      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
-      "strategy": {
-        "name": "V8",
-        "version": "8.0",
-        "status": "Champion"
-      },
-      "research_metadata": {
-        "scanner_version": "current",
-        "strategy_version": "V8",
-        "feature_version": "current",
-        "market_regime_version": "current",
-        "generated_from": "daily_scanner"
-      },
-      "ai_explanation": {
-        "summary": "HOOD is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
-        "strengths": [
-          "Confidence is high at 100%.",
-          "Relative strength is positive at 29.40%.",
-          "Historical average return evidence is positive at 3.92%.",
-          "37 comparable historical setups were found."
-        ],
-        "risks": [
-          "Risk label is Medium."
-        ],
-        "similar_historical_cases": [
-          {
-            "label": "Comparable scanner setups",
-            "count": 37,
-            "average_return_pct": 3.92,
-            "win_rate_pct": 64.86
-          }
-        ]
-      },
-      "confidence_reasons": [
-        "Strong 20-day trend",
-        "Strong relative strength vs SPY",
-        "Positive open-to-close action",
-        "Supportive risk-on market environment",
-        "Strong historical average return",
-        "Positive historical win rate"
-      ],
-      "risk_flags": [
-        "No major risk flags detected"
-      ]
-    },
-    {
-      "pick_id": "2026-07-09_OKTA",
-      "trade_date": "2026-07-09",
-      "ticker": "OKTA",
-      "company_name": null,
-      "sector": "Cybersecurity",
-      "sector_rank": 2,
-      "rank": 9,
-      "action": "WATCH",
-      "score": 36.77,
-      "confidence": 75.0,
-      "risk": "Medium",
-      "expected_return_pct": -0.18,
-      "win_probability_pct": 66.4,
+      "score": 36.36,
+      "confidence": 65.0,
+      "risk": "Low",
+      "expected_return_pct": 0.22,
+      "win_probability_pct": 61.0,
       "best_hold_period_days": 1,
-      "historical_matches": 62,
-      "historical_best_avg_return_pct": -0.18,
-      "latest_open": 142.71,
-      "latest_close": 148.84,
-      "five_day_change_pct": 5.25,
-      "twenty_day_change_pct": 29.52,
-      "relative_strength_pct": 25.63,
-      "volume_ratio": 0.74,
+      "historical_matches": 119,
+      "historical_best_avg_return_pct": 0.22,
+      "latest_open": 192.24,
+      "latest_close": 198.29,
+      "five_day_change_pct": 10.88,
+      "twenty_day_change_pct": 10.5,
+      "relative_strength_pct": 9.24,
+      "volume_ratio": 1.01,
       "paper_trade_candidate": true,
       "paper_trade_decision": "watch_scanner_export",
       "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
@@ -629,62 +405,190 @@
         "generated_from": "daily_scanner"
       },
       "ai_explanation": {
-        "summary": "OKTA is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "summary": "PSX is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
         "strengths": [
-          "Confidence is constructive at 75%.",
-          "Relative strength is positive at 25.63%.",
-          "62 comparable historical setups were found."
+          "Confidence is constructive at 65%.",
+          "Relative strength is positive at 9.24%.",
+          "Historical average return evidence is positive at 0.22%.",
+          "119 similar historical setups were found."
         ],
-        "risks": [
-          "Historical average return evidence is weak at -0.18%.",
-          "Risk label is Medium."
-        ],
+        "risks": [],
         "similar_historical_cases": [
           {
             "label": "Comparable scanner setups",
-            "count": 62,
-            "average_return_pct": -0.18,
-            "win_rate_pct": 46.77
+            "count": 119,
+            "average_return_pct": 0.22,
+            "win_rate_pct": 56.3
           }
         ]
       },
       "confidence_reasons": [
         "Strong 5-day momentum",
         "Strong 20-day trend",
-        "Strong relative strength vs SPY",
-        "Positive open-to-close action",
-        "Supportive risk-on market environment",
-        "Stock belongs to a leading sector"
+        "Positive open-to-close action"
       ],
       "risk_flags": [
         "No major risk flags detected",
+        "Weak historical average return"
+      ]
+    },
+    {
+      "pick_id": "2026-07-13_MPC",
+      "trade_date": "2026-07-13",
+      "ticker": "MPC",
+      "company_name": null,
+      "sector": "Energy",
+      "sector_rank": 5,
+      "rank": 7,
+      "action": "WATCH",
+      "score": 36.06,
+      "confidence": 75.0,
+      "risk": "Low",
+      "expected_return_pct": 0.22,
+      "win_probability_pct": 61.4,
+      "best_hold_period_days": 1,
+      "historical_matches": 119,
+      "historical_best_avg_return_pct": 0.22,
+      "latest_open": 290.82,
+      "latest_close": 296.88,
+      "five_day_change_pct": 11.47,
+      "twenty_day_change_pct": 12.63,
+      "relative_strength_pct": 11.37,
+      "volume_ratio": 0.86,
+      "paper_trade_candidate": true,
+      "paper_trade_decision": "watch_scanner_export",
+      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "daily_scanner"
+      },
+      "ai_explanation": {
+        "summary": "MPC is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "strengths": [
+          "Confidence is constructive at 75%.",
+          "Relative strength is positive at 11.37%.",
+          "Historical average return evidence is positive at 0.22%.",
+          "119 similar historical setups were found."
+        ],
+        "risks": [],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable scanner setups",
+            "count": 119,
+            "average_return_pct": 0.22,
+            "win_rate_pct": 56.3
+          }
+        ]
+      },
+      "confidence_reasons": [
+        "Strong 5-day momentum",
+        "Strong 20-day trend",
+        "Strong relative strength vs SPY",
+        "Positive open-to-close action"
+      ],
+      "risk_flags": [
+        "No major risk flags detected",
+        "Weak historical average return"
+      ]
+    },
+    {
+      "pick_id": "2026-07-13_ANET",
+      "trade_date": "2026-07-13",
+      "ticker": "ANET",
+      "company_name": null,
+      "sector": "Other / Uncategorized",
+      "sector_rank": 0,
+      "rank": 8,
+      "action": "WATCH",
+      "score": 32.7,
+      "confidence": 35.0,
+      "risk": "Low",
+      "expected_return_pct": -0.71,
+      "win_probability_pct": 61.4,
+      "best_hold_period_days": 3,
+      "historical_matches": 66,
+      "historical_best_avg_return_pct": -0.71,
+      "latest_open": 186.26,
+      "latest_close": 181.15,
+      "five_day_change_pct": 8.82,
+      "twenty_day_change_pct": 10.97,
+      "relative_strength_pct": 9.71,
+      "volume_ratio": 1.05,
+      "paper_trade_candidate": true,
+      "paper_trade_decision": "watch_scanner_export",
+      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "daily_scanner"
+      },
+      "ai_explanation": {
+        "summary": "ANET is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "strengths": [
+          "Relative strength is positive at 9.71%.",
+          "66 comparable historical setups were found."
+        ],
+        "risks": [
+          "Confidence is modest at 35%.",
+          "Historical average return evidence is weak at -0.71%."
+        ],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable scanner setups",
+            "count": 66,
+            "average_return_pct": -0.71,
+            "win_rate_pct": 40.91
+          }
+        ]
+      },
+      "confidence_reasons": [
+        "Strong 5-day momentum",
+        "Strong 20-day trend"
+      ],
+      "risk_flags": [
+        "Weak intraday close",
         "Weak historical average return",
         "Weak historical win rate"
       ]
     },
     {
-      "pick_id": "2026-07-09_RBLX",
-      "trade_date": "2026-07-09",
-      "ticker": "RBLX",
+      "pick_id": "2026-07-13_GTLB",
+      "trade_date": "2026-07-13",
+      "ticker": "GTLB",
       "company_name": null,
-      "sector": "Gaming / Metaverse",
-      "sector_rank": 2,
-      "rank": 10,
+      "sector": "Software",
+      "sector_rank": 10,
+      "rank": 9,
       "action": "WATCH",
-      "score": 34.91,
-      "confidence": 80.0,
+      "score": 32.51,
+      "confidence": 60.0,
       "risk": "Medium",
-      "expected_return_pct": 0.24,
-      "win_probability_pct": 64.8,
-      "best_hold_period_days": 10,
-      "historical_matches": 292,
-      "historical_best_avg_return_pct": 0.24,
-      "latest_open": 54.37,
-      "latest_close": 56.43,
-      "five_day_change_pct": 1.84,
-      "twenty_day_change_pct": 35.98,
-      "relative_strength_pct": 32.09,
-      "volume_ratio": 0.49,
+      "expected_return_pct": -0.06,
+      "win_probability_pct": 65.2,
+      "best_hold_period_days": 1,
+      "historical_matches": 186,
+      "historical_best_avg_return_pct": -0.06,
+      "latest_open": 32.9,
+      "latest_close": 33.47,
+      "five_day_change_pct": 2.7,
+      "twenty_day_change_pct": 20.44,
+      "relative_strength_pct": 19.18,
+      "volume_ratio": 0.76,
       "paper_trade_candidate": true,
       "paper_trade_decision": "watch_scanner_export",
       "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
@@ -701,12 +605,80 @@
         "generated_from": "daily_scanner"
       },
       "ai_explanation": {
-        "summary": "RBLX is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "summary": "GTLB is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
         "strengths": [
-          "Confidence is high at 80%.",
-          "Relative strength is positive at 32.09%.",
-          "Historical average return evidence is positive at 0.24%.",
-          "292 similar historical setups were found."
+          "Relative strength is positive at 19.18%.",
+          "186 similar historical setups were found."
+        ],
+        "risks": [
+          "Confidence is modest at 60%.",
+          "Historical average return evidence is weak at -0.06%.",
+          "Risk label is Medium."
+        ],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable scanner setups",
+            "count": 186,
+            "average_return_pct": -0.06,
+            "win_rate_pct": 50.0
+          }
+        ]
+      },
+      "confidence_reasons": [
+        "Strong 20-day trend",
+        "Strong relative strength vs SPY",
+        "Positive open-to-close action"
+      ],
+      "risk_flags": [
+        "Stock belongs to a weak sector",
+        "Weak historical average return"
+      ]
+    },
+    {
+      "pick_id": "2026-07-13_NET",
+      "trade_date": "2026-07-13",
+      "ticker": "NET",
+      "company_name": null,
+      "sector": "Cloud Software",
+      "sector_rank": 10,
+      "rank": 10,
+      "action": "WATCH",
+      "score": 32.03,
+      "confidence": 85.0,
+      "risk": "Medium",
+      "expected_return_pct": 1.45,
+      "win_probability_pct": 62.1,
+      "best_hold_period_days": 3,
+      "historical_matches": 31,
+      "historical_best_avg_return_pct": 1.45,
+      "latest_open": 266.71,
+      "latest_close": 269.53,
+      "five_day_change_pct": 0.26,
+      "twenty_day_change_pct": 17.97,
+      "relative_strength_pct": 16.71,
+      "volume_ratio": 0.6,
+      "paper_trade_candidate": true,
+      "paper_trade_decision": "watch_scanner_export",
+      "paper_trade_decision_reason": "Generated from the latest daily scanner CSV. No real order was placed.",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "daily_scanner"
+      },
+      "ai_explanation": {
+        "summary": "NET is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "strengths": [
+          "Confidence is high at 85%.",
+          "Relative strength is positive at 16.71%.",
+          "Historical average return evidence is positive at 1.45%.",
+          "31 comparable historical setups were found."
         ],
         "risks": [
           "Risk label is Medium."
@@ -714,9 +686,9 @@
         "similar_historical_cases": [
           {
             "label": "Comparable scanner setups",
-            "count": 292,
-            "average_return_pct": 0.24,
-            "win_rate_pct": 55.82
+            "count": 31,
+            "average_return_pct": 1.45,
+            "win_rate_pct": 64.52
           }
         ]
       },
@@ -724,12 +696,11 @@
         "Strong 20-day trend",
         "Strong relative strength vs SPY",
         "Positive open-to-close action",
-        "Supportive risk-on market environment",
-        "Stock belongs to a leading sector"
+        "Positive historical average return",
+        "Positive historical win rate"
       ],
       "risk_flags": [
-        "No major risk flags detected",
-        "Weak historical average return"
+        "Stock belongs to a weak sector"
       ]
     }
   ],

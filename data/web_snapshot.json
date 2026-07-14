@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-07-11T19:18:54",
-  "source_file": "reports/2026-07-09_v2.csv",
+  "generated_at": "2026-07-13T18:42:51",
+  "source_file": "reports/2026-07-13_v2.csv",
   "market_regime": {
     "label": "Risk-On",
     "score": 100.0
   },
   "top_opportunity": {
-    "ticker": "DELL",
-    "sector": "Other / Uncategorized",
-    "score": 45.77,
+    "ticker": "SE",
+    "sector": "International Tech",
+    "score": 55.31,
     "confidence": 100.0,
-    "expected_return": 3.75,
-    "best_hold_period_days": 10,
-    "historical_matches": 207,
+    "expected_return": 4.73,
+    "best_hold_period_days": 7,
+    "historical_matches": 33,
     "risk": "Medium",
     "action": "BUY",
-    "reason": "DELL is the strongest current opportunity in Other / Uncategorized. The setup is supported by a positive expected 10-day return of 3.75%, 207 historical matches, very high confidence at 100%. This is a candidate for active review before the next session."
+    "reason": "SE is the strongest current opportunity in International Tech. The setup is supported by a strong expected 7-day return of 4.73%, 33 comparable historical setups, very high confidence at 100%. This is a candidate for active review before the next session."
   },
   "portfolio_summary": {
     "status": "Selective",
@@ -24,156 +24,156 @@
     "total_return": 16.4,
     "cash_percent": 12,
     "positions": 8,
-    "expected_10_day_return": 1.88,
-    "ai_confidence": 92.5,
-    "summary": "2 buy candidates, 4 watch candidates, and 1 avoid candidates were identified."
+    "expected_10_day_return": 1.15,
+    "ai_confidence": 75.5,
+    "summary": "1 buy candidates, 1 watch candidates, and 2 avoid candidates were identified."
   },
   "today_actions": [
     {
-      "ticker": "DELL",
+      "ticker": "SE",
       "action": "Review buy",
       "badge": "BUY",
       "tone": "green",
       "confidence": 100.0,
-      "reason": "DELL is the strongest current opportunity in Other / Uncategorized. The setup is supported by a positive expected 10-day return of 3.75%, 207 historical matches, very high confidence at 100%. This is a candidate for active review before the next session."
+      "reason": "SE is the strongest current opportunity in International Tech. The setup is supported by a strong expected 7-day return of 4.73%, 33 comparable historical setups, very high confidence at 100%. This is a candidate for active review before the next session."
     },
     {
-      "ticker": "ANET",
-      "action": "Review buy",
-      "badge": "BUY",
-      "tone": "green",
-      "confidence": 90.0,
-      "reason": "ANET is the strongest current opportunity in Other / Uncategorized. The setup is supported by a positive expected 10-day return of 3.75%, 207 historical matches, very high confidence at 90%. This is a candidate for active review before the next session."
-    },
-    {
-      "ticker": "HOOD",
+      "ticker": "META",
       "action": "Watch setup",
       "badge": "WATCH",
       "tone": "amber",
       "confidence": 100.0,
-      "reason": "HOOD is worth watching in Fintech / Crypto. The setup has a positive expected 10-day return of 3.92%, 37 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
+      "reason": "META is worth watching in Mega Cap Tech. The setup has a strong expected 10-day return of 4.21%, 31 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
+    },
+    {
+      "ticker": "GTLB",
+      "action": "Avoid",
+      "badge": "AVOID",
+      "tone": "red",
+      "confidence": 60.0,
+      "reason": "GTLB should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.06%, 186 historical matches, moderate confidence at 60%, which does not justify new capital."
     }
   ],
   "ranked_candidates": [
     {
-      "ticker": "DELL",
-      "sector": "Other / Uncategorized",
-      "score": 45.77,
+      "ticker": "SE",
+      "sector": "International Tech",
+      "score": 55.31,
       "confidence": 100.0,
-      "expected_return": 3.75,
-      "best_hold_period_days": 10,
-      "historical_matches": 207,
-      "risk": "Medium",
-      "action": "BUY",
-      "reason": "DELL is the strongest current opportunity in Other / Uncategorized. The setup is supported by a positive expected 10-day return of 3.75%, 207 historical matches, very high confidence at 100%. This is a candidate for active review before the next session."
-    },
-    {
-      "ticker": "ANET",
-      "sector": "Other / Uncategorized",
-      "score": 46.25,
-      "confidence": 90.0,
-      "expected_return": 3.75,
-      "best_hold_period_days": 10,
-      "historical_matches": 207,
-      "risk": "Medium",
-      "action": "BUY",
-      "reason": "ANET is the strongest current opportunity in Other / Uncategorized. The setup is supported by a positive expected 10-day return of 3.75%, 207 historical matches, very high confidence at 90%. This is a candidate for active review before the next session."
-    },
-    {
-      "ticker": "HOOD",
-      "sector": "Fintech / Crypto",
-      "score": 40.02,
-      "confidence": 100.0,
-      "expected_return": 3.92,
-      "best_hold_period_days": 10,
-      "historical_matches": 37,
-      "risk": "Medium",
-      "action": "WATCH",
-      "reason": "HOOD is worth watching in Fintech / Crypto. The setup has a positive expected 10-day return of 3.92%, 37 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
-    },
-    {
-      "ticker": "GTLB",
-      "sector": "Software",
-      "score": 58.55,
-      "confidence": 100.0,
-      "expected_return": 3.38,
-      "best_hold_period_days": 3,
+      "expected_return": 4.73,
+      "best_hold_period_days": 7,
       "historical_matches": 33,
-      "risk": "High",
-      "action": "WATCH",
-      "reason": "GTLB is worth watching in Software. The setup has a positive expected 3-day return of 3.38%, 33 comparable historical setups, very high confidence at 100%, elevated risk, but it is not strong enough for an automatic buy yet."
+      "risk": "Medium",
+      "action": "BUY",
+      "reason": "SE is the strongest current opportunity in International Tech. The setup is supported by a strong expected 7-day return of 4.73%, 33 comparable historical setups, very high confidence at 100%. This is a candidate for active review before the next session."
     },
     {
-      "ticker": "AMD",
-      "sector": "Semiconductors",
-      "score": 40.07,
+      "ticker": "META",
+      "sector": "Mega Cap Tech",
+      "score": 41.48,
       "confidence": 100.0,
-      "expected_return": 2.18,
+      "expected_return": 4.21,
       "best_hold_period_days": 10,
-      "historical_matches": 1272,
+      "historical_matches": 31,
       "risk": "Medium",
       "action": "WATCH",
-      "reason": "AMD is worth watching in Semiconductors. The setup has a positive expected 10-day return of 2.18%, 1272 historical matches, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
+      "reason": "META is worth watching in Mega Cap Tech. The setup has a strong expected 10-day return of 4.21%, 31 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
     },
     {
       "ticker": "NET",
       "sector": "Cloud Software",
-      "score": 43.93,
-      "confidence": 100.0,
-      "expected_return": 1.1,
-      "best_hold_period_days": 7,
-      "historical_matches": 70,
-      "risk": "Medium",
-      "action": "WATCH",
-      "reason": "NET is worth watching in Cloud Software. The setup has a positive expected 7-day return of 1.10%, 70 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
-    },
-    {
-      "ticker": "SE",
-      "sector": "International Tech",
-      "score": 43.61,
-      "confidence": 95.0,
-      "expected_return": 0.58,
-      "best_hold_period_days": 1,
-      "historical_matches": 33,
+      "score": 32.03,
+      "confidence": 85.0,
+      "expected_return": 1.45,
+      "best_hold_period_days": 3,
+      "historical_matches": 31,
       "risk": "Medium",
       "action": "HOLD",
-      "reason": "SE is acceptable but not high conviction. The setup has 33 comparable historical setups, very high confidence at 95%, so the best action is to hold or wait for stronger confirmation."
-    },
-    {
-      "ticker": "RBLX",
-      "sector": "Gaming / Metaverse",
-      "score": 34.91,
-      "confidence": 80.0,
-      "expected_return": 0.24,
-      "best_hold_period_days": 10,
-      "historical_matches": 292,
-      "risk": "Medium",
-      "action": "HOLD",
-      "reason": "RBLX is acceptable but not high conviction. The setup has 292 historical matches, solid confidence at 80%, so the best action is to hold or wait for stronger confirmation."
+      "reason": "NET is acceptable but not high conviction. The setup has a positive expected 3-day return of 1.45%, 31 comparable historical setups, solid confidence at 85%, so the best action is to hold or wait for stronger confirmation."
     },
     {
       "ticker": "S",
       "sector": "Cybersecurity",
-      "score": 40.55,
-      "confidence": 85.0,
-      "expected_return": 0.11,
+      "score": 41.75,
+      "confidence": 75.0,
+      "expected_return": 0.62,
       "best_hold_period_days": 1,
-      "historical_matches": 99,
-      "risk": "High",
+      "historical_matches": 39,
+      "risk": "Medium",
       "action": "HOLD",
-      "reason": "S is acceptable but not high conviction. The setup has 99 comparable historical setups, solid confidence at 85%, elevated risk, so the best action is to hold or wait for stronger confirmation."
+      "reason": "S is acceptable but not high conviction. The setup has 39 comparable historical setups, solid confidence at 75%, so the best action is to hold or wait for stronger confirmation."
     },
     {
-      "ticker": "OKTA",
-      "sector": "Cybersecurity",
-      "score": 36.77,
+      "ticker": "CMG",
+      "sector": "Consumer Cyclical",
+      "score": 38.71,
+      "confidence": 85.0,
+      "expected_return": 0.6,
+      "best_hold_period_days": 3,
+      "historical_matches": 154,
+      "risk": "Low",
+      "action": "HOLD",
+      "reason": "CMG is acceptable but not high conviction. The setup has 154 historical matches, solid confidence at 85%, controlled risk, so the best action is to hold or wait for stronger confirmation."
+    },
+    {
+      "ticker": "VLO",
+      "sector": "Energy",
+      "score": 36.38,
       "confidence": 75.0,
-      "expected_return": -0.18,
+      "expected_return": 0.22,
       "best_hold_period_days": 1,
-      "historical_matches": 62,
+      "historical_matches": 119,
+      "risk": "Low",
+      "action": "HOLD",
+      "reason": "VLO is acceptable but not high conviction. The setup has 119 historical matches, solid confidence at 75%, controlled risk, so the best action is to hold or wait for stronger confirmation."
+    },
+    {
+      "ticker": "MPC",
+      "sector": "Energy",
+      "score": 36.06,
+      "confidence": 75.0,
+      "expected_return": 0.22,
+      "best_hold_period_days": 1,
+      "historical_matches": 119,
+      "risk": "Low",
+      "action": "HOLD",
+      "reason": "MPC is acceptable but not high conviction. The setup has 119 historical matches, solid confidence at 75%, controlled risk, so the best action is to hold or wait for stronger confirmation."
+    },
+    {
+      "ticker": "PSX",
+      "sector": "Energy",
+      "score": 36.36,
+      "confidence": 65.0,
+      "expected_return": 0.22,
+      "best_hold_period_days": 1,
+      "historical_matches": 119,
+      "risk": "Low",
+      "action": "HOLD",
+      "reason": "PSX is acceptable but not high conviction. The setup has 119 historical matches, moderate confidence at 65%, controlled risk, so the best action is to hold or wait for stronger confirmation."
+    },
+    {
+      "ticker": "GTLB",
+      "sector": "Software",
+      "score": 32.51,
+      "confidence": 60.0,
+      "expected_return": -0.06,
+      "best_hold_period_days": 1,
+      "historical_matches": 186,
       "risk": "Medium",
       "action": "AVOID",
-      "reason": "OKTA should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.18%, 62 comparable historical setups, solid confidence at 75%, which does not justify new capital."
+      "reason": "GTLB should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.06%, 186 historical matches, moderate confidence at 60%, which does not justify new capital."
+    },
+    {
+      "ticker": "ANET",
+      "sector": "Other / Uncategorized",
+      "score": 32.7,
+      "confidence": 35.0,
+      "expected_return": -0.71,
+      "best_hold_period_days": 3,
+      "historical_matches": 66,
+      "risk": "Low",
+      "action": "AVOID",
+      "reason": "ANET should be avoided for now. Although it passed the scanner, the setup shows a weak expected 3-day return of -0.71%, 66 comparable historical setups, moderate confidence at 35%, controlled risk, which does not justify new capital."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-11T19:18:54",
+  "generated_at": "2026-07-14T12:20:50",
   "mock_data": false,
   "data_source": {
     "type": "paper_ledger",
@@ -19,12 +19,175 @@
     "market_regime_version": "current",
     "generated_from": "paper_trading_update"
   },
-  "source_file": "reports/2026-07-09_v2.csv",
-  "as_of_date": "2026-07-09",
-  "price_data_status": "waiting_for_fresh_market_prices",
-  "stale_price_data": true,
-  "market_state": "CLOSED",
-  "last_market_update": "2026-07-10T19:59:00-04:00",
-  "trades": [],
+  "valuation_batch_id": "valuation_20260714T1220370400",
+  "valuation_generated_at": "2026-07-14T12:20:37-04:00",
+  "source_file": "reports/2026-07-13_v2.csv",
+  "as_of_date": "2026-07-14",
+  "price_data_status": "DELAYED",
+  "stale_price_data": false,
+  "market_state": "OPEN",
+  "last_market_update": "2026-07-14T12:20:00-04:00",
+  "trades": [
+    {
+      "trade_id": "paper_2026-07-09_SE",
+      "position_id": "paper_2026-07-09_SE",
+      "source_pick_id": "2026-07-09_SE",
+      "ticker": "SE",
+      "sector": "International Tech",
+      "status": "closed",
+      "entry_date": "2026-07-09",
+      "exit_date": "2026-07-13",
+      "entry_price": 109.11,
+      "exit_price": 114.52,
+      "quantity": 40,
+      "cost_basis": 4364.4,
+      "notional_cost": 4364.4,
+      "proceeds": 4580.8,
+      "exit_value": 4580.8,
+      "realized_pnl": 216.4,
+      "realized_return_pct": 4.96,
+      "days_held": 4,
+      "planned_hold_period_days": 1,
+      "actual_hold_days": 4,
+      "exit_reason": "planned_hold_period",
+      "original_confidence": 95.0,
+      "expected_return": 0.58,
+      "historical_matches": 33,
+      "entry_action": "BUY",
+      "entry_score": 43.61,
+      "entry_confidence": 95.0,
+      "entry_expected_return_pct": 0.58,
+      "entry_risk": "Medium",
+      "entry_market_regime": "Current",
+      "entry_sector_rank": 0,
+      "max_unrealized_gain_pct": 4.96,
+      "max_unrealized_loss_pct": 0.0,
+      "thesis_outcome": "closed_by_paper_engine_rule",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "daily_scanner"
+      },
+      "ai_explanation": {
+        "summary": "SE is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "strengths": [
+          "Confidence is high at 95%.",
+          "Relative strength is positive at 28.46%.",
+          "Historical average return evidence is positive at 0.58%.",
+          "33 comparable historical setups were found."
+        ],
+        "risks": [
+          "Risk label is Medium."
+        ],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable scanner setups",
+            "count": 33,
+            "average_return_pct": 0.58,
+            "win_rate_pct": 54.55
+          }
+        ]
+      },
+      "market_regime_at_entry": "Current",
+      "fees": 0.0,
+      "slippage": 0.0,
+      "price_source": "yfinance",
+      "price_timestamp": "2026-07-13T10:29:00-04:00",
+      "price_change_today": 2.77,
+      "market_state": "OPEN",
+      "last_price_update": "2026-07-13T10:29:00-04:00",
+      "stale_price_data": false,
+      "price_status": "DELAYED",
+      "price_data_status": "DELAYED",
+      "notes": "Closed by deterministic paper trading rules. No real order was placed."
+    },
+    {
+      "trade_id": "paper_2026-07-13_S",
+      "position_id": "paper_2026-07-13_S",
+      "source_pick_id": "2026-07-13_S",
+      "ticker": "S",
+      "sector": "Cybersecurity",
+      "status": "closed",
+      "entry_date": "2026-07-13",
+      "exit_date": "2026-07-14",
+      "entry_price": 18.55,
+      "exit_price": 19.35,
+      "quantity": 209,
+      "cost_basis": 3876.95,
+      "notional_cost": 3876.95,
+      "proceeds": 4044.15,
+      "exit_value": 4044.15,
+      "realized_pnl": 167.2,
+      "realized_return_pct": 4.31,
+      "days_held": 1,
+      "planned_hold_period_days": 1,
+      "actual_hold_days": 1,
+      "exit_reason": "planned_hold_period",
+      "original_confidence": 75.0,
+      "expected_return": 0.62,
+      "historical_matches": 39,
+      "entry_action": "BUY",
+      "entry_score": 41.75,
+      "entry_confidence": 75.0,
+      "entry_expected_return_pct": 0.62,
+      "entry_risk": "Medium",
+      "entry_market_regime": "Current",
+      "entry_sector_rank": 10,
+      "max_unrealized_gain_pct": 4.31,
+      "max_unrealized_loss_pct": 0.0,
+      "thesis_outcome": "closed_by_paper_engine_rule",
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "research_metadata": {
+        "scanner_version": "current",
+        "strategy_version": "V8",
+        "feature_version": "current",
+        "market_regime_version": "current",
+        "generated_from": "daily_scanner"
+      },
+      "ai_explanation": {
+        "summary": "S is included from the daily scanner because the current setup has measurable scanner, confidence, and historical evidence.",
+        "strengths": [
+          "Confidence is constructive at 75%.",
+          "Relative strength is positive at 23.66%.",
+          "Historical average return evidence is positive at 0.62%.",
+          "39 comparable historical setups were found."
+        ],
+        "risks": [
+          "Risk label is Medium."
+        ],
+        "similar_historical_cases": [
+          {
+            "label": "Comparable scanner setups",
+            "count": 39,
+            "average_return_pct": 0.62,
+            "win_rate_pct": 53.85
+          }
+        ]
+      },
+      "market_regime_at_entry": "Current",
+      "fees": 0.0,
+      "slippage": 0.0,
+      "price_source": "yfinance",
+      "price_timestamp": "2026-07-14T10:09:00-04:00",
+      "price_change_today": 4.96,
+      "market_state": "OPEN",
+      "last_price_update": "2026-07-14T10:09:00-04:00",
+      "stale_price_data": false,
+      "price_status": "DELAYED",
+      "price_data_status": "DELAYED",
+      "notes": "Closed by deterministic paper trading rules. No real order was placed."
+    }
+  ],
   "disclaimer": "Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice."
 }

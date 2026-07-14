@@ -1,7 +1,252 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-11T19:18:58-04:00",
+  "generated_at": "2026-07-13T18:42:54-04:00",
   "items": [
+    {
+      "date": "2026-07-13",
+      "market_regime": "Unavailable",
+      "candidate_count": 10,
+      "top_opportunity": {
+        "ticker": "SE",
+        "sector": "International Tech",
+        "action": "BUY",
+        "confidence": 100.0,
+        "expected_return_pct": 8.0,
+        "score": 55.31
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "ticker": "SE",
+          "sector": "International Tech",
+          "action": "BUY",
+          "confidence": 100.0,
+          "score": 55.31,
+          "expected_return_pct": 8.0,
+          "best_hold_period_days": 7,
+          "historical_matches": 33,
+          "risk": "Medium",
+          "reason": "SE is rated BUY because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 111.22,
+            "latest_close": 110.66,
+            "five_day_change_pct": 6.17,
+            "twenty_day_change_pct": 33.42,
+            "relative_strength_pct": 32.16,
+            "volume_ratio": 1.39,
+            "best_avg_return_pct": 4.73
+          }
+        },
+        {
+          "rank": 2,
+          "ticker": "S",
+          "sector": "Cybersecurity",
+          "action": "BUY",
+          "confidence": 75.0,
+          "score": 41.75,
+          "expected_return_pct": 5.97,
+          "best_hold_period_days": 1,
+          "historical_matches": 39,
+          "risk": "Medium",
+          "reason": "S is rated BUY because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 17.89,
+            "latest_close": 18.55,
+            "five_day_change_pct": 2.15,
+            "twenty_day_change_pct": 24.92,
+            "relative_strength_pct": 23.66,
+            "volume_ratio": 1.15,
+            "best_avg_return_pct": 0.62
+          }
+        },
+        {
+          "rank": 3,
+          "ticker": "META",
+          "sector": "Mega Cap Tech",
+          "action": "WATCH",
+          "confidence": 100.0,
+          "score": 41.48,
+          "expected_return_pct": 4.82,
+          "best_hold_period_days": 10,
+          "historical_matches": 31,
+          "risk": "Medium",
+          "reason": "META is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 661.51,
+            "latest_close": 656.73,
+            "five_day_change_pct": 6.68,
+            "twenty_day_change_pct": 15.94,
+            "relative_strength_pct": 14.68,
+            "volume_ratio": 0.89,
+            "best_avg_return_pct": 4.21
+          }
+        },
+        {
+          "rank": 4,
+          "ticker": "CMG",
+          "sector": "Consumer Cyclical",
+          "action": "WATCH",
+          "confidence": 85.0,
+          "score": 38.71,
+          "expected_return_pct": 4.45,
+          "best_hold_period_days": 3,
+          "historical_matches": 154,
+          "risk": "Low",
+          "reason": "CMG is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 36.13,
+            "latest_close": 36.63,
+            "five_day_change_pct": 6.64,
+            "twenty_day_change_pct": 13.65,
+            "relative_strength_pct": 12.39,
+            "volume_ratio": 1.04,
+            "best_avg_return_pct": 0.6
+          }
+        },
+        {
+          "rank": 5,
+          "ticker": "VLO",
+          "sector": "Energy",
+          "action": "WATCH",
+          "confidence": 75.0,
+          "score": 36.38,
+          "expected_return_pct": 5.27,
+          "best_hold_period_days": 1,
+          "historical_matches": 119,
+          "risk": "Low",
+          "reason": "VLO is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 285.82,
+            "latest_close": 295.79,
+            "five_day_change_pct": 11.11,
+            "twenty_day_change_pct": 14.35,
+            "relative_strength_pct": 13.09,
+            "volume_ratio": 0.85,
+            "best_avg_return_pct": 0.22
+          }
+        },
+        {
+          "rank": 6,
+          "ticker": "PSX",
+          "sector": "Energy",
+          "action": "WATCH",
+          "confidence": 65.0,
+          "score": 36.36,
+          "expected_return_pct": 4.56,
+          "best_hold_period_days": 1,
+          "historical_matches": 119,
+          "risk": "Low",
+          "reason": "PSX is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 192.24,
+            "latest_close": 198.29,
+            "five_day_change_pct": 10.88,
+            "twenty_day_change_pct": 10.5,
+            "relative_strength_pct": 9.24,
+            "volume_ratio": 1.01,
+            "best_avg_return_pct": 0.22
+          }
+        },
+        {
+          "rank": 7,
+          "ticker": "MPC",
+          "sector": "Energy",
+          "action": "WATCH",
+          "confidence": 75.0,
+          "score": 36.06,
+          "expected_return_pct": 5.0,
+          "best_hold_period_days": 1,
+          "historical_matches": 119,
+          "risk": "Low",
+          "reason": "MPC is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 290.82,
+            "latest_close": 296.88,
+            "five_day_change_pct": 11.47,
+            "twenty_day_change_pct": 12.63,
+            "relative_strength_pct": 11.37,
+            "volume_ratio": 0.86,
+            "best_avg_return_pct": 0.22
+          }
+        },
+        {
+          "rank": 8,
+          "ticker": "ANET",
+          "sector": "Other / Uncategorized",
+          "action": "WATCH",
+          "confidence": 35.0,
+          "score": 32.7,
+          "expected_return_pct": 4.31,
+          "best_hold_period_days": 3,
+          "historical_matches": 66,
+          "risk": "Low",
+          "reason": "ANET is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 186.26,
+            "latest_close": 181.15,
+            "five_day_change_pct": 8.82,
+            "twenty_day_change_pct": 10.97,
+            "relative_strength_pct": 9.71,
+            "volume_ratio": 1.05,
+            "best_avg_return_pct": -0.71
+          }
+        },
+        {
+          "rank": 9,
+          "ticker": "GTLB",
+          "sector": "Software",
+          "action": "WATCH",
+          "confidence": 60.0,
+          "score": 32.51,
+          "expected_return_pct": 4.92,
+          "best_hold_period_days": 1,
+          "historical_matches": 186,
+          "risk": "Medium",
+          "reason": "GTLB is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 32.9,
+            "latest_close": 33.47,
+            "five_day_change_pct": 2.7,
+            "twenty_day_change_pct": 20.44,
+            "relative_strength_pct": 19.18,
+            "volume_ratio": 0.76,
+            "best_avg_return_pct": -0.06
+          }
+        },
+        {
+          "rank": 10,
+          "ticker": "NET",
+          "sector": "Cloud Software",
+          "action": "WATCH",
+          "confidence": 85.0,
+          "score": 32.03,
+          "expected_return_pct": 3.88,
+          "best_hold_period_days": 3,
+          "historical_matches": 31,
+          "risk": "Medium",
+          "reason": "NET is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 266.71,
+            "latest_close": 269.53,
+            "five_day_change_pct": 0.26,
+            "twenty_day_change_pct": 17.97,
+            "relative_strength_pct": 16.71,
+            "volume_ratio": 0.6,
+            "best_avg_return_pct": 1.45
+          }
+        }
+      ],
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "source_metadata": {
+        "schema": "scanner_report_v2_csv",
+        "future_outcomes_exposed": false
+      },
+      "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-13_v2.csv"
+    },
     {
       "date": "2026-07-09",
       "market_regime": "Unavailable",

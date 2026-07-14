@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-11T19:18:54",
+  "generated_at": "2026-07-14T12:20:50",
   "mock_data": false,
   "data_source": {
     "type": "paper_ledger",
@@ -19,12 +19,14 @@
     "market_regime_version": "current",
     "generated_from": "paper_trading_update"
   },
-  "source_file": "reports/2026-07-09_v2.csv",
-  "as_of_date": "2026-07-09",
-  "price_data_status": "waiting_for_fresh_market_prices",
-  "stale_price_data": true,
-  "market_state": "CLOSED",
-  "last_market_update": "2026-07-10T19:59:00-04:00",
+  "valuation_batch_id": "valuation_20260714T1220370400",
+  "valuation_generated_at": "2026-07-14T12:20:37-04:00",
+  "source_file": "reports/2026-07-13_v2.csv",
+  "as_of_date": "2026-07-14",
+  "price_data_status": "DELAYED",
+  "stale_price_data": false,
+  "market_state": "OPEN",
+  "last_market_update": "2026-07-14T12:20:00-04:00",
   "account": {
     "account_id": "paper_default",
     "mode": "paper_only",
@@ -32,27 +34,81 @@
     "currency": "USD"
   },
   "overall": {
-    "total_trades": 0,
-    "winning_trades": 0,
+    "total_trades": 2,
+    "winning_trades": 2,
     "losing_trades": 0,
-    "win_rate_pct": null,
-    "average_return_pct": null,
-    "median_return_pct": null,
-    "best_trade_return_pct": null,
-    "worst_trade_return_pct": null,
-    "average_win_pct": null,
+    "win_rate_pct": 100.0,
+    "average_return_pct": 4.63,
+    "median_return_pct": 4.63,
+    "best_trade_return_pct": 4.96,
+    "worst_trade_return_pct": 4.31,
+    "average_win_pct": 4.63,
     "average_loss_pct": null,
     "profit_factor": null,
-    "total_realized_pnl": 0.0,
-    "total_unrealized_pnl": 0.0,
-    "max_drawdown_pct": 0.0,
-    "average_hold_days": null,
-    "status": "insufficient data"
+    "total_realized_pnl": 383.6,
+    "total_unrealized_pnl": -96.12,
+    "max_drawdown_pct": -0.33,
+    "average_hold_days": 2.5,
+    "status": "ready"
   },
-  "by_hold_period": [],
-  "by_action": [],
-  "by_market_regime": [],
-  "by_confidence_bucket": [],
-  "by_sector": [],
+  "by_hold_period": [
+    {
+      "hold_period_days": 1,
+      "total_trades": 2,
+      "win_rate_pct": 100.0,
+      "average_return_pct": 4.63,
+      "total_realized_pnl": 383.6
+    }
+  ],
+  "by_action": [
+    {
+      "action": "BUY",
+      "total_trades": 2,
+      "win_rate_pct": 100.0,
+      "average_return_pct": 4.63,
+      "total_realized_pnl": 383.6
+    }
+  ],
+  "by_market_regime": [
+    {
+      "market_regime": "Current",
+      "total_trades": 2,
+      "win_rate_pct": 100.0,
+      "average_return_pct": 4.63,
+      "total_realized_pnl": 383.6
+    }
+  ],
+  "by_confidence_bucket": [
+    {
+      "bucket": "85+",
+      "total_trades": 1,
+      "win_rate_pct": 100.0,
+      "average_return_pct": 4.96,
+      "total_realized_pnl": 216.4
+    },
+    {
+      "bucket": "70-84",
+      "total_trades": 1,
+      "win_rate_pct": 100.0,
+      "average_return_pct": 4.31,
+      "total_realized_pnl": 167.2
+    }
+  ],
+  "by_sector": [
+    {
+      "sector": "International Tech",
+      "total_trades": 1,
+      "win_rate_pct": 100.0,
+      "average_return_pct": 4.96,
+      "total_realized_pnl": 216.4
+    },
+    {
+      "sector": "Cybersecurity",
+      "total_trades": 1,
+      "win_rate_pct": 100.0,
+      "average_return_pct": 4.31,
+      "total_realized_pnl": 167.2
+    }
+  ],
   "disclaimer": "Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice."
 }

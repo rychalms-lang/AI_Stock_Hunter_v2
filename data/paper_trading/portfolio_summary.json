@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-11T19:18:54",
+  "generated_at": "2026-07-14T12:20:50",
   "mock_data": false,
   "data_source": {
     "type": "paper_ledger",
@@ -19,15 +19,17 @@
     "market_regime_version": "current",
     "generated_from": "paper_trading_update"
   },
-  "source_file": "reports/2026-07-09_v2.csv",
-  "trade_date": "2026-07-09",
-  "as_of_date": "2026-07-09",
-  "price_data_status": "waiting_for_fresh_market_prices",
-  "stale_price_data": true,
-  "market_state": "CLOSED",
-  "last_market_update": "2026-07-10T19:59:00-04:00",
+  "valuation_batch_id": "valuation_20260714T1220370400",
+  "valuation_generated_at": "2026-07-14T12:20:37-04:00",
+  "source_file": "reports/2026-07-13_v2.csv",
+  "trade_date": "2026-07-14",
+  "as_of_date": "2026-07-14",
+  "price_data_status": "DELAYED",
+  "stale_price_data": false,
+  "market_state": "OPEN",
+  "last_market_update": "2026-07-14T12:20:00-04:00",
   "live_prices": false,
-  "stale_positions": 4,
+  "stale_positions": 0,
   "account": {
     "account_id": "paper_default",
     "mode": "paper_only",
@@ -35,64 +37,66 @@
     "currency": "USD"
   },
   "summary": {
-    "cash": 15760.72,
-    "invested_value": 9239.28,
-    "total_equity": 25000.0,
+    "cash": 15529.02,
+    "invested_value": 9758.46,
+    "total_equity": 25287.48,
     "open_positions_count": 4,
-    "closed_trades_count": 0,
-    "cash_pct": 63.04,
-    "invested_pct": 36.96,
-    "total_return_pct": 0.0,
-    "realized_pnl": 0.0,
-    "unrealized_pnl": 0.0,
+    "closed_trades_count": 2,
+    "cash_pct": 61.41,
+    "invested_pct": 38.59,
+    "total_return_pct": 1.15,
+    "realized_pnl": 383.6,
+    "unrealized_pnl": -96.12,
     "day_pnl": 0.0,
     "day_return_pct": 0.0,
-    "max_drawdown_pct": 0.0,
-    "largest_position_pct": 17.46,
+    "max_drawdown_pct": -0.33,
+    "largest_position_pct": 19.41,
     "sector_exposure": [
       {
         "sector": "International Tech",
-        "value": 4364.4,
-        "portfolio_pct": 17.46,
+        "value": 4909.05,
+        "portfolio_pct": 19.41,
         "position_count": 1
       },
       {
         "sector": "Fintech / Crypto",
-        "value": 1911.14,
-        "portfolio_pct": 7.64,
-        "position_count": 1
-      },
-      {
-        "sector": "Consumer Staples Growth",
-        "value": 1497.44,
-        "portfolio_pct": 5.99,
+        "value": 1873.06,
+        "portfolio_pct": 7.41,
         "position_count": 1
       },
       {
         "sector": "Consumer Health",
-        "value": 1466.3,
-        "portfolio_pct": 5.87,
+        "value": 1505.86,
+        "portfolio_pct": 5.95,
+        "position_count": 1
+      },
+      {
+        "sector": "Consumer Staples Growth",
+        "value": 1470.49,
+        "portfolio_pct": 5.82,
         "position_count": 1
       }
     ],
     "risk_exposure": [
       {
         "risk": "Medium",
-        "value": 7328.14,
-        "portfolio_pct": 29.31,
+        "value": 7885.4,
+        "portfolio_pct": 31.18,
         "position_count": 3
       },
       {
         "risk": "High",
-        "value": 1911.14,
-        "portfolio_pct": 7.64,
+        "value": 1873.06,
+        "portfolio_pct": 7.41,
         "position_count": 1
       }
     ],
-    "last_market_update": "2026-07-10T19:59:00-04:00",
-    "market_state": "CLOSED",
+    "last_market_update": "2026-07-14T12:20:00-04:00",
+    "market_state": "OPEN",
     "live_prices": false,
-    "stale_positions": 4
+    "stale_positions": 0,
+    "valuation_batch_id": "valuation_20260714T1220370400",
+    "valuation_generated_at": "2026-07-14T12:20:37-04:00"
   },
   "disclaimer": "Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice."
 }
