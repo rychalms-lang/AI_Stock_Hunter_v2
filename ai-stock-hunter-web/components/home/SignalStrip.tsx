@@ -41,7 +41,7 @@ export default function SignalStrip() {
           }
         />
         <Metric
-          label="Candidates"
+          label="Opportunities"
           value={snapshot ? `${snapshot.ranked_candidates.length}` : "—"}
         />
       </div>

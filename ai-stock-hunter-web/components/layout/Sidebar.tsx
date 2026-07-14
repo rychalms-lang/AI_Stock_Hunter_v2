@@ -42,8 +42,8 @@ export default function Sidebar() {
           Research
         </div>
         <div className="mt-5 space-y-1 text-xs leading-5 text-black/45">
-          <div>V8 Champion</div>
-          <div>Paper mode only</div>
+          <div>Active Strategy: V8</div>
+          <div>Simulated trading only</div>
         </div>
       </div>
 

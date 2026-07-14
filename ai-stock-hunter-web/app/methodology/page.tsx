@@ -4,9 +4,9 @@ import Card from "@/components/ui/Card";
 import { paperTradingDisclaimer } from "@/components/paperTrading/PaperTradingBanner";
 
 const steps = [
-  "Scanner output is treated as research evidence, not execution authority.",
-  "V8 remains Champion until a challenger clears approved validation.",
-  "Paper trading records simulated outcomes and preserves research metadata.",
+  "Strategy output is treated as research evidence, not investment advice.",
+  "V8 remains the active strategy until another model clears approved validation.",
+  "Simulated trading records paper-only outcomes and preserves research metadata.",
   "Frontend pages render prepared JSON state and do not make trading decisions.",
 ];
 
@@ -29,7 +29,7 @@ export default function MethodologyPage() {
               </h1>
               <p className="mt-4 max-w-2xl text-sm leading-6 text-black/48">
                 The platform is research-first, evidence-driven, and designed
-                around a measured Champion/Challenger workflow.
+                around a measured strategy review process.
               </p>
             </header>
 

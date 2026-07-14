@@ -35,7 +35,7 @@ export default function PortfolioPositionCard({
 
           <div className="mt-5">
             <Badge tone={badgeTone(recommendation.action)}>
-              {`Research Rating: ${recommendation.action}`}
+              {`AI Research Rating: ${recommendation.action}`}
             </Badge>
           </div>
         </div>

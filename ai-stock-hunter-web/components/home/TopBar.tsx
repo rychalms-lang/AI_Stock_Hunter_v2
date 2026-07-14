@@ -9,8 +9,8 @@ export default function TopBar() {
           AI Stock Hunter.
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-6 text-black/48">
-          Daily scanner intelligence, V8 Champion context, and paper-trading
-          telemetry in one research surface.
+          Daily research intelligence, Active Strategy V8 context, and simulated
+          portfolio state in one research surface.
         </p>
       </div>
 
@@ -19,7 +19,7 @@ export default function TopBar() {
           Strategy Status
         </div>
         <div className="mt-3 inline-flex border border-black/10 bg-black px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-white">
-          V8 Champion
+          V8 Active
         </div>
       </div>
     </header>

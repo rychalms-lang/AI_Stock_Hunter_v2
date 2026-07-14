@@ -17,7 +17,7 @@ export default function Ticker() {
     snapshot?.ranked_candidates.slice(0, 12).map((item) => ({
       symbol: item.ticker,
       value: `${item.expected_return > 0 ? "+" : ""}${item.expected_return.toFixed(2)}%`,
-      label: `Rating: ${item.action}`,
+      label: `AI Rating: ${item.action}`,
       up: item.expected_return >= 0,
     })) ?? [];
 
@@ -35,6 +35,7 @@ export default function Ticker() {
           >
             <span className="font-bold text-black/75">{item.symbol}</span>
             <span>{item.label}</span>
+            <span>Expected:</span>
             <span
               className={`font-semibold ${
                 item.up ? "text-emerald-700" : "text-red-600"

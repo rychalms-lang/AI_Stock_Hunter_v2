@@ -10,6 +10,7 @@ import { LiveQuoteContext } from "@/components/market/LiveQuoteContext";
 import Card from "@/components/ui/Card";
 import { MarketSnapshot } from "@/lib/marketSnapshot";
 import { loadMarketSnapshot } from "@/lib/marketSnapshotServer";
+import { cleanStatus, explainers, formatDate, formatDateTime, sourceLabel, strategyStatusLabel, terminology } from "@/lib/displayText";
 import {
   ClosedTrade,
   DailyPick,
@@ -34,22 +35,6 @@ function money(value: number) {
 function pct(value: number) {
   const sign = value > 0 ? "+" : "";
   return `${sign}${value.toFixed(2)}%`;
-}
-
-function formatTimestamp(value?: string) {
-  if (!value) return "Unavailable";
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) return value;
-
-  return new Intl.DateTimeFormat(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(date);
 }
 
 function metricValue(value: number | null | undefined, suffix = "") {
@@ -123,12 +108,12 @@ function signalSummary(
   researchRating?: AIRecommendation
 ) {
   const ratingText = researchRating
-    ? `The web analysis layer assigns a research rating of ${researchRating.action}. `
+    ? `AI Research Rating: ${researchRating.action}. `
     : "";
 
-  return `${ratingText}${pick.ticker} appeared in today’s scanner queue as rank ${pick.rank} with scanner action ${pick.action}, ${pick.confidence.toFixed(
+  return `${ratingText}${pick.ticker} ranks #${pick.rank} in today’s research list with a strategy signal of ${pick.action}, ${pick.confidence.toFixed(
     0
-  )}% scanner confidence, ${pct(pick.expected_return_pct)} expected return, ${pick.historical_matches.toLocaleString()} historical matches, and a ${pick.best_hold_period_days}-day suggested hold under a ${regime} market regime. Paper trades are authorized only by the raw scanner action.`;
+  )}% confidence, ${pct(pick.expected_return_pct)} expected return, ${pick.historical_matches.toLocaleString()} similar historical setups, and a ${pick.best_hold_period_days}-day suggested hold under a ${regime} market regime. Simulated trades act only when the active strategy signal allows it.`;
 }
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -153,15 +138,15 @@ function NotFoundState({ ticker }: { ticker: string }) {
       <div className="mx-auto max-w-5xl">
         <Card className="p-10">
           <div className="text-xs font-black uppercase tracking-[0.28em] text-black/40">
-            Candidate Not Found
+            Stock Analysis Not Found
           </div>
           <h1 className="mt-4 text-5xl font-black tracking-[-0.08em] md:text-7xl">
             {ticker.toUpperCase()}
           </h1>
           <p className="mt-5 max-w-2xl text-sm leading-6 text-black/58">
-            This ticker was not found in the current paper-trading daily picks
-            export. The dashboard queue only links candidates present in the
-            loaded JSON data.
+            This ticker was not found in the current research list. The Morning
+            Brief only links stocks that exist in the latest loaded research
+            data.
           </p>
           <Link
             href="/"
@@ -269,11 +254,11 @@ function CandidateDetail({
               href="/"
               className="text-xs font-black uppercase tracking-[0.24em] text-black/45"
             >
-              Morning Brief / Candidates
+              Morning Brief / Stock Analysis
             </Link>
             <div className="mt-5 text-sm font-semibold text-black/48">
-              {pick.sector} / Scanner Action: {pick.action} / Generated{" "}
-              {formatTimestamp(data.dailyPicks.generated_at)}
+              {pick.sector} / {terminology.strategySignal}: {pick.action} / Updated{" "}
+              {formatDateTime(data.dailyPicks.generated_at)}
             </div>
             <h1 className="mt-6 text-8xl font-black leading-none tracking-[-0.1em] md:text-[150px]">
               {pick.ticker}
@@ -285,9 +270,9 @@ function CandidateDetail({
         </header>
 
         <section className="reveal reveal-delay-1 mb-14 grid grid-cols-2 gap-x-8 gap-y-6 border-b border-[#e8e8e3] pb-10 md:grid-cols-4 xl:grid-cols-8">
-          <MemoMetric label="Research Rating" value={researchRating?.action ?? "Unavailable"} />
-          <MemoMetric label="Scanner Action" value={pick.action} />
-          <MemoMetric label="Paper Execution" value={executionStatus} />
+          <MemoMetric label={terminology.aiResearchRating} value={researchRating?.action ?? "Unavailable"} />
+          <MemoMetric label={terminology.strategySignal} value={pick.action} />
+          <MemoMetric label={terminology.simulatedTradeStatus} value={executionStatus} />
           <MemoMetric label="Rank" value={`#${pick.rank}`} />
           <MemoMetric label="Confidence" value={`${pick.confidence.toFixed(0)}%`} />
           <MemoMetric label="Expected" value={pct(pick.expected_return_pct)} />
@@ -298,21 +283,21 @@ function CandidateDetail({
         <div className="grid grid-cols-1 gap-16 xl:grid-cols-[0.68fr_0.32fr]">
           <div className="space-y-16">
             <section className="reveal memo-panel border-t border-transparent pt-1">
-              <SectionLabel title="Signal Summary" />
+              <SectionLabel title="Research Summary" />
               <p className="mt-5 text-xl font-medium leading-9 text-black/68">
                 {signalSummary(pick, regime, researchRating)}
               </p>
               <p className="mt-5 max-w-3xl text-xs leading-5 text-black/42">
-                Research ratings summarize the web analysis layer. Paper trades
-                are authorized only by the raw scanner action.
+                {explainers.aiResearchRating} {explainers.strategySignal}{" "}
+                {explainers.simulatedTradeStatus}
               </p>
             </section>
 
             <section className="reveal memo-panel border-t border-transparent pt-1">
-              <SectionLabel title="Why V8 Surfaced It" />
+              <SectionLabel title="Why This Stock Appears" />
               <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-3">
                 <MemoNarrative
-                  title="Scanner thesis"
+                  title="Research thesis"
                   body={`${pick.ticker} ranked #${pick.rank} with ${pick.confidence.toFixed(
                     0
                   )}% confidence, ${pct(pick.expected_return_pct)} expected return, ${pick.historical_matches.toLocaleString()} historical matches, and ${pick.volume_ratio.toFixed(
@@ -323,14 +308,14 @@ function CandidateDetail({
                   title="Bull case"
                   body={
                     pick.ai_explanation.strengths[0] ??
-                    "No explicit strength notes were exported for this candidate."
+                    "No explicit strength notes were available for this stock."
                   }
                 />
                 <MemoNarrative
                   title="Risk case"
                   body={
                     pick.ai_explanation.risks[0] ??
-                    "No explicit risk notes were exported for this candidate."
+                    "No explicit risk notes were available for this stock."
                   }
                 />
               </div>
@@ -348,7 +333,7 @@ function CandidateDetail({
             </section>
 
             <section className="reveal memo-panel border-t border-transparent pt-1">
-              <SectionLabel title="Scanner Evidence" />
+              <SectionLabel title="Strategy Evidence" />
               <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
                 <EvidenceMetric
                   label="5D Change"
@@ -380,7 +365,7 @@ function CandidateDetail({
               <SectionLabel title="Historical Evidence" />
               <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
                 <EvidenceMetric
-                  label="Historical Matches"
+                  label="Historical Comparisons"
                   value={pick.historical_matches.toLocaleString()}
                 />
                 <EvidenceMetric
@@ -399,7 +384,7 @@ function CandidateDetail({
             </section>
 
             <section className="reveal memo-panel border-t border-transparent pt-1">
-              <SectionLabel title="AI Explanation" />
+              <SectionLabel title="AI Research Explanation" />
               <p className="mt-5 text-lg leading-8 text-black/62">
                 {pick.ai_explanation.summary}
               </p>
@@ -412,7 +397,7 @@ function CandidateDetail({
               {pick.ai_explanation.similar_historical_cases.length > 0 ? (
                 <div className="mt-8">
                   <div className="text-xs font-black uppercase tracking-[0.22em] text-black/40">
-                    Similar Historical Cases
+                    Similar Historical Setups
                   </div>
                   <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
                     {pick.ai_explanation.similar_historical_cases.map((item) => (
@@ -436,27 +421,27 @@ function CandidateDetail({
 
           <aside className="reveal reveal-delay-2 space-y-12 border-l border-[#e8e8e3] pl-8 xl:sticky xl:top-16 xl:self-start">
             <section className="memo-panel border-t border-transparent pt-1">
-              <SectionLabel title="Research Metadata" />
+              <SectionLabel title="Data Sources" />
               <div className="mt-5 space-y-1 text-sm leading-6 text-black/48">
-                <div>{pick.strategy.name} {pick.strategy.version} / {pick.strategy.status}</div>
-                <div>Research rating: {researchRating?.action ?? "Unavailable"}</div>
-                <div>Scanner action: {pick.action}</div>
-                <div>Paper execution: {executionStatus}</div>
+                <div>Active Strategy: {pick.strategy.name} {pick.strategy.version} / {strategyStatusLabel(pick.strategy.status)}</div>
+                <div>{terminology.aiResearchRating}: {researchRating?.action ?? "Unavailable"}</div>
+                <div>{terminology.strategySignal}: {pick.action}</div>
+                <div>{terminology.simulatedTradeStatus}: {executionStatus}</div>
                 <div>Market regime: {regime}</div>
                 <div>
                   {data.dailyPicks.source_file
-                    ? `Source: ${data.dailyPicks.source_file}`
-                    : "Source file unavailable"}
+                    ? `Research source: ${sourceLabel(data.dailyPicks.source_file)}`
+                    : "Research source unavailable"}
                 </div>
-                <div>Daily picks generated: {formatTimestamp(data.dailyPicks.generated_at)}</div>
+                <div>Research update: {formatDateTime(data.dailyPicks.generated_at)}</div>
                 <div>
-                  Portfolio generated: {formatTimestamp(data.portfolioSummary.generated_at)}
+                  Portfolio updated: {formatDateTime(data.portfolioSummary.generated_at)}
                 </div>
               </div>
             </section>
 
             <section className="memo-panel border-t border-transparent pt-4">
-              <SectionLabel title="Paper Execution" />
+              <SectionLabel title="Simulated Trade Status" />
               <div className="mt-5 text-3xl font-black tracking-[-0.07em] text-black">
                 {executionStatus}
               </div>
@@ -465,22 +450,16 @@ function CandidateDetail({
               </p>
 
               <div className="mt-6 space-y-3">
-                <MiniStatus
-                  label="Scanner Action"
-                  value={pick.action}
-                />
-                <MiniStatus
-                  label="Paper Execution"
-                  value={executionStatus}
-                />
+                <MiniStatus label={terminology.strategySignal} value={pick.action} />
+                <MiniStatus label={terminology.simulatedTradeStatus} value={executionStatus} />
                 <MiniStatus
                   label="Eligibility"
                   value={pick.paper_trade_candidate ? "Eligible" : "Not eligible"}
                 />
-                <MiniStatus label="Decision" value={pick.paper_trade_decision} />
+                <MiniStatus label="Decision" value={cleanStatus(pick.paper_trade_decision)} />
                 <MiniStatus
                   label="Price Data"
-                  value={data.portfolioSummary.price_data_status ?? "fresh"}
+                  value={cleanStatus(data.portfolioSummary.price_data_status ?? "fresh")}
                 />
                 <MiniStatus
                   label="Open Match"
@@ -498,12 +477,12 @@ function CandidateDetail({
             </section>
 
             <section className="memo-panel border-t border-transparent pt-1">
-              <SectionLabel title="Source Metadata" />
+              <SectionLabel title="Technical Details" />
               <div className="mt-6 space-y-3">
                 <MiniStatus label="Pick ID" value={pick.pick_id} />
-                <MiniStatus label="Trade Date" value={pick.trade_date} />
+                <MiniStatus label="Research Date" value={formatDate(pick.trade_date)} />
                 <MiniStatus
-                  label="Scanner Version"
+                  label="Daily Update Version"
                   value={pick.research_metadata.scanner_version}
                 />
                 <MiniStatus
@@ -511,8 +490,8 @@ function CandidateDetail({
                   value={pick.research_metadata.feature_version}
                 />
                 <MiniStatus
-                  label="Generated From"
-                  value={pick.research_metadata.generated_from}
+                  label="Research Source Type"
+                  value={cleanStatus(pick.research_metadata.generated_from)}
                 />
               </div>
             </section>

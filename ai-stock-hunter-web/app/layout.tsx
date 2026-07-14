@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "AI Stock Hunter",
-  description: "AI Stock Hunter research and paper trading dashboard",
+  description: "AI Stock Hunter research and simulated portfolio workspace",
 };
 
 export default function RootLayout({

@@ -14,7 +14,7 @@ export default function PaperTradingStateCard({ result }: Props) {
   return (
     <Card className="border border-red-200 bg-red-50 p-8">
       <div className="text-xs font-black uppercase tracking-[0.25em] text-red-600">
-        Paper Trading Data
+        Simulated Portfolio Data
       </div>
 
       <h2 className="mt-4 text-3xl font-black tracking-[-0.06em] text-black">

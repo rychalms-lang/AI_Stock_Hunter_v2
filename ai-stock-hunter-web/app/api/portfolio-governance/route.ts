@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
   if (action === "set_mode") {
     const mode = text(body.mode);
     if (!VALID_MODES.has(mode)) {
-      return jsonError("Governance mode is invalid.", 400, "invalid_mode");
+      return jsonError("Portfolio control mode is invalid.", 400, "invalid_mode");
     }
     args.push("set-mode", "--mode", mode, "--request-id", requestId);
   } else if (action === "approve_proposal") {
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     if (!proposalId) return jsonError("Proposal ID is required.", 400, "invalid_proposal_id");
     args.push("reject-proposal", "--proposal-id", proposalId, "--request-id", requestId);
   } else {
-    return jsonError("Governance action is invalid.", 400, "invalid_action");
+    return jsonError("Portfolio control action is invalid.", 400, "invalid_action");
   }
 
   try {
@@ -74,9 +74,9 @@ export async function POST(request: NextRequest) {
       try {
         return NextResponse.json(JSON.parse(execError.stdout), { status: 400 });
       } catch {
-        return jsonError("Governance command returned invalid JSON.", 500, "command_parse_error");
+        return jsonError("Portfolio control command returned invalid JSON.", 500, "command_parse_error");
       }
     }
-    return jsonError(execError.stderr || "Governance command failed.", 500, "command_failed");
+    return jsonError(execError.stderr || "Portfolio control command failed.", 500, "command_failed");
   }
 }

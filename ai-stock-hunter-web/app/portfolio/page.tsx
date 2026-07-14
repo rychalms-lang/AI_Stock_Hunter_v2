@@ -6,6 +6,7 @@ import { loadGovernanceData } from "@/lib/portfolioGovernance";
 import { loadPaperTradingData } from "@/lib/paperTrading";
 import { loadWebSnapshotFromData } from "@/lib/webSnapshot";
 import { loadMarketSnapshot } from "@/lib/marketSnapshotServer";
+import { cleanStatus, formatDateTime } from "@/lib/displayText";
 
 export default async function PortfolioPage() {
   const [paperTrading, webSnapshot, governance, marketSnapshot] = await Promise.all([
@@ -28,7 +29,7 @@ export default async function PortfolioPage() {
               <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
                 <div>
                   <div className="text-xs font-black uppercase tracking-[0.28em] text-black/40">
-                    Paper Portfolio
+                    Simulated Portfolio
                   </div>
                   <h1 className="mt-4 text-5xl font-black tracking-[-0.08em] text-black md:text-7xl">
                     Portfolio.
@@ -44,7 +45,7 @@ export default async function PortfolioPage() {
                     label="Market"
                     value={
                       marketSnapshot.status === "ready"
-                        ? marketSnapshot.data.market_state
+                        ? cleanStatus(marketSnapshot.data.market_state)
                         : "Unavailable"
                     }
                   />
@@ -52,16 +53,16 @@ export default async function PortfolioPage() {
                     label="Price update"
                     value={
                       marketSnapshot.status === "ready"
-                        ? marketSnapshot.data.generated_at
+                        ? formatDateTime(marketSnapshot.data.generated_at)
                         : "Waiting"
                     }
                   />
-                  <HeaderFact label="Mode" value={governance.governance.mode.replace("_", " ")} />
+                  <HeaderFact label="Mode" value={cleanStatus(governance.governance.mode)} />
                   <HeaderFact
-                    label="Ledger"
+                    label="Portfolio Update"
                     value={
                       paperTrading.status === "ready"
-                        ? paperTrading.data.portfolioSummary.generated_at
+                        ? formatDateTime(paperTrading.data.portfolioSummary.generated_at)
                         : "Unavailable"
                     }
                   />

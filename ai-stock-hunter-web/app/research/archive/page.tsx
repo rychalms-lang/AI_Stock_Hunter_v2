@@ -3,23 +3,12 @@ import Link from "next/link";
 import Sidebar from "@/components/layout/Sidebar";
 import Ticker from "@/components/layout/Ticker";
 import { loadResearchArchive } from "@/lib/researchArchive";
+import { formatDate, formatDateTime, sourceLabel } from "@/lib/displayText";
 
 function pct(value: number | null) {
   if (typeof value !== "number") return "Unavailable";
   const sign = value > 0 ? "+" : "";
   return `${sign}${value.toFixed(2)}%`;
-}
-
-function formatTimestamp(value?: string) {
-  if (!value) return "Unavailable";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-  return new Intl.DateTimeFormat(undefined, {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(date);
 }
 
 export default async function ResearchArchivePage() {
@@ -44,11 +33,11 @@ export default async function ResearchArchivePage() {
                 Research archive.
               </h1>
               <p className="mt-7 max-w-3xl text-lg leading-8 text-black/58">
-                Historical scanner packages indexed from existing report files.
-                No missing history is fabricated.
+                Past research snapshots indexed from existing report files. The
+                archive shows what was known at the time.
               </p>
               <div className="mt-8 text-sm text-black/42">
-                Archive generated {formatTimestamp(archive?.generated_at)}
+                Archive updated {formatDateTime(archive?.generated_at)}
               </div>
             </header>
 
@@ -62,18 +51,18 @@ export default async function ResearchArchivePage() {
                     style={{ animationDelay: `${index * 55}ms` }}
                   >
                     <div className="font-mono text-sm font-semibold text-black/42">
-                      {item.date}
+                      {formatDate(item.date)}
                     </div>
                     <div>
                       <div className="text-3xl font-black tracking-[-0.06em]">
                         {item.top_opportunity.ticker}
                       </div>
                       <div className="mt-2 text-xs text-black/42">
-                        {item.top_opportunity.sector} / {item.source_report}
+                        {item.top_opportunity.sector} / {sourceLabel(item.source_report)}
                       </div>
                     </div>
-                    <ArchiveDatum label="Candidates" value={`${item.candidate_count}`} />
-                    <ArchiveDatum label="Action" value={item.top_opportunity.action} />
+                    <ArchiveDatum label="Opportunities" value={`${item.candidate_count}`} />
+                    <ArchiveDatum label="AI Rating" value={item.top_opportunity.action} />
                     <ArchiveDatum
                       label="Expected"
                       value={pct(item.top_opportunity.expected_return_pct)}
@@ -82,7 +71,7 @@ export default async function ResearchArchivePage() {
                 ))
               ) : (
                 <div className="py-10 text-sm text-black/48">
-                  Waiting for historical scanner reports.
+                  Waiting for historical research snapshots.
                 </div>
               )}
             </section>

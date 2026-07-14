@@ -8,7 +8,7 @@ export default function Loading() {
           AI Stock Hunter
         </div>
         <div className="mt-4 text-3xl font-black tracking-[-0.06em] text-black">
-          Loading paper trading intelligence...
+          Loading research intelligence...
         </div>
       </Card>
     </main>

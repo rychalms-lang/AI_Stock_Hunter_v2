@@ -8,6 +8,7 @@ import { PortfolioGovernance } from "@/lib/governanceDisplay";
 import { MarketSnapshot, priceStatusLabel, quoteForTicker, usableQuoteStatus } from "@/lib/marketSnapshot";
 import { WebSnapshot } from "@/lib/webSnapshot";
 import { LiveQuoteContext } from "@/components/market/LiveQuoteContext";
+import { terminology } from "@/lib/displayText";
 
 type SortKey = "rank" | "confidence" | "expected_return_pct" | "risk";
 
@@ -314,14 +315,14 @@ export default function PaperPortfolioBuilder({
       <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-            User-Directed Paper Builder
+            User-Managed Simulation
           </div>
           <h2 className="mt-2 text-4xl font-black tracking-[-0.07em] text-black">
             Add a simulated position from today&apos;s queue.
           </h2>
           <p className="mt-4 max-w-3xl text-sm leading-6 text-black/52">
-            User-directed positions are separate from automatic V8 paper entries.
-            The server re-reads the recommendation and market quote before any
+            User-managed positions are separate from automatic V8 simulations.
+            The server re-reads the research data and market quote before any
             simulated position is recorded.
           </p>
           {manualAddDisabled ? (
@@ -343,7 +344,7 @@ export default function PaperPortfolioBuilder({
 
       <div className="mt-6 grid grid-cols-2 gap-x-10 gap-y-5 border-t border-[#e8e8e3] pt-5 text-sm md:grid-cols-4">
         <BuilderFact label="Available cash" value={money(data.portfolioSummary.summary.cash)} />
-        <BuilderFact label="Scanner candidates" value={`${data.dailyPicks.picks.length}`} />
+        <BuilderFact label="Research opportunities" value={`${data.dailyPicks.picks.length}`} />
         <BuilderFact
           label="Automatic eligible"
           value={`${data.dailyPicks.picks.filter(isEligible).length}`}
@@ -374,22 +375,22 @@ export default function PaperPortfolioBuilder({
                   id="paper-builder-title"
                   className="mt-3 text-[clamp(2.25rem,3vw,2.75rem)] font-black tracking-[-0.07em] text-black"
                 >
-                  Build paper portfolio
+                  Build simulated portfolio
                 </h3>
                 <p className="mt-2 max-w-3xl text-base leading-7 text-black/56 md:text-lg">
-                  Select from today&apos;s AI research queue and create a
-                  user-directed simulated position.
+                  Select from today&apos;s AI research list and create a
+                  user-managed simulated position.
                 </p>
               </div>
 
               <div className="flex shrink-0 flex-wrap items-center gap-5 xl:justify-end">
                 <HeaderStat label="Available cash" value={money(data.portfolioSummary.summary.cash)} />
-                <HeaderStat label="Recommendations" value={`${data.dailyPicks.picks.length}`} />
+                <HeaderStat label="Opportunities" value={`${data.dailyPicks.picks.length}`} />
                 <HeaderStat label="Eligible" value={`${data.dailyPicks.picks.filter(isEligible).length}`} />
                 <button
                   ref={closeButtonRef}
                   type="button"
-                  aria-label="Close paper portfolio builder"
+                  aria-label="Close simulated portfolio builder"
                   onClick={closeBuilder}
                   className="builder-focus min-h-12 min-w-12 border border-black/12 bg-[#f8f8f6] px-5 py-3 text-base font-bold text-black transition duration-200 hover:border-black/35 hover:bg-white"
                 >
@@ -403,12 +404,12 @@ export default function PaperPortfolioBuilder({
                 <div className="shrink-0 px-5 py-5 md:px-7">
                   <div className="space-y-5">
                     <div className="min-w-0">
-                      <div className="builder-label">Candidate queue</div>
+                      <div className="builder-label">Research list</div>
                       <h4 className="mt-2 text-2xl font-black leading-tight tracking-[-0.055em] text-black md:text-[28px]">
-                        Choose the research candidate.
+                        Choose the research opportunity.
                       </h4>
                       <p className="mt-2 text-[15px] leading-6 text-black/50">
-                        Review today&apos;s queue and select one candidate to configure.
+                        Review today&apos;s list and select one stock to configure.
                       </p>
                     </div>
 
@@ -426,7 +427,7 @@ export default function PaperPortfolioBuilder({
                         ))}
                       </select>
                       <select
-                        aria-label="Sort candidates"
+                        aria-label="Sort research opportunities"
                         value={sortKey}
                         onChange={(event) => setSortKey(event.target.value as SortKey)}
                         className="builder-focus min-h-12 min-w-0 border border-[#deded8] bg-white px-4 text-base text-black"
@@ -450,7 +451,7 @@ export default function PaperPortfolioBuilder({
 
                 <div
                   role="listbox"
-                  aria-label="Paper portfolio candidates"
+                  aria-label="Simulated portfolio research opportunities"
                   tabIndex={0}
                   onKeyDown={navigateCandidates}
                   className="builder-scroll min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-3 pb-5 md:px-5"
@@ -506,8 +507,8 @@ export default function PaperPortfolioBuilder({
                           </div>
 
                           <div className="mt-5 grid min-w-0 grid-cols-2 gap-x-4 gap-y-4 border-t border-[#ededeb] pt-4 sm:grid-cols-3 xl:grid-cols-4">
-                            <BuilderDatum label="Research Rating" value={researchRating(webSnapshot, pick.ticker)} />
-                            <BuilderDatum label="Scanner Action" value={pick.action} />
+                            <BuilderDatum label={terminology.aiResearchRating} value={researchRating(webSnapshot, pick.ticker)} />
+                            <BuilderDatum label={terminology.strategySignal} value={pick.action} />
                             <BuilderDatum label="Confidence" value={`${pick.confidence.toFixed(0)}%`} />
                             <BuilderDatum label="Expected" value={pct(pick.expected_return_pct)} />
                             <MiniDatum label="Risk" value={pick.risk} />
@@ -542,7 +543,7 @@ export default function PaperPortfolioBuilder({
                     <SectionTitle label="AI research summary" />
                     <p className="mt-3 text-[17px] leading-8 text-black/58">
                       {selected.ai_explanation?.summary ??
-                        "Scanner evidence is available for this candidate."}
+                        "Strategy evidence is available for this opportunity."}
                     </p>
                   </div>
 
@@ -599,10 +600,10 @@ export default function PaperPortfolioBuilder({
                   <div className="mt-7 border-t border-[#e8e8e3] pt-6">
                     <SectionKicker step="3" label="Confirm" />
                     <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <BuilderFact label="Research Rating" value={researchRating(webSnapshot, selected.ticker)} />
-                      <BuilderFact label="Scanner Action" value={selected.action} />
-                      <BuilderFact label="Paper Execution" value={executionState(selected, data)} />
-                      <BuilderFact label="Historical Matches" value={selected.historical_matches.toLocaleString()} />
+                      <BuilderFact label={terminology.aiResearchRating} value={researchRating(webSnapshot, selected.ticker)} />
+                      <BuilderFact label={terminology.strategySignal} value={selected.action} />
+                      <BuilderFact label={terminology.simulatedTradeStatus} value={executionState(selected, data)} />
+                      <BuilderFact label={terminology.historicalComparisons} value={selected.historical_matches.toLocaleString()} />
                     </div>
 
                     <label className="mt-6 block text-sm font-bold text-black/48">
@@ -626,7 +627,7 @@ export default function PaperPortfolioBuilder({
                           onChange={(event) => setAcknowledgeOverride(event.target.checked)}
                         />
                         <span>
-                          I understand this candidate is not automatically eligible.
+                          I understand this opportunity is not automatically eligible.
                           This creates a user-directed simulation only.
                         </span>
                       </label>

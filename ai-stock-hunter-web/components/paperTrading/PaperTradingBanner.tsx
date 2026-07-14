@@ -15,7 +15,7 @@ export default function PaperTradingBanner() {
         </div>
 
         <div className="inline-flex w-fit border border-black/10 bg-[#f3f3ef] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-black/55">
-          V8 Champion
+          V8 Active
         </div>
       </div>
     </div>

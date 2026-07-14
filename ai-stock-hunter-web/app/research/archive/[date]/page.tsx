@@ -6,6 +6,7 @@ import {
   loadResearchArchiveItem,
   ResearchArchiveCandidate,
 } from "@/lib/researchArchive";
+import { formatDate, sourceLabel } from "@/lib/displayText";
 
 type PageProps = {
   params: Promise<{
@@ -56,8 +57,8 @@ export default async function ArchiveDetailPage({ params }: PageProps) {
             Report unavailable.
           </h1>
           <p className="mt-6 text-lg leading-8 text-black/58">
-            No archive index entry exists for {date}. Waiting for a generated
-            archive package.
+            No archive entry exists for {formatDate(date)}. Waiting for a
+            generated research snapshot.
           </p>
         </div>
       </Shell>
@@ -78,10 +79,10 @@ export default async function ArchiveDetailPage({ params }: PageProps) {
               Research / Archive
             </Link>
             <h1 className="mt-6 text-6xl font-black leading-[0.94] tracking-[-0.08em] md:text-8xl">
-              Scanner state for {item.date}.
+              Research snapshot for {formatDate(item.date)}.
             </h1>
             <p className="mt-8 max-w-3xl text-xl leading-9 text-black/58">
-              Historical scanner package indexed from the source report. This
+              Historical research snapshot indexed from the source report. This
               page shows signals only, not realized outcomes.
             </p>
           </div>
@@ -94,18 +95,18 @@ export default async function ArchiveDetailPage({ params }: PageProps) {
               {item.top_opportunity.ticker}
             </div>
             <div className="mt-5 space-y-2 text-sm leading-6 text-black/48">
-              <div>{item.source_report}</div>
-              <div>{item.candidate_count} candidates</div>
-              <div>{item.strategy?.name ?? "V8"} {item.strategy?.status ?? "Champion"}</div>
+              <div>{sourceLabel(item.source_report)}</div>
+              <div>{item.candidate_count} opportunities</div>
+              <div>Active Strategy: {item.strategy?.name ?? "V8"}</div>
             </div>
           </aside>
         </header>
 
         <section className="reveal reveal-delay-1 grid grid-cols-2 gap-x-10 gap-y-6 border-b border-[#e8e8e3] py-10 md:grid-cols-6">
-          <MemoMetric label="Report Date" value={item.date} />
-          <MemoMetric label="Candidates" value={`${item.candidate_count}`} />
+          <MemoMetric label="Research Date" value={formatDate(item.date)} />
+          <MemoMetric label="Opportunities" value={`${item.candidate_count}`} />
           <MemoMetric label="Market Regime" value={item.market_regime} />
-          <MemoMetric label="Action" value={item.top_opportunity.action} />
+          <MemoMetric label="AI Rating" value={item.top_opportunity.action} />
           <MemoMetric label="Confidence" value={pct(item.top_opportunity.confidence)} />
           <MemoMetric label="Score" value={num(item.top_opportunity.score)} />
         </section>
@@ -114,14 +115,14 @@ export default async function ArchiveDetailPage({ params }: PageProps) {
           <div className="mb-7 flex flex-col gap-3 border-b border-[#e8e8e3] pb-6 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-                Ranked Candidates
+                Research List
               </div>
               <h2 className="mt-3 text-4xl font-black tracking-[-0.07em]">
-                Historical scanner queue.
+                Opportunities surfaced in that research snapshot.
               </h2>
             </div>
             <div className="text-sm text-black/42">
-              Source schema: {item.source_metadata?.schema ?? "Unavailable"}
+              Source: {sourceLabel(item.source_report)}
             </div>
           </div>
 
@@ -136,7 +137,7 @@ export default async function ArchiveDetailPage({ params }: PageProps) {
               ))
             ) : (
               <div className="py-8 text-sm text-black/48">
-                No candidate rows were available in the archive index.
+                No opportunity rows were available in this archive entry.
               </div>
             )}
           </div>
@@ -172,12 +173,12 @@ function CandidateRow({
         </div>
         <div className="mt-2 text-xs text-black/42">{candidate.sector}</div>
       </div>
-      <Datum label="Action" value={candidate.action} />
+      <Datum label="AI Rating" value={candidate.action} />
       <Datum label="Confidence" value={pct(candidate.confidence)} />
       <Datum label="Score" value={num(candidate.score)} />
       <Datum label="Expected" value={pct(candidate.expected_return_pct)} />
       <Datum
-        label="Matches"
+        label="Historical Comparisons"
         value={
           typeof candidate.historical_matches === "number"
             ? candidate.historical_matches.toLocaleString()

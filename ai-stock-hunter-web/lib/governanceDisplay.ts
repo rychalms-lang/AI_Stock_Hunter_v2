@@ -51,34 +51,34 @@ export function modeCapabilities(mode: GovernanceMode) {
   if (mode === "ai_managed") {
     return {
       authority: "V8",
-      entries: "Automatic V8 entries enabled",
-      exits: "V8 lifecycle exits enabled",
+      entries: "V8 may create simulated positions automatically",
+      exits: "V8 may close simulated positions automatically",
       approval: "Approval not required",
       manual: "Manual add disabled",
-      automation: "V8 automation enabled",
-      message: "V8 is managing this paper portfolio.",
+      automation: "Automatic simulated trading enabled",
+      message: "AI Managed: V8 may create and close simulated positions automatically.",
     };
   }
 
   if (mode === "user_managed") {
     return {
       authority: "User",
-      entries: "Manual entries enabled",
-      exits: "Manual lifecycle for new user positions",
+      entries: "User controls simulated entries",
+      exits: "User controls simulated exits",
       approval: "Approval not required",
       manual: "Manual add enabled",
-      automation: "V8 automation disabled",
-      message: "You control this paper portfolio.",
+      automation: "V8 provides research only",
+      message: "User Managed: you control simulated trades. V8 provides research only.",
     };
   }
 
   return {
     authority: "User-approved V8",
-    entries: "V8 proposals require approval",
-    exits: "Assisted exits deferred; no silent automatic assisted exits",
+    entries: "V8 suggestions require approval",
+    exits: "No silent automatic exits",
     approval: "Approval required",
     manual: "Manual add enabled",
-    automation: "V8 proposal generation enabled",
-    message: "V8 proposes. You decide.",
+    automation: "Simulated trade suggestions enabled",
+    message: "AI Assisted: V8 suggests simulated trades. You approve each action.",
   };
 }

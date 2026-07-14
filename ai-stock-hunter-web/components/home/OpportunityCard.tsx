@@ -39,7 +39,7 @@ export default function OpportunityCard() {
     return (
       <section className="mt-12">
         <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-neutral-500">
-          Today’s Highest Conviction Research Rating
+          Today’s Highest Conviction AI Research Rating
         </div>
 
         <Card className="p-10">
@@ -80,7 +80,7 @@ export default function OpportunityCard() {
 
             <div className="mt-6">
               <Badge tone={badgeTone(opportunity.action)}>
-                {`Research Rating: ${opportunity.action}`}
+                {`AI Research Rating: ${opportunity.action}`}
               </Badge>
             </div>
           </div>
@@ -95,9 +95,9 @@ export default function OpportunityCard() {
             </div>
 
             <p className="mt-5 text-base leading-7 text-black/56">
-              This research rating is powered by the web analysis layer and
+              This AI research rating is powered by the web analysis layer and
               today’s generated market snapshot. It does not authorize paper
-              execution.
+              simulated trades.
             </p>
           </div>
         </div>
@@ -173,7 +173,7 @@ export default function OpportunityCard() {
           Evidence is generated for research review. Paper trading simulation only.
           No real trades are placed. This is research and decision support, not
           investment advice. Research ratings summarize the web analysis layer.
-          Paper trades are authorized only by the raw scanner action.
+          Simulated trades are authorized only by the Strategy Signal.
         </div>
       </Card>
     </section>
