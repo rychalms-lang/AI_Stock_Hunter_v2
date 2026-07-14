@@ -47,10 +47,10 @@ Daily schedule:
   Wrapper runs only after the New York post-close window unless --force is used manually.
 
 Refresh schedule:
-  launchd checks every 15 minutes with StartInterval=900.
+  launchd checks every 5 minutes with StartInterval=300.
   Wrapper refreshes only during the New York regular market window unless --force is used manually.
   MarketDataService market_state must be OPEN before scheduled refresh proceeds.
-  Successful refreshes regenerate the market snapshot for frontend quote context.
+  Successful refreshes generate one market snapshot quote batch, then reuse it for durable paper valuation.
 
 Market timezone:
   ${MARKET_TIMEZONE}

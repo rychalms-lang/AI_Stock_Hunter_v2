@@ -3,7 +3,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from dataclasses import asdict, dataclass
 from datetime import datetime, time
-from typing import Dict, Iterable, Optional
+from typing import Any, Dict, Iterable, Optional
 from zoneinfo import ZoneInfo
 
 
@@ -340,6 +340,71 @@ class MarketDataService:
             if normalized:
                 results[normalized] = self.get_quote(normalized)
         return results
+
+
+class SnapshotMarketDataProvider(MarketDataProvider):
+    """Read-only quote provider backed by one previously generated market snapshot."""
+
+    name = "market_snapshot"
+
+    def __init__(self, snapshot: Dict[str, Any]):
+        self.snapshot = snapshot
+        self.quotes = {
+            str(ticker).upper(): quote
+            for ticker, quote in (snapshot.get("quotes") or {}).items()
+            if isinstance(quote, dict)
+        }
+
+    def get_market_state(self, now: Optional[datetime] = None) -> str:
+        return str(self.snapshot.get("market_state") or market_state(now))
+
+    def get_quote(self, ticker: str) -> MarketQuote:
+        normalized = ticker.upper()
+        quote = self.quotes.get(normalized)
+        if quote:
+            return MarketQuote(
+                ticker=normalized,
+                current_price=_safe_float(quote.get("current_price", quote.get("price"))),
+                previous_close=_safe_float(quote.get("previous_close")),
+                price_change=_safe_float(quote.get("price_change")),
+                price_change_pct=_safe_float(quote.get("price_change_pct", quote.get("price_change_today"))),
+                bid=_safe_float(quote.get("bid")),
+                ask=_safe_float(quote.get("ask")),
+                day_open=_safe_float(quote.get("day_open")),
+                day_high=_safe_float(quote.get("day_high")),
+                day_low=_safe_float(quote.get("day_low")),
+                volume=_safe_int(quote.get("volume")),
+                quote_timestamp=str(quote.get("quote_timestamp") or self.snapshot.get("generated_at")),
+                provider_timestamp=quote.get("provider_timestamp"),
+                market_state=str(quote.get("market_state") or self.get_market_state()),
+                source=str(quote.get("source") or self.name),
+                delay_seconds=_safe_int(quote.get("delay_seconds")),
+                price_age_seconds=_safe_int(quote.get("price_age_seconds")),
+                price_status=str(quote.get("price_status") or "UNAVAILABLE"),
+                error=quote.get("error"),
+            )
+        timestamp = str(self.snapshot.get("generated_at") or datetime.now(MARKET_TIMEZONE).isoformat(timespec="seconds"))
+        return MarketQuote(
+            ticker=normalized,
+            current_price=None,
+            previous_close=None,
+            price_change=None,
+            price_change_pct=None,
+            bid=None,
+            ask=None,
+            day_open=None,
+            day_high=None,
+            day_low=None,
+            volume=None,
+            quote_timestamp=timestamp,
+            provider_timestamp=None,
+            market_state=self.get_market_state(),
+            source=self.name,
+            delay_seconds=None,
+            price_age_seconds=None,
+            price_status="UNAVAILABLE",
+            error="Ticker was not present in the shared market snapshot batch.",
+        )
 
 
 def is_usable_price_status(status: object) -> bool:

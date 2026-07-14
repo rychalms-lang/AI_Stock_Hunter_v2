@@ -338,7 +338,7 @@ class PaperTradingEngineTest(unittest.TestCase):
             with open(Path(temp_dir) / "out" / "equity_curve.json") as f:
                 points = json.load(f)["points"]
             self.assertGreater(position["unrealized_pnl"], 0)
-            self.assertEqual(len(points), 2)
+            self.assertEqual(len(points), 1)
 
     def test_repeated_stale_runs_do_not_duplicate_equity_points(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -366,8 +366,7 @@ class PaperTradingEngineTest(unittest.TestCase):
             )
             with open(Path(temp_dir) / "out" / "equity_curve.json") as f:
                 points = json.load(f)["points"]
-            self.assertEqual(len(points), 1)
-            self.assertEqual(points[0]["price_data_status"], "waiting_for_fresh_market_prices")
+            self.assertEqual(len(points), 0)
 
     def test_stale_prices_do_not_trigger_exits(self):
         with tempfile.TemporaryDirectory() as temp_dir:

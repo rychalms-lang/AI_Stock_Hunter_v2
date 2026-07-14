@@ -54,7 +54,7 @@ if (( FORCE != 1 )); then
   fi
 fi
 
-acquire_lock "paper-refresh" 7200
+acquire_lock "paper-refresh" 7200 "Previous portfolio refresh still running; this cycle was skipped."
 load_local_env
 cd "${PROJECT_ROOT}"
 
@@ -66,19 +66,16 @@ if (( VERBOSE == 1 )); then
   ARGS+=(--verbose)
 fi
 
-log_line "Running paper-trading refresh command."
-if (( ${#ARGS[@]} > 0 )); then
-  "${PYTHON_BIN}" refresh_paper_trading.py "${ARGS[@]}"
-else
-  "${PYTHON_BIN}" refresh_paper_trading.py
-fi
-
 log_line "Refreshing market snapshot."
 if (( DRY_RUN == 1 )); then
   "${PYTHON_BIN}" refresh_market_snapshot.py --dry-run
 else
   "${PYTHON_BIN}" refresh_market_snapshot.py
 fi
+
+log_line "Running paper-trading refresh command using shared market snapshot batch."
+ARGS+=(--market-snapshot data/market_snapshot.json)
+"${PYTHON_BIN}" refresh_paper_trading.py "${ARGS[@]}"
 
 if (( DRY_RUN != 1 )); then
   log_line "Exporting system status."

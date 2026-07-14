@@ -15,7 +15,10 @@ Automation is split into two independent workflows:
    - Updates `data/research_archive.json` and `data/system_status.json`.
 
 2. Intraday paper-ledger refresh:
+   - Runs every five minutes during regular New York market hours after wrapper checks.
+   - Runs `refresh_market_snapshot.py` first.
    - Runs `refresh_paper_trading.py`.
+   - Reuses the one shared market snapshot quote batch for ledger valuation.
    - Updates existing paper positions only.
    - Refreshes mark-to-market values, unrealized P/L, exits, equity curve, portfolio summary, and performance statistics.
    - Does not run the scanner.
@@ -44,13 +47,15 @@ Daily scanner/export:
 
 Paper ledger refresh:
 
-- Launchd checks every 15 minutes with `StartInterval=900`.
+- Launchd checks every 5 minutes with `StartInterval=300`.
 - The wrapper evaluates the actual market window in `America/New_York`, not the Mac's local timezone.
 - The wrapper performs a scheduled refresh only on weekdays during the New York 9:30 AM to 4:00 PM regular market window.
 - `MarketDataService` must report `market_state=OPEN` before a scheduled refresh proceeds.
 - If quotes are unavailable or stale, the paper-trading engine retains last known prices, marks positions stale, and does not process exits from stale quotes.
-- Successful non-dry-run refreshes also regenerate `data/market_snapshot.json` for frontend quote context.
-- The 15-minute launchd interval is a local scheduling trigger, not a market-data freshness guarantee.
+- Each cycle refreshes `data/market_snapshot.json` first, then refreshes the durable paper ledger from that same quote batch.
+- The shared quote batch gives holdings, portfolio summary, allocation weights, stale-position counts, and system status one consistent `valuation_batch_id` and valuation timestamp.
+- The frontend may display market-snapshot valuations between durable ledger refreshes. Durable paper-ledger valuation is still written only by the five-minute refresh command.
+- The 5-minute launchd interval is a local scheduling trigger, not a market-data freshness guarantee. The current provider is yfinance and should be treated as delayed data.
 
 The launchd trigger itself remains local-time based because launchd calendar intervals are local to the Mac. The wrappers are timezone-aware and use `America/New_York` with daylight saving handled by Python `zoneinfo`, so market-session decisions remain correct if the Mac travels to another timezone.
 
@@ -76,7 +81,7 @@ Runtime locks and markers:
 
 - `automation/locks/`
 
-Logs and locks are ignored by Git. Basic stale lock recovery is included. macOS/system log rotation is not configured yet; rotate or delete old project log files manually if they grow too large.
+Logs and locks are ignored by Git. Basic stale lock recovery is included. If a five-minute cycle starts while the previous paper refresh is still active, the wrapper exits successfully and records `Previous portfolio refresh still running; this cycle was skipped.` macOS/system log rotation is not configured yet; rotate or delete old project log files manually if they grow too large.
 
 ## Manual Testing
 
@@ -191,6 +196,23 @@ It does not delete project data, reports, logs, or ledger state.
 ## Reinstall
 
 ```bash
+automation/scripts/uninstall_launch_agents.sh --yes
+automation/scripts/install_launch_agents.sh --yes
+```
+
+## Restoring The Prior 15-Minute Refresh
+
+To restore the previous paper refresh cadence, edit `automation/launchd/com.aistockhunter.paper-refresh.plist` and change:
+
+```xml
+<key>StartInterval</key>
+<integer>900</integer>
+```
+
+Then validate and reinstall:
+
+```bash
+plutil -lint automation/launchd/*.plist
 automation/scripts/uninstall_launch_agents.sh --yes
 automation/scripts/install_launch_agents.sh --yes
 ```

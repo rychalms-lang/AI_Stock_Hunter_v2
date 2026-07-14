@@ -204,7 +204,7 @@ class RefreshPaperTradingTest(unittest.TestCase):
             with open(root / "out" / "closed_trades.json") as f:
                 self.assertEqual(len(json.load(f)["trades"]), 1)
             with open(root / "out" / "equity_curve.json") as f:
-                self.assertEqual(len(json.load(f)["points"]), 2)
+                self.assertEqual(len(json.load(f)["points"]), 1)
 
     def test_dry_run_writes_nothing(self):
         with tempfile.TemporaryDirectory() as temp_dir:

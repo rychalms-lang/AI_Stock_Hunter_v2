@@ -14,7 +14,7 @@
   <string>/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2</string>
 
   <key>StartInterval</key>
-  <integer>900</integer>
+  <integer>300</integer>
 
   <key>EnvironmentVariables</key>
   <dict>

@@ -109,6 +109,7 @@ load_local_env() {
 acquire_lock() {
   local name="$1"
   local max_age_seconds="$2"
+  local active_message="${3:-Another ${name} run is already active with pid}"
   local lock_path="${LOCK_DIR}/${name}.lock"
   local now
   local created
@@ -128,7 +129,11 @@ acquire_lock() {
   created="$(cat "${lock_path}/created_at" 2>/dev/null || echo 0)"
 
   if [[ -n "${pid}" ]] && kill -0 "${pid}" 2>/dev/null; then
-    log_line "Another ${name} run is already active with pid ${pid}; skipping."
+    if [[ "${active_message}" == *"pid"* ]]; then
+      log_line "${active_message} ${pid}; skipping."
+    else
+      log_line "${active_message}"
+    fi
     exit 0
   fi
 

@@ -19,6 +19,10 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
 
 
+def valuation_batch_id(generated_at: str) -> str:
+    return "valuation_" + generated_at.replace(":", "").replace("-", "").replace("+", "_").replace(".", "_")
+
+
 def read_json(path: Path) -> Optional[Dict[str, Any]]:
     try:
         with path.open() as f:
@@ -106,6 +110,9 @@ def build_market_snapshot(
     return {
         "schema_version": SCHEMA_VERSION,
         "generated_at": generated_at,
+        "valuation_generated_at": generated_at,
+        "valuation_batch_id": valuation_batch_id(generated_at),
+        "refresh_cadence_seconds": 300,
         "market_state": market_state,
         "provider": getattr(service.provider, "name", "unknown"),
         "quote_status": overall_quote_status(quotes, market_state),
@@ -113,6 +120,10 @@ def build_market_snapshot(
         "tickers_updated": len([
             quote for quote in quotes.values()
             if str(quote.get("price_status")).upper() in {"LIVE", "DELAYED", "MARKET_CLOSED"}
+        ]),
+        "tickers_stale": len([
+            quote for quote in quotes.values()
+            if str(quote.get("price_status")).upper() not in {"LIVE", "DELAYED", "MARKET_CLOSED"}
         ]),
         "quotes": quotes,
         "errors": errors,

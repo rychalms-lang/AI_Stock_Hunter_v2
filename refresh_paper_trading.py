@@ -4,12 +4,14 @@ import sys
 from pathlib import Path
 from typing import Optional
 
+from market_data_service import MarketDataService, SnapshotMarketDataProvider
 from paper_trading_engine import PaperTradingStateError, refresh_paper_trading
 
 
 DEFAULT_OUTPUT_DIR = Path("data/paper_trading")
 DEFAULT_STATE_DIR = DEFAULT_OUTPUT_DIR / "state"
 DEFAULT_DAILY_PICKS_FILE = DEFAULT_OUTPUT_DIR / "daily_picks.json"
+DEFAULT_MARKET_SNAPSHOT_FILE = Path("data/market_snapshot.json")
 
 
 def load_daily_picks(path: Path) -> Optional[dict]:
@@ -18,6 +20,14 @@ def load_daily_picks(path: Path) -> Optional[dict]:
 
     with path.open() as f:
         return json.load(f)
+
+
+def load_market_snapshot_service(path: Path) -> Optional[MarketDataService]:
+    if not path.exists():
+        return None
+    with path.open() as f:
+        snapshot = json.load(f)
+    return MarketDataService(SnapshotMarketDataProvider(snapshot))
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -29,6 +39,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--state-dir", default=str(DEFAULT_STATE_DIR), help="Paper-trading state directory.")
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Paper-trading JSON output directory.")
     parser.add_argument("--daily-picks", default=str(DEFAULT_DAILY_PICKS_FILE), help="Existing daily_picks.json file used only for metadata.")
+    parser.add_argument("--market-snapshot", default=None, help="Use one shared market snapshot quote batch for this refresh.")
     return parser
 
 
@@ -69,10 +80,16 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     try:
         daily_picks = load_daily_picks(Path(args.daily_picks))
+        market_data_service = (
+            load_market_snapshot_service(Path(args.market_snapshot))
+            if args.market_snapshot
+            else None
+        )
         result = refresh_paper_trading(
             output_dir=Path(args.output_dir),
             state_dir=Path(args.state_dir),
             daily_picks=daily_picks,
+            market_data_service=market_data_service,
             dry_run=args.dry_run,
         )
         print(json.dumps(status_payload(result, verbose=args.verbose), sort_keys=True))

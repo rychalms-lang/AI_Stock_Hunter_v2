@@ -12,7 +12,7 @@ type SnapshotState = {
 
 function pollMs(snapshot: MarketSnapshot | null, hidden: boolean) {
   if (hidden) return 5 * 60 * 1000;
-  if (snapshot?.market_state === "OPEN") return 45 * 1000;
+  if (snapshot?.market_state === "OPEN") return 60 * 1000;
   if (snapshot?.market_state === "PRE_MARKET" || snapshot?.market_state === "AFTER_HOURS") {
     return 2 * 60 * 1000;
   }

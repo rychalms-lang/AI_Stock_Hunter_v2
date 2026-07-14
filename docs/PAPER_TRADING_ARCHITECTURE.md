@@ -820,16 +820,52 @@ Paper-trading automation should use two separate launchd workflows on macOS:
 
 2. Intraday paper-ledger refresh:
    - Runs `refresh_paper_trading.py` from the project venv.
+   - Scheduled launchd trigger runs every five minutes with `StartInterval=300`.
    - Updates only existing paper positions.
    - Does not generate scanner recommendations.
    - Does not open new paper positions.
    - Uses `America/New_York` for market-session checks, with daylight saving handled by timezone-aware logic.
    - Uses `MarketDataService` market state as the final scheduled-run authority where practical.
    - Exits safely outside the configured market-hours window or when market data is stale or unavailable.
+   - Refreshes `data/market_snapshot.json` before durable paper valuation.
+   - Reuses that shared quote batch for open-position prices, portfolio summary, allocation weights, stale-position counts, and system status.
+   - Writes a shared `valuation_batch_id` and `valuation_generated_at` across outputs generated from the same refresh.
+   - Records no new equity-history point when no prices were successfully updated.
+   - Replaces an equity-history point with the same valuation batch instead of duplicating it.
+
+The current quote provider is yfinance and should be treated as delayed data. Frontend display valuation may use the latest market snapshot between durable five-minute ledger refreshes, but durable ledger valuation is updated only by the refresh command. If quote refresh fails, the engine retains the last known position price, marks the affected position stale/unavailable, and does not process stop-loss, take-profit, or hold-period exits from stale quotes.
+
+If the Mac is asleep or powered off during a five-minute trigger, launchd does not guarantee execution. A delayed wake-up run is still guarded by the New York market window, `MarketDataService` market state, and the paper-refresh lock. Overlapping refreshes exit successfully and log `Previous portfolio refresh still running; this cycle was skipped.`
 
 Automation source files live under `automation/`. Runtime logs and lock files are local artifacts and excluded from Git. Launch agents must not be installed or loaded automatically during development; they should be enabled only by an explicit user-run install script.
 
 If the Mac is asleep or powered off at a scheduled time, launchd does not guarantee execution during the missed window or catch-up execution after wake. Existing cron jobs should be inspected manually with `crontab -l` and disabled before launchd is enabled to avoid duplicate scanner runs.
+
+## 9.3 Trading Environment Simulator
+
+The Strategy Lab includes a Trading Environment Simulator that replays existing historical strategy trade streams under configurable account, risk, restriction, consistency, target, and execution rules.
+
+Important boundaries:
+
+- The simulator answers: `How would V8 have performed under these account rules?`
+- The simulator does not answer: `How should V8 change?`
+- V8 remains the Champion strategy baseline.
+- V9 remains Experimental unless a reliable challenger trade stream is available and approved through validation.
+- The simulator must not modify scanner scoring, V8/V9 logic, paper-trading ledger rules, brokerage state, or production research output.
+
+Data flow:
+
+1. Existing research/backtest artifacts produce deterministic trade streams.
+2. The environment simulator reads the selected trade stream.
+3. The simulator applies environment accounting and pass/fail rules.
+4. Runtime simulation results are saved under `data/strategy_lab/` as local artifacts.
+5. The frontend Strategy Lab displays presets, results, timeline, metrics, missed opportunities, sensitivity analysis, and environment comparisons.
+
+Runtime state:
+
+- `data/strategy_lab/built_in_presets.json` is a frontend-readable source artifact.
+- `data/strategy_lab/latest_result.json`, `data/strategy_lab/results/`, and comparison outputs are mutable local runtime data and are excluded from Git.
+- Simulation outputs are research artifacts only and must never be treated as live trading instructions.
 
 ## 10. Safety Rules
 

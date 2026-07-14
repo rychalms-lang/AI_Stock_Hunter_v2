@@ -112,6 +112,26 @@ class MarketSnapshotTest(unittest.TestCase):
             self.assertEqual(service.provider.calls["GOOD"], 1)
             self.assertEqual(service.provider.calls["BAD"], 1)
 
+    def test_snapshot_records_five_minute_batch_metadata(self):
+        service = MarketDataService(FakeProvider({"GOOD": fake_quote("GOOD", "DELAYED", 100)}))
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            paper_dir = root / "paper"
+            state_dir = paper_dir / "state"
+            state_dir.mkdir(parents=True)
+            (paper_dir / "daily_picks.json").write_text(json.dumps({"picks": [{"ticker": "GOOD"}]}))
+            payload = build_market_snapshot(
+                market_data_service=service,
+                paper_dir=paper_dir,
+                state_dir=state_dir,
+                include_benchmarks=False,
+                generated_at="2026-07-10T10:05:00-04:00",
+            )
+        self.assertEqual(payload["refresh_cadence_seconds"], 300)
+        self.assertEqual(payload["valuation_generated_at"], "2026-07-10T10:05:00-04:00")
+        self.assertTrue(payload["valuation_batch_id"].startswith("valuation_"))
+        self.assertEqual(payload["tickers_stale"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

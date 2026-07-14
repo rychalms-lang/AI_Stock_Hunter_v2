@@ -20,6 +20,13 @@ data/*.csv
 # Keep exported frontend JSON files under data/paper_trading/ tracked.
 data/paper_trading/state/
 
+# Strategy Lab simulation runs are local runtime artifacts.
+# Keep data/strategy_lab/built_in_presets.json tracked for the frontend.
+data/strategy_lab/latest_result.json
+data/strategy_lab/results/
+data/strategy_lab/comparisons/
+data/strategy_lab/custom_presets.json
+
 # Local automation runtime artifacts.
 automation/logs/*.log
 automation/locks/
