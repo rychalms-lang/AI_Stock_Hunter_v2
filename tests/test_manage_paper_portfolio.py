@@ -107,9 +107,13 @@ class ManagePaperPortfolioTest(unittest.TestCase):
             with open(Path(temp_dir) / "state" / "user_actions.json") as f:
                 audit = json.load(f)
 
-            self.assertEqual(len(audit["actions"]), 1)
-            self.assertEqual(audit["actions"][0]["result"], "success")
-            self.assertEqual(audit["actions"][0]["origin"], "user_directed")
+            user_actions = [
+                action for action in audit["actions"]
+                if action.get("type") == "add_user_directed_position"
+            ]
+            self.assertEqual(len(user_actions), 1)
+            self.assertEqual(user_actions[0]["result"], "success")
+            self.assertEqual(user_actions[0]["origin"], "user_directed")
 
     def test_request_id_is_idempotent(self):
         with tempfile.TemporaryDirectory() as temp_dir:

@@ -15,6 +15,7 @@ from portfolio_governance import (
     mode_capabilities,
     position_with_governance,
 )
+from trade_notification_service import notify_trade_event
 
 
 SCHEMA_VERSION = "1.0"
@@ -521,6 +522,85 @@ def close_position(position: Dict[str, Any], generated_at: str, reason: str) -> 
     }
 
 
+def opened_trade_event(position: Dict[str, Any], portfolio: Dict[str, Any], generated_at: str) -> Dict[str, Any]:
+    return {
+        "event_id": f"position_opened:{position.get('position_id')}:{position.get('opened_at', generated_at)}",
+        "event_type": "position_opened",
+        "created_at": generated_at,
+        "position_id": position.get("position_id"),
+        "ticker": position.get("ticker"),
+        "sector": position.get("sector"),
+        "origin": position.get("origin"),
+        "governance_mode": position.get("governance_mode"),
+        "decision_authority": position.get("decision_authority"),
+        "strategy_name": position.get("strategy", STRATEGY_METADATA).get("name", "V8"),
+        "strategy_version": position.get("strategy", STRATEGY_METADATA).get("version", "8.0"),
+        "source_pick_id": position.get("source_pick_id"),
+        "strategy_signal": position.get("scanner_action", position.get("entry_action")),
+        "research_rating": position.get("research_rating", position.get("entry_action")),
+        "confidence": position.get("entry_confidence"),
+        "expected_return": position.get("entry_expected_return_pct", position.get("expected_return")),
+        "historical_matches": position.get("entry_historical_matches", position.get("historical_matches")),
+        "risk": position.get("entry_risk", position.get("risk_label")),
+        "quantity": position.get("quantity"),
+        "entry_price": position.get("entry_price"),
+        "invested_amount": position.get("cost_basis", position.get("notional_cost")),
+        "portfolio_weight_pct": round_pct((safe_float(position.get("market_value", position.get("cost_basis"))) / safe_float(portfolio.get("total_equity"), 1)) * 100),
+        "stop_loss": position.get("stop_loss_price"),
+        "take_profit": position.get("take_profit_price"),
+        "planned_hold_days": position.get("planned_hold_period_days", position.get("target_hold_days")),
+        "quote_timestamp": position.get("quote_timestamp", position.get("last_price_update")),
+        "price_status": position.get("price_status"),
+        "cash_after": portfolio.get("cash"),
+        "total_equity_after": portfolio.get("total_equity"),
+        "open_positions_after": portfolio.get("open_positions_count"),
+        "explanation": position.get("ai_explanation"),
+        "risk_flags": position.get("risk_flags", []),
+        "source_research_date": position.get("entry_date"),
+    }
+
+
+def closed_trade_event(trade: Dict[str, Any], portfolio: Dict[str, Any], generated_at: str) -> Dict[str, Any]:
+    return {
+        "event_id": f"position_closed:{trade.get('position_id')}:{trade.get('exit_date')}:{trade.get('exit_reason')}",
+        "event_type": "position_closed",
+        "created_at": generated_at,
+        "position_id": trade.get("position_id"),
+        "ticker": trade.get("ticker"),
+        "sector": trade.get("sector"),
+        "origin": trade.get("origin", "paper_engine"),
+        "governance_mode": trade.get("governance_mode"),
+        "decision_authority": trade.get("decision_authority", "v8"),
+        "strategy_name": trade.get("strategy", STRATEGY_METADATA).get("name", "V8"),
+        "strategy_version": trade.get("strategy", STRATEGY_METADATA).get("version", "8.0"),
+        "source_pick_id": trade.get("source_pick_id"),
+        "strategy_signal": trade.get("entry_action"),
+        "research_rating": trade.get("entry_action"),
+        "confidence": trade.get("entry_confidence", trade.get("original_confidence")),
+        "expected_return": trade.get("entry_expected_return_pct", trade.get("expected_return")),
+        "historical_matches": trade.get("historical_matches"),
+        "risk": trade.get("entry_risk"),
+        "quantity": trade.get("quantity"),
+        "entry_price": trade.get("entry_price"),
+        "exit_price": trade.get("exit_price"),
+        "invested_amount": trade.get("cost_basis"),
+        "proceeds": trade.get("proceeds"),
+        "realized_pnl": trade.get("realized_pnl"),
+        "realized_return_pct": trade.get("realized_return_pct"),
+        "planned_hold_days": trade.get("planned_hold_period_days"),
+        "actual_hold_days": trade.get("actual_hold_days", trade.get("days_held")),
+        "exit_reason": trade.get("exit_reason"),
+        "quote_timestamp": trade.get("price_timestamp", trade.get("last_price_update")),
+        "price_status": trade.get("price_status"),
+        "cash_after": portfolio.get("cash"),
+        "total_equity_after": portfolio.get("total_equity"),
+        "open_positions_after": portfolio.get("open_positions_count"),
+        "explanation": trade.get("ai_explanation"),
+        "risk_flags": trade.get("risk_flags", []),
+        "source_research_date": trade.get("entry_date"),
+    }
+
+
 def exposure_by_key(positions: List[Dict[str, Any]], total_equity: float, key: str, output_key: str) -> List[Dict[str, Any]]:
     grouped: Dict[str, Dict[str, Any]] = {}
     for position in positions:
@@ -576,7 +656,12 @@ def upsert_equity_point(
     as_of_date: str,
     source_file: Optional[str],
     price_data_status: str,
+    valuation_batch_id: Optional[str] = None,
+    valuation_generated_at: Optional[str] = None,
+    prices_updated: int = 1,
 ) -> None:
+    if prices_updated <= 0:
+        return
     points = equity_history.setdefault("points", [])
     previous = points[-1] if points else None
     daily_pnl = round_money(portfolio["total_equity"] - safe_float(previous.get("total_equity", STARTING_CAPITAL)) if previous else portfolio["total_equity"] - STARTING_CAPITAL)
@@ -586,7 +671,10 @@ def upsert_equity_point(
 
     point = {
         "date": as_of_date,
-        "timestamp": now_iso(),
+        "timestamp": valuation_generated_at or now_iso(),
+        "valuation_batch_id": valuation_batch_id,
+        "valuation_generated_at": valuation_generated_at,
+        "equity_point_type": "intraday_valuation" if valuation_batch_id else "daily",
         "source_file": source_file,
         "price_data_status": price_data_status,
         "stale_price_data": not is_usable_price_status(price_data_status),
@@ -604,7 +692,9 @@ def upsert_equity_point(
         "closed_trades_count": portfolio["closed_trades_count"],
     }
 
-    if points and points[-1].get("date") == as_of_date:
+    if valuation_batch_id and points and points[-1].get("valuation_batch_id") == valuation_batch_id:
+        points[-1] = point
+    elif not valuation_batch_id and points and points[-1].get("date") == as_of_date:
         points[-1] = point
     else:
         points.append(point)
@@ -725,6 +815,8 @@ def export_files(
     last_market_update: Optional[str],
     live_prices: bool,
     stale_positions: int,
+    valuation_batch_id: Optional[str] = None,
+    valuation_generated_at: Optional[str] = None,
 ) -> Dict[str, str]:
     output_dir.mkdir(parents=True, exist_ok=True)
     portfolio_with_drawdown = {
@@ -734,11 +826,15 @@ def export_files(
         "market_state": market_state,
         "live_prices": live_prices,
         "stale_positions": stale_positions,
+        "valuation_batch_id": valuation_batch_id,
+        "valuation_generated_at": valuation_generated_at,
     }
 
     payloads = {
         "open_positions.json": {
             **file_base(generated_at),
+            "valuation_batch_id": valuation_batch_id,
+            "valuation_generated_at": valuation_generated_at,
             "source_file": source_file,
             "as_of_date": as_of_date,
             "price_data_status": price_data_status,
@@ -751,6 +847,8 @@ def export_files(
         },
         "closed_trades.json": {
             **file_base(generated_at),
+            "valuation_batch_id": valuation_batch_id,
+            "valuation_generated_at": valuation_generated_at,
             "source_file": source_file,
             "as_of_date": as_of_date,
             "price_data_status": price_data_status,
@@ -762,6 +860,8 @@ def export_files(
         },
         "portfolio_summary.json": {
             **file_base(generated_at),
+            "valuation_batch_id": valuation_batch_id,
+            "valuation_generated_at": valuation_generated_at,
             "source_file": source_file,
             "trade_date": as_of_date,
             "as_of_date": as_of_date,
@@ -777,6 +877,8 @@ def export_files(
         },
         "equity_curve.json": {
             **file_base(generated_at),
+            "valuation_batch_id": valuation_batch_id,
+            "valuation_generated_at": valuation_generated_at,
             "source_file": source_file,
             "price_data_status": price_data_status,
             "stale_price_data": not is_usable_price_status(price_data_status),
@@ -788,6 +890,8 @@ def export_files(
         },
         "performance_statistics.json": {
             **file_base(generated_at),
+            "valuation_batch_id": valuation_batch_id,
+            "valuation_generated_at": valuation_generated_at,
             "source_file": source_file,
             "as_of_date": as_of_date,
             "price_data_status": price_data_status,
@@ -865,6 +969,20 @@ def stale_position_count(open_positions: List[Dict[str, Any]]) -> int:
     ])
 
 
+def market_data_batch_metadata(market_data: MarketDataService, generated_at: str) -> Dict[str, Optional[str]]:
+    provider = getattr(market_data, "provider", None)
+    snapshot = getattr(provider, "snapshot", None)
+    if isinstance(snapshot, dict):
+        return {
+            "valuation_batch_id": snapshot.get("valuation_batch_id"),
+            "valuation_generated_at": snapshot.get("valuation_generated_at") or snapshot.get("generated_at"),
+        }
+    return {
+        "valuation_batch_id": None,
+        "valuation_generated_at": generated_at,
+    }
+
+
 def update_open_positions(
     account: Dict[str, Any],
     open_positions: List[Dict[str, Any]],
@@ -879,6 +997,7 @@ def update_open_positions(
     updated = 0
     stale = 0
     closed = 0
+    closed_events: List[Dict[str, Any]] = []
 
     for position in open_positions:
         quote = quotes.setdefault(position["ticker"], market_data.get_quote(position["ticker"]))
@@ -889,6 +1008,7 @@ def update_open_positions(
         if reason:
             trade = close_position(position, generated_at, reason)
             closed_trades.append(trade)
+            closed_events.append(trade)
             account["cash"] = round_money(safe_float(account.get("cash")) + trade["proceeds"])
             account["realized_pnl"] = round_money(safe_float(account.get("realized_pnl")) + trade["realized_pnl"])
             closed += 1
@@ -906,6 +1026,7 @@ def update_open_positions(
         "positions_updated": updated,
         "positions_stale": stale,
         "positions_closed": closed,
+        "closed_events": closed_events,
     }
 
 
@@ -955,6 +1076,7 @@ def refresh_paper_trading(
         market_data,
     )
     stale_positions = stale_position_count(open_positions)
+    batch = market_data_batch_metadata(market_data, generated_at)
 
     upsert_equity_point(
         equity_history,
@@ -962,6 +1084,9 @@ def refresh_paper_trading(
         as_of_date,
         source_file,
         metadata["price_data_status"],
+        batch["valuation_batch_id"],
+        batch["valuation_generated_at"],
+        update_result["positions_updated"] + update_result["positions_closed"],
     )
 
     paths: Dict[str, str] = {}
@@ -981,7 +1106,11 @@ def refresh_paper_trading(
             metadata["last_market_update"],
             metadata["live_prices"],
             stale_positions,
+            batch["valuation_batch_id"],
+            batch["valuation_generated_at"],
         )
+        for trade in update_result.get("closed_events", []):
+            notify_trade_event(closed_trade_event(trade, portfolio, generated_at), state_dir=state_dir)
 
     return {
         "dry_run": dry_run,
@@ -1000,6 +1129,8 @@ def refresh_paper_trading(
         "price_data_status": metadata["price_data_status"],
         "market_state": metadata["market_state"],
         "last_market_update": metadata["last_market_update"],
+        "valuation_batch_id": batch["valuation_batch_id"],
+        "valuation_generated_at": batch["valuation_generated_at"],
         "live_prices": metadata["live_prices"],
         "stale_positions": stale_positions,
         "governance": mode_capabilities(governance_mode),
@@ -1039,6 +1170,7 @@ def process_paper_trading(
 
     open_positions = open_ledger.setdefault("positions", [])
     closed_trades = closed_ledger.setdefault("trades", [])
+    opened_events: List[Dict[str, Any]] = []
 
     update_result = update_open_positions(
         account=account,
@@ -1173,6 +1305,7 @@ def process_paper_trading(
             user_approved=False,
         )
         open_positions.append(position)
+        opened_events.append(position)
         available_cash = round_money(available_cash - position["cost_basis"])
         account["cash"] = available_cash
         open_tickers.add(ticker)
@@ -1192,11 +1325,21 @@ def process_paper_trading(
     portfolio = calculate_portfolio(account, open_positions, closed_trades)
     stale_positions = stale_position_count(open_positions)
     metadata = market_metadata(quotes, equity_history, as_of_date, market_data)
+    batch = market_data_batch_metadata(market_data, generated_at)
     price_data_status = metadata["price_data_status"]
     market_state = metadata["market_state"]
     last_market_update = metadata["last_market_update"]
     live_prices = metadata["live_prices"]
-    upsert_equity_point(equity_history, portfolio, as_of_date, source_file, price_data_status)
+    upsert_equity_point(
+        equity_history,
+        portfolio,
+        as_of_date,
+        source_file,
+        price_data_status,
+        batch["valuation_batch_id"],
+        batch["valuation_generated_at"],
+        update_result["positions_updated"] + update_result["positions_closed"],
+    )
 
     store.save(state)
 
@@ -1214,7 +1357,13 @@ def process_paper_trading(
         last_market_update,
         live_prices,
         stale_positions,
+        batch["valuation_batch_id"],
+        batch["valuation_generated_at"],
     )
+    for trade in update_result.get("closed_events", []):
+        notify_trade_event(closed_trade_event(trade, portfolio, generated_at), state_dir=state_dir)
+    for position in opened_events:
+        notify_trade_event(opened_trade_event(position, portfolio, generated_at), state_dir=state_dir)
 
     return {
         "state_dir": str(state_dir),

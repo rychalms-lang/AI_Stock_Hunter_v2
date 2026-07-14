@@ -14,6 +14,7 @@ from paper_trading_engine import (
     export_files,
     market_metadata,
     now_iso,
+    opened_trade_event,
     round_money,
     safe_float,
     stale_position_count,
@@ -33,6 +34,7 @@ from portfolio_governance import (
     save_proposals,
     set_mode,
 )
+from trade_notification_service import notify_trade_event
 
 
 REQUEST_ID_RE = re.compile(r"^[A-Za-z0-9_.:-]{8,80}$")
@@ -183,6 +185,7 @@ def approve_open_position_proposal(
             metadata["live_prices"],
             stale_positions,
         )
+        notify_trade_event(opened_trade_event(position, portfolio, generated_at), state_dir=state_dir)
 
     return {"ok": True, "proposal": proposal, "position_id": position["position_id"], "paths": paths}
 

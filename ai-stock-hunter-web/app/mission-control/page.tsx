@@ -260,6 +260,26 @@ export default async function MissionControlPage() {
 
                 <div className="border-t border-[#e8e8e3] pt-8">
                   <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
+                    Portfolio Pricing
+                  </div>
+                  <div className="mt-6 grid grid-cols-2 gap-5">
+                    <Mini label="Refresh cadence" value={status?.portfolio_pricing?.refresh_cadence_label} />
+                    <Mini label="Last market snapshot" value={formatDateTime(status?.portfolio_pricing?.last_market_snapshot)} />
+                    <Mini label="Last durable valuation" value={formatDateTime(status?.portfolio_pricing?.last_durable_valuation)} />
+                    <Mini label="Next expected refresh" value={formatDateTime(status?.portfolio_pricing?.next_expected_refresh)} />
+                    <Mini label="Requested" value={display(status?.portfolio_pricing?.tickers_requested)} />
+                    <Mini label="Updated" value={display(status?.portfolio_pricing?.tickers_updated)} />
+                    <Mini label="Out of date" value={display(status?.portfolio_pricing?.tickers_stale)} />
+                    <Mini label="Provider" value={status?.portfolio_pricing?.provider} />
+                    <Mini label="Quote status" value={cleanStatus(status?.portfolio_pricing?.quote_status)} />
+                    <Mini label="Refresh duration" value={status?.portfolio_pricing?.latest_refresh_duration} />
+                    <Mini label="Overlap skips" value={display(status?.portfolio_pricing?.overlap_skips)} />
+                    <Mini label="Last issue" value={status?.portfolio_pricing?.last_failure_reason ?? "None"} />
+                  </div>
+                </div>
+
+                <div className="border-t border-[#e8e8e3] pt-8">
+                  <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
                     Simulated Portfolio Refresh
                   </div>
                   <div className="mt-6 grid grid-cols-3 gap-5">
@@ -312,6 +332,22 @@ export default async function MissionControlPage() {
                       value={formatDateTime(status?.portfolio_governance?.last_mode_change)}
                     />
                     <Mini label="Status" value={cleanStatus(status?.portfolio_governance?.governance_status)} />
+                  </div>
+                </div>
+
+                <div className="border-t border-[#e8e8e3] pt-8">
+                  <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
+                    Trade Email Notifications
+                  </div>
+                  <div className="mt-6 grid grid-cols-2 gap-5">
+                    <Mini label="Notifications" value={status?.trade_email_notifications?.enabled ? "Enabled" : "Disabled"} />
+                    <Mini label="Recipient" value={status?.trade_email_notifications?.recipient_configured ? "Configured" : "Needs setup"} />
+                    <Mini label="Last sent" value={formatDateTime(status?.trade_email_notifications?.last_successful_email)} />
+                    <Mini label="Last failed" value={formatDateTime(status?.trade_email_notifications?.last_failed_email)} />
+                    <Mini label="Pending retries" value={display(status?.trade_email_notifications?.pending_retries)} />
+                    <Mini label="Total sent" value={display(status?.trade_email_notifications?.total_sent)} />
+                    <Mini label="Total failed" value={display(status?.trade_email_notifications?.total_failed)} />
+                    <Mini label="Last issue" value={status?.trade_email_notifications?.last_failure_reason ?? "None"} />
                   </div>
                 </div>
               </aside>

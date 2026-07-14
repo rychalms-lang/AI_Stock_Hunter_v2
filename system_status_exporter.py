@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -7,6 +7,7 @@ from market_data_service import MarketDataService
 from portfolio_governance import governance_summary
 from research_package import resolve_research_package
 from scanner_status import latest_valid_report, read_status
+from trade_notification_service import notification_status
 
 
 SCHEMA_VERSION = "1.0"
@@ -109,12 +110,27 @@ def parse_refresh_status() -> Dict[str, Any]:
         "positions_updated": 0,
         "positions_stale": 0,
         "positions_closed": 0,
+        "overlap_skips": 0,
+        "last_failure_reason": None,
     }
 
     try:
         lines = log_path.read_text().splitlines()
     except OSError:
         return default
+
+    overlap_skips = len([
+        line for line in lines
+        if "Previous portfolio refresh still running; this cycle was skipped." in line
+    ])
+    last_failure_reason = next(
+        (
+            line.split("ERROR:", 1)[-1].strip()
+            for line in reversed(lines)
+            if "ERROR:" in line
+        ),
+        None,
+    )
 
     for line in reversed(lines):
         start = line.find("{")
@@ -139,9 +155,19 @@ def parse_refresh_status() -> Dict[str, Any]:
             "positions_updated": int(payload.get("positions_updated") or 0),
             "positions_stale": stale,
             "positions_closed": int(payload.get("positions_closed") or 0),
+            "overlap_skips": overlap_skips,
+            "last_failure_reason": last_failure_reason,
         }
 
     return default
+
+
+def add_seconds(timestamp: Any, seconds: int) -> str:
+    try:
+        parsed = datetime.fromisoformat(str(timestamp))
+        return (parsed + timedelta(seconds=seconds)).isoformat(timespec="seconds")
+    except Exception:
+        return "Unavailable"
 
 
 def automation_status() -> Dict[str, Any]:
@@ -170,6 +196,9 @@ def event_from_line(line: str) -> Optional[Dict[str, str]]:
 
     level = "info"
     lower = message.lower()
+    if ".sh:" in lower or "traceback" in lower or "unbound variable" in lower:
+        message = "Portfolio pricing automation reported a technical issue. See automation logs for details."
+        lower = message.lower()
     if "error" in lower or '"status": "error"' in lower:
         level = "error"
     elif "stale" in lower or "skipped" in lower or "waiting" in lower:
@@ -280,6 +309,8 @@ def build_status() -> Dict[str, Any]:
             "stale_positions": int(stale_positions or 0),
             "price_status": portfolio.get("price_data_status", "Unavailable"),
             "last_market_update": portfolio.get("last_market_update", "Not yet recorded"),
+            "valuation_batch_id": portfolio.get("valuation_batch_id") or summary.get("valuation_batch_id"),
+            "valuation_generated_at": portfolio.get("valuation_generated_at") or summary.get("valuation_generated_at"),
         },
         "market_snapshot": {
             "provider": market_snapshot.get("provider", "Unavailable"),
@@ -287,9 +318,28 @@ def build_status() -> Dict[str, Any]:
             "last_successful_quote_refresh": market_snapshot.get("generated_at", "Not yet recorded"),
             "tickers_requested": len(market_snapshot.get("tickers_requested", [])),
             "tickers_updated": int(market_snapshot.get("tickers_updated") or 0),
+            "tickers_stale": int(market_snapshot.get("tickers_stale") or 0),
             "failed_quotes": len(market_snapshot.get("errors", [])),
             "market_state": market_snapshot.get("market_state", market_state),
+            "valuation_batch_id": market_snapshot.get("valuation_batch_id"),
+            "valuation_generated_at": market_snapshot.get("valuation_generated_at"),
         },
+        "portfolio_pricing": {
+            "refresh_cadence_seconds": 300,
+            "refresh_cadence_label": "Every 5 minutes during regular New York market hours",
+            "last_market_snapshot": market_snapshot.get("generated_at", "Not yet recorded"),
+            "last_durable_valuation": portfolio.get("valuation_generated_at") or portfolio.get("generated_at", "Not yet recorded"),
+            "next_expected_refresh": add_seconds(market_snapshot.get("generated_at"), 300),
+            "tickers_requested": len(market_snapshot.get("tickers_requested", [])),
+            "tickers_updated": int(market_snapshot.get("tickers_updated") or 0),
+            "tickers_stale": int(market_snapshot.get("tickers_stale") or len(market_snapshot.get("errors", []))),
+            "provider": market_snapshot.get("provider", "Unavailable"),
+            "quote_status": market_snapshot.get("quote_status", "Unavailable"),
+            "latest_refresh_duration": "Unavailable",
+            "overlap_skips": parse_refresh_status().get("overlap_skips", 0),
+            "last_failure_reason": parse_refresh_status().get("last_failure_reason"),
+        },
+        "trade_email_notifications": notification_status(PAPER_DIR / "state"),
         "portfolio_governance": {
             "current_mode": governance["current_mode"],
             "label": governance["label"],

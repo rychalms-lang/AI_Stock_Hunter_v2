@@ -67,6 +67,31 @@ export type SystemStatus = {
     failed_quotes: number;
     market_state: string;
   };
+  portfolio_pricing?: {
+    refresh_cadence_seconds: number;
+    refresh_cadence_label: string;
+    last_market_snapshot: string;
+    last_durable_valuation: string;
+    next_expected_refresh: string;
+    tickers_requested: number;
+    tickers_updated: number;
+    tickers_stale: number;
+    provider: string;
+    quote_status: string;
+    latest_refresh_duration: string;
+    overlap_skips: number;
+    last_failure_reason: string | null;
+  };
+  trade_email_notifications?: {
+    enabled: boolean;
+    recipient_configured: boolean;
+    last_successful_email: string | null;
+    last_failed_email: string | null;
+    pending_retries: number;
+    total_sent: number;
+    total_failed: number;
+    last_failure_reason: string | null;
+  };
   portfolio_governance?: {
     current_mode: string;
     label: string;
