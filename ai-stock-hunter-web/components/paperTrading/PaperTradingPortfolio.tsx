@@ -11,6 +11,7 @@ import { MarketSnapshot, priceStatusLabel } from "@/lib/marketSnapshot";
 import { DisplayPosition, deriveDisplayValuation } from "@/lib/portfolioDisplayValuation";
 import { useMarketSnapshot } from "@/lib/useMarketSnapshot";
 import { WebSnapshot } from "@/lib/webSnapshot";
+import { cleanStatus } from "@/lib/displayText";
 import PaperTradingBanner from "./PaperTradingBanner";
 import PaperPortfolioBuilder from "./PaperPortfolioBuilder";
 import PaperTradingStateCard from "./PaperTradingStateCard";
@@ -24,13 +25,6 @@ function money(value: number) {
 function pct(value: number) {
   const sign = value > 0 ? "+" : "";
   return `${sign}${value.toFixed(2)}%`;
-}
-
-function formatMarketState(value?: string) {
-  if (value === "OPEN") return "Market Open";
-  if (value === "PRE_MARKET") return "Pre Market";
-  if (value === "AFTER_HOURS") return "After Hours";
-  return "Market Closed";
 }
 
 function updatedAgo(value?: string | null) {
@@ -100,7 +94,7 @@ function EquityCurve({ points }: { points: EquityPoint[] }) {
         viewBox={`0 0 ${width} ${height}`}
         className="h-[220px] w-full overflow-visible"
         role="img"
-        aria-label="Mock paper trading equity curve"
+        aria-label="Simulated portfolio equity curve"
       >
         <line
           x1={padding}
@@ -158,7 +152,7 @@ function EquityCurve({ points }: { points: EquityPoint[] }) {
 
 function OpenPositionsTable({ positions }: { positions: DisplayPosition[] }) {
   if (positions.length === 0) {
-    return <EmptyState label="No open paper positions." />;
+    return <EmptyState label="No open simulated positions." />;
   }
 
   return (
@@ -215,7 +209,7 @@ function OpenPositionsTable({ positions }: { positions: DisplayPosition[] }) {
 
 function ClosedTradesTable({ trades }: { trades: ClosedTrade[] }) {
   if (trades.length === 0) {
-    return <EmptyState label="No closed paper trades." />;
+    return <EmptyState label="No closed simulations." />;
   }
 
   return (
@@ -299,7 +293,7 @@ function PortfolioContent({
       <section className="reveal flex flex-col gap-3 border-y border-[#e8e8e3] py-5 text-sm text-black/52 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap gap-x-8 gap-y-2">
           <span className="font-semibold text-black">
-            {formatMarketState(marketState)}
+            {cleanStatus(marketState ?? "MARKET_CLOSED")}
           </span>
           <span>{updatedAgo(lastMarketUpdate)}</span>
           <span>
@@ -312,7 +306,7 @@ function PortfolioContent({
         </div>
         {stalePositions > 0 ? (
           <div className="text-black/45">
-            {stalePositions} stale paper positions
+            {stalePositions} positions waiting for fresh prices
           </div>
         ) : null}
       </section>
@@ -320,7 +314,7 @@ function PortfolioContent({
       <section className="reveal border-b border-[#e8e8e3] pb-5">
         <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-black/45">
           <span className="font-semibold text-black/72">
-            {currentMarketSnapshot?.market_state ?? "Market state unavailable"}
+            {cleanStatus(currentMarketSnapshot?.market_state ?? "Unavailable")}
           </span>
           <span>{priceStatusLabel(displayValuation.price_status)}</span>
           <span>

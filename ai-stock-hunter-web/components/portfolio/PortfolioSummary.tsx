@@ -13,6 +13,7 @@ import { DisplayPosition, deriveDisplayValuation } from "@/lib/portfolioDisplayV
 import { useMarketSnapshot } from "@/lib/useMarketSnapshot";
 import { WebSnapshot } from "@/lib/webSnapshot";
 import PaperPortfolioBuilder from "@/components/paperTrading/PaperPortfolioBuilder";
+import { cleanStatus } from "@/lib/displayText";
 
 type SortKey = "market_value" | "weight" | "unrealized_return" | "days_held";
 type OriginFilter = "all" | "strategy_directed" | "user_directed";
@@ -58,7 +59,7 @@ function pct(value: number | null | undefined) {
 }
 
 function formatTimestamp(value?: string | null) {
-  if (!value) return "Awaiting fresh price";
+  if (!value) return "Waiting for next market update";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleString(undefined, {
@@ -90,8 +91,8 @@ function positionWeight(position: OpenPosition | DisplayPosition, totalEquity: n
 }
 
 function originLabel(position: OpenPosition | DisplayPosition) {
-  if (position.origin === "user_directed") return "User Directed";
-  return "Strategy Directed";
+  if (position.origin === "user_directed") return "Added by User";
+  return "Added by V8";
 }
 
 function originFilterValue(position: OpenPosition | DisplayPosition): Exclude<OriginFilter, "all"> {
@@ -100,15 +101,8 @@ function originFilterValue(position: OpenPosition | DisplayPosition): Exclude<Or
 
 function priceStatusLabel(position: OpenPosition | DisplayPosition) {
   if ("display_price_status" in position) return marketPriceStatusLabel(position.display_price_status);
-  if (position.stale_price_data) return "Stale";
-  if (position.price_status === "LIVE") return "Live";
-  if (position.price_status === "DELAYED") return "Delayed";
-  if (position.price_status === "MARKET_CLOSED") return "Market closed";
-  if (position.price_status === "UNAVAILABLE") return "Unavailable";
-  if (position.price_status === "fresh" || position.price_status === "delayed") {
-    return position.price_status === "fresh" ? "Fresh" : "Delayed";
-  }
-  return position.price_status ?? "Unavailable";
+  if (position.stale_price_data) return "Out of date";
+  return cleanStatus(position.price_status);
 }
 
 function pnlTone(value: number | null | undefined) {
@@ -120,10 +114,10 @@ function pnlTone(value: number | null | undefined) {
 
 function portfolioState(openCount: number, cashPct: number) {
   if (openCount === 0) return "Fully in cash.";
-  if (openCount === 1) return "Concentrated.";
-  if (openCount >= 5) return "Diversified.";
+  if (openCount === 1) return "1 open position.";
+  if (openCount >= 5) return "Broadly invested.";
   if (cashPct >= 70) return "Cash-heavy.";
-  return "Selective.";
+  return "Moderate exposure.";
 }
 
 function polarToCartesian(cx: number, cy: number, r: number, angle: number) {
@@ -166,10 +160,10 @@ export default function PortfolioSummary({
     return (
       <Card className="p-9">
         <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-          Paper Portfolio Overview
+          Simulated Portfolio Overview
         </div>
         <h2 className="mt-4 text-4xl font-black tracking-[-0.07em] text-black">
-          Ledger unavailable.
+          Simulated portfolio unavailable.
         </h2>
         <p className="mt-4 text-base leading-7 text-black/52">{result.message}</p>
       </Card>
@@ -208,7 +202,7 @@ export default function PortfolioSummary({
     const headline = portfolioState(positions.length, cashPct);
     const governanceMessage = governance
       ? modeCapabilities(governance.governance.mode).message
-      : "Paper portfolio control mode unavailable.";
+      : "Portfolio control mode unavailable.";
     const allocationSlices = buildAllocationSlices(positions, cash, totalEquity);
     const activeSlice = activeIndex === null ? null : allocationSlices[activeIndex];
     const pendingProposalCount =
@@ -243,8 +237,8 @@ export default function PortfolioSummary({
 
     const supportingText =
       positions.length === 0
-        ? "No simulated positions are currently open. The paper account remains fully in cash."
-        : `${positions.length} open paper position${positions.length === 1 ? "" : "s"} with ${money(
+        ? "No simulated positions are currently open. The simulated account remains fully in cash."
+        : `${positions.length} open simulated position${positions.length === 1 ? "" : "s"} with ${money(
             invested
           )} invested and ${money(cash)} held in cash.`;
 
@@ -262,7 +256,7 @@ export default function PortfolioSummary({
           <div className="grid grid-cols-1 gap-0 xl:grid-cols-[minmax(0,1fr)_360px]">
             <div className="p-7 md:p-9">
               <div className="text-xs font-black uppercase tracking-[0.26em] text-black/40">
-                Paper Portfolio Overview
+                Simulated Portfolio Overview
               </div>
 
               <div className="mt-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
@@ -288,7 +282,7 @@ export default function PortfolioSummary({
               {stalePositions > 0 ? (
                 <div className="mt-6 border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
                   {stalePositions} position{stalePositions === 1 ? " is" : "s are"} using
-                  the last ledger price because a usable market quote is unavailable.
+                  the last recorded price because a usable market quote is unavailable.
                 </div>
               ) : null}
 
@@ -305,7 +299,7 @@ export default function PortfolioSummary({
                 <OverviewMetric label="Open Positions" value={`${summary.open_positions_count ?? positions.length}`} />
                 <OverviewMetric label="Closed Trades" value={`${summary.closed_trades_count ?? data.closedTrades.trades.length}`} />
                 <OverviewMetric label="Cash %" value={`${cashPct.toFixed(1)}%`} />
-                <OverviewMetric label="Stale Positions" value={`${stalePositions}`} />
+                <OverviewMetric label="Out-of-Date Positions" value={`${stalePositions}`} />
                 <OverviewMetric
                   label="Price Status"
                   value={marketPriceStatusLabel(displayValuation.price_status)}
@@ -313,9 +307,9 @@ export default function PortfolioSummary({
               </div>
 
               <div className="mt-6 grid grid-cols-1 gap-4 text-sm text-black/50 md:grid-cols-3">
-                <StatusDatum label="Market State" value={currentMarketSnapshot?.market_state ?? data.portfolioSummary.market_state ?? summary.market_state ?? "Unavailable"} />
+                <StatusDatum label="Market State" value={cleanStatus(currentMarketSnapshot?.market_state ?? data.portfolioSummary.market_state ?? summary.market_state)} />
                 <StatusDatum label="Current Display Valuation" value={formatTimestamp(displayValuation.latest_quote_timestamp)} />
-                <StatusDatum label="Ledger Refresh" value={formatTimestamp(data.portfolioSummary.generated_at)} />
+                <StatusDatum label="Portfolio Update" value={formatTimestamp(data.portfolioSummary.generated_at)} />
               </div>
             </div>
 
@@ -356,7 +350,7 @@ export default function PortfolioSummary({
               Current Holdings
             </h3>
             <p className="mt-4 max-w-3xl text-lg leading-8 text-black/55">
-              No simulated positions are currently open. The paper account is
+              No simulated positions are currently open. The simulated account is
               fully in cash.
             </p>
 
@@ -378,11 +372,11 @@ export default function PortfolioSummary({
                   Current Holdings
                 </div>
                 <h3 className="mt-2 text-4xl font-black tracking-[-0.07em] text-black">
-                  Open paper positions.
+                  Open simulated positions.
                 </h3>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-black/50">
-                  Positions shown here are recorded in the paper ledger. Research
-                  candidates stay out of holdings until a simulated entry is
+                  Positions shown here are recorded in the simulated portfolio. Research
+                  opportunities stay out of holdings until a simulated entry is
                   actually created.
                 </p>
               </div>
@@ -397,8 +391,8 @@ export default function PortfolioSummary({
                     aria-label="Filter holdings by origin"
                   >
                     <option value="all">All origins</option>
-                    <option value="strategy_directed">Strategy directed</option>
-                    <option value="user_directed">User directed</option>
+                    <option value="strategy_directed">Added by V8</option>
+                    <option value="user_directed">Added by User</option>
                   </select>
                   <select
                     value={sortKey}
@@ -548,7 +542,7 @@ function AllocationChart({
             {active ? money(active.value) : money(totalEquity)}
           </div>
           <div className="mt-1 text-[11px] text-black/42">
-            {active ? `${active.weight.toFixed(1)}% weight` : "Paper account"}
+            {active ? `${active.weight.toFixed(1)}% weight` : "Simulated account"}
           </div>
         </div>
       </div>
@@ -582,11 +576,11 @@ function HoldingsModeAction({
   if (mode === "ai_assisted") {
     return pendingProposalCount > 0 ? (
       <div className={`text-sm font-bold text-black/62 ${compact ? "" : "mt-8"}`}>
-        {pendingProposalCount} AI proposal{pendingProposalCount === 1 ? "" : "s"} awaiting review in governance.
+        {pendingProposalCount} suggested simulated trade{pendingProposalCount === 1 ? "" : "s"} awaiting review.
       </div>
     ) : (
       <div className={`text-sm text-black/45 ${compact ? "" : "mt-8"}`}>
-        No AI proposals are waiting for review.
+        No simulated trade suggestions are waiting for review.
       </div>
     );
   }
@@ -616,7 +610,7 @@ function PerformanceSection({
             Performance
           </div>
           <h3 className="mt-2 text-4xl font-black tracking-[-0.07em] text-black">
-            Paper account telemetry.
+            Portfolio performance.
           </h3>
         </div>
         <div className="text-sm text-black/45">
@@ -707,7 +701,7 @@ function AllocationRiskSection({
   return (
     <Card className="p-7 md:p-9">
       <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-        Allocation / Risk
+        Portfolio Risk
       </div>
       <h3 className="mt-2 text-4xl font-black tracking-[-0.07em] text-black">
         Exposure map.
@@ -715,15 +709,15 @@ function AllocationRiskSection({
 
       <div className="mt-7 grid grid-cols-1 gap-8 xl:grid-cols-3">
         <ExposureTable title="Sector Exposure" rows={sectorRows} />
-        <ExposureTable title="Control Origin" rows={originRows} />
+        <ExposureTable title="Position Source" rows={originRows} />
         <ExposureTable title="Risk Buckets" rows={riskRows} />
       </div>
 
       <div className="mt-7 grid grid-cols-2 gap-6 border-t border-[#e8e8e3] pt-6 md:grid-cols-4">
         <OverviewMetric label="Open Positions" value={`${positions.length}`} />
         <OverviewMetric label="Largest Position" value={largestPositionWeight(positions, totalEquity)} />
-        <OverviewMetric label="Stale Quotes" value={`${stalePositions}`} />
-        <OverviewMetric label="Live Coverage" value={positions.length === 0 ? "No positions" : pct(((positions.length - stalePositions) / positions.length) * 100)} />
+        <OverviewMetric label="Out-of-Date Prices" value={`${stalePositions}`} />
+        <OverviewMetric label="Current Price Coverage" value={positions.length === 0 ? "No positions" : pct(((positions.length - stalePositions) / positions.length) * 100)} />
       </div>
     </Card>
   );
@@ -743,8 +737,8 @@ function ActivitySection({ data }: { data: PaperTradingData }) {
 
       {trades.length === 0 ? (
         <p className="mt-5 max-w-3xl text-base leading-7 text-black/50">
-          No completed paper trades yet. Closed trades will appear here after
-          an exit is recorded by the paper-trading runtime.
+          No completed simulations yet. Closed simulations will appear here after
+          an exit is recorded.
         </p>
       ) : (
         <div className="mt-7 divide-y divide-[#e8e8e3] border-y border-[#e8e8e3]">
@@ -798,7 +792,7 @@ function HoldingRow({
             </span>
             {stale ? (
               <span className="border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-900">
-                Last ledger price
+                Last recorded price
               </span>
             ) : null}
           </div>
@@ -839,7 +833,7 @@ function HoldingRow({
           <RowMetric label="Last Updated" value={formatTimestamp(position.display_quote_timestamp)} />
           <RowMetric label="Source" value={position.display_price_source} />
           <RowMetric label="Opened" value={formatTimestamp(position.opened_at)} />
-          <RowMetric label="Paper Action" value={position.scanner_action ?? position.entry_action ?? "Unavailable"} />
+          <RowMetric label="Strategy Signal" value={position.scanner_action ?? position.entry_action ?? "Unavailable"} />
         </div>
       ) : null}
     </button>

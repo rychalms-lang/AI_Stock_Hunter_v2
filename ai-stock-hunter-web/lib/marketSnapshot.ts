@@ -1,3 +1,5 @@
+import { cleanStatus } from "@/lib/displayText";
+
 export type PriceStatus =
   | "LIVE"
   | "DELAYED"
@@ -59,17 +61,7 @@ export function usableQuoteStatus(status?: string | null) {
 }
 
 export function priceStatusLabel(status?: string | null) {
-  if (status === "LIVE") return "Live";
-  if (status === "DELAYED") return "Delayed";
-  if (status === "STALE") return "Stale";
-  if (status === "MARKET_CLOSED") return "Market closed";
-  if (status === "UNAVAILABLE") return "Unavailable";
-  if (status === "LAST_LEDGER_PRICE") return "Last ledger price";
-  if (status === "PARTIAL_CURRENT_DISPLAY_VALUATION") return "Partial current display valuation";
-  if (status === "CURRENT_DISPLAY_VALUATION") return "Current display valuation";
-  if (status === "WAITING_FOR_CURRENT_MARKET_PRICES") return "Waiting for current market prices";
-  if (status === "NO_POSITIONS") return "No positions";
-  return status ?? "Unavailable";
+  return cleanStatus(status);
 }
 
 export function formatQuoteAge(value?: string | null) {

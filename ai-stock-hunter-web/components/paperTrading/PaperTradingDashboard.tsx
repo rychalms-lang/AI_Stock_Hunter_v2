@@ -6,6 +6,7 @@ import {
 } from "@/lib/paperTrading";
 import PaperTradingBanner from "./PaperTradingBanner";
 import PaperTradingStateCard from "./PaperTradingStateCard";
+import { cleanStatus, formatDateTime } from "@/lib/displayText";
 
 function money(value: number) {
   return `$${value.toLocaleString(undefined, {
@@ -16,13 +17,6 @@ function money(value: number) {
 function pct(value: number) {
   const sign = value > 0 ? "+" : "";
   return `${sign}${value.toFixed(2)}%`;
-}
-
-function formatMarketState(value?: string) {
-  if (value === "OPEN") return "Market Open";
-  if (value === "PRE_MARKET") return "Pre Market";
-  if (value === "AFTER_HOURS") return "After Hours";
-  return "Market Closed";
 }
 
 function updatedAgo(value?: string | null) {
@@ -55,7 +49,7 @@ function DashboardContent({ data }: { data: PaperTradingData }) {
       <PaperTradingBanner />
 
       <div className="flex flex-col gap-2 border-y border-black/10 py-4 text-sm text-black/52 md:flex-row md:items-center md:justify-between">
-        <span className="font-semibold text-black">{formatMarketState(marketState)}</span>
+        <span className="font-semibold text-black">{cleanStatus(marketState ?? "MARKET_CLOSED")}</span>
         <span>{updatedAgo(lastMarketUpdate)}</span>
         <span>
           {livePrices
@@ -67,7 +61,7 @@ function DashboardContent({ data }: { data: PaperTradingData }) {
       <Card className="p-0">
         <div className="grid grid-cols-1 divide-y divide-black/10 md:grid-cols-5 md:divide-x md:divide-y-0">
           <Metric
-            label="Paper Portfolio Value"
+            label="Simulated Portfolio Value"
             value={money(summary.total_equity)}
           />
           <Metric label="Total Return" value={pct(summary.total_return_pct)} />
@@ -84,15 +78,15 @@ function DashboardContent({ data }: { data: PaperTradingData }) {
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-              Today&apos;s Picks · Scanner Feed
+              Today&apos;s Research List
             </div>
             <h2 className="mt-2 text-4xl font-black tracking-[-0.07em] text-black">
-              Research queue feeding paper mode.
+              Research inputs for simulated portfolio mode.
             </h2>
           </div>
 
           <div className="text-sm text-black/45">
-            Generated {data.dailyPicks.generated_at}
+            Generated {formatDateTime(data.dailyPicks.generated_at)}
           </div>
         </div>
 
@@ -114,7 +108,7 @@ function DashboardContent({ data }: { data: PaperTradingData }) {
               </div>
 
               <div>
-                <div className="text-xs text-black/42">Scanner Action</div>
+                <div className="text-xs text-black/42">Strategy Signal</div>
                 <div className="mt-1 font-black text-black">{pick.action}</div>
               </div>
 

@@ -10,6 +10,7 @@ import {
   PortfolioProposal,
   modeCapabilities,
 } from "@/lib/governanceDisplay";
+import { cleanStatus } from "@/lib/displayText";
 
 const modes: GovernanceMode[] = ["ai_managed", "ai_assisted", "user_managed"];
 
@@ -50,7 +51,7 @@ export default function PortfolioGovernanceControl({ data }: { data: GovernanceD
       });
       const result = (await response.json()) as { ok?: boolean; message?: string };
       if (!result.ok) {
-        setMessage(result.message ?? "Governance action failed.");
+        setMessage(result.message ?? "Portfolio control update failed.");
         return;
       }
       setPendingMode(null);
@@ -64,7 +65,7 @@ export default function PortfolioGovernanceControl({ data }: { data: GovernanceD
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-3">
             <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-              Governance
+              Portfolio Control
             </div>
             <span className="h-1.5 w-1.5 rounded-full bg-[#7fb000]" />
             <div className="text-xs font-bold text-black/45">
@@ -87,7 +88,7 @@ export default function PortfolioGovernanceControl({ data }: { data: GovernanceD
               onClick={() => setShowProposals((value) => !value)}
               className="border border-[#e8e8e3] bg-white px-4 py-2 text-sm font-bold text-black transition duration-200 hover:border-black/30"
             >
-              {pendingProposals.length} proposal{pendingProposals.length === 1 ? "" : "s"}
+              {pendingProposals.length} suggestion{pendingProposals.length === 1 ? "" : "s"}
             </button>
           ) : null}
           <button
@@ -102,7 +103,7 @@ export default function PortfolioGovernanceControl({ data }: { data: GovernanceD
 
       <div className="mt-5 grid grid-cols-2 gap-x-7 gap-y-4 md:grid-cols-4">
         <Mini label="Decision Authority" value={capabilities.authority} />
-        <Mini label="Entries" value={capabilities.entries} />
+        <Mini label="Simulated Entries" value={capabilities.entries} />
         <Mini label="Manual Control" value={capabilities.manual} />
         <Mini label="Pending Approvals" value={`${pendingProposals.length}`} />
       </div>
@@ -188,11 +189,11 @@ function ProposalList({
   return (
     <div className="mt-8">
       <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-        AI Assisted Proposals
+        AI Assisted Suggestions
       </div>
       {proposals.length === 0 ? (
         <div className="mt-4 border border-[#e8e8e3] bg-[#fafafa] p-5 text-sm text-black/50">
-          No pending AI proposals.
+          No simulated trade suggestions are waiting for review.
         </div>
       ) : (
         <div className="mt-4 space-y-3">
@@ -214,7 +215,7 @@ function ProposalList({
                     onClick={() => onApprove(proposal.proposal_id)}
                     className="border border-black bg-black px-4 py-2 text-sm font-bold text-white disabled:opacity-40"
                   >
-                    Approve simulated action
+                    Approve simulated trade
                   </button>
                   <button
                     type="button"
@@ -222,14 +223,14 @@ function ProposalList({
                     onClick={() => onReject(proposal.proposal_id)}
                     className="border border-[#e8e8e3] bg-white px-4 py-2 text-sm font-bold text-black disabled:opacity-40"
                   >
-                    Reject proposal
+                    Reject suggestion
                   </button>
                 </div>
               </div>
               <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-6">
                 <Mini label="Amount" value={money(proposal.proposed_amount)} />
                 <Mini label="Qty" value={`${proposal.proposed_quantity}`} />
-                <Mini label="Quote" value={proposal.quote_status} />
+                <Mini label="Quote" value={cleanStatus(proposal.quote_status)} />
                 <Mini label="Confidence" value={`${proposal.confidence.toFixed(0)}%`} />
                 <Mini label="Expected" value={pct(proposal.expected_return)} />
                 <Mini label="Risk" value={proposal.risk} />
@@ -314,7 +315,7 @@ function ModeConfirmation({
         className="w-full max-w-2xl border border-[#e8e8e3] bg-white p-7 shadow-[0_30px_100px_rgba(0,0,0,0.28)]"
       >
         <div className="text-xs font-black uppercase tracking-[0.25em] text-black/40">
-          Confirm Mode Change
+          Confirm Trading Mode Change
         </div>
         <h3 className="mt-3 text-4xl font-black tracking-[-0.07em] text-black">
           Activate {MODE_LABELS[requestedMode]}.
@@ -323,11 +324,11 @@ function ModeConfirmation({
           <p>Current mode: {MODE_LABELS[currentMode]}.</p>
           <p>Requested mode: {MODE_LABELS[requestedMode]}.</p>
           <p>{requested.entries}</p>
-          <p>Existing open positions keep their original origin and lifecycle metadata.</p>
-          <p>Pending proposals will not silently execute during this transition.</p>
+          <p>Existing open positions keep their original record and timing.</p>
+          <p>Pending suggestions will not silently execute during this transition.</p>
           {requestedMode === "ai_managed" ? (
             <p className="font-bold text-black">
-              I understand that V8 will control future simulated portfolio decisions according to the existing paper-trading rules.
+              I understand that V8 may control future simulated portfolio decisions according to the existing rules.
             </p>
           ) : null}
           <p>Paper trading simulation only. No real trades are placed. This is research and decision support, not investment advice.</p>

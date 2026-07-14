@@ -275,7 +275,7 @@ export default async function MissionControlPage() {
                   </div>
                   <div className="mt-6 grid grid-cols-2 gap-5">
                     <Mini label="Provider" value={status?.market_snapshot?.provider} />
-                    <Mini label="Quote status" value={status?.market_snapshot?.quote_status} />
+                    <Mini label="Quote status" value={cleanStatus(status?.market_snapshot?.quote_status)} />
                     <Mini
                       label="Last quote refresh"
                       value={formatDateTime(status?.market_snapshot?.last_successful_quote_refresh)}

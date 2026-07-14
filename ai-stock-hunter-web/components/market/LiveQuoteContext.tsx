@@ -6,6 +6,7 @@ import {
   priceStatusLabel,
   quoteForTicker,
 } from "@/lib/marketSnapshot";
+import { cleanStatus } from "@/lib/displayText";
 import { useMarketSnapshot } from "@/lib/useMarketSnapshot";
 
 function money(value?: number | null) {
@@ -36,7 +37,7 @@ export function MarketSnapshotStatus({
   return (
     <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-black/45">
       <span className="font-semibold text-black/72">
-        {snapshot?.market_state ?? "Market state unavailable"}
+        {cleanStatus(snapshot?.market_state ?? "Unavailable")}
       </span>
       <span>{priceStatusLabel(snapshot?.quote_status)}</span>
       <span>{formatQuoteAge(snapshot?.generated_at)}</span>
@@ -73,9 +74,9 @@ export function LiveQuoteContext({
         Current Market Price
       </div>
       <div className="mt-3 grid grid-cols-2 gap-5 md:grid-cols-4">
-        <QuoteDatum label="Scanner Reference" value={money(scannerReferencePrice)} />
+        <QuoteDatum label="Research Reference" value={money(scannerReferencePrice)} />
         <QuoteDatum label="Current Market" value={money(current)} />
-        <QuoteDatum label="Since Scanner" value={pct(sinceScanner)} valueClass={tone(sinceScanner)} />
+        <QuoteDatum label="Since Research Update" value={pct(sinceScanner)} valueClass={tone(sinceScanner)} />
         <QuoteDatum label="Intraday" value={pct(quote?.price_change_pct)} valueClass={tone(quote?.price_change_pct)} />
         {!compact ? (
           <>
@@ -87,8 +88,8 @@ export function LiveQuoteContext({
         ) : null}
       </div>
       <p className="mt-4 text-xs leading-5 text-black/42">
-        Live market movement updates valuation only. V8 research metrics remain
-        based on the original scanner snapshot.
+        Current market movement updates valuation only. Research metrics remain
+        based on the original daily update.
         {isLoading ? " Loading quote snapshot." : ""}
         {error ? " Latest quote refresh failed; retaining last successful snapshot." : ""}
       </p>

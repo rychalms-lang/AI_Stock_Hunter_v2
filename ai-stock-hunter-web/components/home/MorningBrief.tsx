@@ -8,7 +8,7 @@ import {
 import { WebSnapshot } from "@/lib/webSnapshot";
 import { ResearchChanges } from "@/lib/researchChanges";
 import { MarketSnapshot } from "@/lib/marketSnapshot";
-import { explainers, formatDateTime, formatPercent, terminology } from "@/lib/displayText";
+import { explainers, formatDateTime, formatPercent, researchSourceLabel, terminology } from "@/lib/displayText";
 import { LiveQuoteContext, MarketSnapshotStatus } from "@/components/market/LiveQuoteContext";
 import { paperTradingDisclaimer } from "@/components/paperTrading/PaperTradingBanner";
 import { ResearchPackageResult } from "@/lib/researchPackage";
@@ -466,7 +466,7 @@ function IncompleteResearchState({
         <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-y border-[#e8e8e3] py-4 text-sm text-black/45">
           <InlineDatum label="Session" value={clock.label} />
           <InlineDatum label="Official Market Date" value={officialDate} />
-          <InlineDatum label="Official Source" value={officialReport} />
+          <InlineDatum label="Official Source" value={researchSourceLabel(officialReport)} />
           <InlineDatum label="Package Status" value="Needs review" />
         </div>
         <div className="mt-5">
