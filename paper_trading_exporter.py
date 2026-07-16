@@ -1,4 +1,5 @@
 import csv
+import argparse
 import json
 from datetime import datetime
 from pathlib import Path
@@ -249,12 +250,14 @@ def build_daily_picks_file(
     rows: List[Dict[str, str]],
     report_file: Path,
     generated_at: str,
+    package_id: Optional[str] = None,
 ) -> Dict[str, Any]:
     trade_date = trade_date_from_report(report_file)
 
     return {
         "schema_version": SCHEMA_VERSION,
         "generated_at": generated_at,
+        "package_id": package_id,
         "source_file": str(report_file),
         "trade_date": trade_date,
         "mock_data": False,
@@ -321,6 +324,7 @@ def build_portfolio_summary_file(
     rows: List[Dict[str, str]],
     report_file: Path,
     generated_at: str,
+    package_id: Optional[str] = None,
 ) -> Dict[str, Any]:
     trade_date = trade_date_from_report(report_file)
     portfolio = build_portfolio(rows_for_portfolio(rows))
@@ -347,6 +351,7 @@ def build_portfolio_summary_file(
     return {
         "schema_version": SCHEMA_VERSION,
         "generated_at": generated_at,
+        "package_id": package_id,
         "source_file": str(report_file),
         "trade_date": trade_date,
         "as_of_date": trade_date,
@@ -401,39 +406,55 @@ def write_json(path: Path, payload: Dict[str, Any]) -> None:
         f.write("\n")
 
 
-def export_paper_trading_snapshot(report_file: Optional[Path] = None) -> Dict[str, Any]:
+def export_paper_trading_snapshot(
+    report_file: Optional[Path] = None,
+    *,
+    output_dir: Path = PAPER_TRADING_DIR,
+    state_dir: Optional[Path] = None,
+    package_id: Optional[str] = None,
+    run_engine: bool = True,
+) -> Dict[str, Any]:
     report = report_file or latest_report()
     rows = read_report_rows(report)
 
     generated_at = datetime.now().isoformat(timespec="seconds")
 
-    daily_picks = build_daily_picks_file(rows, report, generated_at)
+    daily_picks = build_daily_picks_file(rows, report, generated_at, package_id=package_id)
 
-    write_json(PAPER_TRADING_DIR / "daily_picks.json", daily_picks)
-    engine_result = process_paper_trading(
-        daily_picks=daily_picks,
-        raw_rows=rows,
-        output_dir=PAPER_TRADING_DIR,
-        state_dir=PAPER_TRADING_DIR / "state",
-        generated_at=generated_at,
-    )
+    write_json(output_dir / "daily_picks.json", daily_picks)
+    engine_result = None
+    if run_engine:
+        engine_result = process_paper_trading(
+            daily_picks=daily_picks,
+            raw_rows=rows,
+            output_dir=output_dir,
+            state_dir=state_dir or output_dir / "state",
+            generated_at=generated_at,
+        )
 
     return {
-        "daily_picks": str(PAPER_TRADING_DIR / "daily_picks.json"),
-        "open_positions": str(PAPER_TRADING_DIR / "open_positions.json"),
-        "closed_trades": str(PAPER_TRADING_DIR / "closed_trades.json"),
-        "portfolio_summary": str(PAPER_TRADING_DIR / "portfolio_summary.json"),
-        "equity_curve": str(PAPER_TRADING_DIR / "equity_curve.json"),
-        "performance_statistics": str(PAPER_TRADING_DIR / "performance_statistics.json"),
+        "daily_picks": str(output_dir / "daily_picks.json"),
+        "open_positions": str(output_dir / "open_positions.json"),
+        "closed_trades": str(output_dir / "closed_trades.json"),
+        "portfolio_summary": str(output_dir / "portfolio_summary.json"),
+        "equity_curve": str(output_dir / "equity_curve.json"),
+        "performance_statistics": str(output_dir / "performance_statistics.json"),
         "source_file": str(report),
         "trade_date": trade_date_from_report(report),
+        "package_id": package_id,
         "engine": engine_result,
     }
 
 
 if __name__ == "__main__":
-    result = export_paper_trading_snapshot()
+    parser = argparse.ArgumentParser(description="Build paper-trading research data. Live publication is handled by web_exporter.py.")
+    parser.add_argument("--debug-output-dir", type=Path, help="Write standalone debug output outside the live package path.")
+    args = parser.parse_args()
+    if not args.debug_output_dir:
+        print("Refusing standalone live export. Run web_exporter.py to publish an atomic research package, or pass --debug-output-dir PATH.")
+        raise SystemExit(2)
+    result = export_paper_trading_snapshot(output_dir=args.debug_output_dir, state_dir=args.debug_output_dir / "state", run_engine=False)
     print(
-        "Paper trading JSON written: "
-        f"{result['daily_picks']} and {result['portfolio_summary']}"
+        "Paper trading debug JSON written: "
+        f"{result['daily_picks']}"
     )

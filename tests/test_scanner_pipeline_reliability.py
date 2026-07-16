@@ -302,8 +302,8 @@ class ScannerPipelineReliabilityTests(unittest.TestCase):
             write_report(reports / "manual-tests" / "2026-07-11_v2.csv", [sample_candidate()])
             self.assertEqual(scanner_status.latest_valid_report(reports), reports / "2026-07-09_v2.csv")
 
-    def test_web_exporter_preserves_snapshot_when_downstream_export_fails(self):
-        with TempCwd() as cwd, patch.object(web_exporter, "export_paper_trading_snapshot", side_effect=RuntimeError("boom")):
+    def test_web_exporter_preserves_snapshot_when_package_generation_fails(self):
+        with TempCwd() as cwd, patch.object(web_exporter, "build_snapshot_payload", side_effect=RuntimeError("boom")):
             write_report(cwd / "reports" / "2026-07-09_v2.csv", [sample_candidate()])
             snapshot = cwd / "data" / "web_snapshot.json"
             snapshot.write_text('{"previous": true}\n')
@@ -367,7 +367,7 @@ class ScannerPipelineReliabilityTests(unittest.TestCase):
 
     def test_manual_test_does_not_create_production_marker_or_export(self):
         script = Path("automation/scripts/run_daily_pipeline.sh").read_text()
-        manual_block = script[script.index('log_line "Manual test completed'):script.index('log_line "Stage 2/5')]
+        manual_block = script[script.index('log_line "Manual test completed'):script.index('log_line "Stage 2/4')]
         self.assertIn("main.py --manual-test", script)
         self.assertIn("success marker", manual_block.lower())
         self.assertIn("exit 0", manual_block)

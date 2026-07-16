@@ -36,6 +36,7 @@ export type AiExplanation = {
 type PaperFileBase = {
   schema_version: string;
   generated_at: string;
+  package_id?: string | null;
   source_file?: string;
   source_market_date?: string;
   stale_price_data?: boolean;

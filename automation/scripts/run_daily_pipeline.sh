@@ -119,21 +119,13 @@ if [[ "${RUN_TYPE}" == "manual_test" ]]; then
   exit 0
 fi
 
-log_line "Stage 2/5: exporting web and paper-trading JSON."
-CURRENT_STAGE="web and paper export"
+log_line "Stage 2/4: publishing atomic research package and paper-trading JSON."
+CURRENT_STAGE="atomic research package export"
 "${PYTHON_BIN}" web_exporter.py
 
-log_line "Stage 3/5: exporting research archive index."
-CURRENT_STAGE="research archive export"
-"${PYTHON_BIN}" research_archive_exporter.py
-
-log_line "Stage 4/5: exporting system status."
+log_line "Stage 3/4: exporting system status."
 CURRENT_STAGE="system status export"
 "${PYTHON_BIN}" system_status_exporter.py
-
-log_line "Stage 5/5: exporting research change detection."
-CURRENT_STAGE="research change export"
-"${PYTHON_BIN}" research_change_exporter.py
 
 CURRENT_STAGE="success marker creation"
 printf "completed_at=%s\n" "$(timestamp)" > "${SUCCESS_MARKER}"

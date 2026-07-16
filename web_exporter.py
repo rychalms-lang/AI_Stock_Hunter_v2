@@ -1,12 +1,12 @@
-import json
 import csv
-import shutil
 from pathlib import Path
 from datetime import datetime
 
 from ai_engine import recommendation_from_row
-from paper_trading_exporter import export_paper_trading_snapshot
-from research_change_exporter import export_research_changes
+from paper_trading_exporter import build_daily_picks_file, export_paper_trading_snapshot
+from research_archive_exporter import export_research_archive
+from research_change_exporter import build_research_changes
+from research_package import package_id_for_report, publish_research_package, write_json
 from scanner_status import latest_valid_report, report_validation, write_status
 
 
@@ -113,25 +113,15 @@ def build_today_actions(recommendations):
     return actions
 
 
-def export_snapshot():
-    report_file, rows = load_report()
+def build_snapshot_payload(report_file: Path, rows, package_id: str):
     recommendations = [
         recommendation_from_row(row)
         for row in rows
     ]
 
-    recommendations.sort(
-        key=lambda item: (
-            item.action == "BUY",
-            item.expected_return,
-            item.confidence,
-            item.score,
-        ),
-        reverse=True,
-    )
-
-    snapshot = {
+    return {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "package_id": package_id,
         "source_file": str(report_file),
         "source_market_date": report_file.name.replace("_v2.csv", ""),
         "market_regime": {
@@ -147,25 +137,85 @@ def export_snapshot():
         ],
     }
 
-    DATA_DIR.mkdir(exist_ok=True)
 
-    paper_result = export_paper_trading_snapshot(report_file)
-    changes_result = export_research_changes(REPORTS_DIR, DATA_DIR / "research_changes.json", current_report=report_file)
+def build_research_package_outputs(report_file: Path, package_id: str, package_dir: Path):
+    validation = report_validation(report_file)
+    if not validation["valid"]:
+        raise ValueError(f"{report_file} is invalid: {validation['reason']}")
 
-    with open(OUTPUT_FILE, "w") as f:
-        json.dump(snapshot, f, indent=2)
-        f.write("\n")
+    with report_file.open(newline="") as f:
+        rows = list(csv.DictReader(f))
 
-    PUBLIC_SNAPSHOT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(OUTPUT_FILE, PUBLIC_SNAPSHOT_FILE)
+    data_dir = package_dir / "data"
+    paper_dir = data_dir / "paper_trading"
+    snapshot_path = data_dir / "web_snapshot.json"
+    changes_path = data_dir / "research_changes.json"
+    archive_path = data_dir / "research_archive.json"
+    daily_picks_path = paper_dir / "daily_picks.json"
+
+    snapshot = build_snapshot_payload(report_file, rows, package_id)
+    write_json(snapshot_path, snapshot)
+
+    generated_at = datetime.now().isoformat(timespec="seconds")
+    daily_picks = build_daily_picks_file(rows, report_file, generated_at, package_id=package_id)
+    write_json(daily_picks_path, daily_picks)
+
+    changes = build_research_changes(REPORTS_DIR, current_report=report_file, package_id=package_id)
+    write_json(changes_path, changes)
+
+    export_research_archive(output_file=archive_path, current_report=report_file, package_id=package_id, reports_dir=REPORTS_DIR)
+
+    return {
+        "artifacts": [snapshot_path, daily_picks_path, changes_path, archive_path],
+        "publish": [
+            (snapshot_path, OUTPUT_FILE),
+            (snapshot_path, PUBLIC_SNAPSHOT_FILE),
+            (changes_path, DATA_DIR / "research_changes.json"),
+            (archive_path, DATA_DIR / "research_archive.json"),
+            (daily_picks_path, DATA_DIR / "paper_trading" / "daily_picks.json"),
+        ],
+        "metadata": {
+            "paper_result": {"daily_picks": str(daily_picks_path)},
+            "top_ticker": snapshot["top_opportunity"]["ticker"] if snapshot.get("top_opportunity") else None,
+            "top_action": snapshot["top_opportunity"]["action"] if snapshot.get("top_opportunity") else None,
+            "top_expected_return": snapshot["top_opportunity"]["expected_return"] if snapshot.get("top_opportunity") else None,
+            "top_matches": snapshot["top_opportunity"]["historical_matches"] if snapshot.get("top_opportunity") else None,
+            "candidate_count": len(snapshot.get("ranked_candidates") or []),
+        },
+    }
+
+
+def export_snapshot():
+    report_file = latest_report()
+    package_id = package_id_for_report(report_file)
+    result = publish_research_package(build_research_package_outputs, data_dir=DATA_DIR, reports_dir=REPORTS_DIR)
+
+    if not result["ok"]:
+        write_status({
+            "exporter_completed": False,
+            "production_pipeline_completed": False,
+            "latest_valid_report": str(report_file),
+            "latest_research_package_id": package_id,
+            "research_package_status": "failed",
+            "research_package_failure": result.get("diagnostics_file"),
+        })
+        raise RuntimeError(f"Research package validation failed: {result.get('diagnostics_file')}")
+
+    paper_result = export_paper_trading_snapshot(
+        report_file,
+        output_dir=DATA_DIR / "paper_trading",
+        state_dir=DATA_DIR / "paper_trading" / "state",
+        package_id=package_id,
+        run_engine=True,
+    )
 
     print(f"Web snapshot written to {OUTPUT_FILE}")
-    if recommendations:
+    if result.get("top_ticker"):
         print(
-            f"Top opportunity: {snapshot['top_opportunity']['ticker']} | "
-            f"Action: {snapshot['top_opportunity']['action']} | "
-            f"Expected Return: {snapshot['top_opportunity']['expected_return']}% | "
-            f"Matches: {snapshot['top_opportunity']['historical_matches']}"
+            f"Top opportunity: {result['top_ticker']} | "
+            f"Action: {result['top_action']} | "
+            f"Expected Return: {result['top_expected_return']}% | "
+            f"Matches: {result['top_matches']}"
         )
     else:
         print("No qualifying candidates in the latest valid scanner report.")
@@ -176,12 +226,15 @@ def export_snapshot():
     )
     print(
         "Research changes written: "
-        f"status={changes_result['status']} current={changes_result['current_date']}"
+        f"package_id={package_id} current={result['market_date']}"
     )
     write_status({
         "exporter_completed": True,
         "production_pipeline_completed": True,
         "latest_valid_report": str(report_file),
+        "latest_research_package_id": package_id,
+        "research_package_status": "published",
+        "research_package_failure": None,
     })
 
 

@@ -1,4 +1,5 @@
 import csv
+import argparse
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -114,30 +115,63 @@ def archive_item(path: Path) -> Optional[Dict[str, Any]]:
     }
 
 
-def build_archive() -> Dict[str, Any]:
+def report_files_through(current_report: Optional[Path] = None, reports_dir: Optional[Path] = None) -> List[Path]:
+    reports_dir = reports_dir or REPORTS_DIR
+    files = sorted(reports_dir.glob("*_v2.csv"), reverse=True)
+    if not current_report:
+        return files
+    current_name = current_report.name
+    return [path for path in files if path.name <= current_name]
+
+
+def build_archive(
+    current_report: Optional[Path] = None,
+    package_id: Optional[str] = None,
+    reports_dir: Optional[Path] = None,
+) -> Dict[str, Any]:
+    reports_dir = reports_dir or REPORTS_DIR
     items = [
         item
-        for path in sorted(REPORTS_DIR.glob("*_v2.csv"), reverse=True)
+        for path in report_files_through(current_report, reports_dir=reports_dir)
         if (item := archive_item(path))
     ]
+    current_item = next((item for item in items if current_report and Path(item.get("source_report", "")).name == current_report.name), items[0] if items else None)
 
-    return {
+    payload = {
         "schema_version": SCHEMA_VERSION,
         "generated_at": iso_now(),
+        "package_id": package_id,
+        "current_market_date": current_item.get("date") if current_item else None,
+        "current_source_report": str(current_report) if current_report else (current_item.get("source_report") if current_item else None),
+        "current_item": current_item,
         "items": items,
     }
+    return payload
 
 
-def export_research_archive() -> Dict[str, Any]:
-    payload = build_archive()
+def export_research_archive(
+    output_file: Path = OUTPUT_FILE,
+    current_report: Optional[Path] = None,
+    package_id: Optional[str] = None,
+    reports_dir: Optional[Path] = None,
+) -> Dict[str, Any]:
+    reports_dir = reports_dir or REPORTS_DIR
+    payload = build_archive(current_report=current_report, package_id=package_id, reports_dir=reports_dir)
     DATA_DIR.mkdir(exist_ok=True)
-    with OUTPUT_FILE.open("w") as f:
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    with output_file.open("w") as f:
         json.dump(payload, f, indent=2)
         f.write("\n")
     return payload
 
 
 if __name__ == "__main__":
-    result = export_research_archive()
-    print(f"Research archive written to {OUTPUT_FILE}")
+    parser = argparse.ArgumentParser(description="Build research archive diagnostics. Live publication is handled by web_exporter.py.")
+    parser.add_argument("--debug-output", type=Path, help="Write standalone debug output outside the live package path.")
+    args = parser.parse_args()
+    if not args.debug_output:
+        print("Refusing standalone live export. Run web_exporter.py to publish an atomic research package, or pass --debug-output PATH.")
+        raise SystemExit(2)
+    result = export_research_archive(output_file=args.debug_output)
+    print(f"Research archive debug output written to {args.debug_output}")
     print(json.dumps({"items": len(result["items"])}, sort_keys=True))

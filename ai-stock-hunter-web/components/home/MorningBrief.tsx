@@ -460,8 +460,7 @@ function IncompleteResearchState({
           Research update incomplete.
         </h1>
         <p className="mt-7 max-w-3xl text-lg leading-8 text-black/58 md:text-xl">
-          The latest research files disagree about the official production report.
-          The Morning Brief is paused so stale and current data are not mixed.
+          {packageResult.customerSummary}
         </p>
         <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-y border-[#e8e8e3] py-4 text-sm text-black/45">
           <InlineDatum label="Session" value={clock.label} />
@@ -489,6 +488,17 @@ function IncompleteResearchState({
               </div>
             ))}
           </div>
+          <details className="mt-8 border-t border-[#e8e8e3] pt-5 text-sm text-black/54">
+            <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.2em] text-black/40">
+              Technical diagnostics
+            </summary>
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              <DiagnosticBlock title="Package ID" values={{ expected: packageResult.technicalDiagnostics.expectedPackageId, ...packageResult.technicalDiagnostics.actualPackageIdPerFile }} />
+              <DiagnosticBlock title="Source Report" values={{ expected: packageResult.technicalDiagnostics.expectedSourceReport, ...packageResult.technicalDiagnostics.actualSourceReportPerFile }} />
+              <DiagnosticBlock title="Market Date" values={{ expected: packageResult.technicalDiagnostics.expectedMarketDate, ...packageResult.technicalDiagnostics.actualMarketDatePerFile }} />
+              <DiagnosticBlock title="Rank #1" values={packageResult.technicalDiagnostics.rankOnePerFile} />
+            </div>
+          </details>
         </div>
 
         <aside className="border-l border-[#e8e8e3] pl-8">
@@ -508,6 +518,24 @@ function IncompleteResearchState({
         </aside>
       </section>
     </section>
+  );
+}
+
+function DiagnosticBlock({ title, values }: { title: string; values: Record<string, string | null> }) {
+  return (
+    <div className="border border-[#e8e8e3] bg-white p-4">
+      <div className="text-xs font-black uppercase tracking-[0.18em] text-black/35">
+        {title}
+      </div>
+      <div className="mt-3 space-y-2">
+        {Object.entries(values).map(([label, value]) => (
+          <div key={label} className="grid grid-cols-[120px_1fr] gap-3 text-xs leading-5">
+            <span className="text-black/35">{label}</span>
+            <span className="break-all font-medium text-black/62">{value ?? "Unavailable"}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

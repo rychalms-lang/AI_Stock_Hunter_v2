@@ -25,6 +25,7 @@ export type TodayAction = {
 
 export type WebSnapshot = {
   generated_at: string;
+  package_id?: string | null;
   source_file: string;
   source_market_date?: string;
   market_regime: {

@@ -10,6 +10,7 @@ export type SystemEvent = {
 export type SystemStatus = {
   schema_version: string;
   generated_at: string;
+  package_id?: string | null;
   market_state: string;
   daily_pipeline: {
     status: "healthy" | "warning" | "failed" | "unknown";
@@ -34,7 +35,10 @@ export type SystemStatus = {
     mismatches: string[];
     official_market_date: string | null;
     official_source_report: string | null;
+    expected_package_id?: string | null;
+    package_id?: string | null;
     top_opportunity_ticker: string | null;
+    technical_diagnostics?: Record<string, unknown>;
   };
   strategy: {
     name: string;

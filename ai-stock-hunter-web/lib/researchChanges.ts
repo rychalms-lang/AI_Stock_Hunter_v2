@@ -17,6 +17,7 @@ export type ChangeCandidate = {
 export type ResearchChanges = {
   schema_version: string;
   generated_at: string;
+  package_id?: string | null;
   status: "ready" | "insufficient_history";
   current_date: string | null;
   previous_date: string | null;

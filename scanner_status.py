@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import json
 import sys
 from datetime import datetime, timezone
@@ -136,6 +137,26 @@ def latest_valid_report(reports_dir: Path = REPORTS_DIR) -> Optional[Path]:
     return None
 
 
+def source_report_hash(report: Path) -> Optional[str]:
+    try:
+        digest = hashlib.sha256()
+        with report.open("rb") as f:
+            for chunk in iter(lambda: f.read(1024 * 1024), b""):
+                digest.update(chunk)
+        return digest.hexdigest()[:16]
+    except OSError:
+        return None
+
+
+def package_id_for_report(report: Optional[Path]) -> Optional[str]:
+    if not report:
+        return None
+    digest = source_report_hash(report)
+    if not digest:
+        return None
+    return f"research_{market_date_from_report(report)}_{digest}"
+
+
 def latest_file(paths):
     items = [path for path in paths if path.exists() and path.is_file()]
     if not items:
@@ -208,6 +229,7 @@ def reconcile_status(
         "last_success_at": file_iso(production_report),
         "last_success_market_date": market_date_from_report(production_report) if production_report else None,
         "latest_valid_report": str(production_report) if production_report else None,
+        "latest_research_package_id": package_id_for_report(production_report),
         "latest_manual_test_at": file_iso(manual_report),
         "latest_manual_test_market_date": market_date_from_report(manual_report) if manual_report else None,
         "latest_manual_test_report": str(manual_report) if manual_report else None,

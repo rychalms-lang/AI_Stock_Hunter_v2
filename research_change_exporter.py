@@ -1,4 +1,5 @@
 import csv
+import argparse
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -245,19 +246,25 @@ def compare_reports(previous_path: Path, current_path: Path) -> Dict[str, Any]:
 def build_research_changes(
     reports_dir: Path = REPORTS_DIR,
     current_report: Optional[Path] = None,
+    package_id: Optional[str] = None,
 ) -> Dict[str, Any]:
     files = report_files_through(reports_dir, current_report)
     if len(files) < 2:
-        return empty_payload(files)
-    return compare_reports(files[-2], files[-1])
+        payload = empty_payload(files)
+    else:
+        payload = compare_reports(files[-2], files[-1])
+    if package_id:
+        payload["package_id"] = package_id
+    return payload
 
 
 def export_research_changes(
     reports_dir: Path = REPORTS_DIR,
     output_file: Path = OUTPUT_FILE,
     current_report: Optional[Path] = None,
+    package_id: Optional[str] = None,
 ) -> Dict[str, Any]:
-    payload = build_research_changes(reports_dir, current_report=current_report)
+    payload = build_research_changes(reports_dir, current_report=current_report, package_id=package_id)
     output_file.parent.mkdir(exist_ok=True)
     with output_file.open("w") as f:
         json.dump(payload, f, indent=2)
@@ -266,8 +273,14 @@ def export_research_changes(
 
 
 if __name__ == "__main__":
-    result = export_research_changes()
-    print(f"Research changes written to {OUTPUT_FILE}")
+    parser = argparse.ArgumentParser(description="Build research change diagnostics. Live publication is handled by web_exporter.py.")
+    parser.add_argument("--debug-output", type=Path, help="Write standalone debug output outside the live package path.")
+    args = parser.parse_args()
+    if not args.debug_output:
+        print("Refusing standalone live export. Run web_exporter.py to publish an atomic research package, or pass --debug-output PATH.")
+        raise SystemExit(2)
+    result = export_research_changes(output_file=args.debug_output)
+    print(f"Research changes debug output written to {args.debug_output}")
     print(json.dumps({
         "status": result["status"],
         "current_date": result["current_date"],

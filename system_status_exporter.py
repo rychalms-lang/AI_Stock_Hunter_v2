@@ -256,6 +256,7 @@ def build_status() -> Dict[str, Any]:
     return {
         "schema_version": SCHEMA_VERSION,
         "generated_at": iso_now(),
+        "package_id": research_package.get("package_id") or research_package.get("expected_package_id"),
         "market_state": market_state,
         "daily_pipeline": daily_pipeline_status(report),
         "paper_refresh": parse_refresh_status(),
@@ -301,8 +302,10 @@ def build_status() -> Dict[str, Any]:
             "production_pipeline_completed": bool(scanner_status.get("production_pipeline_completed")),
             "last_export_timestamp": web_snapshot.get("generated_at", "Unavailable"),
             "source_file": scanner_status.get("latest_valid_report") or web_snapshot.get("source_file", "Unavailable"),
+            "latest_research_package_id": scanner_status.get("latest_research_package_id") or research_package.get("expected_package_id"),
             "research_package_status": research_package["status"],
             "research_package_mismatches": research_package["mismatches"],
+            "research_package_failure": scanner_status.get("research_package_failure"),
         },
         "paper_portfolio": {
             "open_positions": len(positions),
@@ -360,9 +363,11 @@ def build_status() -> Dict[str, Any]:
 def export_system_status() -> Dict[str, Any]:
     payload = build_status()
     DATA_DIR.mkdir(exist_ok=True)
-    with OUTPUT_FILE.open("w") as f:
+    tmp = OUTPUT_FILE.with_suffix(OUTPUT_FILE.suffix + ".tmp")
+    with tmp.open("w") as f:
         json.dump(payload, f, indent=2)
         f.write("\n")
+    tmp.replace(OUTPUT_FILE)
     return payload
 
 
