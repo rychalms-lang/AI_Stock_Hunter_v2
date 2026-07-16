@@ -1,7 +1,745 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-13T18:42:54-04:00",
+  "generated_at": "2026-07-15T23:16:09-04:00",
+  "package_id": "research_2026-07-15_3cc1f4f4937f4e51",
+  "current_market_date": "2026-07-15",
+  "current_source_report": "reports/2026-07-15_v2.csv",
+  "current_item": {
+    "date": "2026-07-15",
+    "market_regime": "Unavailable",
+    "candidate_count": 10,
+    "top_opportunity": {
+      "ticker": "PATH",
+      "sector": "Automation / AI",
+      "action": "BUY",
+      "confidence": 70.0,
+      "expected_return_pct": 4.06,
+      "score": 47.81
+    },
+    "candidates": [
+      {
+        "rank": 1,
+        "ticker": "PATH",
+        "sector": "Automation / AI",
+        "action": "BUY",
+        "confidence": 70.0,
+        "score": 47.81,
+        "expected_return_pct": 4.06,
+        "best_hold_period_days": 1,
+        "historical_matches": 126,
+        "risk": "Medium",
+        "reason": "PATH is rated BUY because it shows outperformance versus the market, above-average trading volume, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 12.06,
+          "latest_close": 11.95,
+          "five_day_change_pct": 1.27,
+          "twenty_day_change_pct": 13.59,
+          "relative_strength_pct": 12.74,
+          "volume_ratio": 1.88,
+          "best_avg_return_pct": 0.27
+        }
+      },
+      {
+        "rank": 2,
+        "ticker": "S",
+        "sector": "Cybersecurity",
+        "action": "BUY",
+        "confidence": 45.0,
+        "score": 45.93,
+        "expected_return_pct": 7.63,
+        "best_hold_period_days": 1,
+        "historical_matches": 92,
+        "risk": "Medium",
+        "reason": "S is rated BUY because it shows outperformance versus the market, above-average trading volume, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 20.19,
+          "latest_close": 19.58,
+          "five_day_change_pct": 3.82,
+          "twenty_day_change_pct": 30.27,
+          "relative_strength_pct": 29.42,
+          "volume_ratio": 1.53,
+          "best_avg_return_pct": -0.87
+        }
+      },
+      {
+        "rank": 3,
+        "ticker": "HIMS",
+        "sector": "Consumer Health",
+        "action": "WATCH",
+        "confidence": 100.0,
+        "score": 40.79,
+        "expected_return_pct": 4.87,
+        "best_hold_period_days": 10,
+        "historical_matches": 38,
+        "risk": "Medium",
+        "reason": "HIMS is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 35.67,
+          "latest_close": 37.17,
+          "five_day_change_pct": 4.85,
+          "twenty_day_change_pct": 18.11,
+          "relative_strength_pct": 17.26,
+          "volume_ratio": 0.73,
+          "best_avg_return_pct": 6.13
+        }
+      },
+      {
+        "rank": 4,
+        "ticker": "SE",
+        "sector": "International Tech",
+        "action": "WATCH",
+        "confidence": 75.0,
+        "score": 39.67,
+        "expected_return_pct": 6.54,
+        "best_hold_period_days": 3,
+        "historical_matches": 57,
+        "risk": "Medium",
+        "reason": "SE is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 109.08,
+          "latest_close": 111.36,
+          "five_day_change_pct": 2.06,
+          "twenty_day_change_pct": 28.28,
+          "relative_strength_pct": 27.42,
+          "volume_ratio": 0.94,
+          "best_avg_return_pct": 0.33
+        }
+      },
+      {
+        "rank": 5,
+        "ticker": "CRWD",
+        "sector": "Cybersecurity",
+        "action": "BUY",
+        "confidence": 65.0,
+        "score": 38.7,
+        "expected_return_pct": 5.67,
+        "best_hold_period_days": 5,
+        "historical_matches": 358,
+        "risk": "Medium",
+        "reason": "CRWD is rated BUY because it shows outperformance versus the market, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 212.5,
+          "latest_close": 206.77,
+          "five_day_change_pct": 4.22,
+          "twenty_day_change_pct": 21.72,
+          "relative_strength_pct": 20.86,
+          "volume_ratio": 1.02,
+          "best_avg_return_pct": 0.83
+        }
+      },
+      {
+        "rank": 6,
+        "ticker": "META",
+        "sector": "Mega Cap Tech",
+        "action": "WATCH",
+        "confidence": 100.0,
+        "score": 38.43,
+        "expected_return_pct": 4.58,
+        "best_hold_period_days": 10,
+        "historical_matches": 369,
+        "risk": "Low",
+        "reason": "META is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 663.6,
+          "latest_close": 681.31,
+          "five_day_change_pct": 7.89,
+          "twenty_day_change_pct": 13.51,
+          "relative_strength_pct": 12.66,
+          "volume_ratio": 0.86,
+          "best_avg_return_pct": 1.12
+        }
+      },
+      {
+        "rank": 7,
+        "ticker": "PANW",
+        "sector": "Cybersecurity",
+        "action": "WATCH",
+        "confidence": 55.0,
+        "score": 37.07,
+        "expected_return_pct": 6.61,
+        "best_hold_period_days": 1,
+        "historical_matches": 66,
+        "risk": "Medium",
+        "reason": "PANW is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 356.85,
+          "latest_close": 354.02,
+          "five_day_change_pct": 4.64,
+          "twenty_day_change_pct": 26.48,
+          "relative_strength_pct": 25.62,
+          "volume_ratio": 0.89,
+          "best_avg_return_pct": 0.17
+        }
+      },
+      {
+        "rank": 8,
+        "ticker": "VLO",
+        "sector": "Energy",
+        "action": "WATCH",
+        "confidence": 60.0,
+        "score": 36.91,
+        "expected_return_pct": 5.26,
+        "best_hold_period_days": 10,
+        "historical_matches": 508,
+        "risk": "Medium",
+        "reason": "VLO is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 299.0,
+          "latest_close": 292.66,
+          "five_day_change_pct": 4.06,
+          "twenty_day_change_pct": 19.88,
+          "relative_strength_pct": 19.02,
+          "volume_ratio": 1.0,
+          "best_avg_return_pct": 0.44
+        }
+      },
+      {
+        "rank": 9,
+        "ticker": "MPC",
+        "sector": "Energy",
+        "action": "WATCH",
+        "confidence": 80.0,
+        "score": 35.85,
+        "expected_return_pct": 5.3,
+        "best_hold_period_days": 10,
+        "historical_matches": 508,
+        "risk": "Medium",
+        "reason": "MPC is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 301.53,
+          "latest_close": 299.18,
+          "five_day_change_pct": 5.61,
+          "twenty_day_change_pct": 19.45,
+          "relative_strength_pct": 18.59,
+          "volume_ratio": 0.77,
+          "best_avg_return_pct": 0.44
+        }
+      },
+      {
+        "rank": 10,
+        "ticker": "OKTA",
+        "sector": "Cybersecurity",
+        "action": "WATCH",
+        "confidence": 35.0,
+        "score": 32.17,
+        "expected_return_pct": 6.57,
+        "best_hold_period_days": 1,
+        "historical_matches": 47,
+        "risk": "Medium",
+        "reason": "OKTA is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+        "source_fields": {
+          "latest_open": 156.0,
+          "latest_close": 150.86,
+          "five_day_change_pct": 1.36,
+          "twenty_day_change_pct": 29.75,
+          "relative_strength_pct": 28.89,
+          "volume_ratio": 0.73,
+          "best_avg_return_pct": -0.49
+        }
+      }
+    ],
+    "strategy": {
+      "name": "V8",
+      "version": "8.0",
+      "status": "Champion"
+    },
+    "source_metadata": {
+      "schema": "scanner_report_v2_csv",
+      "future_outcomes_exposed": false
+    },
+    "source_report": "reports/2026-07-15_v2.csv"
+  },
   "items": [
+    {
+      "date": "2026-07-15",
+      "market_regime": "Unavailable",
+      "candidate_count": 10,
+      "top_opportunity": {
+        "ticker": "PATH",
+        "sector": "Automation / AI",
+        "action": "BUY",
+        "confidence": 70.0,
+        "expected_return_pct": 4.06,
+        "score": 47.81
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "ticker": "PATH",
+          "sector": "Automation / AI",
+          "action": "BUY",
+          "confidence": 70.0,
+          "score": 47.81,
+          "expected_return_pct": 4.06,
+          "best_hold_period_days": 1,
+          "historical_matches": 126,
+          "risk": "Medium",
+          "reason": "PATH is rated BUY because it shows outperformance versus the market, above-average trading volume, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 12.06,
+            "latest_close": 11.95,
+            "five_day_change_pct": 1.27,
+            "twenty_day_change_pct": 13.59,
+            "relative_strength_pct": 12.74,
+            "volume_ratio": 1.88,
+            "best_avg_return_pct": 0.27
+          }
+        },
+        {
+          "rank": 2,
+          "ticker": "S",
+          "sector": "Cybersecurity",
+          "action": "BUY",
+          "confidence": 45.0,
+          "score": 45.93,
+          "expected_return_pct": 7.63,
+          "best_hold_period_days": 1,
+          "historical_matches": 92,
+          "risk": "Medium",
+          "reason": "S is rated BUY because it shows outperformance versus the market, above-average trading volume, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 20.19,
+            "latest_close": 19.58,
+            "five_day_change_pct": 3.82,
+            "twenty_day_change_pct": 30.27,
+            "relative_strength_pct": 29.42,
+            "volume_ratio": 1.53,
+            "best_avg_return_pct": -0.87
+          }
+        },
+        {
+          "rank": 3,
+          "ticker": "HIMS",
+          "sector": "Consumer Health",
+          "action": "WATCH",
+          "confidence": 100.0,
+          "score": 40.79,
+          "expected_return_pct": 4.87,
+          "best_hold_period_days": 10,
+          "historical_matches": 38,
+          "risk": "Medium",
+          "reason": "HIMS is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 35.67,
+            "latest_close": 37.17,
+            "five_day_change_pct": 4.85,
+            "twenty_day_change_pct": 18.11,
+            "relative_strength_pct": 17.26,
+            "volume_ratio": 0.73,
+            "best_avg_return_pct": 6.13
+          }
+        },
+        {
+          "rank": 4,
+          "ticker": "SE",
+          "sector": "International Tech",
+          "action": "WATCH",
+          "confidence": 75.0,
+          "score": 39.67,
+          "expected_return_pct": 6.54,
+          "best_hold_period_days": 3,
+          "historical_matches": 57,
+          "risk": "Medium",
+          "reason": "SE is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 109.08,
+            "latest_close": 111.36,
+            "five_day_change_pct": 2.06,
+            "twenty_day_change_pct": 28.28,
+            "relative_strength_pct": 27.42,
+            "volume_ratio": 0.94,
+            "best_avg_return_pct": 0.33
+          }
+        },
+        {
+          "rank": 5,
+          "ticker": "CRWD",
+          "sector": "Cybersecurity",
+          "action": "BUY",
+          "confidence": 65.0,
+          "score": 38.7,
+          "expected_return_pct": 5.67,
+          "best_hold_period_days": 5,
+          "historical_matches": 358,
+          "risk": "Medium",
+          "reason": "CRWD is rated BUY because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 212.5,
+            "latest_close": 206.77,
+            "five_day_change_pct": 4.22,
+            "twenty_day_change_pct": 21.72,
+            "relative_strength_pct": 20.86,
+            "volume_ratio": 1.02,
+            "best_avg_return_pct": 0.83
+          }
+        },
+        {
+          "rank": 6,
+          "ticker": "META",
+          "sector": "Mega Cap Tech",
+          "action": "WATCH",
+          "confidence": 100.0,
+          "score": 38.43,
+          "expected_return_pct": 4.58,
+          "best_hold_period_days": 10,
+          "historical_matches": 369,
+          "risk": "Low",
+          "reason": "META is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 663.6,
+            "latest_close": 681.31,
+            "five_day_change_pct": 7.89,
+            "twenty_day_change_pct": 13.51,
+            "relative_strength_pct": 12.66,
+            "volume_ratio": 0.86,
+            "best_avg_return_pct": 1.12
+          }
+        },
+        {
+          "rank": 7,
+          "ticker": "PANW",
+          "sector": "Cybersecurity",
+          "action": "WATCH",
+          "confidence": 55.0,
+          "score": 37.07,
+          "expected_return_pct": 6.61,
+          "best_hold_period_days": 1,
+          "historical_matches": 66,
+          "risk": "Medium",
+          "reason": "PANW is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 356.85,
+            "latest_close": 354.02,
+            "five_day_change_pct": 4.64,
+            "twenty_day_change_pct": 26.48,
+            "relative_strength_pct": 25.62,
+            "volume_ratio": 0.89,
+            "best_avg_return_pct": 0.17
+          }
+        },
+        {
+          "rank": 8,
+          "ticker": "VLO",
+          "sector": "Energy",
+          "action": "WATCH",
+          "confidence": 60.0,
+          "score": 36.91,
+          "expected_return_pct": 5.26,
+          "best_hold_period_days": 10,
+          "historical_matches": 508,
+          "risk": "Medium",
+          "reason": "VLO is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 299.0,
+            "latest_close": 292.66,
+            "five_day_change_pct": 4.06,
+            "twenty_day_change_pct": 19.88,
+            "relative_strength_pct": 19.02,
+            "volume_ratio": 1.0,
+            "best_avg_return_pct": 0.44
+          }
+        },
+        {
+          "rank": 9,
+          "ticker": "MPC",
+          "sector": "Energy",
+          "action": "WATCH",
+          "confidence": 80.0,
+          "score": 35.85,
+          "expected_return_pct": 5.3,
+          "best_hold_period_days": 10,
+          "historical_matches": 508,
+          "risk": "Medium",
+          "reason": "MPC is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 301.53,
+            "latest_close": 299.18,
+            "five_day_change_pct": 5.61,
+            "twenty_day_change_pct": 19.45,
+            "relative_strength_pct": 18.59,
+            "volume_ratio": 0.77,
+            "best_avg_return_pct": 0.44
+          }
+        },
+        {
+          "rank": 10,
+          "ticker": "OKTA",
+          "sector": "Cybersecurity",
+          "action": "WATCH",
+          "confidence": 35.0,
+          "score": 32.17,
+          "expected_return_pct": 6.57,
+          "best_hold_period_days": 1,
+          "historical_matches": 47,
+          "risk": "Medium",
+          "reason": "OKTA is rated WATCH because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 156.0,
+            "latest_close": 150.86,
+            "five_day_change_pct": 1.36,
+            "twenty_day_change_pct": 29.75,
+            "relative_strength_pct": 28.89,
+            "volume_ratio": 0.73,
+            "best_avg_return_pct": -0.49
+          }
+        }
+      ],
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "source_metadata": {
+        "schema": "scanner_report_v2_csv",
+        "future_outcomes_exposed": false
+      },
+      "source_report": "reports/2026-07-15_v2.csv"
+    },
+    {
+      "date": "2026-07-14",
+      "market_regime": "Unavailable",
+      "candidate_count": 10,
+      "top_opportunity": {
+        "ticker": "S",
+        "sector": "Cybersecurity",
+        "action": "WATCH",
+        "confidence": 80.0,
+        "expected_return_pct": 8.0,
+        "score": 59.46
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "ticker": "S",
+          "sector": "Cybersecurity",
+          "action": "WATCH",
+          "confidence": 80.0,
+          "score": 59.46,
+          "expected_return_pct": 8.0,
+          "best_hold_period_days": 1,
+          "historical_matches": 67,
+          "risk": "High",
+          "reason": "S is rated WATCH because it shows strong short-term momentum, outperformance versus the market, above-average trading volume, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 18.16,
+            "latest_close": 19.92,
+            "five_day_change_pct": 11.85,
+            "twenty_day_change_pct": 31.14,
+            "relative_strength_pct": 31.28,
+            "volume_ratio": 1.93,
+            "best_avg_return_pct": -0.11
+          }
+        },
+        {
+          "rank": 2,
+          "ticker": "OKTA",
+          "sector": "Cybersecurity",
+          "action": "WATCH",
+          "confidence": 100.0,
+          "score": 51.56,
+          "expected_return_pct": 8.0,
+          "best_hold_period_days": 10,
+          "historical_matches": 51,
+          "risk": "High",
+          "reason": "OKTA is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 138.17,
+            "latest_close": 154.62,
+            "five_day_change_pct": 5.35,
+            "twenty_day_change_pct": 30.9,
+            "relative_strength_pct": 31.04,
+            "volume_ratio": 1.29,
+            "best_avg_return_pct": 2.63
+          }
+        },
+        {
+          "rank": 3,
+          "ticker": "SE",
+          "sector": "International Tech",
+          "action": "BUY",
+          "confidence": 95.0,
+          "score": 47.71,
+          "expected_return_pct": 6.64,
+          "best_hold_period_days": 7,
+          "historical_matches": 33,
+          "risk": "Medium",
+          "reason": "SE is rated BUY because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 110.0,
+            "latest_close": 109.29,
+            "five_day_change_pct": 3.78,
+            "twenty_day_change_pct": 26.11,
+            "relative_strength_pct": 26.25,
+            "volume_ratio": 1.11,
+            "best_avg_return_pct": 4.73
+          }
+        },
+        {
+          "rank": 4,
+          "ticker": "CRWD",
+          "sector": "Cybersecurity",
+          "action": "WATCH",
+          "confidence": 70.0,
+          "score": 41.69,
+          "expected_return_pct": 6.89,
+          "best_hold_period_days": 1,
+          "historical_matches": 53,
+          "risk": "High",
+          "reason": "CRWD is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 190.99,
+            "latest_close": 210.73,
+            "five_day_change_pct": 10.26,
+            "twenty_day_change_pct": 21.65,
+            "relative_strength_pct": 21.79,
+            "volume_ratio": 1.07,
+            "best_avg_return_pct": -0.1
+          }
+        },
+        {
+          "rank": 5,
+          "ticker": "ZS",
+          "sector": "Cybersecurity",
+          "action": "WATCH",
+          "confidence": 95.0,
+          "score": 40.9,
+          "expected_return_pct": 5.06,
+          "best_hold_period_days": 10,
+          "historical_matches": 32,
+          "risk": "High",
+          "reason": "ZS is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 139.55,
+            "latest_close": 152.09,
+            "five_day_change_pct": 5.95,
+            "twenty_day_change_pct": 16.62,
+            "relative_strength_pct": 16.76,
+            "volume_ratio": 1.0,
+            "best_avg_return_pct": 1.27
+          }
+        },
+        {
+          "rank": 6,
+          "ticker": "MPC",
+          "sector": "Energy",
+          "action": "WATCH",
+          "confidence": 85.0,
+          "score": 39.92,
+          "expected_return_pct": 6.26,
+          "best_hold_period_days": 1,
+          "historical_matches": 106,
+          "risk": "Medium",
+          "reason": "MPC is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 300.0,
+            "latest_close": 303.4,
+            "five_day_change_pct": 8.09,
+            "twenty_day_change_pct": 20.94,
+            "relative_strength_pct": 21.08,
+            "volume_ratio": 0.91,
+            "best_avg_return_pct": 0.08
+          }
+        },
+        {
+          "rank": 7,
+          "ticker": "VLO",
+          "sector": "Energy",
+          "action": "WATCH",
+          "confidence": 75.0,
+          "score": 38.92,
+          "expected_return_pct": 6.18,
+          "best_hold_period_days": 1,
+          "historical_matches": 174,
+          "risk": "Medium",
+          "reason": "VLO is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 299.39,
+            "latest_close": 301.43,
+            "five_day_change_pct": 6.56,
+            "twenty_day_change_pct": 21.96,
+            "relative_strength_pct": 22.1,
+            "volume_ratio": 0.92,
+            "best_avg_return_pct": 0.12
+          }
+        },
+        {
+          "rank": 8,
+          "ticker": "NET",
+          "sector": "Cloud Software",
+          "action": "BUY",
+          "confidence": 65.0,
+          "score": 38.91,
+          "expected_return_pct": 5.2,
+          "best_hold_period_days": 10,
+          "historical_matches": 32,
+          "risk": "Medium",
+          "reason": "NET is rated BUY because it shows outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 268.0,
+            "latest_close": 281.75,
+            "five_day_change_pct": 3.05,
+            "twenty_day_change_pct": 19.53,
+            "relative_strength_pct": 19.67,
+            "volume_ratio": 1.11,
+            "best_avg_return_pct": 0.41
+          }
+        },
+        {
+          "rank": 9,
+          "ticker": "PANW",
+          "sector": "Cybersecurity",
+          "action": "WATCH",
+          "confidence": 70.0,
+          "score": 38.11,
+          "expected_return_pct": 7.14,
+          "best_hold_period_days": 1,
+          "historical_matches": 53,
+          "risk": "High",
+          "reason": "PANW is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 330.8,
+            "latest_close": 352.89,
+            "five_day_change_pct": 10.08,
+            "twenty_day_change_pct": 24.02,
+            "relative_strength_pct": 24.16,
+            "volume_ratio": 0.78,
+            "best_avg_return_pct": -0.1
+          }
+        },
+        {
+          "rank": 10,
+          "ticker": "PSX",
+          "sector": "Energy",
+          "action": "WATCH",
+          "confidence": 75.0,
+          "score": 36.27,
+          "expected_return_pct": 5.14,
+          "best_hold_period_days": 1,
+          "historical_matches": 174,
+          "risk": "Medium",
+          "reason": "PSX is rated WATCH because it shows strong short-term momentum, outperformance versus the market, positive forward return estimate.",
+          "source_fields": {
+            "latest_open": 200.0,
+            "latest_close": 201.45,
+            "five_day_change_pct": 7.26,
+            "twenty_day_change_pct": 16.27,
+            "relative_strength_pct": 16.41,
+            "volume_ratio": 0.86,
+            "best_avg_return_pct": 0.12
+          }
+        }
+      ],
+      "strategy": {
+        "name": "V8",
+        "version": "8.0",
+        "status": "Champion"
+      },
+      "source_metadata": {
+        "schema": "scanner_report_v2_csv",
+        "future_outcomes_exposed": false
+      },
+      "source_report": "reports/2026-07-14_v2.csv"
+    },
     {
       "date": "2026-07-13",
       "market_regime": "Unavailable",
@@ -245,7 +983,7 @@
         "schema": "scanner_report_v2_csv",
         "future_outcomes_exposed": false
       },
-      "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-13_v2.csv"
+      "source_report": "reports/2026-07-13_v2.csv"
     },
     {
       "date": "2026-07-09",
@@ -490,7 +1228,7 @@
         "schema": "scanner_report_v2_csv",
         "future_outcomes_exposed": false
       },
-      "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-09_v2.csv"
+      "source_report": "reports/2026-07-09_v2.csv"
     },
     {
       "date": "2026-07-06",
@@ -735,7 +1473,7 @@
         "schema": "scanner_report_v2_csv",
         "future_outcomes_exposed": false
       },
-      "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-06_v2.csv"
+      "source_report": "reports/2026-07-06_v2.csv"
     },
     {
       "date": "2026-06-29",
@@ -980,7 +1718,7 @@
         "schema": "scanner_report_v2_csv",
         "future_outcomes_exposed": false
       },
-      "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-06-29_v2.csv"
+      "source_report": "reports/2026-06-29_v2.csv"
     }
   ]
 }

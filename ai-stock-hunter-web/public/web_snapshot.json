@@ -1,41 +1,51 @@
 {
-  "generated_at": "2026-07-13T18:42:51",
-  "source_file": "reports/2026-07-13_v2.csv",
+  "generated_at": "2026-07-15T23:16:09",
+  "package_id": "research_2026-07-15_3cc1f4f4937f4e51",
+  "source_file": "reports/2026-07-15_v2.csv",
+  "source_market_date": "2026-07-15",
   "market_regime": {
     "label": "Risk-On",
     "score": 100.0
   },
   "top_opportunity": {
-    "ticker": "SE",
-    "sector": "International Tech",
-    "score": 55.31,
-    "confidence": 100.0,
-    "expected_return": 4.73,
-    "best_hold_period_days": 7,
-    "historical_matches": 33,
+    "ticker": "PATH",
+    "sector": "Automation / AI",
+    "score": 47.81,
+    "confidence": 70.0,
+    "expected_return": 0.27,
+    "best_hold_period_days": 1,
+    "historical_matches": 126,
     "risk": "Medium",
-    "action": "BUY",
-    "reason": "SE is the strongest current opportunity in International Tech. The setup is supported by a strong expected 7-day return of 4.73%, 33 comparable historical setups, very high confidence at 100%. This is a candidate for active review before the next session."
+    "action": "HOLD",
+    "reason": "PATH is acceptable but not high conviction. The setup has 126 historical matches, moderate confidence at 70%, so the best action is to hold or wait for stronger confirmation."
   },
   "portfolio_summary": {
-    "status": "Selective",
-    "health_label": "Cautious",
+    "status": "Defensive",
+    "health_label": "Risk Controlled",
     "total_value": 25000,
     "total_return": 16.4,
     "cash_percent": 12,
     "positions": 8,
-    "expected_10_day_return": 1.15,
-    "ai_confidence": 75.5,
-    "summary": "1 buy candidates, 1 watch candidates, and 2 avoid candidates were identified."
+    "expected_10_day_return": 0.84,
+    "ai_confidence": 68.5,
+    "summary": "0 buy candidates, 2 watch candidates, and 2 avoid candidates were identified."
   },
   "today_actions": [
     {
-      "ticker": "SE",
-      "action": "Review buy",
-      "badge": "BUY",
-      "tone": "green",
+      "ticker": "S",
+      "action": "Avoid",
+      "badge": "AVOID",
+      "tone": "red",
+      "confidence": 45.0,
+      "reason": "S should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.87%, 92 comparable historical setups, moderate confidence at 45%, which does not justify new capital."
+    },
+    {
+      "ticker": "HIMS",
+      "action": "Watch setup",
+      "badge": "WATCH",
+      "tone": "amber",
       "confidence": 100.0,
-      "reason": "SE is the strongest current opportunity in International Tech. The setup is supported by a strong expected 7-day return of 4.73%, 33 comparable historical setups, very high confidence at 100%. This is a candidate for active review before the next session."
+      "reason": "HIMS is worth watching in Consumer Health. The setup has a strong expected 10-day return of 6.13%, 38 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
     },
     {
       "ticker": "META",
@@ -43,137 +53,129 @@
       "badge": "WATCH",
       "tone": "amber",
       "confidence": 100.0,
-      "reason": "META is worth watching in Mega Cap Tech. The setup has a strong expected 10-day return of 4.21%, 31 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
-    },
-    {
-      "ticker": "GTLB",
-      "action": "Avoid",
-      "badge": "AVOID",
-      "tone": "red",
-      "confidence": 60.0,
-      "reason": "GTLB should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.06%, 186 historical matches, moderate confidence at 60%, which does not justify new capital."
+      "reason": "META is worth watching in Mega Cap Tech. The setup has a positive expected 10-day return of 1.12%, 369 historical matches, very high confidence at 100%, controlled risk, but it is not strong enough for an automatic buy yet."
     }
   ],
   "ranked_candidates": [
     {
-      "ticker": "SE",
-      "sector": "International Tech",
-      "score": 55.31,
-      "confidence": 100.0,
-      "expected_return": 4.73,
-      "best_hold_period_days": 7,
-      "historical_matches": 33,
-      "risk": "Medium",
-      "action": "BUY",
-      "reason": "SE is the strongest current opportunity in International Tech. The setup is supported by a strong expected 7-day return of 4.73%, 33 comparable historical setups, very high confidence at 100%. This is a candidate for active review before the next session."
-    },
-    {
-      "ticker": "META",
-      "sector": "Mega Cap Tech",
-      "score": 41.48,
-      "confidence": 100.0,
-      "expected_return": 4.21,
-      "best_hold_period_days": 10,
-      "historical_matches": 31,
-      "risk": "Medium",
-      "action": "WATCH",
-      "reason": "META is worth watching in Mega Cap Tech. The setup has a strong expected 10-day return of 4.21%, 31 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
-    },
-    {
-      "ticker": "NET",
-      "sector": "Cloud Software",
-      "score": 32.03,
-      "confidence": 85.0,
-      "expected_return": 1.45,
-      "best_hold_period_days": 3,
-      "historical_matches": 31,
+      "ticker": "PATH",
+      "sector": "Automation / AI",
+      "score": 47.81,
+      "confidence": 70.0,
+      "expected_return": 0.27,
+      "best_hold_period_days": 1,
+      "historical_matches": 126,
       "risk": "Medium",
       "action": "HOLD",
-      "reason": "NET is acceptable but not high conviction. The setup has a positive expected 3-day return of 1.45%, 31 comparable historical setups, solid confidence at 85%, so the best action is to hold or wait for stronger confirmation."
+      "reason": "PATH is acceptable but not high conviction. The setup has 126 historical matches, moderate confidence at 70%, so the best action is to hold or wait for stronger confirmation."
     },
     {
       "ticker": "S",
       "sector": "Cybersecurity",
-      "score": 41.75,
-      "confidence": 75.0,
-      "expected_return": 0.62,
+      "score": 45.93,
+      "confidence": 45.0,
+      "expected_return": -0.87,
       "best_hold_period_days": 1,
-      "historical_matches": 39,
+      "historical_matches": 92,
       "risk": "Medium",
-      "action": "HOLD",
-      "reason": "S is acceptable but not high conviction. The setup has 39 comparable historical setups, solid confidence at 75%, so the best action is to hold or wait for stronger confirmation."
+      "action": "AVOID",
+      "reason": "S should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.87%, 92 comparable historical setups, moderate confidence at 45%, which does not justify new capital."
     },
     {
-      "ticker": "CMG",
-      "sector": "Consumer Cyclical",
-      "score": 38.71,
-      "confidence": 85.0,
-      "expected_return": 0.6,
+      "ticker": "HIMS",
+      "sector": "Consumer Health",
+      "score": 40.79,
+      "confidence": 100.0,
+      "expected_return": 6.13,
+      "best_hold_period_days": 10,
+      "historical_matches": 38,
+      "risk": "Medium",
+      "action": "WATCH",
+      "reason": "HIMS is worth watching in Consumer Health. The setup has a strong expected 10-day return of 6.13%, 38 comparable historical setups, very high confidence at 100%, but it is not strong enough for an automatic buy yet."
+    },
+    {
+      "ticker": "SE",
+      "sector": "International Tech",
+      "score": 39.67,
+      "confidence": 75.0,
+      "expected_return": 0.33,
       "best_hold_period_days": 3,
-      "historical_matches": 154,
-      "risk": "Low",
+      "historical_matches": 57,
+      "risk": "Medium",
       "action": "HOLD",
-      "reason": "CMG is acceptable but not high conviction. The setup has 154 historical matches, solid confidence at 85%, controlled risk, so the best action is to hold or wait for stronger confirmation."
+      "reason": "SE is acceptable but not high conviction. The setup has 57 comparable historical setups, solid confidence at 75%, so the best action is to hold or wait for stronger confirmation."
+    },
+    {
+      "ticker": "CRWD",
+      "sector": "Cybersecurity",
+      "score": 38.7,
+      "confidence": 65.0,
+      "expected_return": 0.83,
+      "best_hold_period_days": 5,
+      "historical_matches": 358,
+      "risk": "Medium",
+      "action": "HOLD",
+      "reason": "CRWD is acceptable but not high conviction. The setup has 358 historical matches, moderate confidence at 65%, so the best action is to hold or wait for stronger confirmation."
+    },
+    {
+      "ticker": "META",
+      "sector": "Mega Cap Tech",
+      "score": 38.43,
+      "confidence": 100.0,
+      "expected_return": 1.12,
+      "best_hold_period_days": 10,
+      "historical_matches": 369,
+      "risk": "Low",
+      "action": "WATCH",
+      "reason": "META is worth watching in Mega Cap Tech. The setup has a positive expected 10-day return of 1.12%, 369 historical matches, very high confidence at 100%, controlled risk, but it is not strong enough for an automatic buy yet."
+    },
+    {
+      "ticker": "PANW",
+      "sector": "Cybersecurity",
+      "score": 37.07,
+      "confidence": 55.0,
+      "expected_return": 0.17,
+      "best_hold_period_days": 1,
+      "historical_matches": 66,
+      "risk": "Medium",
+      "action": "HOLD",
+      "reason": "PANW is acceptable but not high conviction. The setup has 66 comparable historical setups, moderate confidence at 55%, so the best action is to hold or wait for stronger confirmation."
     },
     {
       "ticker": "VLO",
       "sector": "Energy",
-      "score": 36.38,
-      "confidence": 75.0,
-      "expected_return": 0.22,
-      "best_hold_period_days": 1,
-      "historical_matches": 119,
-      "risk": "Low",
+      "score": 36.91,
+      "confidence": 60.0,
+      "expected_return": 0.44,
+      "best_hold_period_days": 10,
+      "historical_matches": 508,
+      "risk": "Medium",
       "action": "HOLD",
-      "reason": "VLO is acceptable but not high conviction. The setup has 119 historical matches, solid confidence at 75%, controlled risk, so the best action is to hold or wait for stronger confirmation."
+      "reason": "VLO is acceptable but not high conviction. The setup has 508 historical matches, moderate confidence at 60%, so the best action is to hold or wait for stronger confirmation."
     },
     {
       "ticker": "MPC",
       "sector": "Energy",
-      "score": 36.06,
-      "confidence": 75.0,
-      "expected_return": 0.22,
-      "best_hold_period_days": 1,
-      "historical_matches": 119,
-      "risk": "Low",
+      "score": 35.85,
+      "confidence": 80.0,
+      "expected_return": 0.44,
+      "best_hold_period_days": 10,
+      "historical_matches": 508,
+      "risk": "Medium",
       "action": "HOLD",
-      "reason": "MPC is acceptable but not high conviction. The setup has 119 historical matches, solid confidence at 75%, controlled risk, so the best action is to hold or wait for stronger confirmation."
+      "reason": "MPC is acceptable but not high conviction. The setup has 508 historical matches, solid confidence at 80%, so the best action is to hold or wait for stronger confirmation."
     },
     {
-      "ticker": "PSX",
-      "sector": "Energy",
-      "score": 36.36,
-      "confidence": 65.0,
-      "expected_return": 0.22,
+      "ticker": "OKTA",
+      "sector": "Cybersecurity",
+      "score": 32.17,
+      "confidence": 35.0,
+      "expected_return": -0.49,
       "best_hold_period_days": 1,
-      "historical_matches": 119,
-      "risk": "Low",
-      "action": "HOLD",
-      "reason": "PSX is acceptable but not high conviction. The setup has 119 historical matches, moderate confidence at 65%, controlled risk, so the best action is to hold or wait for stronger confirmation."
-    },
-    {
-      "ticker": "GTLB",
-      "sector": "Software",
-      "score": 32.51,
-      "confidence": 60.0,
-      "expected_return": -0.06,
-      "best_hold_period_days": 1,
-      "historical_matches": 186,
+      "historical_matches": 47,
       "risk": "Medium",
       "action": "AVOID",
-      "reason": "GTLB should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.06%, 186 historical matches, moderate confidence at 60%, which does not justify new capital."
-    },
-    {
-      "ticker": "ANET",
-      "sector": "Other / Uncategorized",
-      "score": 32.7,
-      "confidence": 35.0,
-      "expected_return": -0.71,
-      "best_hold_period_days": 3,
-      "historical_matches": 66,
-      "risk": "Low",
-      "action": "AVOID",
-      "reason": "ANET should be avoided for now. Although it passed the scanner, the setup shows a weak expected 3-day return of -0.71%, 66 comparable historical setups, moderate confidence at 35%, controlled risk, which does not justify new capital."
+      "reason": "OKTA should be avoided for now. Although it passed the scanner, the setup shows a weak expected 1-day return of -0.49%, 47 comparable historical setups, moderate confidence at 35%, which does not justify new capital."
     }
   ]
 }

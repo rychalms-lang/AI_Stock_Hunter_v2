@@ -1,20 +1,21 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-14T12:24:11-04:00",
-  "market_state": "OPEN",
+  "generated_at": "2026-07-15T23:16:38-04:00",
+  "package_id": "research_2026-07-15_3cc1f4f4937f4e51",
+  "market_state": "CLOSED",
   "daily_pipeline": {
     "status": "healthy",
-    "last_success_at": "2026-07-13T18:33:52-04:00",
-    "last_market_date": "2026-07-13",
-    "last_attempt_at": "2026-07-13T18:33:52-04:00",
-    "last_attempt_market_date": "2026-07-13",
+    "last_success_at": "2026-07-15T18:00:29-04:00",
+    "last_market_date": "2026-07-15",
+    "last_attempt_at": "2026-07-15T18:00:29-04:00",
+    "last_attempt_market_date": "2026-07-15",
     "last_attempt_status": "success",
     "last_attempt_type": "production",
     "last_failure_reason": null,
-    "data_coverage_pct": 97.97,
+    "data_coverage_pct": 100.0,
     "exporter_completed": true,
     "production_pipeline_completed": true,
-    "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-13_v2.csv"
+    "source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-15_v2.csv"
   },
   "paper_refresh": {
     "status": "healthy",
@@ -26,26 +27,58 @@
     "last_failure_reason": null
   },
   "data_freshness": {
-    "daily_picks": "2026-07-13T18:42:51",
-    "portfolio": "2026-07-14T12:20:50",
-    "web_snapshot": "2026-07-13T18:42:51"
+    "daily_picks": "2026-07-15T23:16:09",
+    "portfolio": "2026-07-15T23:16:09",
+    "web_snapshot": "2026-07-15T23:16:09"
   },
   "research_package": {
     "schema_version": "1.0",
     "status": "ready",
     "mismatches": [],
-    "official_market_date": "2026-07-13",
-    "official_source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-13_v2.csv",
-    "source_report": "reports/2026-07-13_v2.csv",
-    "source_report_name": "2026-07-13_v2.csv",
-    "generated_at": "2026-07-13T18:42:51",
-    "top_opportunity_ticker": "SE",
-    "snapshot_top_opportunity_ticker": "SE",
-    "daily_picks_top_ticker": "SE",
-    "research_changes_top_ticker": "SE",
-    "web_snapshot_market_date": "2026-07-13",
-    "daily_picks_market_date": "2026-07-13",
-    "research_changes_current_date": "2026-07-13"
+    "official_market_date": "2026-07-15",
+    "official_source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-15_v2.csv",
+    "expected_package_id": "research_2026-07-15_3cc1f4f4937f4e51",
+    "package_id": "research_2026-07-15_3cc1f4f4937f4e51",
+    "source_report": "reports/2026-07-15_v2.csv",
+    "source_report_name": "2026-07-15_v2.csv",
+    "generated_at": "2026-07-15T23:16:09",
+    "top_opportunity_ticker": "PATH",
+    "snapshot_top_opportunity_ticker": "PATH",
+    "daily_picks_top_ticker": "PATH",
+    "research_changes_top_ticker": "PATH",
+    "web_snapshot_market_date": "2026-07-15",
+    "daily_picks_market_date": "2026-07-15",
+    "research_changes_current_date": "2026-07-15",
+    "file_package_ids": {
+      "web_snapshot": "research_2026-07-15_3cc1f4f4937f4e51",
+      "daily_picks": "research_2026-07-15_3cc1f4f4937f4e51",
+      "research_changes": "research_2026-07-15_3cc1f4f4937f4e51"
+    },
+    "technical_diagnostics": {
+      "expected_package_id": "research_2026-07-15_3cc1f4f4937f4e51",
+      "actual_package_id_per_file": {
+        "web_snapshot": "research_2026-07-15_3cc1f4f4937f4e51",
+        "daily_picks": "research_2026-07-15_3cc1f4f4937f4e51",
+        "research_changes": "research_2026-07-15_3cc1f4f4937f4e51"
+      },
+      "expected_source_report": "/Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/reports/2026-07-15_v2.csv",
+      "actual_source_report_per_file": {
+        "web_snapshot": "reports/2026-07-15_v2.csv",
+        "daily_picks": "reports/2026-07-15_v2.csv",
+        "research_changes": "reports/2026-07-15_v2.csv"
+      },
+      "expected_market_date": "2026-07-15",
+      "actual_market_date_per_file": {
+        "web_snapshot": "2026-07-15",
+        "daily_picks": "2026-07-15",
+        "research_changes": "2026-07-15"
+      },
+      "rank_one_per_file": {
+        "web_snapshot": "PATH",
+        "daily_picks": "PATH",
+        "research_changes": "PATH"
+      }
+    }
   },
   "strategy": {
     "name": "V8",
@@ -61,10 +94,10 @@
   "scanner": {
     "candidate_count": 10,
     "status": "healthy",
-    "latest_attempt_at": "2026-07-13T18:33:52-04:00",
+    "latest_attempt_at": "2026-07-15T18:00:29-04:00",
     "latest_attempt_type": "production",
-    "latest_success_at": "2026-07-13T18:33:52-04:00",
-    "latest_valid_market_date": "2026-07-13",
+    "latest_success_at": "2026-07-15T18:00:29-04:00",
+    "latest_valid_market_date": "2026-07-15",
     "latest_manual_test_at": "2026-07-11T19:17:20-04:00",
     "latest_manual_test_market_date": "2026-07-11",
     "latest_manual_test_report": "reports/manual-tests/2026-07-11_v2.csv",
@@ -72,45 +105,47 @@
     "latest_failed_attempt_market_date": "2026-07-10",
     "latest_failed_artifact": "reports/failed/2026-07-10_v2.csv",
     "failure_reason": null,
-    "data_coverage_pct": 97.97,
+    "data_coverage_pct": 100.0,
     "tickers_requested": 246,
-    "tickers_succeeded": 241,
-    "tickers_failed": 5,
+    "tickers_succeeded": 246,
+    "tickers_failed": 0,
     "benchmark_data_status": "ok",
     "sector_data_status": "ok",
     "exporter_completed": true,
     "production_pipeline_completed": true,
-    "last_export_timestamp": "2026-07-13T18:42:51",
-    "source_file": "reports/2026-07-13_v2.csv",
+    "last_export_timestamp": "2026-07-15T23:16:09",
+    "source_file": "reports/2026-07-15_v2.csv",
+    "latest_research_package_id": "research_2026-07-15_3cc1f4f4937f4e51",
     "research_package_status": "ready",
-    "research_package_mismatches": []
+    "research_package_mismatches": [],
+    "research_package_failure": null
   },
   "paper_portfolio": {
-    "open_positions": 4,
-    "stale_positions": 0,
-    "price_status": "DELAYED",
-    "last_market_update": "2026-07-14T12:20:00-04:00",
-    "valuation_batch_id": "valuation_20260714T1220370400",
-    "valuation_generated_at": "2026-07-14T12:20:37-04:00"
+    "open_positions": 5,
+    "stale_positions": 5,
+    "price_status": "waiting_for_fresh_market_prices",
+    "last_market_update": "2026-07-15T19:59:00-04:00",
+    "valuation_batch_id": null,
+    "valuation_generated_at": "2026-07-15T23:16:09"
   },
   "market_snapshot": {
     "provider": "yfinance",
     "quote_status": "DELAYED",
-    "last_successful_quote_refresh": "2026-07-14T12:20:37-04:00",
+    "last_successful_quote_refresh": "2026-07-15T15:59:16-04:00",
     "tickers_requested": 16,
     "tickers_updated": 16,
     "tickers_stale": 0,
     "failed_quotes": 0,
     "market_state": "OPEN",
-    "valuation_batch_id": "valuation_20260714T1220370400",
-    "valuation_generated_at": "2026-07-14T12:20:37-04:00"
+    "valuation_batch_id": "valuation_20260715T1559160400",
+    "valuation_generated_at": "2026-07-15T15:59:16-04:00"
   },
   "portfolio_pricing": {
     "refresh_cadence_seconds": 300,
     "refresh_cadence_label": "Every 5 minutes during regular New York market hours",
-    "last_market_snapshot": "2026-07-14T12:20:37-04:00",
-    "last_durable_valuation": "2026-07-14T12:20:37-04:00",
-    "next_expected_refresh": "2026-07-14T12:25:37-04:00",
+    "last_market_snapshot": "2026-07-15T15:59:16-04:00",
+    "last_durable_valuation": "2026-07-15T23:16:09",
+    "next_expected_refresh": "2026-07-15T16:04:16-04:00",
     "tickers_requested": 16,
     "tickers_updated": 16,
     "tickers_stale": 0,
@@ -123,10 +158,10 @@
   "trade_email_notifications": {
     "enabled": true,
     "recipient_configured": true,
-    "last_successful_email": "2026-07-14T12:23:29",
+    "last_successful_email": "2026-07-14T18:00:42",
     "last_failed_email": null,
     "pending_retries": 0,
-    "total_sent": 1,
+    "total_sent": 4,
     "total_failed": 0,
     "last_failure_reason": null
   },
@@ -145,44 +180,44 @@
   },
   "events": [
     {
-      "timestamp": "2026-07-14T12:20:37-0400",
+      "timestamp": "2026-07-15T23:08:46-0400",
       "level": "info",
-      "message": "Refreshing market snapshot."
+      "message": "New York market date: 2026-07-15"
     },
     {
-      "timestamp": "Not yet recorded",
-      "level": "error",
-      "message": "{\"dry_run\": false, \"errors\": 0, \"market_state\": \"OPEN\", \"output\": \"data/market_snapshot.json\", \"quote_status\": \"DELAYED\", \"status\": \"success\", \"tickers_requested\": 16, \"tickers_updated\": 16}"
-    },
-    {
-      "timestamp": "2026-07-14T12:20:50-0400",
-      "level": "info",
-      "message": "Running paper-trading refresh command using shared market snapshot batch."
-    },
-    {
-      "timestamp": "Not yet recorded",
+      "timestamp": "2026-07-15T23:08:46-0400",
       "level": "warning",
-      "message": "{\"cash\": 15529.02, \"dry_run\": false, \"market_state\": \"OPEN\", \"positions_closed\": 0, \"positions_stale\": 0, \"positions_updated\": 4, \"price_data_status\": \"DELAYED\", \"realized_pnl\": 383.6, \"status\": \"success\", \"timestamp\": \"2026-07-14T12:20:00-"
+      "message": "Outside regular New York market window; refresh skipped safely."
     },
     {
-      "timestamp": "2026-07-14T12:20:50-0400",
+      "timestamp": "2026-07-15T23:13:46-0400",
       "level": "info",
-      "message": "Exporting system status."
+      "message": "Paper ledger refresh starting."
+    },
+    {
+      "timestamp": "2026-07-15T23:13:46-0400",
+      "level": "info",
+      "message": "Market timezone: America/New_York"
+    },
+    {
+      "timestamp": "2026-07-15T23:13:46-0400",
+      "level": "info",
+      "message": "New York market timestamp: 2026-07-15T23:13:46-04:00"
+    },
+    {
+      "timestamp": "2026-07-15T23:13:46-0400",
+      "level": "info",
+      "message": "New York market date: 2026-07-15"
+    },
+    {
+      "timestamp": "2026-07-15T23:13:46-0400",
+      "level": "warning",
+      "message": "Outside regular New York market window; refresh skipped safely."
     },
     {
       "timestamp": "Not yet recorded",
       "level": "info",
-      "message": "System status written to /Users/rileychalmers/AI_Stock_Hunter/AI_Stock_Hunter_v2/data/system_status.json"
-    },
-    {
-      "timestamp": "Not yet recorded",
-      "level": "info",
-      "message": "{\"daily_pipeline\": \"healthy\", \"market_state\": \"OPEN\", \"paper_refresh\": \"healthy\"}"
-    },
-    {
-      "timestamp": "2026-07-14T12:20:51-0400",
-      "level": "info",
-      "message": "Paper ledger refresh completed successfully."
+      "message": "$NET: possibly delisted; no price data found  (period=1y)"
     }
   ]
 }
